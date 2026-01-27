@@ -1,0 +1,31 @@
+---
+description: "Generates and formats the Assumptions section with mandatory justifications."
+globs: ["**/*.tex"]
+alwaysApply: false
+---
+# Assumptions Section Guidelines
+
+When generating or editing the "Assumptions" section, strictly follow this structure. **DO NOT create an assumption without a corresponding justification.**
+
+## Structural Requirement
+
+Use the `itemize` environment. Each item must follow this pattern:
+
+```latex
+\item \textbf{Assumption Name}. \textit{Justification:} Explanation text.
+```
+
+## Content Guidelines
+
+1. **Relevance**: Assumptions must simplify the problem or bridge data gaps.
+2. **Justification**: Must be based on physics, common sense, or data limitations. Avoid circular reasoning.
+3. **Variables**: If an assumption introduces a constant (e.g., gravity), define its symbol and value immediately.
+
+## Example
+
+```latex
+\begin{itemize}
+    \item \textbf{Uniform distribution}. \textit{Justification:} The data shows no significant spatial clustering, and we lack detailed geographic information.
+    \item \textbf{Negligible air resistance}. \textit{Justification:} For the velocity range considered (0-10 m/s), air resistance contributes less than 2\% to the total force, as verified by preliminary calculations.
+\end{itemize}
+```

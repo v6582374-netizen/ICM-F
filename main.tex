@@ -1,0 +1,149 @@
+%!TeX program = xelatex
+%!TeX encoding = UTF-8
+
+\documentclass{mcmthesis} % 核心文档类 
+\mcmsetup{
+  tcn = {0000000},            % 修改为您的控制编号 
+  problem = {A},              % 参赛题号 (A, B, C, D, E, F) [5, 16]
+  sheet = true,               % 启用 Summary Sheet 自动生成 
+  titleinsheet = true,        % 在摘要页显示文章标题
+  keywordsinsheet = true,     % 在摘要页显示关键词
+  titlepage = false,          % 2026规则下不强制要求额外封面页 [17]
+  abstract = true             % 保持摘要环境可用
+}
+
+% --- 加载公认的权威学术宏包 ---
+\usepackage{newtxtext, newtxmath} % 优化 Times 风格字体，符合 COMAP 规范 [7, 18]
+\usepackage{amsmath, amsfonts, amssymb} % 数学环境基石
+\usepackage{graphicx} % 图像处理
+\usepackage{booktabs} % 权威的三线表标准 
+\usepackage{longtable} % 跨页长表处理
+\usepackage{listings} % 源代码排版环境 
+\usepackage{xcolor} % 色彩管理
+\usepackage{enumitem} % 列表格式精细控制
+\usepackage{geometry} % 页面布局宏包
+\usepackage{tocloft} % 目录排版优化
+
+% --- 源代码高亮风格定义 ---
+\definecolor{codegreen}{rgb}{0,0.6,0}
+\lstset{
+  language=Python,
+  basicstyle=\small\ttfamily,
+  keywordstyle=\color{blue},
+  commentstyle=\color{codegreen},
+  stringstyle=\color{orange},
+  breaklines=true,
+  frame=single,
+  numbers=left,
+  showstringspaces=false
+}
+
+% --- 文档元数据 ---
+\title{Optimized Modeling and Predictive Analysis of Complex Systems}
+\author{Team \# 0000000}
+\date{\today}
+
+\begin{document}
+
+% --- 摘要页逻辑 (COMAP 评审首选) ---
+\begin{abstract}
+    The first page is critical. Judges evaluate the summary to determine if 
+    the paper proceeds to higher rounds. 
+    Your summary must emphasize results rather than just procedures.
+
+    \begin{itemize}
+        \item Key Findings: Quantification of model performance through simulation.
+        \item Model Innovation: Integration of multi-objective optimization methods.
+    \end{itemize}
+
+    \begin{keywords}
+        Mathematical Modeling; Sensitivity Analysis; AI Tools Disclosure.
+    \end{keywords}
+\end{abstract}
+
+\maketitle % 执行摘要页排版命令 
+
+% --- 目录部分 (计入25页限制) ---
+\tableofcontents 
+\newpage
+
+% --- 第一章：引言 ---
+\section{Introduction}
+\subsection{Background and Motivation}
+Describe the real-world context provided by the problem statement.
+
+\subsection{Literature Review}
+Cite existing research to build model credibility.[23]
+
+\subsection{Restatement of the Problem}
+Define specific goals using your own academic language.[3, 24]
+
+% --- 第二章：假设与符号 ---
+\section{Assumptions and Notations}
+\subsection{General Assumptions}
+List simplifying assumptions and their scientific justifications.[14, 22]
+
+\subsection{Notation Definition}
+Use a structured table to define variables for cognitive efficiency.
+
+\begin{table}[ht]
+\centering
+\caption{Definition of Primary Notations}
+\begin{tabular}{ccc}
+\toprule
+Variable & Description & Dimension/Units \\
+\midrule
+$P(t)$ & Population density at time $t$ & $ind/km^2$ \\
+$\eta$ & Efficiency of the transmission channel & Dimensionless \\
+\bottomrule
+\end{tabular}
+\end{table}
+
+% --- 第三章：模型设计 ---
+\section{Model Construction and Implementation}
+Explain the logic of your core model. Use standard LaTeX math environments:
+\begin{equation}
+    \min Z = \sum_{i=1}^n \omega_i \cdot f_i(x) + \lambda \int_{0}^T R(t) dt
+\end{equation}
+
+% --- 第四章：结果与检验 ---
+\section{Simulation Results and Sensitivity Analysis}
+Provide visual data through plots. Discuss model robustness.
+Sensitivity analysis is crucial for winning Meritorious or Outstanding awards.[14, 22]
+
+% --- 第五章：评价与讨论 ---
+\section{Discussion: Strengths and Weaknesses}
+\subsection{Strengths}
+High predictive accuracy; adaptable to high-dimensional data.[3, 24]
+\subsection{Weaknesses}
+Computational complexity for large-scale matrices.
+
+% --- 结论 ---
+\section{Conclusion}
+Summarize findings and provide actionable insights.[4]
+
+% --- 参考文献 ---
+\begin{thebibliography}{99}
+\bibitem{ref1} Knuth, D. E. (1986). The TeXbook. Reading, MA: Addison-Wesley.[3, 27]
+\end{thebibliography}
+
+% --- 附录 (代码集成) ---
+\begin{appendices}
+\section{Python Implementation Code}
+\begin{lstlisting}[language=Python]
+def model_solver(data):
+    # Core mathematical logic here
+    return results
+\end{lstlisting}
+\end{appendices}
+
+% --- 2026 AI 披露报告 (不计入25页限制) ---
+\newpage
+\section*{Report on Use of AI Tools}
+% 必须附在论文最末尾 
+\begin{enumerate}
+    \item \textbf{OpenAI ChatGPT-4}: Used for structural optimization of the introduction.
+    \item \textbf{GitHub Copilot}: Assisted in debugging the Monte Carlo simulation scripts.
+\end{enumerate}
+
+\end{document}

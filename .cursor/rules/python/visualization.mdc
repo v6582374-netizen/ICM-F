@@ -1,0 +1,35 @@
+---
+description: "Standards for generating scientific plots and embedding them in LaTeX."
+globs: ["**/*.py"]
+alwaysApply: false
+---
+# Visualization Standards
+
+## Style Requirements
+
+- **Background**: Use a white background
+- **Colors**: High-contrast colors (colorblind-friendly)
+- **Fonts**: Large fonts suitable for printing
+- **Format**: Save as PDF (.pdf) for vector quality
+
+## Content Requirements
+
+- Every axis **MUST** have a label and unit
+- Every plot **MUST** have a title (or handle it in LaTeX caption)
+
+## Output Format
+
+Save as PDF (.pdf) for vector quality.
+
+## LaTeX Output
+
+When generating the plot code, also generate the LaTeX snippet:
+
+```latex
+\begin{figure}[htbp]
+\centering
+\includegraphics[width=0.8\textwidth]{images/filename.pdf}
+\caption{Detailed description of what the trend implies.}
+\label{fig:filename}
+\end{figure}
+```

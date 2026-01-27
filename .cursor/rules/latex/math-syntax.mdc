@@ -1,0 +1,31 @@
+---
+description: "Enforces professional LaTeX math typesetting standards."
+globs: ["**/*.tex"]
+alwaysApply: false
+---
+# Math Typesetting Rules
+
+## Environment Selection
+
+- **Display Math**: Use `\[...\]` for unnumbered equations. Use `\begin{equation}...\end{equation}` ONLY for equations that are referenced in the text.
+- **Multi-line**: Use `\begin{align}` for derivations. Avoid `eqnarray` (it has spacing issues).
+
+## Symbol Conventions
+
+- **Variables**: Scalars are italic ($x$), Vectors are bold lowercase ($\mathbf{v}$), Matrices are bold uppercase ($\mathbf{A}$).
+- **Operators**: Use `\sin`, `\cos`, `\log`, `\max`, `\min`. DO NOT write `log(x)` as it renders as variables $log(x)$.
+- **Text in Math**: Use `\text{}` for descriptive text.
+  - **Correct**: $E = \text{kinetic energy} + \text{potential energy}$
+  - **Incorrect**: $E = kinetic energy + potential energy$ (This renders 'm' and 's' as variables).
+
+## Punctuation
+
+- Mathematical equations are parts of sentences. They must end with appropriate punctuation (period or comma) inside the math environment if the sentence requires it.
+- **Example**:
+  ```latex
+  The energy is given by
+  \[
+  E = \frac{1}{2}mv^2,
+  \]
+  where $m$ is mass...
+  ```

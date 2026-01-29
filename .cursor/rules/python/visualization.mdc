@@ -1,34 +1,37 @@
 ---
-description: "Standards for generating scientific plots and embedding them in LaTeX."
+description: "Standards for generating scientific plots that blend with the PDF and prioritize document aesthetics."
 globs: ["**/*.py"]
 alwaysApply: false
 ---
 # Visualization Standards
 
+**首要原则**：以 PDF 版面的美感为首要考量；图应与论文页面浑然天成、朴素淡雅，不追求高对比、高饱和或纯色鲜艳背景。不考虑色盲友好、印刷适配等额外约束。
+
 ## Style Requirements
 
-- **Background**: Use a white background
-- **Colors**: High-contrast colors (colorblind-friendly)
-- **Fonts**: Large fonts suitable for printing
-- **Format**: Save as PDF (.pdf) for vector quality
+- **Background**: 纯白或与正文一致的浅色背景，避免彩色块、渐变或深色底；与 PDF 白底自然融合。
+- **Colors**: 低饱和、淡雅配色：多用灰阶、浅灰蓝/浅灰绿、淡棕等柔和色调；禁止大面积纯红/纯蓝/纯黄等高饱和纯色，避免“贴上去的图标”感。
+- **Line/Marker**: 线宽与标记大小适中，以清晰可辨为下限，以不抢眼为上限；可优先细线、小标记、浅色填充。
+- **Fonts**: 字号与正文协调，风格简洁，不刻意“大号便于打印”。
+- **Format**: 以 PDF (.pdf) 输出，保证矢量清晰度。
 
 ## Content Requirements
 
-- Every axis **MUST** have a label and unit
-- Every plot **MUST** have a title (or handle it in LaTeX caption)
+- 每条坐标轴须有标签与单位。
+- 每张图须有标题，或在 LaTeX 中用 `\caption` 统一说明。
 
 ## Output Format
 
-Save as PDF (.pdf) for vector quality.
+保存为 PDF (.pdf)，便于在 LaTeX 中以 `\includegraphics` 嵌入并保持矢量质量。
 
 ## LaTeX Output
 
-When generating the plot code, also generate the LaTeX snippet:
+生成绘图代码时，同时给出 LaTeX 引用片段（路径需指向 `figures/`，与项目规范一致）：
 
 ```latex
 \begin{figure}[htbp]
 \centering
-\includegraphics[width=0.8\textwidth]{images/filename.pdf}
+\includegraphics[width=0.8\textwidth]{figures/filename.pdf}
 \caption{Detailed description of what the trend implies.}
 \label{fig:filename}
 \end{figure}

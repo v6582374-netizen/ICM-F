@@ -2,17 +2,16 @@
 # -*- coding: utf-8 -*-
 
 """
-Scheme A pipeline:
-- Input:
+Scheme A pipeline (ARCHIVED - DATA SOURCES REMOVED):
+
+This pipeline was originally designed for EuRepoC/WDI/STIP analysis.
+Data sources have been removed per project requirements.
+Kept for reference only - DO NOT USE.
+
+Original inputs (no longer available):
   1) Event-level dataset (EuRepoC): eurepoc_global_dataset_1_3.csv
-  2) Exposure (population): API_SP.POP.TOTL_DS2_en_csv_v2_174326.csv
-  3) Policy initiatives (P dimension): STIP_COMPASS_Policy_Initiatives_Export.csv
-- Output:
-  - panel_country_year.csv           (country-year panel with Y_T,Y_S,Y_F,Y_R,Y_P and E_it)
-  - textRate_T_country_year.csv      (country-year-T event rate table)
-  - H_i_top20.csv                    (Top-20 high-target score)
-  - SR/FR/RR/PR_rank.csv             (country rankings)
-  - missingness_report.json          (missingness + distribution stats)
+  2) Exposure (population): World Bank WDI
+  3) Policy initiatives (P dimension): OECD STIP
 """
 
 import os

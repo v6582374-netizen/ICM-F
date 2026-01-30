@@ -27,6 +27,7 @@ where higher values indicate stronger presence of the corresponding characterist
 
 In addition to mechanistic contrast, the problem explicitly emphasizes data-informed reasoning.
 Therefore, we introduce a data availability score $D(x)$ that reflects whether reliable data sources exist for employment trends, task descriptions, compensation, and educational pathways associated with career $x$.
+These data sources include occupational databases \cite{onet2025database}, post-secondary employment outcomes \cite{censuspseo2025}, educational institutional data \cite{ncesipeds2018}, and occupational classification crosswalks \cite{ncescip2020soc2018}.
 
 \subsubsection{Objectification of Career Feature Parameters Based on O*NET}
 
@@ -140,7 +141,7 @@ We consider three representative approaches for modeling occupational evolution:
 \paragraph{Approach A: Task-aggregate impact model}
 This approach treats an occupation as a weighted bundle of tasks.
 GenAI-driven substitution and augmentation effects are specified at the task level and then aggregated to the occupational level using task weights.
-Most parameters can be constructed from O*NET task data and publicly available AI exposure rubrics, providing transparency and reproducibility.
+Most parameters can be constructed from O*NET task data \cite{onet2025database} and publicly available AI exposure rubrics \cite{freyosborne2017}, providing transparency and reproducibility.
 
 \paragraph{Approach B: Job-posting time-series models}
 This approach infers occupational change from trends in AI-related keywords and skill requirements in job postings.
@@ -156,9 +157,9 @@ Based on the above comparison, we adopt the task-aggregate impact model (Approac
 This choice is motivated by:
 \begin{itemize}
     \item \textbf{Mechanistic clarity}: occupational change emerges explicitly from task-level effects;
-    \item \textbf{Data alignment}: key parameters are grounded in publicly available occupational data;
+    \item \textbf{Data alignment}: key parameters are grounded in publicly available occupational data \cite{onet2025database,censuspseo2025};
     \item \textbf{Controlled complexity}: the model remains interpretable and suitable for scenario and sensitivity analysis;
-    \item \textbf{Transferability}: the framework can be readily extended to other occupations or educational pathways.
+    \item \textbf{Transferability}: the framework can be readily extended to other occupations or educational pathways \cite{ncescip2020soc2018}.
 \end{itemize}
 
 Approach B is reserved for potential validation or supplementary analysis, while Approach C is excluded from the main analysis due to calibration and transparency concerns.

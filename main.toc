@@ -11,15 +11,15 @@
 \contentsline {subsubsection}{\numberline {3.1.1}Modeling Rationale}{2}{subsubsection.3.1.1}%
 \contentsline {subsubsection}{\numberline {3.1.2}Objectification of Career Feature Parameters Based on O*NET}{3}{subsubsection.3.1.2}%
 \contentsline {subsubsection}{\numberline {3.1.3}Data Description and Task DNA Source}{3}{subsubsection.3.1.3}%
-\contentsline {paragraph}{Parameter Construction Logic}{3}{section*.5}%
-\contentsline {paragraph}{Normalization and Reproducibility}{4}{section*.6}%
+\contentsline {paragraph}{Parameter Construction Logic}{4}{section*.5}%
+\contentsline {paragraph}{Normalization and Reproducibility}{5}{section*.6}%
 \contentsline {subsubsection}{\numberline {3.1.4}Optimization Formulation}{5}{subsubsection.3.1.4}%
 \contentsline {subsubsection}{\numberline {3.1.5}Revision and Final Configuration of Selected Careers}{6}{subsubsection.3.1.5}%
 \contentsline {subsection}{\numberline {3.2}Model Selection for Occupational Evolution}{7}{subsection.3.2}%
 \contentsline {subsubsection}{\numberline {3.2.1}Computable Definition of Future Evolution}{7}{subsubsection.3.2.1}%
 \contentsline {subsubsection}{\numberline {3.2.2}Comparison of Candidate Modeling Approaches}{7}{subsubsection.3.2.2}%
 \contentsline {paragraph}{Approach A: Task-aggregate impact model}{7}{section*.9}%
-\contentsline {paragraph}{Approach B: Job-posting time-series models}{7}{section*.10}%
+\contentsline {paragraph}{Approach B: Job-posting time-series models}{8}{section*.10}%
 \contentsline {paragraph}{Approach C: Agent-based simulations}{8}{section*.11}%
 \contentsline {subsubsection}{\numberline {3.2.3}Final Model Choice}{8}{subsubsection.3.2.3}%
 \contentsline {subsection}{\numberline {3.3}Task-Aggregate Dynamic Model of Occupational Evolution}{8}{subsection.3.3}%
@@ -29,5 +29,5 @@
 \contentsline {subsection}{\numberline {5.1}Strengths}{9}{subsection.5.1}%
 \contentsline {subsection}{\numberline {5.2}Weaknesses}{9}{subsection.5.2}%
 \contentsline {section}{\numberline {6}Conclusion}{9}{section.6}%
-\contentsline {section}{Appendices}{9}{section*.13}%
+\contentsline {section}{Appendices}{9}{section*.12}%
 \contentsline {section}{Appendix \numberline {A}Python Implementation Code}{9}{appendix.1.A}%

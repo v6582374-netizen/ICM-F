@@ -3,7 +3,7 @@
 
 数据来源与路径约定（与 data-engineer-role 一致）：
 - 仅写入 ./data/raw/，不修改任何已有文件。
-- 运行前请确保网络可达（Zenodo / ITU / World Bank / CISA / NIST / OECD）。
+- 运行前请确保网络可达（ITU / CISA / NIST）。
 
 使用方法（在项目根目录执行）：
     uv run python code/download_raw_datasets.py
@@ -26,11 +26,6 @@ DATA_RAW = PROJECT_ROOT / "data" / "raw"
 # 直链下载清单：(本地文件名, 下载 URL)
 PSEO_RELEASE = "R2025Q2"
 DOWNLOAD_LIST = [
-    # EuRepoC – Global Dataset of Cyber Incidents (Zenodo)
-    ("eurepoc_global_dataset_1_3.csv", "https://zenodo.org/records/14965395/files/eurepoc_global_dataset_1_3.csv?download=1"),
-    ("eurepoc_attribution_dataset_1_3.csv", "https://zenodo.org/records/14965395/files/eurepoc_attribution_dataset_1.3.csv?download=1"),
-    ("eurepoc_receiver_dataset_1_3.csv", "https://zenodo.org/records/14965395/files/eurepoc_receiver_dataset_1.3.csv?download=1"),
-    ("eurepoc_dyadic_dataset_0_1.csv", "https://zenodo.org/records/14965395/files/eurepoc_dyadic_dataset_0_1.csv?download=1"),
     # ITU – Global Cybersecurity Index 示例数据包（含 GCI 相关 sheet）
     ("itu_rpm_afr_pub_2025_data.xlsx", "https://www.itu.int/en/ITU-D/Statistics/Documents/facts/rpm_afr_pub_2025_data.xlsx"),
     # CISA – Known Exploited Vulnerabilities
@@ -38,8 +33,6 @@ DOWNLOAD_LIST = [
     # NIST NVD – CVE 2.0 JSON Feeds
     ("nvdcve-2.0-2024.json.gz", "https://nvd.nist.gov/feeds/json/cve/2.0/nvdcve-2.0-2024.json.gz"),
     ("nvdcve-2.0-recent.json.gz", "https://nvd.nist.gov/feeds/json/cve/2.0/nvdcve-2.0-recent.json.gz"),
-    # OECD STIP – Policy Initiatives API 导出
-    ("oecd_stip_policy_initiatives.csv", "https://stip.oecd.org/ws/STIP/API/getPolicyInitiatives.xqy?br=BR9%2CBR15&br-extra=none%2CBR16%2CBR1&format=csv&tg=TG35&th=TH5"),
     # O*NET Production Database 30.1（文本/CSV 版）
     ("onet/db_30_1_text.zip", "https://www.onetcenter.org/dl_files/database/db_30_1_text.zip"),
     # CIP2020-SOC2018 Crosswalk
@@ -60,12 +53,6 @@ DOWNLOAD_LIST = [
     (f"census/pseo/{PSEO_RELEASE}/us/pseof_us.csv.gz", f"https://lehd.ces.census.gov/data/pseo/{PSEO_RELEASE}/us/pseof_us.csv.gz"),
     (f"census/pseo/{PSEO_RELEASE}/us/pseo_us_institutions.csv", f"https://lehd.ces.census.gov/data/pseo/{PSEO_RELEASE}/us/pseo_us_institutions.csv"),
     (f"census/pseo/{PSEO_RELEASE}/us/version_pseo.txt", f"https://lehd.ces.census.gov/data/pseo/{PSEO_RELEASE}/us/version_pseo.txt"),
-]
-
-# World Bank WDI：返回 ZIP，解压后 CSV 的命名以 API 为准，此处约定落盘名
-WB_INDICATORS = [
-    ("wdi_IT_NET_USER_ZS.csv", "https://api.worldbank.org/v2/country/all/indicator/IT.NET.USER.ZS?downloadformat=csv"),
-    ("wdi_NY_GDP_MKTP_CD.csv", "https://api.worldbank.org/v2/country/all/indicator/NY.GDP.MKTP.CD?downloadformat=csv"),
 ]
 
 # ABS MCB groups for 2022 technology/financing/climate module
@@ -102,32 +89,6 @@ def _download(url: str, dest: Path, desc: str = "") -> None:
             tmp_path.unlink(missing_ok=True)
         print(f"  fail: {dest.name} — {e}")
 
-
-def _download_wb_zip(url: str, dest_csv: Path) -> None:
-    """下载 World Bank ZIP，解压得到数据 CSV（排除 Metadata）并保存为 dest_csv。"""
-    if dest_csv.exists() and dest_csv.stat().st_size > 0:
-        print(f"  skip: {dest_csv.name} (exists)")
-        return
-    req = Request(url, headers={"User-Agent": "ICM-F-data/1.0"})
-    zip_path = dest_csv.with_suffix(".zip")
-    try:
-        with urlopen(req, timeout=120) as resp:
-            zip_path.write_bytes(resp.read())
-        with zipfile.ZipFile(zip_path, "r") as zf:
-            all_csv = [n for n in zf.namelist() if n.lower().endswith(".csv")]
-            data_csv = [n for n in all_csv if "Metadata" not in n] or all_csv
-            preferred = [n for n in data_csv if "API" in n or "Indicator" in n]
-            chosen = (preferred[0] if preferred else data_csv[0]) if data_csv else None
-            if chosen:
-                dest_csv.write_bytes(zf.read(chosen))
-                print(f"  ok: {dest_csv.name} (from zip)")
-            else:
-                print(f"  fail: no CSV in zip for {dest_csv.name}")
-        zip_path.unlink(missing_ok=True)
-    except (URLError, HTTPError, OSError, zipfile.BadZipFile) as e:
-        print(f"  fail: {dest_csv.name} — {e}")
-        if zip_path.exists():
-            zip_path.unlink(missing_ok=True)
 
 def _download_census_group_csv(
     base_url: str,
@@ -166,11 +127,7 @@ def main() -> None:
     for name, url in DOWNLOAD_LIST:
         _download(url, DATA_RAW / name)
 
-    print("\n[2] World Bank WDI (ZIP → CSV)")
-    for name, url in WB_INDICATORS:
-        _download_wb_zip(url, DATA_RAW / name)
-
-    print("\n[3] Census API group downloads (CSV)")
+    print("\n[2] Census API group downloads (CSV)")
     # ABS Technology-related module (absmcb, US-level, multiple groups)
     for group in ABSMCB_GROUPS_2022:
         _download_census_group_csv(

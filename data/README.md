@@ -20,17 +20,10 @@ uv run python code/download_raw_datasets.py
 
 | 目标文件名 | 来源 |
 |------------|------|
-| `eurepoc_global_dataset_1_3.csv` | EuRepoC Zenodo – 全球事件主表 |
-| `eurepoc_attribution_dataset_1_3.csv` | EuRepoC Zenodo – 归因展开表 |
-| `eurepoc_receiver_dataset_1_3.csv` | EuRepoC Zenodo – 受害方展开表 |
-| `eurepoc_dyadic_dataset_0_1.csv` | EuRepoC Zenodo – 国家对表 |
 | `itu_rpm_afr_pub_2025_data.xlsx` | ITU – GCI 示例数据包（含 Global cybersecurity index 相关 sheet） |
 | `cisa_known_exploited_vulnerabilities.csv` | CISA KEV – 已知被利用漏洞目录 |
 | `nvdcve-2.0-2024.json.gz` | NIST NVD – CVE 2.0 年度 JSON |
 | `nvdcve-2.0-recent.json.gz` | NIST NVD – CVE 2.0 近期 JSON |
-| `oecd_stip_policy_initiatives.csv` | OECD STIP – 政策倡议 API 导出（示例参数） |
-| `wdi_IT_NET_USER_ZS.csv` | World Bank WDI – 互联网使用率 |
-| `wdi_NY_GDP_MKTP_CD.csv` | World Bank WDI – GDP |
 | `CIP2020_SOC2018_Crosswalk.xlsx` | NCES/BLS – CIP2020-SOC2018 对照表 |
 | `IPEDS_2018-19_Final.zip` | NCES IPEDS – 2018-19 Access 数据库（Final） |
 | `onet/db_30_1_text.zip` | O*NET – Production Database 文本/CSV |

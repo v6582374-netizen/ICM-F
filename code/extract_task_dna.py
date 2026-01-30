@@ -7,7 +7,6 @@ from __future__ import annotations
 
 import csv
 import json
-import re
 import string
 import textwrap
 import zipfile
@@ -114,28 +113,6 @@ def merge_tasks_with_ratings(
     return merged
 
 
-def keyword_scoring(task_text: str) -> Tuple[float, float, str]:
-    text = task_text.lower()
-    rules = [
-        (r"\b(write|implement|code|coding)\b", 0.8, 0.7, "write/implement/code"),
-        (r"\b(test|testing|verify|debug|security)\b", 0.5, 0.8, "test/verify/debug/security"),
-        (r"\b(requirements|communicate|communication|stakeholder)\b", 0.3, 0.6, "requirements/communicate/stakeholder"),
-    ]
-    s_val, c_val = 0.5, 0.5
-    matched: List[str] = []
-    for pattern, s_rule, c_rule, label in rules:
-        if re.search(pattern, text):
-            s_val = max(s_val, s_rule)
-            c_val = max(c_val, c_rule)
-            matched.append(label)
-    if matched:
-        confidence = "keyword-medium"
-        if len(matched) >= 2:
-            confidence = "keyword-high"
-        return s_val, c_val, f"keywords={';'.join(matched)};confidence={confidence}"
-    return s_val, c_val, "keywords=none;confidence=default-low"
-
-
 def compute_weights(records: List[TaskRecord]) -> List[Tuple[TaskRecord, float]]:
     bases: List[float] = []
     for r in records:
@@ -160,7 +137,8 @@ def write_task_dna_csv(
     selected = weighted[:top_n]
     rows: List[Dict[str, str]] = []
     for record, weight in selected:
-        s_val, c_val, note = keyword_scoring(record.task_text)
+        s_val, c_val = 0.5, 0.5
+        note = "placeholder=authoritative_sc_required"
         evidence_parts = [
             note,
             "FR=E[FT category] from Scale ID FT (Frequency of Task)"
@@ -298,7 +276,8 @@ def _dummy_data_demo() -> None:
     ]
     weighted = compute_weights(dummy)
     for record, weight in weighted:
-        s_val, c_val, note = keyword_scoring(record.task_text)
+        s_val, c_val = 0.5, 0.5
+        note = "placeholder=authoritative_sc_required"
         print(
             {
                 "task_id": record.task_id,

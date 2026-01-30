@@ -1,0 +1,60 @@
+Element ID	Element Name	Scale ID	Category	Category Description
+2.D.1	Required Level of Education	RL	1	Less than a High School Diploma
+2.D.1	Required Level of Education	RL	2	High School Diploma - or the equivalent (for example, GED)
+2.D.1	Required Level of Education	RL	3	Post-Secondary Certificate - awarded for training completed after high school (for example, in agriculture or natural resources, computer services, personal or culinary services, engineering technologies, healthcare, construction trades, mechanic and repair technologies, or precision production)
+2.D.1	Required Level of Education	RL	4	Some College Courses
+2.D.1	Required Level of Education	RL	5	Associate's Degree (or other 2-year degree)
+2.D.1	Required Level of Education	RL	6	Bachelor's Degree
+2.D.1	Required Level of Education	RL	7	Post-Baccalaureate Certificate - awarded for completion of an organized program of study; designed for people who have completed a Baccalaureate degree but do not meet the requirements of academic degrees carrying the title of Master.
+2.D.1	Required Level of Education	RL	8	Master's Degree
+2.D.1	Required Level of Education	RL	9	Post-Master's Certificate - awarded for completion of an organized program of study; designed for people who have completed a Master's degree but do not meet the requirements of academic degrees at the doctoral level.
+2.D.1	Required Level of Education	RL	10	First Professional Degree - awarded for completion of a program that: requires at least 2 years of college work before entrance into the program, includes a total of at least 6 academic years of work to complete, and provides all remaining academic requirements to begin practice in a profession.
+2.D.1	Required Level of Education	RL	11	Doctoral Degree
+2.D.1	Required Level of Education	RL	12	Post-Doctoral Training
+3.A.1	Related Work Experience	RW	1	None
+3.A.1	Related Work Experience	RW	2	Up to and including 1 month
+3.A.1	Related Work Experience	RW	3	Over 1 month, up to and including 3 months
+3.A.1	Related Work Experience	RW	4	Over 3 months, up to and including 6 months
+3.A.1	Related Work Experience	RW	5	Over 6 months, up to and including 1 year
+3.A.1	Related Work Experience	RW	6	Over 1 year, up to and including 2 years
+3.A.1	Related Work Experience	RW	7	Over 2 years, up to and including 4 years
+3.A.1	Related Work Experience	RW	8	Over 4 years, up to and including 6 years
+3.A.1	Related Work Experience	RW	9	Over 6 years, up to and including 8 years
+3.A.1	Related Work Experience	RW	10	Over 8 years, up to and including 10 years
+3.A.1	Related Work Experience	RW	11	Over 10 years
+3.A.2	On-Site or In-Plant Training	PT	1	None
+3.A.2	On-Site or In-Plant Training	PT	2	Up to and including 1 month
+3.A.2	On-Site or In-Plant Training	PT	3	Over 1 month, up to and including 3 months
+3.A.2	On-Site or In-Plant Training	PT	4	Over 3 months, up to and including 6 months
+3.A.2	On-Site or In-Plant Training	PT	5	Over 6 months, up to and including 1 year
+3.A.2	On-Site or In-Plant Training	PT	6	Over 1 year, up to and including 2 years
+3.A.2	On-Site or In-Plant Training	PT	7	Over 2 years, up to and including 4 years
+3.A.2	On-Site or In-Plant Training	PT	8	Over 4 years, up to and including 10 years
+3.A.2	On-Site or In-Plant Training	PT	9	Over 10 years
+3.A.3	On-the-Job Training	OJ	1	None or short demonstration
+3.A.3	On-the-Job Training	OJ	2	Anything beyond short demonstration, up to and including 1 month
+3.A.3	On-the-Job Training	OJ	3	Over 1 month, up to and including 3 months
+3.A.3	On-the-Job Training	OJ	4	Over 3 months, up to and including 6 months
+3.A.3	On-the-Job Training	OJ	5	Over 6 months, up to and including 1 year
+3.A.3	On-the-Job Training	OJ	6	Over 1 year, up to and including 2 years
+3.A.3	On-the-Job Training	OJ	7	Over 2 years, up to and including 4 years
+3.A.3	On-the-Job Training	OJ	8	Over 4 years, up to and including 10 years
+3.A.3	On-the-Job Training	OJ	9	Over 10 years
+
+
+
+我返现原来模型的缺陷，现在需要废弃“关键词打标签”的主观方法，转为基于权威评估报告来确定 GenAI 在不同任务维度（如 code generation, debugging, planning, reasoning 等）上的能力评分。为了启动研究，请你进一步明确：
+我将检索来自 OpenAI、Anthropic、DeepMind 等主流研究机构的官方评估报告，提取其对不同任务能力维度（如 code generation、debugging、planning 等）的客观评分或对比实验，并根据报告中的结构将这些能力划分等级，并匹配你提供的 Software Developer 任务清单，最终输出任务能力分段规则与评分依据。
+
+在研究过程中，我将确保每项能力指标都附有原始链接、评分来源、任务匹配逻辑说明，并最终形成可插入模型的任务评分表格。
+
+以下是研究结果反馈：
+| 任务类型        | 替代能力评分   | 增强能力评分   | 主要依据及数据支持                                                                                  |
+| ----------- | -------- | -------- | ------------------------------------------------------------------------------------------ |
+| **代码生成**    | 高 (0.75) | 高 (0.75) | GPT-4 模型在代码生成基准 HumanEval 上一次通过率达 67.0%，接近SOTA水平https://cdn.openai.com/papers/gpt-4.pdf#:~:text=HumanEval%20%5B43%5D%2067.0,school%20mathematics%20questions；Claude 2 达到 71.2%https://www.anthropic.com/claude-2-model-card#:~:text=Claude%20Instant%20Claude%201,2%20on%20three%20standardized%20tests。Google 报告其新代码约25%由AI生成https://techcrunch.com/2025/04/10/ai-models-still-struggle-to-debug-software-microsoft-study-shows/#:~:text=AI%20models%20from%20OpenAI%2C%20Anthropic%2C,within%20the%20social%20media%20giant。 |
+| **测试与验证**   | 中 (0.5)  | 高 (0.75) | LLM 自动生成的单元测试覆盖率可媲美最先进工具，且更加自然易读https://arxiv.org/html/2409.03093v1#:~:text=coverage%2C%20mutation%20score%2C%20and%20test,tests%20generated%20by%20our%20approach；研究显示结合静态分析指导，模型生成测试用例质量较高https://arxiv.org/html/2409.03093v1#:~:text=coverage%2C%20mutation%20score%2C%20and%20test,tests%20generated%20by%20our%20approach。需人工审核测试有效性，因此替代性中等。             |
+| **调试与缺陷修复** | 低 (0.25) | 中 (0.5)  | 微软研究院实验表明，即使赋予调试工具，大模型独立完成调试任务成功率<50%（最优模型48.4%）https://techcrunch.com/2025/04/10/ai-models-still-struggle-to-debug-software-microsoft-study-shows/#:~:text=According%20to%20the%20co,mini%20%2822.1。模型善长基于提示提供修复思路https://www.reddit.com/r/artificial/comments/1jwk8d2/ai_models_still_struggle_to_debug_software/#:~:text=The%20thing%20is%2C%20even%20if,can%20conceivably%20become%20great%20coders，“自我调试”方法可将正确率提高最多12个百分点https://arxiv.org/abs/2304.05128#:~:text=predictions%2C%20Self,more%20than%2010x%20candidate%20programs。   |
+| **系统设计**    | 低 (0.25) | 中 (0.5)  | 复杂架构设计需要综合推理，当前GenAI常给出片面方案，可靠性不足https://cdn.openai.com/papers/gpt-4.pdf#:~:text=Despite%20its%20capabilities%2C%20GPT,report%20can%20be%20sent%20to。暂无直接数据，但模型可辅助生成架构草案和文档，提高设计讨论效率https://research.google/blog/large-sequence-models-for-software-development-activities/#:~:text=editing%2C%20debugging%2C%20repair%2C%20and%20code,review。                         |
+| **需求分析**    | 低 (0.25) | 中 (0.5)  | 模型对模糊需求的理解有限，在NL→规格任务上提升不大（Spider基准提升2-3%）https://arxiv.org/abs/2304.05128#:~:text=for%20C%2B%2B,more%20than%2010x%20candidate%20programs。但其总结归纳能力有助于提炼需求和提出澄清问题，提升分析效率https://cdn.openai.com/papers/gpt-4.pdf#:~:text=GPT,inspecting%20performance%20sample%20by%20sample。                  |
+| **用户沟通与文档** | 中 (0.5)  | 高 (0.75) | Claude 2 等模型可生成长篇连贯文档并格式化输出https://www.anthropic.com/claude-2-model-card#:~:text=synthesizing%20infor%02mation%20from%20long%2C%20complex,in%20JSON%2C%20XML%2C%20YAML%2C%20code，能快速撰写说明和回答常见问题。需注意准确性，关键内容仍需人工校对https://cdn.openai.com/papers/gpt-4.pdf#:~:text=Despite%20its%20capabilities%2C%20GPT,report%20can%20be%20sent%20to。                              |
+

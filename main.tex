@@ -29,6 +29,8 @@
 \usepackage{lastpage} % 支持 Page X of Y 格式的页码显示
 \usepackage{setspace} % 摘要留白：行距 1.15--1.25、段后间距
 \usepackage{amsthm} % 定理环境：标题 Small Caps（如 THEOREM 1.1），证明用 \begin{proof} 正文为罗马正体
+\usepackage[numbers]{natbib}
+\usepackage{hyperref}
 \newtheoremstyle{scplain}{}{}{\itshape}{}{\bfseries\scshape}{.}{.5em}{}
 \theoremstyle{scplain}
 \newtheorem{theorem}{Theorem}[section]
@@ -92,15 +94,15 @@ Describe the real-world context provided by the problem statement.
 \paragraph{AI use disclosure.} Our use of AI tools is disclosed in this paragraph (in-text) and in full in the \textbf{Report on Use of AI Tools} at the end of this paper.
 
 \subsection{Literature Review}
-Cite existing research to build model credibility.[23]
+Cite existing research to build model credibility.\cite{freyosborne2017}
 
 \subsection{Restatement of the Problem}
-Define specific goals using your own academic language.[3, 24]
+Define specific goals using your own academic language.
 
 % --- 第二章：假设与符号 ---
 \section{Assumptions and Notations}
 \subsection{General Assumptions}
-List simplifying assumptions and their scientific justifications.[14, 22]
+List simplifying assumptions and their scientific justifications.
 
 \subsection{Notation Definition}
 Use a structured table to define variables for cognitive efficiency.
@@ -119,16 +121,20 @@ $\eta$ & Efficiency of the transmission channel & Dimensionless \\
 \end{tabular}
 \end{table}
 
-% --- 第三章：模型设计 ---
+% --- 第三章：数据来源 ---
+\section{Data Sources}
+\input{sections/data_description}
+
+% --- 第四章：模型设计 ---
 \section{Model Construction and Implementation}
 \input{sections/model_construction}
 
-% --- 第四章：结果与检验 ---
+% --- 第五章：结果与检验 ---
 \section{Simulation Results and Sensitivity Analysis}
 Provide visual data through plots. Discuss model robustness.
-Sensitivity analysis is crucial for winning Meritorious or Outstanding awards.[14, 22]
+Sensitivity analysis is crucial for winning Meritorious or Outstanding awards.
 
-% --- 第五章：评价与讨论 ---
+% --- 第六章：评价与讨论 ---
 \section{Discussion: Strengths and Weaknesses}
 \subsection{Strengths}
 High predictive accuracy; adaptable to high-dimensional data.[3, 24]
@@ -137,7 +143,7 @@ Computational complexity for large-scale matrices.
 
 % --- 结论 ---
 \section{Conclusion}
-Summarize findings and provide actionable insights.[4]
+Summarize findings and provide actionable insights.
 
 % --- 致决策者的一封信 (Memo/Letter)：若题目要求则取消下方注释，按机构 Logo、字间距、边距与签名区符合国际商务礼仪排版 ---
 % \newpage
@@ -153,7 +159,7 @@ Summarize findings and provide actionable insights.[4]
 
 % --- 参考文献 ---
 % 使用 BibTeX 管理参考文献,所有条目在 references.bib 中维护
-\bibliographystyle{plain}
+\bibliographystyle{plainnat}
 \bibliography{references}
 
 % --- 附录 (代码集成) ---

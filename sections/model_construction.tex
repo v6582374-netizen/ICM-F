@@ -31,10 +31,8 @@ These data sources include occupational databases \cite{onet2025database}, post-
 
 \subsubsection{Objectification of Career Feature Parameters Based on O*NET}
 
-To avoid subjective assignment of the career feature parameters $\textit{digit}(x)$, $\textit{physical}(x)$, and $\textit{iprisk}(x)$, we adopt the \textbf{O*NET} occupational database maintained by the U.S. Department of Labor as a unified data source.
+To avoid subjective assignment of the career feature parameters $\textit{digit}(x)$, $\textit{physical}(x)$, and $\textit{iprisk}(x)$, we adopt the \textbf{O*NET} occupational database maintained by the U.S. Department of Labor as a unified data source, with detailed data provenance summarized in Section 3.
 O*NET provides a large number of \emph{numerical scale descriptors} based on expert surveys and practitioner feedback for each occupation, with most indicators naturally given on a continuous scale of $0$--$100$, suitable for direct use in quantitative modeling.
-
-\input{sections/data_description}
 
 \paragraph{Parameter Construction Logic}
 We do not attempt to find the ``unique correct'' indicator for each dimension, but rather follow the \emph{shortest defensible path} principle: for each feature axis, we select a small number of semantically directly corresponding and downloadable O*NET descriptors and use them as proxy variables for that axis.

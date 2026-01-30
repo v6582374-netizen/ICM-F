@@ -1,7 +1,6 @@
 ---
 description: "强制执行美赛LaTeX项目架构、虚拟环境管理及临时文件清理规则"
-globs: ["**/*"]
-alwaysApply: true
+alwaysApply: false
 ---
 # 美赛建模项目 Agent 执行准则
 

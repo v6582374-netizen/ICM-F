@@ -262,6 +262,28 @@ Accuracy remains a concern; critical content still needs human verification \cit
 \end{tabular}
 \end{table}
 
+\subsection{Authoritative Evaluation Driven Relabeling of Task Impacts: From Keyword Tagging to Capability-Dimension Assignment}
+
+To improve the defensibility and reproducibility of task impact parameters $(s_{ij},c_{ij})$, we discard subjective keyword tagging
+and adopt an "\textbf{authoritative evaluations $\rightarrow$ capability dimensions $\rightarrow$ semantic matching $\rightarrow$ piecewise assignment}" relabeling workflow.
+The key idea is to extract substitution/augmentation levels for a set of \emph{capability dimensions} (e.g., code generation, debugging, testing/verification, requirements analysis, system design, documentation/communication) from official evaluation reports,
+map each Software Developer task to 1--2 capability dimensions, and then assign $(s_j,c_j)$ on a discrete grid.
+
+\paragraph{Capability mapping and traceability requirement}
+For each task $j$, define its mapped capability set $\textit{dim}_j$ (typically 1--2 dimensions for interpretability).
+Task-level substitution and augmentation are assigned on a discrete scale:
+\begin{equation}
+s_j,\ c_j\in\{0.25,\ 0.5,\ 0.75\}.
+\end{equation}
+To meet the "data-informed" audit standard, each task must carry a \textbf{traceable chain}: (i) mapped capability dimension(s) $\textit{dim}_j$, (ii) at least one authoritative source link, and (iii) a brief explanation of the task-to-dimension matching logic.
+This ensures $(s_j,c_j)$ are reviewable and not based on researcher intuition.
+
+\paragraph{Semantic thresholds, anomaly reporting, and limited human overrides}
+Because semantic matching can incur both false negatives and false positives, the matching threshold is treated as a controllable decision parameter:
+too high may miss valid matches; too low may introduce mis-matches.
+Therefore, relabeling outputs must include similarity scores and an anomaly report (e.g., low-similarity matches, conflicting multi-dimension assignments), and allow a small human override list for a few high-weight tasks with ambiguous semantics.
+This preserves overall reproducibility while preventing a small number of mislabels from biasing the occupation-level aggregates $(\alpha_i,\beta_i)$.
+
 \subsection{Aggregating Task DNA into Occupation-Level Shock Parameters: Software Developers}
 
 This section aggregates Software Developer Task DNA from task-level inputs $(w_{ij}, s_{ij}, c_{ij})$ into occupation-level shock parameters $(\alpha_i,\beta_i,\mu_i)$,

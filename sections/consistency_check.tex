@@ -1,0 +1,53 @@
+% Consistency Check and Instantiating the Evolution Equation
+% This file validates aggregation consistency and prepares for E(t) dynamics
+
+After relabeling task impacts via "authoritative evaluations $\rightarrow$ capability dimensions $\rightarrow$ semantic matching $\rightarrow$ discrete tiers $(s,c)$,"
+we aggregate Task DNA back to occupation-level shock parameters $(\alpha,\beta,\mu)$ and conduct a consistency check first,
+preventing downstream dynamics from relying on an incorrectly implemented net-shock term.
+
+\subsection{Aggregates and Consistency Check}
+
+By definition,
+\begin{equation}
+    \mu=\beta-\alpha.
+\end{equation}
+Given the preview values $\alpha=0.379113$ and $\beta=0.629112$, we must have
+\begin{equation}
+    \mu = 0.629112-0.379113 = 0.249999.
+\end{equation}
+However, the preview JSON reports $\mu=0.504112$, which contradicts the model definition.
+Therefore, before using $\mu$ as an input to $E(t)$, the aggregation output must explicitly state \texttt{mu\_definition} and correct the implementation;
+otherwise, the evolution inference becomes systematically biased.
+
+\subsection{Mechanistic Power (Heterogeneity) Check: No Score Collapse}
+
+Using weighted variances
+\begin{equation}
+    \mathrm{Var}_w(s)=\sum_{j=1}^{N} w_j (s_j-\alpha)^2,\qquad
+    \mathrm{Var}_w(c)=\sum_{j=1}^{N} w_j (c_j-\beta)^2,
+\end{equation}
+the preview reports $\mathrm{Var}_w(s)=\mathrm{Var}_w(c)=0.015608$, exceeding an engineering threshold (e.g., $0.005$).
+This indicates that the relabeled $(s,c)$ retain sufficient heterogeneity; mechanistic identifiability is not collapsed.
+
+\subsection{Minimal Sensitivity for a Low-Confidence Task (Upper-Bound Argument)}
+
+For a low-confidence match (e.g., task\_id=21666 with weight $w=0.05434$), robustness can be justified with a worst-case bound.
+Since tiers are $\{0.25,0.5,0.75\}$, the maximum per-task tier swing is $0.50$ ($0.25\leftrightarrow0.75$), hence
+\begin{equation}
+    \Delta_{\max}(\alpha)\le w\cdot 0.50 = 0.05434\times 0.50 = 0.02717,
+\end{equation}
+and similarly $\Delta_{\max}(\beta)\le 0.02717$.
+Two lightweight scenarios (dropping the task; remapping to the second-best dimension) suffice for a defensible sensitivity statement.
+
+\subsection{Proceeding to Occupational Evolution After Fixing $\mu$}
+
+Once $\mu$ is corrected, the evolution equation becomes
+\begin{equation}
+    \frac{dE(t)}{dt}=E(t)\big(g + A(t)\mu\big),
+\end{equation}
+where $A(t)$ is the adoption scenario (fast/medium/slow) and $g$ is the non-AI baseline (public trend estimate or set to $0$ under a relative-index convention).
+The relative scale has the closed-form expression
+\begin{equation}
+    \frac{E(t)}{E(t_0)}=\exp\left(\int_{t_0}^{t}\big(g+A(\tau)\mu\big)\,d\tau\right).
+\end{equation}
+Accordingly, we do not advance to $E(t)$ scenario curves until $\mu$ is definition-consistent and $A(t)$/$g$ are clearly specified, avoiding non-computable narratives.

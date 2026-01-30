@@ -1,0 +1,117 @@
+% Model Construction and Implementation
+% This file contains the core model design and formulation
+
+\subsection{Career Selection as a Modeled Decision}
+
+A prerequisite of the problem requires selecting one career each from the STEM, Trade, and Arts sectors. 
+Rather than treating this step as an ad hoc assumption, we explicitly model career selection as an optimization problem.
+This ensures that subsequent analyses of AI-driven impacts and educational recommendations are grounded in a reproducible and data-informed framework.
+
+\subsubsection{Modeling Rationale}
+
+The core objective of career selection is not representativeness of all occupations, but \emph{explanatory contrast}.
+Specifically, the selected careers should differ substantially in how generative artificial intelligence (GenAI) interacts with their task structures, while remaining empirically tractable and policy-relevant.
+
+Based on the problem statement and data availability constraints, we identify three dominant dimensions that govern heterogeneity in AI impact across occupations:
+\begin{itemize}
+    \item \textbf{Digitizability}: the extent to which core tasks can be represented, automated, or augmented digitally;
+    \item \textbf{Physical anchoring}: the degree to which task execution requires on-site physical presence or manual interaction with the environment;
+    \item \textbf{Intellectual property and attribution risk}: the sensitivity of value creation to authorship, originality, and ownership.
+\end{itemize}
+
+Each candidate career is represented by a normalized feature vector
+\begin{equation}
+    f(x)=\big(digit(x),\,physical(x),\,iprisk(x)\big)\in[0,1]^3,
+\end{equation}
+where higher values indicate stronger presence of the corresponding characteristic.
+
+In addition to mechanistic contrast, the problem explicitly emphasizes data-informed reasoning.
+Therefore, we introduce a data availability score $D(x)$ that reflects whether reliable data sources exist for employment trends, task descriptions, compensation, and educational pathways associated with career $x$.
+
+\subsubsection{Objectification of Career Feature Parameters Based on O*NET}
+
+To avoid subjective assignment of the career feature parameters $\textit{digit}(x)$, $\textit{physical}(x)$, and $\textit{iprisk}(x)$, we adopt the \textbf{O*NET} occupational database maintained by the U.S. Department of Labor as a unified data source.
+O*NET provides a large number of \emph{numerical scale descriptors} based on expert surveys and practitioner feedback for each occupation, with most indicators naturally given on a continuous scale of $0$--$100$, suitable for direct use in quantitative modeling.
+
+\paragraph{Parameter Construction Logic}
+We do not attempt to find the ``unique correct'' indicator for each dimension, but rather follow the \emph{shortest defensible path} principle: for each feature axis, we select a small number of semantically directly corresponding and downloadable O*NET descriptors and use them as proxy variables for that axis.
+
+\begin{itemize}
+    \item \textbf{Digitizability $\textit{digit}(x)$}  
+    This dimension characterizes the extent to which occupational tasks rely on computers and electronic information flows. We select work activity and work context descriptors from O*NET that are directly related to ``working with computers'' and ``frequency of electronic communication''. The higher the value, the more the occupation is centered on digital media.
+
+    \item \textbf{Physical anchoring $\textit{physical}(x)$}  
+    This dimension characterizes the degree to which an occupation depends on on-site operations, manual control, and physical posture constraints. We use work context descriptors that reflect ``time spent performing hands-on activities'' and ``physical posture burdens such as kneeling, squatting, or bending'', to quantify whether the occupation requires physical presence and physical operations.
+
+    \item \textbf{Intellectual property / attribution risk $\textit{iprisk}(x)$ (proxy indicator)}  
+    This dimension does not directly measure the probability of legal litigation, but rather serves as a \emph{proxy indicator} to characterize the dependence of occupational output on original expression and creative contribution. We select ability and work activity descriptors related to ``Originality'' and ``Thinking Creatively'' from O*NET. The higher the intensity of original expression, the more likely it is to trigger copyright, attribution, or style attribution disputes when generative models intervene.
+\end{itemize}
+
+\paragraph{Normalization and Reproducibility}
+For each occupation $x$, let $v_m(x)$ denote its raw rating ($0$--$100$) under O*NET descriptor $m$.
+We apply min-max normalization across the entire occupation set:
+\begin{equation}
+    z_m(x)=\frac{v_m(x)-\min_{y}v_m(y)}{\max_{y}v_m(y)-\min_{y}v_m(y)} \in [0,1],
+\end{equation}
+and take the equally weighted average of multiple descriptors under the same feature axis to obtain $\textit{digit}(x)$, $\textit{physical}(x)$, and $\textit{iprisk}(x)$.
+This process is entirely based on publicly available data and explicit rules, ensuring the reproducibility and auditability of parameter values.
+
+We visualize the three-dimensional heterogeneity and its 2D projections to validate that the selected careers occupy distinct regions in the feature space (Fig.~\ref{fig:heterogeneity3d}--\ref{fig:heterogeneity2d}).
+
+\begin{figure}[htbp]
+\centering
+\includegraphics[width=0.78\textwidth]{figures/fig1_heterogeneity_3d.pdf}
+\caption{3D heterogeneity of the selected STEM, Trade, and Arts occupations based on O*NET descriptors (global normalization).}
+\label{fig:heterogeneity3d}
+\end{figure}
+
+\begin{figure}[htbp]
+\centering
+\includegraphics[width=0.92\textwidth]{figures/fig2_projections.pdf}
+\caption{2D projections of the heterogeneity space; the annotations report the remaining axis value for interpretability (global normalization).}
+\label{fig:heterogeneity2d}
+\end{figure}
+
+
+\subsubsection{Optimization Formulation}
+
+For a triplet of careers $(x_1,x_2,x_3)$ drawn respectively from STEM, Trade, and Arts categories, we define the pairwise contrast between two careers as the Euclidean distance between their feature vectors:
+\begin{equation}
+    \Delta(x_i,x_j)=\lVert f(x_i)-f(x_j)\rVert_2.
+\end{equation}
+
+The overall selection objective is then formulated as
+\begin{equation}
+    \max_{x_1\in STEM,\;x_2\in Trade,\;x_3\in Arts}
+    \left(
+    \sum_{i<j}\Delta(x_i,x_j)
+    +\lambda\sum_{k=1}^{3}D(x_k)
+    \right),
+\end{equation}
+where $\lambda$ balances explanatory contrast against empirical feasibility.
+
+This formulation does not claim global optimality across all possible occupations.
+Instead, it yields a deliberately constructed high-contrast career set that maximizes analytical clarity under realistic data and time constraints.
+
+\subsubsection{Revision and Final Configuration of Selected Careers}
+
+In the initial scheme, we selected Structural/Civil Engineer as the STEM occupation. However, upon further examination of the distribution of the three occupations across the ``task structure'' and ``physical constraint'' dimensions, we found that this choice exhibits some similarity with the Trade occupation (Electrician) along the ``physical anchoring strength'' axis, potentially weakening the contrast among the three occupations in the mechanism space.
+
+To maximize task structure heterogeneity and enhance the identifiability of subsequent GenAI impact mechanisms, we revise the STEM endpoint by replacing it with \textbf{Software Developer / Software Engineer}.
+
+This revision does not alter the structure of the original selection model, but merely adjusts the position of the occupational endpoint in the feature space: software developers possess extremely high digitizability and extremely low physical anchoring, thereby significantly increasing their distance from electricians in the feature vector $f(x)$ and improving the value of the overall contrast objective function.
+
+It must be emphasized that we do not assume that the software development occupation will be simply ``replaced'' by GenAI. On the contrary, this occupation is more likely to undergo \textbf{task structure reorganization}: the proportion of coding and boilerplate implementation decreases, while the proportion of tasks such as requirement clarification, system architecture design, verification testing, and security and compliance responsibilities increases. It is precisely this shift from ``execution-oriented tasks'' to ``verification and responsibility-oriented tasks'' that makes software development an ideal STEM endpoint for studying GenAI impact mechanisms.
+
+After completing this revision, the final configuration of the three selected occupations is as follows:
+
+\begin{itemize}
+    \item \textbf{STEM: Software Developer / Software Engineer.}  
+    High digitizability, low physical anchoring; GenAI can directly intervene in core tasks, but primarily manifests as task redistribution rather than occupational extinction.
+
+    \item \textbf{Trade: Electrician.}  
+    High physical anchoring, strong on-site constraints; AI primarily serves as a planning, diagnostic, and auxiliary tool, difficult to replace core operational tasks.
+
+    \item \textbf{Arts: Commercial Illustrator / Graphic Designer.}  
+    High intellectual property and attribution sensitivity; GenAI directly affects output forms and value pricing mechanisms.
+\end{itemize}

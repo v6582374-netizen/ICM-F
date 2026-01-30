@@ -1,0 +1,936 @@
+﻿institution,label,institution_state,statefips
+00105100,University of Alabama,AL,01
+00105200,University of Alabama at Birmingham,AL,01
+00105500,University of Alabama in Huntsville,AL,01
+00108100,Arizona State University,AZ,04
+00108200,Northern Arizona University,AZ,04
+00108300,University of Arizona (The),AZ,04
+00134500,Adams State University,CO,08
+00134600,Arapahoe Community College,CO,08
+00134800,Colorado School of Mines,CO,08
+00134900,University of Northern Colorado,CO,08
+00135000,Colorado State University,CO,08
+00135300,Fort Lewis College,CO,08
+00135500,Lamar Community College,CO,08
+00135800,Colorado Mesa University,CO,08
+00135900,Colorado Northwestern Community College,CO,08
+00136000,Metropolitan State University of Denver,CO,08
+00136100,Northeastern Junior College,CO,08
+00136200,Otero Junior College,CO,08
+00136500,Colorado State University-Pueblo,CO,08
+00136800,Trinidad State Junior College,CO,08
+00137000,University of Colorado Boulder,CO,08
+00137200,Western Colorado University,CO,08
+00137400,Albertus Magnus College,CT,09
+00137800,Central Connecticut State University,CT,09
+00137900,Connecticut College,CT,09
+00138000,Western Connecticut State University,CT,09
+00138500,Fairfield University,CT,09
+00139200,Manchester Community College,CT,09
+00139300,Mitchell College,CT,09
+00139700,University of New Haven,CT,09
+00139800,Northwestern Connecticut Community College,CT,09
+00139900,Norwalk Community College,CT,09
+00140200,Quinnipiac University,CT,09
+00140300,Sacred Heart University,CT,09
+00140600,Southern Connecticut State University,CT,09
+00140900,University of Saint Joseph,CT,09
+00141600,University of Bridgeport,CT,09
+00141700,University of Connecticut,CT,09
+00142200,University of Hartford,CT,09
+00142500,Eastern Connecticut State University,CT,09
+00144100,University of the District of Columbia,DC,11
+00154100,Abraham Baldwin Agricultural College,GA,13
+00154200,Agnes Scott College,GA,13
+00154400,Albany State University,GA,13
+00155400,Berry College,GA,13
+00155800,College of Coastal Georgia,GA,13
+00155900,Clark Atlanta University,GA,13
+00156100,Columbus State University,GA,13
+00156300,Emmanuel College,GA,13
+00156600,Fort Valley State University,GA,13
+00156900,Georgia Institute of Technology,GA,13
+00157200,Georgia Southern University,GA,13
+00157300,Georgia Southwestern State University,GA,13
+00157400,Georgia State University,GA,13
+00157500,Gordon State College,GA,13
+00157700,Kennesaw State University,GA,13
+00157900,Augusta University,GA,13
+00158100,Middle Georgia State University,GA,13
+00158500,University of North Georgia,GA,13
+00158800,Piedmont University,GA,13
+00159000,Savannah State University,GA,13
+00159200,South Georgia State College,GA,13
+00159400,Spelman College,GA,13
+00159800,University of Georgia,GA,13
+00159900,Valdosta State University,GA,13
+00160100,University of West Georgia,GA,13
+00160200,Georgia College & State University,GA,13
+00160400,Young Harris College,GA,13
+00161000,University of Hawaii at Manoa,HI,15
+00161100,University of Hawaii at Hilo,HI,15
+00161200,Honolulu Community College,HI,15
+00161300,Kapiolani Community College,HI,15
+00161400,Kauai Community College,HI,15
+00161500,University of Hawaii Maui College,HI,15
+00163400,Aurora University,IL,17
+00163600,Southwestern Illinois College,IL,17
+00163800,Black Hawk College,IL,17
+00164000,Prairie State College,IL,17
+00164300,Spoon River College,IL,17
+00164800,City Colleges of Chicago - Harry S Truman College,IL,17
+00164900,City Colleges of Chicago - Richard J. Daley College,IL,17
+00165000,City Colleges of Chicago - Malcolm X College,IL,17
+00165200,City Colleges of Chicago - Harold Washington College,IL,17
+00165400,City Colleges of Chicago - Kennedy-King College,IL,17
+00165500,City Colleges of Chicago - Wilbur Wright College,IL,17
+00165900,Rosalind Franklin University of Medicine and Science,IL,17
+00166600,Concordia University,IL,17
+00166900,Danville Area Community College,IL,17
+00167100,DePaul University,IL,17
+00167400,Eastern Illinois University,IL,17
+00167500,Elgin Community College,IL,17
+00167600,Elmhurst University,IL,17
+00167800,Eureka College,IL,17
+00168100,Highland Community College,IL,17
+00169200,Illinois State University,IL,17
+00169300,Northeastern Illinois University,IL,17
+00169400,Chicago State University,IL,17
+00169900,Joliet Junior College,IL,17
+00170000,Judson University,IL,17
+00170100,Kaskaskia College,IL,17
+00170500,Illinois Valley Community College,IL,17
+00170700,Lewis University,IL,17
+00171000,Loyola University Chicago,IL,17
+00172400,Millikin University,IL,17
+00172500,Monmouth College,IL,17
+00172800,Morton College,IL,17
+00173300,National Louis University,IL,17
+00173700,Northern Illinois University,IL,17
+00174100,Olivet Nazarene University,IL,17
+00174200,Illinois Eastern Community Colleges - Olney Central College,IL,17
+00174700,Rock Valley College,IL,17
+00175000,Dominican University,IL,17
+00175200,Sauk Valley Community College,IL,17
+00175700,Southeastern Illinois College,IL,17
+00175800,Southern Illinois University at Carbondale,IL,17
+00175900,Southern Illinois University Edwardsville,IL,17
+00176700,Benedictine University,IL,17
+00176900,South Suburban College,IL,17
+00177300,Triton College,IL,17
+00177500,University of Illinois Urbana-Champaign,IL,17
+00177600,University of Illinois at Chicago,IL,17
+00177900,Illinois Eastern Community Colleges - Wabash Valley College,IL,17
+00178000,Western Illinois University,IL,17
+00178100,Wheaton College,IL,17
+00178400,Ancilla Domini College,IN,18
+00178500,Anderson University,IN,18
+00178600,Ball State University,IN,18
+00178800,Butler University,IN,18
+00179300,Earlham College,IN,18
+00179800,Franklin College of Indiana,IN,18
+00180000,Grace College and Theological Seminary,IN,18
+00180100,Hanover College,IN,18
+00180400,University of Indianapolis,IN,18
+00180500,Indiana Institute of Technology,IN,18
+00180700,Indiana State University,IN,18
+00180800,University of Southern Indiana,IN,18
+00180900,Indiana University - Bloomington,IN,18
+00181100,Indiana University - East,IN,18
+00181300,Indiana University - Purdue University Indianapolis,IN,18
+00181400,Indiana University - Kokomo,IN,18
+00181500,Indiana University - Northwest,IN,18
+00181600,Indiana University - South Bend,IN,18
+00181700,Indiana University Southeast,IN,18
+00182000,Manchester University,IN,18
+00182200,Indiana Wesleyan University,IN,18
+00182500,Purdue University,IN,18
+00182600,Purdue University - North Central,IN,18
+00182700,Purdue University Northwest,IN,18
+00182800,Purdue University Fort Wayne,IN,18
+00183000,Rose-Hulman Institute of Technology,IN,18
+00183200,University of Saint Francis,IN,18
+00183500,Saint Mary of the Woods College,IN,18
+00183900,Trine University,IN,18
+00183901,Trine University - Fort Wayne,IN,18
+00184200,Valparaiso University,IN,18
+00184300,Vincennes University,IN,18
+00184400,Wabash College,IN,18
+00184800,Southeastern Community College,IA,19
+00185700,Southwestern Community College,IA,19
+00186400,Iowa Lakes Community College,IA,19
+00186500,Iowa Central Community College,IA,19
+00186900,Iowa State University of Science & Technology,IA,19
+00187500,Iowa Valley Community College District,IA,19
+00187700,North Iowa Area Community College,IA,19
+00189000,University of Northern Iowa,IA,19
+00189200,University of Iowa,IA,19
+00193712,Ottawa University - Jeffersonville,IN,18
+00200500,Nicholls State University,LA,22
+00200600,Grambling State University,LA,22
+00200800,Louisiana Tech University,LA,22
+00201000,Louisiana State University & Agricultural & Mechanical College,LA,22
+00201100,Louisiana State University at Alexandria,LA,22
+00201200,Louisiana State University at Eunice,LA,22
+00201300,Louisiana State University in Shreveport,LA,22
+00201400,Louisiana State University Health Sciences Center,LA,22
+00201500,University of New Orleans (The),LA,22
+00201700,McNeese State University,LA,22
+00202000,University of Louisiana at Monroe,LA,22
+00202100,Northwestern State University,LA,22
+00202400,Southeastern Louisiana University,LA,22
+00202500,Southern University and Agricultural & Mechanical Colg at Baton Rouge,LA,22
+00202600,Southern University at New Orleans,LA,22
+00203100,University of Louisiana at Lafayette,LA,22
+00203300,University Of Maine Presque Isle,ME,23
+00204000,University of Maine - Farmington,ME,23
+00204100,University of Maine - Fort Kent,ME,23
+00205300,University of Maine,ME,23
+00205400,University of Southern Maine,ME,23
+00205500,University of Maine - Machias,ME,23
+00216100,University of Massachusetts - Lowell,MA,25
+00216700,Berkshire Community College,MA,25
+00216800,Cape Cod Community College,MA,25
+00216900,Greenfield Community College,MA,25
+00217000,Holyoke Community College,MA,25
+00217100,Massachusetts Bay Community College,MA,25
+00217200,Mount Wachusett Community College,MA,25
+00217300,North Shore Community College,MA,25
+00217400,Northern Essex Community College,MA,25
+00217500,Quinsigamond Community College,MA,25
+00217600,Bristol Community College,MA,25
+00217700,Massasoit Community College,MA,25
+00218000,Massachusetts College of Art and Design,MA,25
+00218100,Massachusetts Maritime Academy,MA,25
+00218300,Bridgewater State University,MA,25
+00218400,Fitchburg State University,MA,25
+00218500,Framingham State University,MA,25
+00218700,Massachusetts College of Liberal Arts,MA,25
+00218800,Salem State University,MA,25
+00218900,Westfield State University,MA,25
+00219000,Worcester State University,MA,25
+00221000,University of Massachusetts at Dartmouth,MA,25
+00222100,University of Massachusetts - Amherst,MA,25
+00222200,University of Massachusetts at Boston,MA,25
+00232500,University of Michigan,MI,26
+00233200,Anoka-Ramsey Community College,MN,27
+00233400,Augsburg University,MN,27
+00233500,Riverland Community College,MN,27
+00233600,Bemidji State University,MN,27
+00233700,Bethany Lutheran College,MN,27
+00233900,Central Lakes College,MN,27
+00234000,Carleton College,MN,27
+00234100,College of St Benedict,MN,27
+00234200,St. Catherine University,MN,27
+00234300,College of Saint Scholastica,MN,27
+00234500,University of St Thomas,MN,27
+00234600,Concordia College - Moorhead,MN,27
+00234700,Concordia University - Saint Paul,MN,27
+00235000,Vermilion Community College,MN,27
+00235300,Gustavus Adolphus College,MN,27
+00235400,Hamline University,MN,27
+00235500,Hibbing Community College,MN,27
+00235600,Itasca Community College,MN,27
+00235800,Macalester College,MN,27
+00236000,"Minnesota State University, Mankato",MN,27
+00236200,Minneapolis Community and Technical College,MN,27
+00236500,Minneapolis College of Art & Design,MN,27
+00236700,Minnesota State University Moorhead,MN,27
+00237000,North Hennepin Community College,MN,27
+00237100,University of Northwestern- St Paul,MN,27
+00237300,Rochester Community and Technical College,MN,27
+00237500,Southwest Minnesota State University,MN,27
+00237700,St. Cloud State University,MN,27
+00237900,Saint John's University,MN,27
+00238000,Saint Mary's University of Minnesota,MN,27
+00238200,St Olaf College,MN,27
+00238500,Northland Community and Technical College,MN,27
+00238800,University of Minnesota  Duluth,MN,27
+00238900,University of Minnesota Morris,MN,27
+00239300,Minnesota State College Southeast,MN,27
+00239400,Winona State University,MN,27
+00245400,University of Central Missouri,MO,29
+00245900,Crowder College,MO,29
+00246600,Harris - Stowe State University,MO,29
+00246800,Jefferson College,MO,29
+00247100,Saint Louis Community College,MO,29
+00247900,Lincoln University,MO,29
+00248400,Metropolitan Community College,MO,29
+00248600,Mineral Area College,MO,29
+00248800,Missouri Southern State University,MO,29
+00249000,Missouri Western State University,MO,29
+00249100,Moberly Area Community College,MO,29
+00249500,Truman State University,MO,29
+00249600,Northwest Missouri State University,MO,29
+00250100,Southeast Missouri State University,MO,29
+00250300,Missouri State University,MO,29
+00251400,North Central Missouri College,MO,29
+00251600,University of Missouri - Columbia,MO,29
+00251700,Missouri University of Science and Technology,MO,29
+00251800,University of Missouri - Kansas City,MO,29
+00251900,University of Missouri - Saint Louis,MO,29
+00252800,Miles Community College,MT,30
+00252900,Dawson Community College,MT,30
+00253000,Montana State University - Billings,MT,30
+00253100,Montana Technological University,MT,30
+00253200,Montana State University Bozeman,MT,30
+00253300,Montana State University - Northern,MT,30
+00253600,University of Montana (The),MT,30
+00253700,University of Montana Western (The),MT,30
+00268700,CUNY Brooklyn College,NY,36
+00268800,City College of New York - CUNY,NY,36
+00268900,CUNY Hunter College,NY,36
+00269000,CUNY Queens College,NY,36
+00269100,CUNY Borough of Manhattan Community College,NY,36
+00269200,CUNY Bronx Community College,NY,36
+00269300,CUNY John Jay College of Criminal Justice,NY,36
+00269400,Kingsborough Commmunity College/CUNY,NY,36
+00269600,New York City College of Technology of the City University of New York,NY,36
+00269700,Queensborough Community College-CUNY,NY,36
+00269800,College of Staten Island/CUNY,NY,36
+00283500,State University of New York at Albany,NY,36
+00283600,Binghamton University,NY,36
+00283700,State University of New York at Buffalo,NY,36
+00283800,State University of New York at Stony Brook,NY,36
+00283900,State University of New York Downstate Medical Center,NY,36
+00284000,State University of New York Upstate Medical University,NY,36
+00284100,State University of New York College at Brockport,NY,36
+00284200,SUNY College at Buffalo,NY,36
+00284300,SUNY College at Cortland,NY,36
+00284400,SUNY at Fredonia,NY,36
+00284500,SUNY College at Geneseo,NY,36
+00284600,State University of New York at New Paltz,NY,36
+00284700,"State University of New York, College at Oneonta",NY,36
+00284800,State University of New York at Oswego,NY,36
+00284900,State University of New York College at Plattsburgh,NY,36
+00285000,State University of New York College at Potsdam,NY,36
+00285100,SUNY College of Environment Science & Forestry,NY,36
+00285300,SUNY Maritime College,NY,36
+00285400,SUNY College of Technology at Alfred,NY,36
+00285500,State University of New York College of Technology at Canton,NY,36
+00285600,SUNY College of Agriculture & Technology at Cobleskill,NY,36
+00285700,SUNY College of Technology at Delhi,NY,36
+00285800,State University of New York at Farmingdale,NY,36
+00285900,SUNY College of Agriculture & Technology at Morrisville,NY,36
+00286000,Adirondack Community College - SUNY Office of Community Colleges,NY,36
+00286100,Cayuga Community College - SUNY Office of Community College,NY,36
+00286200,SUNY Broome Community College,NY,36
+00286300,Corning Community College - SUNY Office of Community Colleges,NY,36
+00286400,Dutchess Community College,NY,36
+00286600,Fashion Institute of Technology,NY,36
+00286700,SUNY Fulton-Montgomery Community College,NY,36
+00286800,Hudson Valley Community College,NY,36
+00286900,Jamestown Community College,NY,36
+00287000,Jefferson Community College,NY,36
+00287100,"SUNY,Mohawk Valley Community College",NY,36
+00287200,Monroe Community College,NY,36
+00287300,Nassau Community College,NY,36
+00287400,Niagara County Community College,NY,36
+00287500,Onondaga Community College,NY,36
+00287600,Orange County Community College,NY,36
+00287700,Rockland Community College,NY,36
+00287800,Suffolk County Community College,NY,36
+00287900,Sullivan County Community College,NY,36
+00288000,Ulster County Community College,NY,36
+00288100,SUNY Westchester Community College,NY,36
+00301800,Bowling Green State University,OH,39
+00302600,Central State University,OH,39
+00303200,Cleveland State University,OH,39
+00304000,Cuyahoga Community College,OH,39
+00304600,Franklin University,OH,39
+00305100,Kent State University,OH,39
+00306800,Lorain County Community College,OH,39
+00307700,Miami University,OH,39
+00307800,Wright State University,OH,39
+00309000,Ohio State University,OH,39
+00310000,Ohio University,OH,39
+00311601,University of Rio Grande - Rio Grande Community College,OH,39
+00311900,Sinclair Community College,OH,39
+00312300,University of Akron (The),OH,39
+00312500,University of Cincinnati,OH,39
+00313100,University Of Toledo,OH,39
+00314500,Youngstown State University,OH,39
+00314600,Western Oklahoma State College,OK,40
+00315000,Cameron University,OK,40
+00315200,University of Central Oklahoma,OK,40
+00315300,Connors State College,OK,40
+00315400,East Central University,OK,40
+00315500,Eastern Oklahoma State College,OK,40
+00315600,Redlands Community College,OK,40
+00315700,Langston University,OK,40
+00315800,Murray State College,OK,40
+00316000,Northeastern Oklahoma A & M College,OK,40
+00316100,Northeastern State University,OK,40
+00316200,Northern Oklahoma College,OK,40
+00316300,Northwestern Oklahoma State University,OK,40
+00316700,University of Science & Arts of Oklahoma,OK,40
+00316800,Rogers State University,OK,40
+00317000,Oklahoma State University,OK,40
+00317200,Oklahoma State University Institute of Technology - Okmulgee,OK,40
+00317400,Oklahoma Panhandle State University,OK,40
+00317600,Carl Albert State College,OK,40
+00317800,Seminole State College,OK,40
+00317900,Southeastern Oklahoma State University,OK,40
+00318100,Southwestern Oklahoma State University,OK,40
+00318400,University of Oklahoma,OK,40
+00318401,University of Oklahoma - Health Sciences Center,OK,40
+00318600,Blue Mountain Community College,OR,41
+00318800,Central Oregon Community College,OR,41
+00318900,Clatsop Community College,OR,41
+00319300,Eastern Oregon University,OR,41
+00319600,Lane Community College,OR,41
+00320400,Mount Hood Community College,OR,41
+00320900,Western Oregon University,OR,41
+00321000,Oregon State University,OR,41
+00321100,Oregon Institute of Technology,OR,41
+00321300,Portland Community College,OR,41
+00321600,Portland State University,OR,41
+00321800,Chemeketa Community College,OR,41
+00321900,Southern Oregon University,OR,41
+00322000,Southwestern Oregon Community College,OR,41
+00322100,Treasure Valley Community College,OR,41
+00322200,Umpqua Community College,OR,41
+00322300,University of Oregon,OR,41
+00332900,Pennsylvania State University (The),PA,42
+00332901,Pennsylvania State University (The) - College of Medicine,PA,42
+00332902,Pennsylvania State University (The) - Lehigh Valley,PA,42
+00332903,Pennsylvania State University (The) - Altoona,PA,42
+00332904,Pennsylvania State University (The) - Beaver,PA,42
+00332905,"Pennsylvania State University (The) - Erie, The Behrend College",PA,42
+00332906,Pennsylvania State University (The) - Berks,PA,42
+00332907,Pennsylvania State University (The) - DuBois,PA,42
+00332908,Pennsylvania State University (The) - Fayette,PA,42
+00332909,Pennsylvania State University (The) - Hazleton,PA,42
+0033290W,Penn State World Campus,PA,42
+00332910,Pennsylvania State University (The) - Greater Allegheny,PA,42
+00332911,Pennsylvania State University (The) - Mont Alto,PA,42
+00332912,Pennsylvania State University (The) - New Kensington,PA,42
+00332913,Pennsylvania State University (The) - Abington,PA,42
+00332914,Pennsylvania State University (The) - Schuylkill,PA,42
+00332915,Pennsylvania State University (The) - Scranton,PA,42
+00332916,Pennsylvania State University (The) - Shenango,PA,42
+00332917,Pennsylvania State University (The) - Wilkes-Barre,PA,42
+00332918,Pennsylvania State University (The) - York,PA,42
+00332919,Pennsylvania State University (The) - Great Valley School of Grad/Prof,PA,42
+00332920,Pennsylvania State University (The) - Harrisburg,PA,42
+00332921,Pennsylvania State University (The) - Brandywine,PA,42
+00332922,Pennsylvania State University (The) - Dickinson Law,PA,42
+00340200,Bryant University,RI,44
+00340600,Providence College,RI,44
+00341700,Allen University,SC,45
+00341900,Charleston Southern University,SC,45
+00342200,Southern Wesleyan University,SC,45
+00342300,"Citadel, the Military College of South Carolina",SC,45
+00342400,Claflin University,SC,45
+00342500,Clemson University,SC,45
+00342600,University of South Carolina - Sumter,SC,45
+00342700,Coker University,SC,45
+00342800,College of Charleston,SC,45
+00342900,Columbia International University,SC,45
+00343000,Columbia College of South Carolina,SC,45
+00343100,Converse College,SC,45
+00343200,Erskine College,SC,45
+00343400,Furman University,SC,45
+00343500,Lander University,SC,45
+00343600,Limestone University,SC,45
+00343700,Lutheran Theological Southern Seminary,SC,45
+00343900,Morris College,SC,45
+00344000,Newberry College,SC,45
+00344100,North Greenville University,SC,45
+00344500,Presbyterian College,SC,45
+00344600,South Carolina State University,SC,45
+00344700,Spartanburg Methodist College,SC,45
+00344800,University of South Carolina - Columbia,SC,45
+00344900,University of South Carolina - Aiken,SC,45
+00345000,University of South Carolina - Beaufort,SC,45
+00345100,Coastal Carolina University,SC,45
+00345300,University of South Carolina - Lancaster,SC,45
+00345400,University of South Carolina - Salkehatchie,SC,45
+00345500,Voorhees College,SC,45
+00345600,Winthrop University,SC,45
+00345700,Wofford College,SC,45
+00345900,Black Hills State University,SD,46
+00346300,Dakota State University,SD,46
+00346600,Northern State University,SD,46
+00347000,South Dakota School of Mines and Technology,SD,46
+00347100,South Dakota State University,SD,46
+00347400,University of South Dakota,SD,46
+00348400,Covenant College,GA,13
+00353900,Alvin Community College,TX,48
+00354000,Amarillo College,TX,48
+00354100,Angelo State University,TX,48
+00354600,Coastal Bend College,TX,48
+00354900,Blinn College,TX,48
+00355300,Cisco College,TX,48
+00355400,Clarendon College,TX,48
+00355800,North Central Texas College,TX,48
+00356100,Cedar Valley College,TX,48
+00356300,Del Mar College,TX,48
+00356500,Texas A&M University - Commerce,TX,48
+00356800,Frank Phillips College,TX,48
+00357000,Grayson College,TX,48
+00357200,Trinity Valley Community College,TX,48
+00357300,Hill College,TX,48
+00357400,Howard County Junior College District,TX,48
+00358000,Kilgore College,TX,48
+00358100,Lamar University,TX,48
+00358200,Laredo College,TX,48
+00358300,Lee College,TX,48
+00359000,McLennan Community College,TX,48
+00359200,Midwestern State University,TX,48
+00359300,Navarro College,TX,48
+00359400,University of North Texas,TX,48
+00359600,Odessa College,TX,48
+00359900,University of Texas Rio Grande Valley,TX,48
+00360000,Panola College,TX,48
+00360100,Paris Junior College,TX,48
+00360300,Ranger College,TX,48
+00360600,Sam Houston State University,TX,48
+00360800,Saint Philip's College,TX,48
+00360900,San Jacinto Community College District,TX,48
+00361100,South Plains College,TX,48
+00361200,University Of Houston - Downtown,TX,48
+00361400,Southwest Texas Junior College,TX,48
+00361500,Texas State University,TX,48
+00362400,Stephen F Austin State University,TX,48
+00362500,Sul Ross State University,TX,48
+00362600,Tarrant County College District,TX,48
+00362700,Temple College,TX,48
+00362800,Texarkana College,TX,48
+00363000,Prairie View Agricultural & Mechanical University,TX,48
+00363100,Tarleton State University,TX,48
+00363200,Texas A&M University,TX,48
+00363400,Texas State Technical College,TX,48
+00363900,Texas A&M University - Kingsville,TX,48
+00364200,Texas Southern University,TX,48
+00364400,Texas Tech University,TX,48
+00364600,Texas Womans University,TX,48
+00364800,Tyler Junior College,TX,48
+00365200,University of Houston,TX,48
+00365600,University of Texas at Arlington,TX,48
+00365800,University of Texas - Austin,TX,48
+00365900,University of Texas Health Science Center at San Antonio,TX,48
+00366100,University of Texas at El Paso,TX,48
+00366200,Victoria College,TX,48
+00366400,Weatherford College,TX,48
+00366500,West Texas A&M University,TX,48
+00366800,Wharton County Junior College,TX,48
+00367100,Dixie State University,UT,49
+00367500,University of Utah,UT,49
+00367600,Utah State University - College of Eastern Utah,UT,49
+00367700,Utah State University,UT,49
+00367800,Southern Utah University,UT,49
+00367900,Snow College,UT,49
+00368000,Weber State University,UT,49
+00370200,Averett University,VA,51
+00370300,Bluefield College,VA,51
+00370400,Bridgewater College,VA,51
+00370500,College of William & Mary,VA,51
+00370600,Christopher Newport University,VA,51
+00370700,Richard Bland College,VA,51
+00370800,Eastern Mennonite University,VA,51
+00370900,Emory & Henry College,VA,51
+00371100,Ferrum College,VA,51
+00371200,Tidewater Community College,VA,51
+00371300,Hampden Sydney College,VA,51
+00371400,Hampton University,VA,51
+00371500,Hollins University,VA,51
+00371900,Longwood University,VA,51
+00372000,University of Lynchburg,VA,51
+00372100,James Madison University,VA,51
+00372300,Mary Baldwin University,VA,51
+00372400,Marymount University,VA,51
+00372700,Northern Virginia Community College,VA,51
+00372800,Old Dominion University,VA,51
+00373200,Radford University,VA,51
+00373300,Randolph-Macon College,VA,51
+00373400,Randolph College,VA,51
+00373500,Virginia Commonwealth University,VA,51
+00373600,Roanoke College,VA,51
+00373700,Shenandoah University,VA,51
+00373800,Southern Virginia University,VA,51
+00374200,Sweet Briar College,VA,51
+00374400,University of Richmond,VA,51
+00374500,University of Virginia,VA,51
+00374600,University of Mary Washington,VA,51
+00374700,University of Virginia's College at Wise (The),VA,51
+00374800,Eastern Shore Community College,VA,51
+00374900,George Mason University,VA,51
+00375100,Patrick Henry Community College,VA,51
+00375200,Virginia Intermont College,VA,51
+00375300,Virginia Military Institute,VA,51
+00375400,Virginia Polytechnic Institute & State University,VA,51
+00375800,Danville Community College,VA,51
+00375900,J Sargeant Reynolds Community College,VA,51
+00376000,Virginia Western Community College,VA,51
+00376100,Wytheville Community College,VA,51
+00376400,Virginia State University,VA,51
+00376500,Norfolk State University,VA,51
+00376600,Virginia Union University,VA,51
+00376700,Virginia Wesleyan University,VA,51
+00376800,Washington and Lee University,VA,51
+00380900,Bluefield State University,WV,54
+00381000,Concord University,WV,54
+00381200,Fairmont State University,WV,54
+00381500,Marshall University,WV,54
+00382700,West Virginia University,WV,54
+00382701,West Virginia University - Institute of Technology,WV,54
+00382711,West Virginia University - Potomac State College,WV,54
+00382800,West Virginia University - Parkersburg,WV,54
+00389500,University of Wisconsin - Madison,WI,55
+00389600,University of Wisconsin - Milwaukee,WI,55
+00389700,University of Wisconsin Colleges,WI,55
+00389900,University of Wisconsin - Green Bay,WI,55
+00391500,University of Wisconsin - Stout,WI,55
+00391700,University of Wisconsin - Eau Claire,WI,55
+00391900,University of Wisconsin - LaCrosse,WI,55
+00392000,University of Wisconsin - Oshkosh,WI,55
+00392100,University of Wisconsin - Platteville,WI,55
+00392300,University of Wisconsin - River Falls,WI,55
+00392400,University of Wisconsin - Stevens Point,WI,55
+00392500,University of Wisconsin - Superior,WI,55
+00392600,University of Wisconsin - Whitewater,WI,55
+00392800,Casper College,WY,56
+00392900,Eastern Wyoming College,WY,56
+00393000,Northern Wyoming Community College District,WY,56
+00393100,Northwest College,WY,56
+00393200,University of Wyoming,WY,56
+00393300,Western Wyoming Community College,WY,56
+00395600,Dalton State College,GA,13
+00396100,William Rainey Harper College,IL,17
+00396900,University of Minnesota - Twin Cities,MN,27
+00396903,University of Minnesota - Rochester,MN,27
+00399000,Florence - Darlington Technical College,SC,45
+00399100,Greenville Technical College,SC,45
+00399200,Piedmont Technical College,SC,45
+00399300,Midlands Technical College - Airport Campus,SC,45
+00399400,Spartanburg Community College,SC,45
+00399500,Central Carolina Technical College,SC,45
+00399600,York Technical College,SC,45
+00400300,Central Texas College,TX,48
+00400400,John Tyler Community College,VA,51
+00400900,Mesabi Range College,MN,27
+00402700,Utah Valley University,UT,49
+00405737,National American University - Indianapolis,IN,18
+00406900,University of Minnesota - Crookston,MN,27
+00407500,Eastern Iowa Community Colleges,IA,19
+00407600,Kirkwood Community College,IA,19
+00445300,Dallas College,TX,48
+00450600,Colorado Mountain College,CO,08
+00450800,University of Colorado Denver,CO,08
+00450900,University of Colorado Colorado Springs,CO,08
+00451300,Housatonic Community College,CT,09
+00454900,Leeward Community College,HI,15
+00457900,International Business College,IN,18
+00457901,International Business College - Indianapolis Campus,IN,18
+00458700,Northeast Iowa Community College,IA,19
+00459500,Hawkeye Community College,IA,19
+00459800,Iowa Western Community College,IA,19
+00460000,Northwest Iowa Community College,IA,19
+00462500,Delgado Community College,LA,22
+00471100,State Technical College of Missouri,MO,29
+00471300,Three Rivers College,MO,29
+00475900,CUNY York College,NY,36
+00476500,CUNY Graduate School & University Center,NY,36
+00478800,Herkimer County Community College - SUNY Office of Community Colleges,NY,36
+00485200,Clark State College,OH,39
+00487800,Clackamas Community College,OR,41
+00492000,Trident Technical College,SC,45
+00492500,Horry Georgetown Technical College,SC,45
+00492600,Tri-County Technical College,SC,45
+00492700,University of South Carolina - Union,SC,45
+00494800,Texas A&M University System Health Science Center,TX,48
+00495100,University of Texas Health Science Center at Houston,TX,48
+00495200,University of Texas Medical Branch at Galveston,TX,48
+00497200,Galveston College,TX,48
+00498800,Central Virginia Community College,VA,51
+00499600,Dabney S Lancaster Community College,VA,51
+00501500,University of Wisconsin - Parkside,WI,55
+00522000,Salt Lake Community College,UT,49
+00522300,New River Community College,VA,51
+00524600,Staples Technical College,MN,27
+00525200,Ridgewater College,MN,27
+00525800,Hawaii Community College,HI,15
+00526300,Minnesota West Community and Technical College,MN,27
+00527600,Central Maine Community College,ME,23
+00527700,Eastern Maine Community College,ME,23
+00530900,Lake Area Technical College,SD,46
+00531300,North Central State College,OH,39
+00536300,Denmark Technical College,SC,45
+00546700,SOWELA Technical Community College,LA,22
+00548800,Capital Area Technical College,LA,22
+00548900,Central Louisiana Technical Community College,LA,22
+00552500,Southern Maine Community College,ME,23
+00552600,South Central Louisiana Technical College,LA,22
+00553300,Saint Paul College - A Community & Technical College,MN,27
+00553400,St. Cloud Technical and Community College,MN,27
+00553500,Pine Technical and Community College,MN,27
+00553700,South Central College,MN,27
+00554100,Minnesota State Community and Technical College,MN,27
+00554400,Alexandria Technical and Community College,MN,27
+00554900,Springfield Technical Community College,MA,25
+00559600,Emily Griffith Technical College,CO,08
+00575300,Owens Community College,OH,39
+00575700,Lake Superior College,MN,27
+00575900,Northwest Technical College - Bemidji,MN,27
+00576000,Northern Maine Community College,ME,23
+00576100,L. E. Fletcher Technical Community College,LA,22
+00624000,Saint Francis Medical Center College of Nursing,IL,17
+00638510,Chamberlain University - Indianapolis,IN,18
+00662200,Jefferson College of Health Sciences,VA,51
+00665600,College Of DuPage,IL,17
+00666100,Angelina College,TX,48
+00675300,Illinois Central College,IL,17
+00675600,Northshore Technical Community College,LA,22
+00676000,University of Maine - Augusta,ME,23
+00677500,Rainy River Community College,MN,27
+00677700,Flathead Valley Community College,MT,30
+00678200,Genesee Community College,NY,36
+00678500,Schenectady County Community College,NY,36
+00678700,Clinton Community College,NY,36
+00678800,Tompkins Cortland Community College,NY,36
+00678900,SUNY Columbia-Greene Community College,NY,36
+00679100,SUNY College at Purchase,NY,36
+00680400,Lakeland Community College,OH,39
+00681500,Orangeburg Calhoun Technical College,SC,45
+00681900,Blue Ridge Community College,VA,51
+00686700,Columbus State Community College- Main Campus,OH,39
+00687100,Thomas Nelson Community College,VA,51
+00693100,Waubonsee Community College,IL,17
+00693800,Linn-Benton Community College,OR,41
+00695100,University of South Carolina Upstate,SC,45
+00698100,Gateway Community College,CT,09
+00698200,Naugatuck Valley Community College,CT,09
+00702200,CUNY Lehman College,NY,36
+00709600,College of the Mainland,TX,48
+00709900,Virginia Highlands Community College,VA,51
+00710900,SUNY College at Old Westbury,NY,36
+00711100,North Country Community College,NY,36
+00711800,Parkland College,IL,17
+00711900,Rend Lake College,IL,17
+00712000,Des Moines Area Community College,IA,19
+00717000,Lincoln Land Community College,IL,17
+00726000,Southwest Virginia Community College,VA,51
+00726300,Holy Cross College,IN,18
+00726500,Carl Sandburg College,IL,17
+00727300,CUNY Bernard M. Baruch College,NY,36
+00727500,Eastern Gateway Community College,OH,39
+00728700,Brazosport College,TX,48
+00728900,Central Wyoming College,WY,56
+00731600,Western Iowa Tech Community College,IA,19
+00735000,Anoka Technical College,MN,27
+00753200,Finger Lakes Community College - SUNY Office of Community Colleges,NY,36
+00757000,Helena College University of Montana,MT,30
+00758200,Aims Community College,CO,08
+00759800,Hocking Technical College,OH,39
+00760200,Northeastern Technical College,SC,45
+00763500,Capital Community College,CT,09
+00764400,Lake Land College,IL,17
+00768400,Kishwaukee College,IL,17
+00768600,Southern University at Shreveport - Bossier City,LA,22
+00769000,Kankakee Community College,IL,17
+00769100,McHenry County College,IL,17
+00769200,Moraine Valley Community College,IL,17
+00769300,Shawnee Community College,IL,17
+00769400,College of Lake County,IL,17
+00776400,Southeast Technical College,SD,46
+00793300,Front Range Community College-Westminster Campus,CO,08
+00793800,Lincoln College of Technology,IN,18
+00795400,Normandale Community College,MN,27
+00803800,Middlesex Community College,CT,09
+00806700,Louisiana State University Health Sciences Center in Shreveport,LA,22
+00807600,John A. Logan College,IL,17
+00808000,State Fair Community College,MO,29
+00813300,Zane State College,OH,39
+00827800,Terra State Community College,OH,39
+00828400,Mitchell Technical College,SD,46
+00840300,Indian Hills Community College,IA,19
+00842300,Ivy Tech Community College of Indiana - Region 2,IN,18
+00850300,Mountain View College,TX,48
+00850400,Richland College,TX,48
+00851000,Eastfield College,TX,48
+00854700,Ivy Tech Community College of Indiana - Region 7,IN,18
+00861100,"CUNY, Hostos Community College",NY,36
+00865900,Lord Fairfax Community College,VA,51
+00866000,Germanna Community College,VA,51
+00866100,Southside Virginia Community College,VA,51
+00867700,Northwest State Community College,OH,39
+00886200,East Central College,MO,29
+00889600,Pikes Peak Community College,CO,08
+00897600,Clayton State University,GA,13
+00905800,Bethel University,MN,27
+00905803,Bethel University - Bethel Seminary Saint Paul,MN,27
+00915900,Paul D. Camp Community College,VA,51
+00916000,Rappahannock Community College,VA,51
+00916300,San Antonio College,TX,48
+00918500,Rose State College,OK,40
+00922600,Francis Marion University,SC,45
+00923100,Washington County Community College,ME,23
+00925900,Laramie County Community College,WY,56
+00931400,Great Falls College Montana State University,MT,30
+00932200,Williamsburg Technical College,SC,45
+00933300,University of Illinois at Springfield,IL,17
+00950700,Georgia Highlands College,GA,13
+00954200,Community College of Denver,CO,08
+00954300,Red Rocks Community College,CO,08
+00954900,Western Texas College,TX,48
+00962900,Mountain Empire Community College,VA,51
+00964700,Oklahoma State University - Oklahoma City,OK,40
+00965100,Texas A&M International University,TX,48
+00974000,Inver Hills Community College,MN,27
+00974100,University of Texas at Dallas,TX,48
+00976300,Tulsa Community College,OK,40
+00976400,Tunxis Community College,CT,09
+00976500,Three Rivers Community College,CT,09
+00976700,City Colleges of Chicago - Olive-Harvey College,IL,17
+00976800,University of North Texas Health Science Center at Fort Worth,TX,48
+00978600,Illinois Eastern Community Colleges - Lincoln Trail College,IL,17
+00979700,Midland College,TX,48
+00982600,Kennebec Valley Community College,ME,23
+00989600,Oakton College,IL,17
+00991000,Technical College of the Lowcountry - Beaufort Campus,SC,45
+00991700,Ivy Tech Community College of Indiana,IN,18
+00992300,Ivy Tech Community College of Indiana - Region 11,IN,18
+00992400,Ivy Tech Community College of Indiana - Region 6,IN,18
+00992500,Ivy Tech Community College of Indiana - Region 12,IN,18
+00992600,Ivy Tech Community College of Indiana- Region 3,IN,18
+00992800,Piedmont Virginia Community College,VA,51
+00992900,SUNY College of Optometry,NY,36
+00993000,University of Texas of the Permian Basin,TX,48
+00993600,Middlesex Community College,MA,25
+00994100,Belmont College,OH,39
+00994200,Shawnee State University,OH,39
+00997500,Northwest Louisiana Technical Community College,LA,22
+00998100,Morgan Community College,CO,08
+00998700,Saint Anthony College of Nursing,IL,17
+01001900,University of Texas Southwestern Medical Center (The),TX,48
+01002000,Lewis and Clark Community College,IL,17
+01002700,James A. Rhodes State College,OH,39
+01003700,Ivy Tech Community College of Indiana - Region 9,IN,18
+01003800,Ivy Tech Community College of Indiana - Region 10,IN,18
+01003900,Ivy Tech Community College of Indiana - Region 4,IN,18
+01004000,Ivy Tech Community College of Indiana - Region 1,IN,18
+01004100,Ivy Tech Community College of Indiana - Region 5,IN,18
+01005100,CUNY LaGuardia Community College,NY,36
+01005600,Aiken Technical College,SC,45
+01006000,Vernon College,TX,48
+01009700,CUNY Medgar Evers College,NY,36
+01010900,Ivy Tech Community College of Indiana - Region 13,IN,18
+01011500,University of Texas at San Antonio,TX,48
+01017000,Western Dakota Technical College,SD,46
+01018200,Rogue Community College,OR,41
+01028600,SUNY Empire State College,NY,36
+01029800,Texas A & M University at Galveston,TX,48
+01033800,Eastern Virginia Medical School,VA,51
+01034500,Cincinnati State Technical & Community College,OH,39
+01037400,Metropolitan State University,MN,27
+01038700,El Paso County Community College District,TX,48
+01039100,Oklahoma City Community College,OK,40
+01040200,Dakota County Technical College,MN,27
+01045300,Washington State Community College,OH,39
+01049100,Hennepin Technical College -,MN,27
+01053000,Quinebaug Valley Community College,CT,09
+01054600,Century College,MN,27
+01063300,Houston Community College,TX,48
+01067400,Texas Tech University Health Sciences Center,TX,48
+01068400,Erie Community College,NY,36
+01073600,Marion Technical College,OH,39
+01087900,Richland Community College,IL,17
+01088100,Stark State College,OH,39
+01099700,East Georgia State College,GA,13
+01104600,Central Ohio Technical College,OH,39
+01114500,Lone Star College System,TX,48
+01115000,Asnuntuck Community College,CT,09
+01116100,Texas A&M University - Corpus Christi,TX,48
+01116300,University of Texas at Tyler,TX,48
+01116500,Uintah Basin Technical College,UT,49
+01121000,Bunker Hill Community College,MA,25
+01122000,Windward Community College,HI,15
+01128200,Oklahoma State University Center for Health Sciences,OK,40
+01167800,State University of New York Polytechnic Institute,NY,36
+01171100,University of Houston-Clear Lake,TX,48
+01193000,Roxbury Community College,MA,25
+01201500,Austin Community College,TX,48
+01216500,Atlanta Metropolitan  State College,GA,13
+01275000,Edison State Community College,OH,39
+01281300,John Wood Community College,IL,17
+01287000,Southern State Community College,OH,39
+01287500,Pickens Technical College,CO,08
+01303907,South University - Columbia,SC,45
+01323100,University of Houston - Victoria,TX,48
+02053000,Liberty University,VA,51
+02055400,Bossier Parish Community College,LA,22
+02063700,Sherman College of Straight Chiropractic,SC,45
+02074400,Illinois Eastern Community Colleges -Frontier Community College,IL,17
+02074800,Life University,GA,13
+02077400,North Lake College,TX,48
+02100200,Brookhaven College,TX,48
+02107800,University of Hawaii - West Oahu,HI,15
+02115400,Bridgerland Technical College,UT,49
+02116300,Pueblo Community College,CO,08
+02140800,Martin University,IN,18
+02156200,Technical College of the Rockies,CO,08
+02156600,Davis Technical College,UT,49
+02166100,Elaine P. Nunez Community College,LA,22
+02180108,Ross Medical Education Center -,IN,18
+02185400,Saint Augustine College,IL,17
+02244900,Goodwin University,CT,09
+02245505,Fortis College - Indianapolis Campus,IN,18
+02276900,Community College of Aurora Centretech Campus,CO,08
+02315400,Northeast Texas Community College,TX,48
+02341300,Palo Alto College,TX,48
+02346500,Ogden-Weber Technical College,UT,49
+02348500,Lamar State College - Port Arthur,TX,48
+02358200,Lamar State College - Orange,TX,48
+02361400,Collin County Community College District,TX,48
+02454400,Northeast Ohio Medical University,OH,39
+02530600,Saint Charles Community College,MO,29
+02533602,Ross Medical Education Center - Fort Wayne,IN,18
+02555400,University of Texas M.D. Anderson Cancer Center,TX,48
+02615800,College of Court Reporting,IN,18
+03064600,Texas Southmost College,TX,48
+03083000,Ozarks Technical Community College,MO,29
+03083800,Heartland Community College,IL,17
+03091300,Regent University,VA,51
+03103400,South Texas College,TX,48
+03106000,Missouri State University - West Plains,MO,29
+03122900,York County Community College,ME,23
+03129100,Fond Du Lac Tribal and Community College,MN,27
+03170300,Texas A & M University - Texarkana,TX,48
+03191300,CUNY School of Law '(The)',NY,36
+03234300,Charter Oak State College,CT,09
+03258300,Southern Methodist College,SC,45
+03339400,Western Governors University,US,00
+03372300,Northwest Vista College,TX,48
+03413300,Mountainland Technical College,UT,49
+03428300,Klamath Community College,OR,41
+03510300,Erikson Institute,IL,17
+03521300,Ivy Tech Community College of Indiana - Region 14,IN,18
+03538300,Alexandria School of Scientific Therapeutics,IN,18
+03627300,Lamar Institute of Technology,TX,48
+03709300,Edward Via Virginia College of Osteopathic Medicine,VA,51
+03730300,Baton Rouge Community College,LA,22
+03789400,River Parishes Community College,LA,22
+03956300,South Louisiana Community College,LA,22
+03957300,Blue Ridge Community and Technical College,WV,54
+03960300,New River Community and Technical College,WV,54
+04038600,BridgeValley Community and Technical College,WV,54
+04041400,Mountwest Community and Technical College,WV,54
+04054300,Southwest Technical College,UT,49
+04121700,Dixie Technical College,UT,49
+04130100,Louisiana Delta Community College,LA,22
+04142900,Georgia Gwinnett College,GA,13
+04151300,American College of Education,IN,18
+04151900,Columbia Gorge Community College,OR,41
+04191500,Tooele Technical College,UT,49
+04194900,Tillamook Bay Community College,OR,41
+04208700,Colorado State University - Global Campus,CO,08
+04210100,Stella and Charles Guttman Community College,NY,36
+04229500,Texas A&M University - Central Texas,TX,48
+04242100,University of North Texas at Dallas,TX,48
+04243900,University of Texas Health Science Center at Tyler (The),TX,48
+04248500,Texas A&M University-San Antonio,TX,48
+04263600,Northeast Lakeview College,TX,48
+04280800,Texas Tech University Health Sciences Center El Paso,TX,48
+04283700,Oregon Coast Community College,OR,41
+30182251,Indiana Wesleyan University - NGM Building,IN,18

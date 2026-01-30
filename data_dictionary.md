@@ -9,6 +9,7 @@
 
 | 文件路径 | 格式 | 大小 | 列（前若干） | 类型（示例） | 备注 |
 |---|---|---:|---|---|---|
+| /Users/shiwen/Downloads/ICM-F_副本/data/processed/task_dna_15-1252.csv | csv | 4.2KB | task_id, task_text, IM, FR, w, s, c, evidence_note | task_id: Categorical/Text; task_text: Categorical/Text; IM: Numerical (float); FR: Numerical (float); w: Numerical (float); s: Numerical (float); c: Numerical (float); evidence_note: Categorical/Text |  |
 | /Users/shiwen/Downloads/ICM-F_副本/data/raw/CIP2020_SOC2018_Crosswalk.xlsx | xlsx | 418.8KB | - | - | 需要 openpyxl 才能解析表头 |
 | /Users/shiwen/Downloads/ICM-F_副本/data/raw/IPEDS_2018-19_Final.zip | zip | 25.8MB | - | - | ZIP 内容未解析（需解压查看） |
 | /Users/shiwen/Downloads/ICM-F_副本/data/raw/census/absmcb_AB2200MCB03_us.csv | csv | 57.2MB | - | - | API 返回 JSON 数组（非纯 CSV），需按 JSON 解析 |

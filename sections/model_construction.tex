@@ -33,6 +33,8 @@ Therefore, we introduce a data availability score $D(x)$ that reflects whether r
 To avoid subjective assignment of the career feature parameters $\textit{digit}(x)$, $\textit{physical}(x)$, and $\textit{iprisk}(x)$, we adopt the \textbf{O*NET} occupational database maintained by the U.S. Department of Labor as a unified data source.
 O*NET provides a large number of \emph{numerical scale descriptors} based on expert surveys and practitioner feedback for each occupation, with most indicators naturally given on a continuous scale of $0$--$100$, suitable for direct use in quantitative modeling.
 
+\input{sections/data_description}
+
 \paragraph{Parameter Construction Logic}
 We do not attempt to find the ``unique correct'' indicator for each dimension, but rather follow the \emph{shortest defensible path} principle: for each feature axis, we select a small number of semantically directly corresponding and downloadable O*NET descriptors and use them as proxy variables for that axis.
 
@@ -115,3 +117,73 @@ After completing this revision, the final configuration of the three selected oc
     \item \textbf{Arts: Commercial Illustrator / Graphic Designer.}  
     High intellectual property and attribution sensitivity; GenAI directly affects output forms and value pricing mechanisms.
 \end{itemize}
+
+\subsection{Model Selection for Occupational Evolution}
+
+The second core requirement of the problem is to construct a \emph{data-informed} model of future occupational evolution.
+Before introducing formal equations, we first define what ``future evolution'' means in computable terms and then systematically evaluate alternative modeling approaches, so that model choice itself is not an implicit assumption.
+
+\subsubsection{Computable Definition of Future Evolution}
+
+In this paper, the future evolution of occupation $i$ is characterized by two primary outputs:
+\begin{itemize}
+    \item \textbf{Occupational demand}: the time evolution of job demand $E_i(t)$ over a 10-year horizon, under fast, medium, and slow GenAI adoption scenarios;
+    \item \textbf{Task structure}: the reallocation of task weights $T_i(t)$ within the occupation, indicating which tasks expand, contract, or are reorganized.
+\end{itemize}
+
+This definition ensures that occupational-level outcomes are derived from task-level mechanisms rather than imposed directly.
+
+\subsubsection{Comparison of Candidate Modeling Approaches}
+
+We consider three representative approaches for modeling occupational evolution:
+
+\paragraph{Approach A: Task-aggregate impact model}
+This approach treats an occupation as a weighted bundle of tasks.
+GenAI-driven substitution and augmentation effects are specified at the task level and then aggregated to the occupational level using task weights.
+Most parameters can be constructed from O*NET task data and publicly available AI exposure rubrics, providing transparency and reproducibility.
+
+\paragraph{Approach B: Job-posting time-series models}
+This approach infers occupational change from trends in AI-related keywords and skill requirements in job postings.
+While closely tied to market signals, it suffers from identification challenges and high data-processing overhead, making it unsuitable as the main modeling backbone.
+
+\paragraph{Approach C: Agent-based simulations}
+Agent-based models simulate strategic interactions among firms, workers, and educational institutions.
+Despite their narrative richness, they require extensive calibration and introduce substantial model complexity, which conflicts with transparency requirements under strict page limits.
+
+\subsubsection{Final Model Choice}
+
+Based on the above comparison, we adopt the task-aggregate impact model (Approach A) as our primary framework.
+This choice is motivated by:
+\begin{itemize}
+    \item \textbf{Mechanistic clarity}: occupational change emerges explicitly from task-level effects;
+    \item \textbf{Data alignment}: key parameters are grounded in publicly available occupational data;
+    \item \textbf{Controlled complexity}: the model remains interpretable and suitable for scenario and sensitivity analysis;
+    \item \textbf{Transferability}: the framework can be readily extended to other occupations or educational pathways.
+\end{itemize}
+
+Approach B is reserved for potential validation or supplementary analysis, while Approach C is excluded from the main analysis due to calibration and transparency concerns.
+
+\subsection{Task-Aggregate Dynamic Model of Occupational Evolution}
+
+Having justified the task-aggregate approach, we now present its mathematical formulation.
+We adopt a minimal task-to-occupation framework: GenAI adoption $A(t)$ enters as an exogenous driver, substitution and augmentation are specified at the task level, and occupation-level net impact is derived by task-weight aggregation, yielding a dynamic trajectory for occupational demand $E_i(t)$.
+
+\subsubsection{Task Aggregation and Occupational Dynamics}
+
+Let occupation $i$ consist of tasks $j=1,\dots,J_i$ with weights $w_{ij}$ such that
+\begin{equation}
+    \sum_{j=1}^{J_i} w_{ij} = 1.
+\end{equation}
+For each task $j$, let $s_{ij}\in[0,1]$ denote substitution intensity and $c_{ij}\in[0,1]$ denote augmentation (complementarity) intensity.
+Define occupation-level aggregate effects as
+\begin{equation}
+    \alpha_i=\sum_{j=1}^{J_i} w_{ij}\,s_{ij},\qquad
+    \beta_i=\sum_{j=1}^{J_i} w_{ij}\,c_{ij}.
+\end{equation}
+
+Let $E_i(t)$ be employment demand for occupation $i$ at time $t$, and let $g_i$ capture baseline growth/decay from non-AI factors (either estimated from public trends or set to $0$ under scenario analysis).
+Given a scenario family of adoption trajectories $A(t)\in[0,1]$ (fast/medium/slow), we model occupational evolution as
+\begin{equation}
+    \frac{dE_i(t)}{dt}=E_i(t)\Big(g_i + A(t)\,(\beta_i-\alpha_i)\Big).
+\end{equation}
+This formulation ensures that occupational outcomes are derived from task-level mechanisms, supporting interpretability, reproducibility, and data-informed reasoning.

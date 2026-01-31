@@ -1,0 +1,224 @@
+\section{Task-Level Functional Demand Model and Occupational Redefinition}
+\label{sec:task_level_model}
+
+\subsection{Task-Level Functional Demand Model (Replacing Occupational-Level Job Demand)}
+\subsubsection{Modeling Objectives and Notation}
+\label{sec:notation}
+We do not predict occupational-level job counts, but rather predict how a profession's \emph{task composition} evolves under GenAI adoption, and how the \emph{human labor demand} associated with each task changes over time. The core proposition is that when a sufficiently large portion of a profession's baseline task bundle becomes negligible, the nature of that profession has changed and it should be redefined (the exact new job title is not central to the model).
+
+Consider a profession $i$ decomposed into tasks $j=1,\dots,J_i$. For each task, we assume the following inputs have been constructed through the task DNA and authority relabeling process:
+\begin{itemize}
+  \item Baseline task weight $w_{ij}(0)$, satisfying $\sum_{j} w_{ij}(0)=1$.
+  \item Substitution score $s_{ij}\in[0,1]$: the extent to which GenAI can reduce human effort for task $j$.
+  \item Augmentation score $c_{ij}\in[0,1]$: the extent to which GenAI can expand the \emph{functional} scope/demand associated with task $j$.
+  \item Adoption curve $A(t)\in[0,1]$: the proportion/intensity of GenAI adoption at time $t$ (scenario-driven).
+\end{itemize}
+
+We introduce four state variables:
+\begin{align*}
+Q_i(t) &:\ \text{Overall functional output demand index for profession } i,\\
+\ell_{ij}(t) &:\ \text{Labor intensity (human effort per unit output) for task } j,\\
+w_{ij}(t) &:\ \text{Time-varying task labor share (task structure)},\\
+D_{ij}(t) &:\ \text{Human labor demand index for task } j.
+\end{align*}
+Intuitively, $s_{ij}$ controls how quickly human effort becomes unnecessary for a task (automation channel), while $c_{ij}$ controls how much overall functional demand can expand (scale-up channel). These are distinct mechanisms and are not forced to offset.
+
+\subsubsection{Dual-Channel Dynamics: Automation and Scale-Up}
+\label{sec:two_channel}
+
+\paragraph{(a) Automation Channel: Substitution Reduces Labor Intensity.}
+We assume that as GenAI adoption increases, tasks with higher substitution scores require less human effort per unit output:
+\begin{equation}
+\label{eq:labor_intensity_ode}
+\frac{d \ln \ell_{ij}(t)}{dt} = -\kappa_s\,A(t)\,s_{ij}, \qquad \kappa_s>0.
+\end{equation}
+The closed-form solution is
+\begin{equation}
+\label{eq:labor_intensity_closed}
+\ell_{ij}(t) = \exp\!\left(-\kappa_s s_{ij}\int_0^t A(\tau)\,d\tau\right).
+\end{equation}
+\noindent\textbf{Parameter Meaning (Plain Language).} $\kappa_s$ is the \emph{substitution speed coefficient}. A larger $\kappa_s$ means human effort declines faster for the same $A(t)$ and $s_{ij}$.
+
+\paragraph{(b) Task Structure Update: Intra-Occupational Reallocation.}
+Automation changes the internal composition of a profession. We form unnormalized shares and renormalize:
+\begin{equation}
+\label{eq:share_update}
+\tilde w_{ij}(t) = w_{ij}(0)\,\ell_{ij}(t), 
+\qquad
+w_{ij}(t)=\frac{\tilde w_{ij}(t)}{\sum_{k} \tilde w_{ik}(t)}.
+\end{equation}
+\noindent\textbf{Interpretation.} Highly automated tasks (small $\ell_{ij}(t)$) lose share; remaining human labor shifts to harder-to-substitute tasks.
+
+\paragraph{(c) Scale-Up Channel (Optional): Augmentation Expands Overall Functional Demand.}
+To capture the possibility that productivity tools may increase the total amount of work organizations choose to perform, we model the overall functional demand index:
+\begin{equation}
+\label{eq:Q_ode}
+\frac{d \ln Q_i(t)}{dt} = g_i + \kappa_c\,A(t)\,\bar c_i,
+\end{equation}
+where
+\begin{equation}
+\label{eq:cbar}
+\bar c_i = \sum_{j} w_{ij}(0)\,c_{ij}.
+\end{equation}
+\noindent\textbf{Parameter Meaning (Plain Language).} $g_i$ is the baseline (non-GenAI) growth in functional demand; set $g_i=0$ if one wishes to avoid macroeconomic assumptions. $\kappa_c\ge 0$ is the \emph{amplification factor of augmentation on demand}. $\bar c_i$ summarizes the profession's augmentation potential under its baseline composition. (A variant uses $w_{ij}(t)$ instead of $w_{ij}(0)$; we use \eqref{eq:cbar} for simplicity and parameter stability.)
+
+\paragraph{(d) Task Labor Demand Index.}
+We allocate functional demand to tasks via the current task structure:
+\begin{equation}
+\label{eq:D_def}
+D_{ij}(t) = Q_i(t)\,w_{ij}(t),
+\qquad
+\frac{D_{ij}(t)}{D_{ij}(0)}=\frac{Q_i(t)\,w_{ij}(t)}{w_{ij}(0)}.
+\end{equation}
+\noindent\textbf{Interpretation.} Even if overall demand $Q_i(t)$ grows, human demand for a task can still shrink if its task share $w_{ij}(t)$ collapses due to substitution.
+
+\subsubsection{Adoption Scenario $A(t)$}
+\label{sec:adoption}
+We use a parsimonious, interpretable logistic family:
+\begin{equation}
+\label{eq:adoption_logistic}
+A(t) = \frac{1}{1+\exp\!\left(-k(t-t_0)\right)}.
+\end{equation}
+\noindent\textbf{Parameter Meaning (Plain Language).} $k$ controls steepness (how fast adoption accelerates). $t_0$ is the inflection time when adoption reaches 50\%. We define three scenarios (fast/medium/slow) by choosing three pairs $(k,t_0)$; this keeps the number of drivers small while supporting sensitivity comparisons.
+
+\subsubsection{Occupational Redefinition Trigger (Change in Nature of Work)}
+\label{sec:redefinition}
+We formalize "change in the nature of work" via \emph{task extinction} and \emph{task structure drift}. Either of two criteria can trigger redefinition.
+
+\paragraph{(a) Extinction Mass (Task Demand Becomes Negligible).}
+A task is considered functionally negligible when its human demand index falls below a small fraction of its baseline:
+\begin{equation}
+\label{eq:extinction_rule}
+\frac{D_{ij}(t)}{D_{ij}(0)}<\varepsilon,
+\end{equation}
+where $\varepsilon\in(0,1)$ (e.g., $\varepsilon=0.05$). Define the baseline-weighted extinction mass:
+\begin{equation}
+\label{eq:Mdrop}
+M_{\text{drop}}(t)=\sum_{j:\,D_{ij}(t)/D_{ij}(0)<\varepsilon} w_{ij}(0).
+\end{equation}
+We consider a profession to have changed in essence if and only if
+\begin{equation}
+\label{eq:Mdrop_trigger}
+M_{\text{drop}}(t)\ge \theta,
+\end{equation}
+where $\theta\in(0,1)$ (e.g., $\theta=0.30$) is the share of baseline task mass that must become negligible before triggering redefinition.
+
+\paragraph{(b) Task Structure Drift (Distributional Change).}
+Even without many tasks becoming fully negligible, a profession may become qualitatively different if its task share distribution changes sufficiently. Let $w_i(t)$ denote the vector $(w_{i1}(t),\dots,w_{iJ_i}(t))$. We use Jensen–Shannon divergence as a symmetric, bounded measure of drift:
+\begin{equation}
+\label{eq:JS_trigger}
+\mathrm{JS}\!\left(w_i(t)\,\|\,w_i(0)\right) \ge \delta,
+\end{equation}
+where $\delta>0$ is a conservative threshold chosen for robustness.
+
+\noindent\textbf{Trigger Time.} Define
+\begin{equation}
+\label{eq:tstar}
+t^*=\inf\left\{t:\ M_{\text{drop}}(t)\ge\theta\ \ \text{or}\ \ \mathrm{JS}(w_i(t)\|w_i(0))\ge\delta\right\}.
+\end{equation}
+We report whether $t^*$ exists within the forecast horizon and use it as model-based evidence that the profession should be redefined.
+
+\subsubsection{Computational Algorithm (Reproducible Process)}
+\label{sec:algorithm}
+For each profession $i$ and each adoption scenario:
+\begin{enumerate}
+  \item Compute $A(t)$ from \eqref{eq:adoption_logistic}, and the cumulative adoption integral $I(t)=\int_0^t A(\tau)d\tau$ (numerical quadrature).
+  \item Compute labor intensities $\ell_{ij}(t)$ using \eqref{eq:labor_intensity_closed}.
+  \item Update task shares $w_{ij}(t)$ via \eqref{eq:share_update}.
+  \item Solve for $Q_i(t)$ using \eqref{eq:Q_ode}. If avoiding macroeconomic assumptions, set $g_i=0$ and $\kappa_c=0$, so that $Q_i(t)\equiv 1$.
+  \item Compute task labor demand indices $D_{ij}(t)$ from \eqref{eq:D_def}.
+  \item Evaluate redefinition criteria \eqref{eq:Mdrop_trigger} and \eqref{eq:JS_trigger}, obtaining $t^*$ via \eqref{eq:tstar} if it exists.
+\end{enumerate}
+
+\subsubsection{Parameter Table (To Be Instantiated)}
+\label{sec:param_table}
+Table~\ref{tab:params_task_model} summarizes the parameters that need to be specified. We prioritize interpretability and a low number of drivers.
+
+\begin{table}[ht]
+\centering
+\caption{Task-level model parameters and plain-language meanings.}
+\label{tab:params_task_model}
+\begin{tabular}{lll}
+\hline
+Parameter & Typical Range/Setting & Meaning (Plain Language) \\
+\hline
+$k,\,t_0$ & Scenario-specific & Adoption speed and 50\% adoption time \\
+$\kappa_s$ & $>0$ & Speed at which substitution reduces human effort \\
+$g_i$ & $0$ (default) & Baseline functional demand growth (non-GenAI) \\
+$\kappa_c$ & $0$ or $>0$ & Strength of augmentation expanding total demand \\
+$\varepsilon$ & e.g., $0.05$ & "Negligible task" threshold (5\% of baseline) \\
+$\theta$ & e.g., $0.30$ & Extinction mass required to redefine profession \\
+$\delta$ & e.g., $0.10$--$0.30$ & Task share drift threshold (JS divergence) \\
+\hline
+\end{tabular}
+\end{table}
+
+\subsection{Visualization Plan}
+\label{sec:viz_plan}
+This section defines the charts needed to display task structure changes and redefinition evidence.
+
+\subsubsection{Figure Templates}
+\label{sec:fig_templates}
+
+\paragraph{Figure 1: Adoption Scenarios $A(t)$.}
+\begin{figure}[ht]
+\centering
+% \includegraphics[width=0.85\linewidth]{figures/figA_adoption_scenarios.pdf}
+\caption{GenAI adoption scenarios $A(t)$ defined by \eqref{eq:adoption_logistic} (fast/medium/slow). Inflection time $t_0$ marks 50\% adoption.}
+\label{fig:adoption}
+\end{figure}
+
+\paragraph{Figure 2: Task Labor Demand Trajectories for Top Tasks.}
+\begin{figure}[ht]
+\centering
+% \includegraphics[width=0.95\linewidth]{figures/figB_task_demand_top_tasks.pdf}
+\caption{Relative task labor demand trajectories $D_{ij}(t)/D_{ij}(0)$ for the top $K$ tasks with highest baseline weights in profession $i$, across adoption scenarios. This figure directly shows which tasks become negligible and which remain core.}
+\label{fig:task_demand_top}
+\end{figure}
+
+\paragraph{Figure 3: Task Structure Drift $w_{ij}(t)$.}
+\begin{figure}[ht]
+\centering
+% \includegraphics[width=0.95\linewidth]{figures/figC_task_structure_drift.pdf}
+\caption{Time-varying task structure $w_{ij}(t)$ (stacked area chart or heatmap). This figure visualizes the intra-occupational reallocation driven by substitution via \eqref{eq:share_update}.}
+\label{fig:task_structure}
+\end{figure}
+
+\paragraph{Figure 4: Redefinition Evidence and Trigger Time $t^*$.}
+\begin{figure}[ht]
+\centering
+% \includegraphics[width=0.95\linewidth]{figures/figD_redefinition_trigger.pdf}
+\caption{Redefinition evidence over time: extinction mass $M_{\text{drop}}(t)$ with threshold $\theta$, and (optionally) $\mathrm{JS}(w_i(t)\|w_i(0))$ with threshold $\delta$. The earliest crossing defines $t^*$ in \eqref{eq:tstar}.}
+\label{fig:redefinition_trigger}
+\end{figure}
+
+\subsection{Sensitivity and Robustness}
+\label{sec:sensitivity}
+
+\subsubsection{Low-Confidence Task Sensitivity}
+\label{sec:low_conf_task}
+Some tasks may have low-confidence $(s_{ij},c_{ij})$ assignments due to weak semantic matches with authority assessment dimensions. For each flagged task, we run two bounded sensitivity cases:
+\begin{itemize}
+  \item \textbf{Deletion:} Remove the task from the set and renormalize the remaining $w_{ij}(0)$.
+  \item \textbf{Relabeling:} Keep $w_{ij}(0)$ but replace $(s_{ij},c_{ij})$ with the second-best acceptable mapping (or a conservative bound).
+\end{itemize}
+We report changes in: (i) whether redefinition occurs within the horizon, (ii) trigger time $t^*$, and (iii) the extinction mass curve $M_{\text{drop}}(t)$.
+
+\subsubsection{Key Parameter Sensitivity}
+\label{sec:param_sens}
+We vary only a minimal, high-leverage set of parameters to avoid overfitting:
+\begin{itemize}
+  \item $\kappa_s$ (substitution speed): slow/medium/fast values.
+  \item $\kappa_c$ (scale-up on/off): $\kappa_c=0$ vs. a positive value.
+  \item Thresholds $(\varepsilon,\theta,\delta)$: conservative vs. aggressive settings.
+\end{itemize}
+For each combination, we summarize the stability of qualitative conclusions (which tasks become negligible, and whether/when redefinition is triggered).
+
+\subsection{Output Summary Template (Per Profession)}
+\label{sec:output_template}
+For each profession and each adoption scenario, we present:
+\begin{enumerate}
+  \item \textbf{Task Demand Results:} List of tasks ranked by $D_{ij}(15)/D_{ij}(0)$, highlighting those below $\varepsilon$.
+  \item \textbf{Task Structure Change:} Visualization of $w_{ij}(t)$ and drift measure $\mathrm{JS}(w_i(t)\|w_i(0))$.
+  \item \textbf{Redefinition Decision:} Whether the criterion in \eqref{eq:Mdrop_trigger} or \eqref{eq:JS_trigger} is met, and the trigger time $t^*$ if applicable.
+\end{enumerate}

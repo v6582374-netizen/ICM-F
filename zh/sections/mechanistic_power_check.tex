@@ -1,0 +1,52 @@
+\section{权威重标记后的机制力量检验与职业级聚合（软件开发人员）}
+
+在将 $(s_j,c_j)$ 从主观关键词标签升级为"权威评估 $\rightarrow$ 能力维度 $\rightarrow$ 语义匹配 $\rightarrow$ 分段分配"流程后，
+我们必须验证\textbf{机制力量}：$(s_j,c_j)$ 的任务级异质性应足够充分，且任务权重 $w_j$ 不应将 $(\alpha,\beta)$ 坍缩为单一默认驱动的结果。
+否则，即使是权威来源也会在演化模型中产生弱可识别性。
+
+\subsection{职业级冲击聚合值}
+
+对于可用任务集（大小为 $N$，允许 $N<20$），重新归一化使得 $\sum_{j=1}^{N} w_j=1$，我们定义
+\begin{equation}
+    \alpha=\sum_{j=1}^{N} w_j s_j,\qquad
+    \beta=\sum_{j=1}^{N} w_j c_j,\qquad
+    \mu=\beta-\alpha.
+\end{equation}
+
+\subsection{诊断：异质性与有效多样性}
+
+\paragraph{(1) 加权方差（异质性）}
+\begin{equation}
+    \mathrm{Var}_w(s)=\sum_{j=1}^{N} w_j (s_j-\alpha)^2,\qquad
+    \mathrm{Var}_w(c)=\sum_{j=1}^{N} w_j (c_j-\beta)^2.
+\end{equation}
+低方差表明得分压缩或映射规则过度收敛，削弱可识别性。
+
+\paragraph{(2) 加权层级直方图（避免单层级主导）}
+令 $\mathcal{G}_{LMH}=\{0.25,0.5,0.75\}$。定义层级权重质量
+\begin{equation}
+    h_s(g)=\sum_{j:\,s_j=g} w_j,\qquad
+    h_c(g)=\sum_{j:\,c_j=g} w_j,\qquad g\in\mathcal{G}_{LMH}.
+\end{equation}
+较大的 $\max_g h_s(g)$ 或 $\max_g h_c(g)$ 标志默认驱动的坍缩。
+
+\paragraph{(3) 能力维度权重质量（避免权重集中）}
+对于每个任务 $j$，令 $\mathrm{dim}_j$ 为其映射的维度集（1--2个维度）。
+如果多重映射，令 $\pi_{j d}$ 将任务 $j$ 分配到维度 $d$，满足 $\sum_{d\in\mathrm{dim}_j}\pi_{j d}=1$。
+维度权重质量为
+\begin{equation}
+    m(d)=\sum_{j=1}^{N} w_j\,\pi_{j d}.
+\end{equation}
+高 $\max_d m(d)$ 表明尽管名义覆盖广泛，但有效多样性低。
+
+\subsection{工程阈值与行动（$E(t)$ 前的门控）}
+
+我们使用工程阈值作为门控，决定是否进入情景演化：
+\begin{equation}
+\mathrm{Var}_w(s)\ge \varepsilon_s,\quad
+\mathrm{Var}_w(c)\ge \varepsilon_c,\quad
+\max_g h_s(g)\le \eta_s,\quad
+\max_d m(d)\le \eta_d,
+\end{equation}
+默认值为 $\varepsilon_s=\varepsilon_c=0.005$，$\eta_s=0.70$，$\eta_d=0.60$。
+违反意味着高机制风险，需要在推进到情景驱动的 $E(t)$ 动力学之前，对层级划分或维度到 $(s,c)$ 映射进行优化（无需改变 $w_j$）。

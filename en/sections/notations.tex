@@ -1,0 +1,120 @@
+All symbols used in this paper are defined in the following table.\begin{longtable}{clc}
+\caption{Symbol Definitions Used in This Paper} \label{tab:notation_unified} \\
+\toprule
+\textbf{Symbol} & \textbf{Description} & \textbf{Domain/Unit} \\
+\midrule
+\endfirsthead
+\multicolumn{3}{c}{\tablename\ \thetable{} -- Continued} \\
+\toprule
+\textbf{Symbol} & \textbf{Description} & \textbf{Domain/Unit} \\
+\midrule
+\endhead
+\midrule
+\multicolumn{3}{r}{\textit{Continued on next page}} \\
+\endfoot
+\bottomrule
+\endlastfoot
+
+% === Basic Indices ===
+\multicolumn{3}{l}{\textbf{Basic Indices}} \\
+\midrule
+$i$ & Occupation index & $\mathbb{Z}^+$ \\
+$j$ & Task index & $\mathbb{Z}^+$ \\
+$t$ & Time & Year \\
+$N$ & Number of available tasks & $\mathbb{Z}^+$ \\
+\midrule
+
+% === Occupation Choice and Feature Space ===
+\multicolumn{3}{l}{\textbf{Occupation Choice and Feature Space}} \\
+\midrule
+$x$ & Candidate occupation & --- \\
+$f(x)$ & Occupation feature vector $\big(\textit{digit}(x),\,\textit{physical}(x),\,\textit{iprisk}(x)\big)$ & $[0,1]^3$ \\
+$\textit{digit}(x)$ & Digitalization level & $[0,1]$ \\
+$\textit{physical}(x)$ & Physical anchoring level & $[0,1]$ \\
+$\textit{iprisk}(x)$ & Intellectual property/attribution risk & $[0,1]$ \\
+$D(x)$ & Data availability score & $[0,1]$ \\
+$\Delta(x_i,x_j)$ & Mechanism comparison distance: $\lVert f(x_i)-f(x_j)\rVert_2$ & $\mathbb{R}_{\ge 0}$ \\
+$\lambda$ & Trade-off coefficient in occupation choice & Dimensionless \\
+$v_m(x)$ & Raw score of occupation $x$ under O*NET descriptor $m$ & $[0,100]$ \\
+$z_m(x)$ & Min-max normalized score & $[0,1]$ \\
+\midrule
+
+% === Task Weights and Impact Parameters ===
+\multicolumn{3}{l}{\textbf{Task Weights and Impact Parameters}} \\
+\midrule
+$w_{ij}$ & Weight of task $j$ in occupation $i$; $\sum_j w_{ij}=1$ & $[0,1]$ \\
+$w_{ij}(0)$ & Baseline task weight (initial time) & $[0,1]$ \\
+$w_{ij}(t)$ & Time-varying task labor share (task structure) & $[0,1]$ \\
+$s_{ij}$ & Substitution score for task $j$ (degree to which GenAI reduces human effort) & $\{0.25,0.5,0.75\}$ \\
+$c_{ij}$ & Enhancement score for task $j$ (degree to which GenAI expands functional demand) & $\{0.25,0.5,0.75\}$ \\
+$\alpha_i$ & Occupation-level substitution effect: $\sum_j w_{ij}s_{ij}$ & $[0,1]$ \\
+$\beta_i$ & Occupation-level enhancement effect: $\sum_j w_{ij}c_{ij}$ & $[0,1]$ \\
+$\mu_i$ & Net occupational impact: $\beta_i-\alpha_i$ & $[-1,1]$ \\
+$\bar c_i$ & Occupational enhancement potential: $\sum_j w_{ij}(0) c_{ij}$ & $[0,1]$ \\
+\midrule
+
+% === Occupational Evolution Dynamics ===
+\multicolumn{3}{l}{\textbf{Occupational Evolution Dynamics}} \\
+\midrule
+$E_i(t)$ & Employment demand for occupation $i$ at time $t$ & Number of positions \\
+$A(t)$ & GenAI adoption trajectory (scenario family: fast/medium/slow) & $[0,1]$ \\
+$g_i$ & Non-AI baseline growth rate for occupation $i$ & $\text{Year}^{-1}$ \\
+$k$ & Steepness parameter of the adoption curve & $>0$ \\
+$t_0$ & Inflection point time of the adoption curve (50\% adoption) & Year \\
+\midrule
+
+% === Task-Level Functional Demand Model ===
+\multicolumn{3}{l}{\textbf{Task-Level Functional Demand Model}} \\
+\midrule
+$Q_i(t)$ & Overall functional output demand index for occupation $i$ & Dimensionless \\
+$\ell_{ij}(t)$ & Labor intensity of task $j$ (human effort per unit output) & Dimensionless \\
+$D_{ij}(t)$ & Human labor demand index for task $j$ & Dimensionless \\
+$\kappa_s$ & Substitution speed coefficient & $>0$ \\
+$\kappa_c$ & Enhancement factor amplifying demand & $\ge 0$ \\
+\midrule
+
+% === Occupational Redefinition Triggers ===
+\multicolumn{3}{l}{\textbf{Occupational Redefinition Triggers}} \\
+\midrule
+$M_{\text{drop}}(t)$ & Extinction mass (sum of baseline weights of tasks whose demand becomes negligible) & $[0,1]$ \\
+$\varepsilon$ & "Negligible task" threshold (e.g., $0.05$ for 5\% of baseline) & $(0,1)$ \\
+$\theta$ & Extinction mass threshold triggering occupational redefinition & $(0,1)$ \\
+$\delta$ & Task share drift threshold (Jensen--Shannon divergence) & $>0$ \\
+$t^*$ & Occupational redefinition trigger time & Year \\
+$\mathrm{JS}(\cdot\|\cdot)$ & Jensen--Shannon divergence & $[0,1]$ \\
+\midrule
+
+% === Mechanism Strength Diagnostics ===
+\multicolumn{3}{l}{\textbf{Mechanism Strength Diagnostics}} \\
+\midrule
+$\mathrm{Var}_w(s)$ & Weighted variance of substitution scores: $\sum_j w_j(s_j-\alpha)^2$ & $\mathbb{R}_{\ge 0}$ \\
+$\mathrm{Var}_w(c)$ & Weighted variance of enhancement scores: $\sum_j w_j(c_j-\beta)^2$ & $\mathbb{R}_{\ge 0}$ \\
+$h_s(g)$ & Weight mass for substitution score tier $g$ & $[0,1]$ \\
+$h_c(g)$ & Weight mass for enhancement score tier $g$ & $[0,1]$ \\
+$m(d)$ & Weight mass for capability dimension $d$ & $[0,1]$ \\
+$\varepsilon_s,\varepsilon_c$ & Minimum variance threshold (default $0.005$) & $\mathbb{R}_{>0}$ \\
+$\eta_s,\eta_d$ & Maximum concentration threshold (default $0.70$, $0.60$) & $(0,1)$ \\
+\midrule
+
+% === Authority Relabeling Process ===
+\multicolumn{3}{l}{\textbf{Authority Relabeling Process}} \\
+\midrule
+$\textit{dim}_j$ & Set of capability dimensions mapped to task $j$ & Set \\
+$d$ & Capability dimension index (e.g., code generation, debugging, testing) & --- \\
+$S_d$ & Substitution tier for dimension $d$ & $\{0.25,0.5,0.75\}$ \\
+$C_d$ & Enhancement tier for dimension $d$ & $\{0.25,0.5,0.75\}$ \\
+$\mathrm{sim}(j,d)$ & Semantic similarity between task $j$ and dimension $d$ & $[0,1]$ \\
+$\tau$ & Semantic matching threshold & $[0,1]$ \\
+$\pi_{jd}$ & Assignment weight from task $j$ to dimension $d$ & $[0,1]$ \\
+\midrule
+
+% === Task DNA Fields ===
+\multicolumn{3}{l}{\textbf{Task DNA Fields (O*NET Data)}} \\
+\midrule
+$\text{Task}_j$ & Task statement text & Text \\
+$\text{IM}_j$ & Task importance rating & $[0,100]$ \\
+$\text{FR}_j$ & Task frequency rating & $[0,100]$ \\
+$\tilde{w}_j$ & Unnormalized weight: $\text{IM}_j \cdot \text{FR}_j$ & $\mathbb{R}_{\ge 0}$ \\
+SOC & O*NET-SOC occupation code & Code \\
+
+\end{longtable}

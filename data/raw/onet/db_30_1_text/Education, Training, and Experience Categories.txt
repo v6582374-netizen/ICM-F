@@ -58,3 +58,90 @@ Element ID	Element Name	Scale ID	Category	Category Description
 | **需求分析**    | 低 (0.25) | 中 (0.5)  | 模型对模糊需求的理解有限，在NL→规格任务上提升不大（Spider基准提升2-3%）https://arxiv.org/abs/2304.05128#:~:text=for%20C%2B%2B,more%20than%2010x%20candidate%20programs。但其总结归纳能力有助于提炼需求和提出澄清问题，提升分析效率https://cdn.openai.com/papers/gpt-4.pdf#:~:text=GPT,inspecting%20performance%20sample%20by%20sample。                  |
 | **用户沟通与文档** | 中 (0.5)  | 高 (0.75) | Claude 2 等模型可生成长篇连贯文档并格式化输出https://www.anthropic.com/claude-2-model-card#:~:text=synthesizing%20infor%02mation%20from%20long%2C%20complex,in%20JSON%2C%20XML%2C%20YAML%2C%20code，能快速撰写说明和回答常见问题。需注意准确性，关键内容仍需人工校对https://cdn.openai.com/papers/gpt-4.pdf#:~:text=Despite%20its%20capabilities%2C%20GPT,report%20can%20be%20sent%20to。                              |
 
+
+
+以下 Bridge Packet内容来自同一个项目下的另外一个对话，请读取 Bridge Packet 并从 NextAtomicUnit 继续。
+<ProjectBridgePacket version="1.0">
+  <Project>建模手 | ICM 2026 Problem F</Project>
+  <TimeContext timezone="Asia/Singapore" date="2026-01-30"/>
+
+  <LockedDecisions>
+    <Careers>
+      <STEM>Software Developer / Software Engineer (O*NET-SOC 15-1252.00)</STEM>
+      <Trade>Electrician (47-2111.00)</Trade>
+      <Arts>Illustrator / Graphic Designer (27-1013.00)</Arts>
+    </Careers>
+    <HeterogeneityAxes>
+      <Axis name="digit">Working with Computers (IM) + E-Mail (CXP)</Axis>
+      <Axis name="physical">Using Hands (CXP) + Kneeling/Crouching/Stooping/Crawling (CXP)</Axis>
+      <Axis name="iprisk_proxy">Originality (IM) + Thinking Creatively (IM)</Axis>
+    </HeterogeneityAxes>
+  </LockedDecisions>
+
+  <ArtifactsProduced>
+    <HeterogeneityPlots>
+      <Fig1>figures/fig1_heterogeneity_3d.pdf</Fig1>
+      <Fig2>figures/fig2_projections.pdf</Fig2>
+      <Fig3>figures/fig3_radar.pdf</Fig3>
+      <Fig4>figures/fig4_sensitivity.pdf</Fig4>
+    </HeterogeneityPlots>
+    <TaskDNA>
+      <Original>data/processed/task_dna_15-1252.csv</Original>
+      <AuthoritativeRelabel>data/processed/task_dna_15-1252_authoritative_sc.csv</AuthoritativeRelabel>
+      <Sources>data/processed/authoritative_sc_sources.md</Sources>
+      <Anomaly>data/processed/task_dna_15-1252_authoritative_anomaly_report.md</Anomaly>
+      <Agg>data/processed/task_dna_15-1252_authoritative_agg.json</Agg>
+    </TaskDNA>
+  </ArtifactsProduced>
+
+  <KeyNumbers>
+    <HeterogeneityCoordsNormalization method="global" aggregation="equal">
+      <SoftwareDev digit="0.3177" physical="0.2000" iprisk="0.7015"/>
+      <Electrician digit="0.2225" physical="0.2000" iprisk="0.5787"/>
+      <Illustrator digit="0.2690" physical="0.2000" iprisk="0.9775"/>
+    </HeterogeneityCoordsNormalization>
+
+    <TaskDNA_Aggregates>
+      <alpha>0.379113</alpha>
+      <beta>0.629112</beta>
+      <weighted_var_s>0.015608</weighted_var_s>
+      <weighted_var_c>0.015608</weighted_var_c>
+      <mu_reported>0.504112</mu_reported>
+      <mu_expected_definition>beta-alpha</mu_expected_definition>
+      <mu_expected_value>0.249999</mu_expected_value>
+      <LowConfidenceTask id="21666" w="0.05434" dim="D6" reason="low_sim:0.33&lt;0.35"/>
+    </TaskDNA_Aggregates>
+  </KeyNumbers>
+
+  <CurrentModel>
+    <OccupationEvolution>
+      <Definition>mu = beta - alpha</Definition>
+      <ODE>dE/dt = E*(g + A(t)*mu)</ODE>
+      <RelativeIndex>E(t)/E(0) = exp(∫(g + A(t)*mu) dt)</RelativeIndex>
+      <Uncertainty>scenario for A(t) + sensitivity on low-confidence tasks + tier mapping</Uncertainty>
+    </OccupationEvolution>
+  </CurrentIssues>
+    <CriticalIssue>Aggregator reports mu inconsistent with definition; must fix agg.json mu or clarify mu_definition.</CriticalIssue>
+  </CurrentIssues>
+
+  <NextAtomicUnit>
+    <Task>Fix mu consistency and proceed to E(t) scenarios for Software Dev</Task>
+    <InputsNeeded>
+      <Item>Correct mu in agg.json (must equal beta-alpha) OR record alternative mu_definition explicitly</Item>
+      <Item>Specify A(t) fast/medium/slow scenario anchors (k, t0, A(0) or equivalent)</Item>
+      <Item>Choose baseline growth g (0 for index-only or from official occupational outlook)</Item>
+    </InputsNeeded>
+    <OutputsWanted>
+      <Item>Software Dev E(t)/E(0) under A(t) scenarios at 5/10/15 years</Item>
+      <Item>Sensitivity: remove/retag low-confidence task 21666 and show alpha/beta/mu changes</Item>
+    </OutputsWanted>
+  </NextAtomicUnit>
+
+  <RulesToFollow>
+    <NoSubjectiveKeywords>s,c must be derived from authoritative evaluation sources with raw links</NoSubjectiveKeywords>
+    <Occam>Drivers ≤ 5 per profession; prefer task-aggregate model</Occam>
+    <MathPackaging>All equations in model_definition XML and $$...$$</MathPackaging>
+  </RulesToFollow>
+</ProjectBridgePacket>
+为了更加详细的补充信息，pdf附件是根据之前的思路撰写的论文（内容零散且存在重复）。
+TASK：确保理解以上 Bridge Packet以及pdf附件中的所有内容，从而保证后续思路的合理连接

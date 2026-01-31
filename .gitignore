@@ -42,3 +42,7 @@ Thumbs.db
 .pytest_cache/
 .coverage
 htmlcov/
+
+# Allow compiled PDF output
+!build/
+!build/main.pdf

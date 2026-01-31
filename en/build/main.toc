@@ -1,0 +1,84 @@
+\contentsline {section}{\numberline {1}Introduction}{3}{section.1}%
+\contentsline {subsection}{\numberline {1.1}Research Background and Motivation}{3}{subsection.1.1}%
+\contentsline {paragraph}{AI Usage Statement.}{3}{section*.1}%
+\contentsline {subsection}{\numberline {1.2}Literature Review}{3}{subsection.1.2}%
+\contentsline {subsection}{\numberline {1.3}Problem Restatement}{3}{subsection.1.3}%
+\contentsline {section}{\numberline {2}Assumptions and Notation}{4}{section.2}%
+\contentsline {subsection}{\numberline {2.1}Basic Assumptions}{4}{subsection.2.1}%
+\contentsline {subsection}{\numberline {2.2}Symbol Definitions}{4}{subsection.2.2}%
+\contentsline {section}{\numberline {3}Data Sources}{6}{section.3}%
+\contentsline {subsection}{\numberline {3.1}Data Description and Task DNA Source}{6}{subsection.3.1}%
+\contentsline {section}{\numberline {4}Model Construction and Implementation}{6}{section.4}%
+\contentsline {subsection}{\numberline {4.1}Career Choice as a Modeling Decision}{6}{subsection.4.1}%
+\contentsline {subsubsection}{\numberline {4.1.1}Objective Parameterization of Occupational Characteristics Based on O*NET}{7}{subsubsection.4.1.1}%
+\contentsline {paragraph}{Normalization and Reproducibility}{8}{section*.4}%
+\contentsline {subsubsection}{\numberline {4.1.2}Revision and Final Configuration of Selected Careers}{10}{subsubsection.4.1.2}%
+\contentsline {subsection}{\numberline {4.2}Model Selection for Career Evolution}{10}{subsection.4.2}%
+\contentsline {subsubsection}{\numberline {4.2.1}Computable Definition of Future Evolution}{10}{subsubsection.4.2.1}%
+\contentsline {subsubsection}{\numberline {4.2.2}Comparison of Candidate Modeling Methods}{11}{subsubsection.4.2.2}%
+\contentsline {paragraph}{Method A: Task Aggregation Impact Model}{11}{section*.7}%
+\contentsline {paragraph}{Method B: Time Series Model for Recruitment Information}{11}{section*.8}%
+\contentsline {paragraph}{Method C: Agent-Based Simulation}{11}{section*.9}%
+\contentsline {subsubsection}{\numberline {4.2.3}Final Model Selection}{11}{subsubsection.4.2.3}%
+\contentsline {subsection}{\numberline {4.3}Dynamic Model of Task Aggregation for Occupational Evolution}{12}{subsection.4.3}%
+\contentsline {subsubsection}{\numberline {4.3.1}Task Aggregation and Occupational Dynamics}{12}{subsubsection.4.3.1}%
+\contentsline {subsection}{\numberline {4.4}GenAI Capability Dimension Scoring from Authoritative Reports: Scale Definition and Evidence Narrative}{12}{subsection.4.4}%
+\contentsline {subsubsection}{\numberline {4.4.1}Scale Definition}{12}{subsubsection.4.4.1}%
+\contentsline {subsubsection}{\numberline {4.4.2}Evidence of Capabilities by Task Type (Narrative Argument)}{13}{subsubsection.4.4.2}%
+\contentsline {paragraph}{Code Generation}{13}{section*.10}%
+\contentsline {paragraph}{Testing and Verification}{13}{section*.11}%
+\contentsline {paragraph}{Debugging and Error Fixing}{13}{section*.12}%
+\contentsline {paragraph}{System Design/Architecture}{14}{section*.13}%
+\contentsline {paragraph}{Demand Analysis}{14}{section*.14}%
+\contentsline {paragraph}{User Communication and Documentation}{14}{section*.15}%
+\contentsline {subsection}{\numberline {4.5}Task Impact-Driven Relabeling via Authoritative Assessment: From Keyword Tags to Competency Dimension Allocation}{14}{subsection.4.5}%
+\contentsline {paragraph}{Capability Mapping and Traceability Requirements}{14}{section*.17}%
+\contentsline {paragraph}{Semantic Thresholds, Anomaly Reporting, and Limited Human Coverage}{16}{section*.18}%
+\contentsline {subsection}{\numberline {4.6}Aggregating Task DNA into Career-Level Impact Parameters: Software Developers}{16}{subsection.4.6}%
+\contentsline {subsubsection}{\numberline {4.6.1}Top-$N$ Availability and Aggregation}{16}{subsubsection.4.6.1}%
+\contentsline {subsubsection}{\numberline {4.6.2}Interpretability Decomposition: Top-$K$ Contribution Lower Bound}{16}{subsubsection.4.6.2}%
+\contentsline {subsubsection}{\numberline {4.6.3}Validation of Scoring Rules: Avoiding Near-Constant $s/c$}{17}{subsubsection.4.6.3}%
+\contentsline {subsubsection}{\numberline {4.6.4}Minimum Calibration: Category Defaults with Limited Human Review}{17}{subsubsection.4.6.4}%
+\contentsline {section}{\numberline {5}Mechanism Power Test and Professional-Level Aggregation (Software Developers) after Authority Relabeling}{17}{section.5}%
+\contentsline {subsection}{\numberline {5.1}Professional-Level Impact Aggregation Value}{17}{subsection.5.1}%
+\contentsline {subsection}{\numberline {5.2}Diagnosis: Heterogeneity and Effective Diversity}{17}{subsection.5.2}%
+\contentsline {paragraph}{(1) Weighted Variance (Heterogeneity)}{18}{section*.19}%
+\contentsline {paragraph}{(2) Weighted Hierarchical Histogram (Avoiding Single-Level Dominance)}{18}{section*.20}%
+\contentsline {paragraph}{(3) Quality of Capability Dimension Weights (Avoiding Weight Concentration)}{18}{section*.21}%
+\contentsline {subsection}{\numberline {5.3}Engineering Threshold and Action (Gating before $E(t)$)}{18}{subsection.5.3}%
+\contentsline {section}{\numberline {6}Consistency Check and Instantiation of Evolution Equations: Software Developers' $(\alpha ,\beta ,\mu )$}{18}{section.6}%
+\contentsline {subsection}{\numberline {6.1}Aggregate Values and Consistency Test}{19}{subsection.6.1}%
+\contentsline {subsection}{\numberline {6.2}Mechanism Strength (Heterogeneity) Test: No Score Collapse}{19}{subsection.6.2}%
+\contentsline {subsection}{\numberline {6.3}Minimum Sensitivity of Low-Confidence Tasks (Upper Bound Argument)}{19}{subsection.6.3}%
+\contentsline {subsection}{\numberline {6.4}Evolution into the Profession after Adjusting $\mu $}{19}{subsection.6.4}%
+\contentsline {section}{\numberline {7}Task-Level Functional Demand Model and Occupational Redefinition}{20}{section.7}%
+\contentsline {subsection}{\numberline {7.1}Task-Level Functional Demand Model (Replacing Occupational-Level Job Demand)}{20}{subsection.7.1}%
+\contentsline {subsubsection}{\numberline {7.1.1}Modeling Objectives and Notation}{20}{subsubsection.7.1.1}%
+\contentsline {subsubsection}{\numberline {7.1.2}Dual-Channel Dynamics: Automation and Scale-Up}{20}{subsubsection.7.1.2}%
+\contentsline {paragraph}{(a) Automation Channel: Substitution Reduces Labor Intensity.}{20}{section*.22}%
+\contentsline {paragraph}{(b) Task Structure Update: Intra-Occupational Reallocation.}{21}{section*.23}%
+\contentsline {paragraph}{(c) Scale-Up Channel (Optional): Augmentation Expands Overall Functional Demand.}{21}{section*.24}%
+\contentsline {paragraph}{(d) Task Labor Demand Index.}{21}{section*.25}%
+\contentsline {subsubsection}{\numberline {7.1.3}Adoption Scenario $A(t)$}{21}{subsubsection.7.1.3}%
+\contentsline {subsubsection}{\numberline {7.1.4}Occupational Redefinition Trigger (Change in Nature of Work)}{22}{subsubsection.7.1.4}%
+\contentsline {paragraph}{(a) Extinction Mass (Task Demand Becomes Negligible).}{22}{section*.26}%
+\contentsline {paragraph}{(b) Task Structure Drift (Distributional Change).}{22}{section*.27}%
+\contentsline {subsubsection}{\numberline {7.1.5}Computational Algorithm (Reproducible Process)}{22}{subsubsection.7.1.5}%
+\contentsline {subsubsection}{\numberline {7.1.6}Parameter Table (To Be Instantiated)}{23}{subsubsection.7.1.6}%
+\contentsline {subsection}{\numberline {7.2}Visualization Plan}{23}{subsection.7.2}%
+\contentsline {subsubsection}{\numberline {7.2.1}Figure Templates}{23}{subsubsection.7.2.1}%
+\contentsline {paragraph}{Figure 1: Adoption Scenarios $A(t)$.}{23}{figure.caption.30}%
+\contentsline {paragraph}{Figure 2: Task Labor Demand Trajectories for Top Tasks.}{23}{figure.caption.32}%
+\contentsline {paragraph}{Figure 3: Task Structure Drift $w_{ij}(t)$.}{23}{figure.caption.34}%
+\contentsline {paragraph}{Figure 4: Redefinition Evidence and Trigger Time $t^*$.}{23}{figure.caption.36}%
+\contentsline {subsection}{\numberline {7.3}Sensitivity and Robustness}{24}{subsection.7.3}%
+\contentsline {subsubsection}{\numberline {7.3.1}Low-Confidence Task Sensitivity}{24}{subsubsection.7.3.1}%
+\contentsline {subsubsection}{\numberline {7.3.2}Key Parameter Sensitivity}{24}{subsubsection.7.3.2}%
+\contentsline {subsection}{\numberline {7.4}Output Summary Template (Per Profession)}{24}{subsection.7.4}%
+\contentsline {section}{\numberline {8}Simulation Results and Sensitivity Analysis}{24}{section.8}%
+\contentsline {section}{\numberline {9}Discussion: Strengths and Limitations}{25}{section.9}%
+\contentsline {subsection}{\numberline {9.1}Advantages}{25}{subsection.9.1}%
+\contentsline {subsection}{\numberline {9.2}Shortcomings}{25}{subsection.9.2}%
+\contentsline {section}{\numberline {10}Conclusion}{25}{section.10}%
+\contentsline {section}{Appendices}{26}{section*.38}%
+\contentsline {section}{Appendix \numberline {A}Python Implementation Code}{26}{appendix.1.A}%

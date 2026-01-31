@@ -1,0 +1,84 @@
+\contentsline {section}{\numberline {1}引言}{3}{section.1}%
+\contentsline {subsection}{\numberline {1.1}研究背景与动机}{3}{subsection.1.1}%
+\contentsline {paragraph}{AI使用声明。}{3}{section*.1}%
+\contentsline {subsection}{\numberline {1.2}文献综述}{3}{subsection.1.2}%
+\contentsline {subsection}{\numberline {1.3}问题重述}{3}{subsection.1.3}%
+\contentsline {section}{\numberline {2}假设与符号}{4}{section.2}%
+\contentsline {subsection}{\numberline {2.1}基本假设}{4}{subsection.2.1}%
+\contentsline {subsection}{\numberline {2.2}符号定义}{4}{subsection.2.2}%
+\contentsline {section}{\numberline {3}数据来源}{6}{section.3}%
+\contentsline {subsection}{\numberline {3.1}数据描述与任务DNA来源}{6}{subsection.3.1}%
+\contentsline {section}{\numberline {4}模型构建与实现}{6}{section.4}%
+\contentsline {subsection}{\numberline {4.1}职业选择作为建模决策}{6}{subsection.4.1}%
+\contentsline {subsubsection}{\numberline {4.1.1}基于O*NET的职业特征参数客观化}{7}{subsubsection.4.1.1}%
+\contentsline {paragraph}{归一化与可重现性}{8}{section*.4}%
+\contentsline {subsubsection}{\numberline {4.1.2}所选职业的修订与最终配置}{9}{subsubsection.4.1.2}%
+\contentsline {subsection}{\numberline {4.2}职业演化的模型选择}{10}{subsection.4.2}%
+\contentsline {subsubsection}{\numberline {4.2.1}未来演化的可计算定义}{10}{subsubsection.4.2.1}%
+\contentsline {subsubsection}{\numberline {4.2.2}候选建模方法比较}{10}{subsubsection.4.2.2}%
+\contentsline {paragraph}{方法A：任务聚合影响模型}{11}{section*.7}%
+\contentsline {paragraph}{方法B：招聘信息时间序列模型}{11}{section*.8}%
+\contentsline {paragraph}{方法C：基于代理的模拟}{11}{section*.9}%
+\contentsline {subsubsection}{\numberline {4.2.3}最终模型选择}{11}{subsubsection.4.2.3}%
+\contentsline {subsection}{\numberline {4.3}职业演化的任务聚合动态模型}{11}{subsection.4.3}%
+\contentsline {subsubsection}{\numberline {4.3.1}任务聚合与职业动力学}{11}{subsubsection.4.3.1}%
+\contentsline {subsection}{\numberline {4.4}来自权威报告的GenAI能力维度评分：量表定义与证据叙述}{12}{subsection.4.4}%
+\contentsline {subsubsection}{\numberline {4.4.1}量表定义}{12}{subsubsection.4.4.1}%
+\contentsline {subsubsection}{\numberline {4.4.2}按任务类型的能力证据（叙述性论证）}{12}{subsubsection.4.4.2}%
+\contentsline {paragraph}{代码生成}{12}{section*.10}%
+\contentsline {paragraph}{测试与验证}{12}{section*.11}%
+\contentsline {paragraph}{调试与错误修复}{12}{section*.12}%
+\contentsline {paragraph}{系统设计/架构}{13}{section*.13}%
+\contentsline {paragraph}{需求分析}{13}{section*.14}%
+\contentsline {paragraph}{用户沟通与文档}{13}{section*.15}%
+\contentsline {subsection}{\numberline {4.5}任务影响的权威评估驱动重标记：从关键词标签到能力维度分配}{13}{subsection.4.5}%
+\contentsline {paragraph}{能力映射与可追溯性要求}{13}{section*.17}%
+\contentsline {paragraph}{语义阈值、异常报告与有限人工覆盖}{13}{section*.18}%
+\contentsline {subsection}{\numberline {4.6}将任务DNA聚合为职业级冲击参数：软件开发人员}{14}{subsection.4.6}%
+\contentsline {subsubsection}{\numberline {4.6.1}Top-$N$ 可用性与聚合}{14}{subsubsection.4.6.1}%
+\contentsline {subsubsection}{\numberline {4.6.2}可解释性分解：Top-$K$ 贡献下界}{15}{subsubsection.4.6.2}%
+\contentsline {subsubsection}{\numberline {4.6.3}评分规则的有效性检验：避免近常数 $s/c$}{15}{subsubsection.4.6.3}%
+\contentsline {subsubsection}{\numberline {4.6.4}最小校准：带有限人工审查的类别默认值}{15}{subsubsection.4.6.4}%
+\contentsline {section}{\numberline {5}权威重标记后的机制力量检验与职业级聚合（软件开发人员）}{15}{section.5}%
+\contentsline {subsection}{\numberline {5.1}职业级冲击聚合值}{15}{subsection.5.1}%
+\contentsline {subsection}{\numberline {5.2}诊断：异质性与有效多样性}{16}{subsection.5.2}%
+\contentsline {paragraph}{(1) 加权方差（异质性）}{16}{section*.19}%
+\contentsline {paragraph}{(2) 加权层级直方图（避免单层级主导）}{16}{section*.20}%
+\contentsline {paragraph}{(3) 能力维度权重质量（避免权重集中）}{16}{section*.21}%
+\contentsline {subsection}{\numberline {5.3}工程阈值与行动（$E(t)$ 前的门控）}{16}{subsection.5.3}%
+\contentsline {section}{\numberline {6}一致性检验与演化方程的实例化：软件开发人员的 $(\alpha ,\beta ,\mu )$}{16}{section.6}%
+\contentsline {subsection}{\numberline {6.1}聚合值与一致性检验}{16}{subsection.6.1}%
+\contentsline {subsection}{\numberline {6.2}机制力量（异质性）检验：无得分坍缩}{17}{subsection.6.2}%
+\contentsline {subsection}{\numberline {6.3}低置信度任务的最小敏感性（上界论证）}{17}{subsection.6.3}%
+\contentsline {subsection}{\numberline {6.4}修正 $\mu $ 后进入职业演化}{17}{subsection.6.4}%
+\contentsline {section}{\numberline {7}任务级功能需求模型与职业重新定义}{17}{section.7}%
+\contentsline {subsection}{\numberline {7.1}任务级功能需求模型（替代职业级岗位需求）}{17}{subsection.7.1}%
+\contentsline {subsubsection}{\numberline {7.1.1}建模目标与符号}{17}{subsubsection.7.1.1}%
+\contentsline {subsubsection}{\numberline {7.1.2}双渠道动力学：自动化与规模化}{18}{subsubsection.7.1.2}%
+\contentsline {paragraph}{(a) 自动化渠道：替代降低劳动强度。}{18}{section*.22}%
+\contentsline {paragraph}{(b) 任务结构更新：职业内部重新分配。}{18}{section*.23}%
+\contentsline {paragraph}{(c) 规模化渠道（可选）：增强扩展整体功能需求。}{18}{section*.24}%
+\contentsline {paragraph}{(d) 任务劳动需求指数。}{19}{section*.25}%
+\contentsline {subsubsection}{\numberline {7.1.3}采纳情景 $A(t)$}{19}{subsubsection.7.1.3}%
+\contentsline {subsubsection}{\numberline {7.1.4}职业重新定义触发器（工作本质变化）}{19}{subsubsection.7.1.4}%
+\contentsline {paragraph}{(a) 消亡质量（任务需求变得可忽略不计）。}{19}{section*.26}%
+\contentsline {paragraph}{(b) 任务结构漂移（分布变化）。}{20}{section*.27}%
+\contentsline {subsubsection}{\numberline {7.1.5}计算算法（可重现流程）}{20}{subsubsection.7.1.5}%
+\contentsline {subsubsection}{\numberline {7.1.6}参数表（待实例化）}{20}{subsubsection.7.1.6}%
+\contentsline {subsection}{\numberline {7.2}可视化方案}{20}{subsection.7.2}%
+\contentsline {subsubsection}{\numberline {7.2.1}图表模板}{21}{subsubsection.7.2.1}%
+\contentsline {paragraph}{图1：采纳情景 $A(t)$。}{21}{figure.caption.30}%
+\contentsline {paragraph}{图2：顶部任务的任务劳动需求轨迹。}{21}{figure.caption.32}%
+\contentsline {paragraph}{图3：任务结构漂移 $w_{ij}(t)$。}{21}{figure.caption.34}%
+\contentsline {paragraph}{图4：重新定义证据和触发时间 $t^*$。}{21}{figure.caption.36}%
+\contentsline {subsection}{\numberline {7.3}敏感性与稳健性}{21}{subsection.7.3}%
+\contentsline {subsubsection}{\numberline {7.3.1}低置信度任务敏感性}{21}{subsubsection.7.3.1}%
+\contentsline {subsubsection}{\numberline {7.3.2}关键参数敏感性}{21}{subsubsection.7.3.2}%
+\contentsline {subsection}{\numberline {7.4}输出摘要模板（每个职业）}{22}{subsection.7.4}%
+\contentsline {section}{\numberline {8}仿真结果与敏感性分析}{22}{section.8}%
+\contentsline {section}{\numberline {9}讨论：优势与不足}{22}{section.9}%
+\contentsline {subsection}{\numberline {9.1}优势}{22}{subsection.9.1}%
+\contentsline {subsection}{\numberline {9.2}不足}{22}{subsection.9.2}%
+\contentsline {section}{\numberline {10}结论}{22}{section.10}%
+\contentsline {section}{Appendices}{22}{section*.37}%
+\contentsline {section}{附录 \numberline {A}Python实现代码}{22}{appendix.1.A}%

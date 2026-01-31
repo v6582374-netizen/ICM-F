@@ -1,0 +1,48 @@
+This is BibTeX, Version 0.99d (TeX Live 2025)
+Capacity: max_strings=200000, hash_size=200000, hash_prime=170003
+The top-level auxiliary file: main.aux
+The style file: plainnat.bst
+Database file #1: references.bib
+Warning--empty institution in openai2023gpt4
+You've used 10 entries,
+            2773 wiz_defined-function locations,
+            643 strings with 6465 characters,
+and the built_in function-call counts, 3415 in all, are:
+= -- 321
+> -- 150
+< -- 9
++ -- 55
+- -- 45
+* -- 198
+:= -- 560
+add.period$ -- 46
+call.type$ -- 10
+change.case$ -- 46
+chr.to.int$ -- 10
+cite$ -- 21
+duplicate$ -- 159
+empty$ -- 300
+format.name$ -- 58
+if$ -- 713
+int.to.chr$ -- 1
+int.to.str$ -- 1
+missing$ -- 2
+newline$ -- 74
+num.names$ -- 40
+pop$ -- 99
+preamble$ -- 1
+purify$ -- 34
+quote$ -- 0
+skip$ -- 133
+stack$ -- 0
+substring$ -- 20
+swap$ -- 8
+text.length$ -- 0
+text.prefix$ -- 0
+top$ -- 0
+type$ -- 110
+warning$ -- 1
+while$ -- 30
+width$ -- 0
+write$ -- 160
+(There was 1 warning)

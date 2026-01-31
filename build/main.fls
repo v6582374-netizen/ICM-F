@@ -417,16 +417,6 @@ INPUT ./sections/notations.tex
 INPUT ./sections/notations.tex
 INPUT ./sections/notations.tex
 INPUT sections/notations.tex
-INPUT ./sections/data_sources.tex
-INPUT ./sections/data_sources.tex
-INPUT ./sections/data_sources.tex
-INPUT ./sections/data_sources.tex
-INPUT sections/data_sources.tex
-INPUT ./sections/data_description.tex
-INPUT ./sections/data_description.tex
-INPUT ./sections/data_description.tex
-INPUT ./sections/data_description.tex
-INPUT sections/data_description.tex
 INPUT ./sections/model_construction.tex
 INPUT ./sections/model_construction.tex
 INPUT ./sections/model_construction.tex

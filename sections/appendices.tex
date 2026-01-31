@@ -1,8 +1,58 @@
 \begin{appendices}
+
+\section{数据来源与变量定义}
+\label{app:data_sources}
+
+\subsection{O*NET描述符数据来源}
+\label{app:onet_descriptors}
+
+本研究使用的三维职业特征参数 $digit(x)$、$physical(x)$ 和 $iprisk(x)$ 均来源于O*NET OnLine公开数据库，具体描述符及其访问链接如表~\ref{tab:onet_descriptor_sources} 所示。
+
+\begin{table}[htbp]
+\centering
+\caption{O*NET描述符数据来源与访问链接}
+\label{tab:onet_descriptor_sources}
+\begin{tabular}{@{}p{2.8cm} p{3.2cm} p{5.5cm} p{2.5cm}@{}}
+\toprule
+\textbf{特征轴} & \textbf{描述符名称} & \textbf{URL} & \textbf{描述符ID} \\
+\midrule
+\multirow{2}{*}{$digit(x)$} & Working with Computers & \url{https://www.onetonline.org/find/descriptor/result/4.A.3.b.1} & 4.A.3.b.1 \\
+ & Electronic Mail & \url{https://www.onetonline.org/find/descriptor/result/4.C.1.a.2.h} & 4.C.1.a.2.h \\
+\addlinespace
+\multirow{2}{*}{$physical(x)$} & Using Hands to Handle Objects & \url{https://www.onetonline.org/find/descriptor/result/4.C.2.d.1.g} & 4.C.2.d.1.g \\
+ & Kneeling/Crouching/Stooping & \url{https://www.onetonline.org/find/descriptor/result/4.C.2.d.1.e} & 4.C.2.d.1.e \\
+\addlinespace
+\multirow{2}{*}{$iprisk(x)$} & Originality & \url{https://www.onetonline.org/find/descriptor/result/1.A.1.b.2} & 1.A.1.b.2 \\
+ & Thinking Creatively & \url{https://www.onetonline.org/find/descriptor/result/4.A.2.b.2} & 4.A.2.b.2 \\
+\bottomrule
+\end{tabular}
+\end{table}
+
+\subsection{任务DNA变量}
+\label{app:task_dna_sources}
+
+我们从O*NET 30.1文本数据库中提取各职业的任务陈述和任务评分，并根据重要性（IM）和任务频率（FT）评分计算任务权重~\cite{onet2025database}。
+
+\begin{table}[htbp]
+\centering
+\caption{任务DNA的数据来源与变量}
+\label{tab:data_sources_task_dna}
+\begin{tabular}{@{}p{3.4cm} p{7.4cm} p{3.2cm}@{}}
+\toprule
+变量/数据 & 描述 & 来源 \\
+\midrule
+O*NET任务陈述 & 各职业的任务文本和标识符 & O*NET 30.1数据库~\cite{onet2025database} \\
+O*NET任务评分（IM, FT） & 用于计算任务权重的重要性和频率评分 & O*NET 30.1数据库~\cite{onet2025database} \\
+任务DNA CSV & 包含IM、FR、权重和基于规则的s/c的处理后任务表 & 基于O*NET 30.1衍生~\cite{onet2025database} \\
+\bottomrule
+\end{tabular}
+\end{table}
+
 \section{Python实现代码}
 \begin{lstlisting}[language=Python]
 def model_solver(data):
     # 核心数学逻辑
     return results
 \end{lstlisting}
+
 \end{appendices}

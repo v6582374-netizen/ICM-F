@@ -24,18 +24,52 @@ O*NET基于专家调查和从业者反馈，为每个职业提供大量\emph{数
     \item \textbf{知识产权和署名风险$iprisk(x)$}：价值创造对作者身份、原创性和所有权的敏感程度。
 \end{itemize}
 
-每个候选职业$x$由一个归一化的三维特征向量表示
+表~\ref{tab:onet_descriptor_mapping} 列出了每个特征轴所对应的O*NET描述符及其可辩护性说明。
+从O*NET下载所选descriptor的数值（均为0–100量表），再在全职业集合上做min-max归一化到[0,1]，得到digit(x), physical(x), iprisk(x)。
+
+\begin{table}[htbp]
+\centering
+\caption{三维特征轴与O*NET描述符的对应关系}
+\label{tab:onet_descriptor_mapping}
+\begin{tabular}{@{}p{2.2cm} p{4.0cm} p{4.8cm} p{3.0cm}@{}}
+\toprule
+\textbf{特征轴} & \textbf{客观取值方式} & \textbf{O*NET描述符} & \textbf{可辩护性} \\
+\midrule
+$digit(x)$\newline 数字化程度 & 工作行为中对计算机/电子媒介的依赖 & Working with Computers~\cite{onetWorkingWithComputers}；\newline E-Mail~\cite{onetEmail} & 直接刻画工作是否以计算机与电子信息流为主 \\
+\addlinespace
+$physical(x)$\newline 物理锚定程度 & 手部操作+身体姿态负担等物理现场需求 & Using Hands to Handle Objects~\cite{onetUsingHands}；\newline Kneeling/Crouching~\cite{onetKneeling} & 直接量化现场动手强度与工位姿态限制 \\
+\addlinespace
+$iprisk(x)$\newline 产权/归因风险 & 产出是否以原创表达/创意贡献为核心 & Originality~\cite{onetOriginality}；\newline Thinking Creatively~\cite{onetThinkingCreatively} & 用原创表达强度作为可复现的风险代理变量 \\
+\bottomrule
+\end{tabular}
+\end{table}
+
+\paragraph{归一化与可重现性}
+对于每个职业 $x$，令 $v_m(x)$ 表示其在O*NET描述符 $m$ 下的原始评分（$0$--$100$）。
+我们在整个职业集上应用最小-最大归一化：
+\begin{equation}
+    z_m(x)=\frac{v_m(x)-\min_{y}v_m(y)}{\max_{y}v_m(y)-\min_{y}v_m(y)} \in [0,1],
+\end{equation}
+其中 $y$ 遍历所有职业。设特征轴 $k \in \{digit, physical, iprisk\}$ 对应的描述符集合为 $M_k$（见表~\ref{tab:onet_descriptor_mapping}，每个特征轴对应2个O*NET描述符），则对同一特征轴下的多个描述符取等权平均：
+\begin{equation}
+    \textit{feature}_k(x) = \frac{1}{|M_k|} \sum_{m \in M_k} z_m(x).
+\end{equation}
+由此得到 $\textit{digit}(x)$、$\textit{physical}(x)$ 和 $\textit{iprisk}(x)$。
+该过程完全基于公开可用数据和明确规则，确保参数值的可重现性和可审计性。
+
+
+每个候选职业$x$由一个归一化的三维特征向量表示，可以作为3Dscatter中的一个数据点。
 \begin{equation}
     f(x)=\big(digit(x),\,physical(x),\,iprisk(x)\big)\in[0,1]^3,
 \end{equation}
 其中较高的值表示相应特征的存在更强。
-\[
-x_S \in STEM,\quad x_T \in Trades,\quad x_A \in Arts.
-\]
-为衡量三种职业在特征空间中的异质性，我们用三点在三维空间中所形成三角形的面积作为衡量标准，定义为
+
 \[
 Area3D(x_S, x_T, x_A) = \frac{1}{2} \left\lVert \big(f(x_T) - f(x_S)\big) \times \big(f(x_A) - f(x_S)\big) \right\rVert_2,
 \]
+其中 $x_S \in \text{STEM}$ ，$x_T \in \text{Trade}$ ，$x_A \in \text{Arts}$ 。\\
+为衡量三种职业在特征空间中的异质性，我们用三点在三维空间中所形成三角形的面积作为衡量标准，定义为
+
 我们以最大化该三角形面积为目标，形式化为
 \[
 \max_{x_S \in S,\; x_T \in T,\; x_A \in A} \; Area3D(x_S, x_T, x_A).
@@ -45,15 +79,6 @@ Area3D(x_S, x_T, x_A) = \frac{1}{2} \left\lVert \big(f(x_T) - f(x_S)\big) \times
 Area2D_{\pi}(x_S, x_T, x_A) = \frac{1}{2} \left| \det \left([\pi(f(x_T)) - \pi(f(x_S)),\ \pi(f(x_A)) - \pi(f(x_S))] \right) \right|,
 \]
 其中 $\pi(\cdot)$ 表示三维特征到二维空间的投影映射。
-
-\paragraph{归一化与可重现性}
-对于每个职业 $x$，令 $v_m(x)$ 表示其在O*NET描述符 $m$ 下的原始评分（$0$--$100$）。
-我们在整个职业集上应用最小-最大归一化：
-\begin{equation}
-    z_m(x)=\frac{v_m(x)-\min_{y}v_m(y)}{\max_{y}v_m(y)-\min_{y}v_m(y)} \in [0,1],
-\end{equation}
-并对同一特征轴下的多个描述符取等权平均，得到 $\textit{digit}(x)$、$\textit{physical}(x)$ 和 $\textit{iprisk}(x)$。
-该过程完全基于公开可用数据和明确规则，确保参数值的可重现性和可审计性。
 
 我们可视化了三维异质性及其二维投影，以验证所选职业在特征空间中占据不同区域（图~\ref{fig:heterogeneity3d} 和图~\ref{fig:heterogeneity2d}）。
 

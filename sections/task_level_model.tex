@@ -134,7 +134,7 @@ t^*=\inf\left\{t:\ M_{\text{drop}}(t)\ge\theta\ \ \text{或}\ \ \mathrm{JS}(w_i(
 \label{sec:param_table}
 表~\ref{tab:params_task_model} 总结了需要指定的参数。我们优先考虑可解释性和低驱动因子数量。
 
-\begin{table}[ht]
+\begin{table}[H]
 \centering
 \caption{任务级模型参数及通俗语言含义。}
 \label{tab:params_task_model}
@@ -161,7 +161,7 @@ $\delta$ & 例如 $0.10$--$0.30$ & 任务份额漂移阈值（JS散度） \\
 \label{sec:fig_templates}
 
 \paragraph{图1：采纳情景 $A(t)$。}
-\begin{figure}[ht]
+\begin{figure}[H]
 \centering
 % \includegraphics[width=0.85\linewidth]{figures/figA_adoption_scenarios.pdf}
 \caption{由 \eqref{eq:adoption_logistic} 定义的GenAI采纳情景 $A(t)$（快速/中速/慢速）。拐点时间 $t_0$ 标记50\%采纳。}
@@ -169,7 +169,7 @@ $\delta$ & 例如 $0.10$--$0.30$ & 任务份额漂移阈值（JS散度） \\
 \end{figure}
 
 \paragraph{图2：顶部任务的任务劳动需求轨迹。}
-\begin{figure}[ht]
+\begin{figure}[H]
 \centering
 % \includegraphics[width=0.95\linewidth]{figures/figB_task_demand_top_tasks.pdf}
 \caption{职业 $i$ 中基线权重最高的前 $K$ 个任务在各采纳情景下的相对任务劳动需求轨迹 $D_{ij}(t)/D_{ij}(0)$。此图直接显示哪些任务变得可忽略不计，哪些任务仍然核心。}
@@ -177,7 +177,7 @@ $\delta$ & 例如 $0.10$--$0.30$ & 任务份额漂移阈值（JS散度） \\
 \end{figure}
 
 \paragraph{图3：任务结构漂移 $w_{ij}(t)$。}
-\begin{figure}[ht]
+\begin{figure}[H]
 \centering
 % \includegraphics[width=0.95\linewidth]{figures/figC_task_structure_drift.pdf}
 \caption{时变任务结构 $w_{ij}(t)$（堆叠面积图或热图）。此图可视化由 \eqref{eq:share_update} 驱动的替代引起的职业内部重新分配。}
@@ -185,7 +185,7 @@ $\delta$ & 例如 $0.10$--$0.30$ & 任务份额漂移阈值（JS散度） \\
 \end{figure}
 
 \paragraph{图4：重新定义证据和触发时间 $t^*$。}
-\begin{figure}[ht]
+\begin{figure}[H]
 \centering
 % \includegraphics[width=0.95\linewidth]{figures/figD_redefinition_trigger.pdf}
 \caption{随时间的重新定义证据：消亡质量 $M_{\text{drop}}(t)$ 及阈值 $\theta$，以及（可选）$\mathrm{JS}(w_i(t)\|w_i(0))$ 及阈值 $\delta$。最早的交叉点在 \eqref{eq:tstar} 中定义 $t^*$。}

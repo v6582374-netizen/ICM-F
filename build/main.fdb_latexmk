@@ -1,14 +1,13 @@
 # Fdb version 4
-["bibtex build/main"] 1769892514.71732 "build/main.aux" "build/main.bbl" "build/main" 1769893094.69124 0
+["bibtex build/main"] 1769895658.01484 "build/main.aux" "build/main.bbl" "build/main" 1769895659.81101 0
   "./references.bib" 1769892966.97663 10439 893b4b970a3f70635cfba8d292533a83 ""
   "/usr/local/texlive/2025/texmf-dist/bibtex/bst/natbib/plainnat.bst" 1233624470 26816 ffe5423d2019860bad9f54bc402fac15 ""
-  "build/main.aux" 1769893094.4322 24495 4e63934de9b21274e36d8310ade4d493 "pdflatex"
+  "build/main.aux" 1769895659.5243 25702 f948b6779c41af76de0256c0f389ce21 "pdflatex"
   (generated)
   "build/main.bbl"
   "build/main.blg"
   (rewritten before read)
-["pdflatex"] 1769893093.1841 "/Users/shiwen/Downloads/ICM-FORMAL/main.tex" "build/main.pdf" "main" 1769893094.69138 0
-  "/Users/shiwen/Downloads/ICM-FORMAL/main.tex" 1769892870.85182 2388 1fb31074e7f376f2f9d7032ef7f5d501 ""
+["pdflatex"] 1769895658.09814 "main.tex" "build/main.pdf" "main" 1769895659.81119 0
   "/usr/local/texlive/2025/texmf-dist/fonts/map/fontname/texfonts.map" 1577235249 3524 cb3e574dea2d1052e39280babc910dc8 ""
   "/usr/local/texlive/2025/texmf-dist/fonts/tfm/adobe/symbol/psyr.tfm" 1136768653 1408 5937f58aa508ea2cea4901c07d10f5fe ""
   "/usr/local/texlive/2025/texmf-dist/fonts/tfm/adobe/zapfding/pzdr.tfm" 1136768653 1528 f853c4d1b4e0550255e02831fdc8496f ""
@@ -206,10 +205,10 @@
   "/usr/local/texlive/2025/texmf-dist/web2c/texmf.cnf" 1739380943 42148 61becc7c670cd061bb319c643c27fdd4 ""
   "/usr/local/texlive/2025/texmf-var/web2c/xetex/xelatex.fmt" 1764787184 5639809 56121d7525456f8b31558434d881d50c ""
   "/usr/local/texlive/2025/texmf.cnf" 1741450484 577 418a7058ec8e006d8704f60ecd22c938 ""
-  "build/main.aux" 1769893094.4322 24495 4e63934de9b21274e36d8310ade4d493 "pdflatex"
-  "build/main.bbl" 1769892514.90683 5239 2a5385fb4439c638578d64ad2c8efbaf "bibtex build/main"
-  "build/main.out" 1769893094.43327 8751 3fcad65493fae46024d395069c4c9df6 "pdflatex"
-  "build/main.toc" 1769893094.43339 8291 d2ccf220d567bacf192d931baf27d178 "pdflatex"
+  "build/main.aux" 1769895659.5243 25702 f948b6779c41af76de0256c0f389ce21 "pdflatex"
+  "build/main.bbl" 1769895658.09297 5267 c25086034e95ff322a509ae072a0a0c0 "bibtex build/main"
+  "build/main.out" 1769895659.5255 8751 2423c5ebc19c90ce06340d6362b36933 "pdflatex"
+  "build/main.toc" 1769895659.52573 8392 26a6784cacc20de306e74bdca7126712 "pdflatex"
   "figures/fig_heterogeneity_2d_projections_all_points_strict.pdf" 1769849550.62485 38403 5d7d6e2461c36aadacc14c9322c845d4 ""
   "figures/fig_heterogeneity_3d_all_points_strict.pdf" 1769849550.45737 30386 4a7146f79c8f080e49d194f36f301dfa ""
   "figures/fig_sensitivity_candidate_scale_strict.pdf" 1769849591.59087 15719 837b1ae65052a57625e56f848dcbfb45 ""
@@ -219,20 +218,21 @@
   "figures/task_dna_27-3092.00_weights.pdf" 1769883978.97655 34267 a2941a9a0b21f057524fac6745fcc401 ""
   "figures/task_dna_49-1011.00_authoritative_sc_distribution.pdf" 1769892786.07322 15092 bc29cdf020046e98c7e3ca3dd31543e6 ""
   "figures/task_dna_49-1011.00_weights.pdf" 1769883978.53948 39331 4fd89fc7a8908e6d059e8eb47114970d ""
+  "figures/task_dna_genai_mapping_triptych.pdf" 1769894352.72799 19135 a570f7046f1eac9034bd02ff546e7247 ""
   "main.tex" 1769892870.85182 2388 1fb31074e7f376f2f9d7032ef7f5d501 ""
-  "sections/abstract.tex" 1769887787.82057 1623 75812d515e37a642a99cfdd8bd4fa5bd ""
+  "sections/abstract.tex" 1769894456.55891 1487 a271cbb48aba8fe5f412fd3f29f217b3 ""
   "sections/ai_tools_report.tex" 1769870791.77386 1299 6690c6c9d236de8c2ad49181832060f0 ""
-  "sections/appendices.tex" 1769887736.56839 3929 3a10d3b4dd7e27c9dcb4fbda187746fe ""
+  "sections/appendices.tex" 1769895636.86532 3921 f54134a6c0dd864fd78fdd3a609c2ff6 ""
   "sections/assumptions.tex" 1769870799.947 111 d00f24a913980ba8f3a247c83f02b626 ""
   "sections/conclusion.tex" 1769870803.59605 68 c5568011a7b27624e05cd090cbfb4c6a ""
   "sections/consistency_check.tex" 1769870816.22433 2747 81310b25061d1d8320b56e432bf3afac ""
   "sections/discussion.tex" 1769870833.4022 166 2c436e76e0178aeddf1367594667cb4a ""
   "sections/introduction.tex" 1769870844.79325 3321 4c5f8f4f44b3d04245c2941453aa8532 ""
   "sections/mechanistic_power_check.tex" 1769870859.54244 2557 e1ebd66b6b303c852a512dc89aed8700 ""
-  "sections/model_construction.tex" 1769893093.0609 29005 6b3e1ebfb65b16d873f54fba54a1cca6 ""
+  "sections/model_construction.tex" 1769895618.37187 31442 93c182f061dfcbdaf3efb1e22f785692 ""
   "sections/notations.tex" 1769870950.77743 5470 098b7f49a12d64c43fe23f1fab0fb5a3 ""
   "sections/results_sensitivity.tex" 1769870962.3911 2680 3af78f9cfaf1fc40f9af91841d9fed81 ""
-  "sections/task_level_model.tex" 1769892966.97668 11939 4d9020061e384a8b4e770857b2314709 ""
+  "sections/task_level_model.tex" 1769895647.93203 11934 3fcd0fa4a514e29a402a213298193a99 ""
   (generated)
   "build/main.aux"
   "build/main.log"

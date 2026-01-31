@@ -27,7 +27,7 @@ O*NET基于专家调查和从业者反馈，为每个职业提供大量\emph{数
 表~\ref{tab:onet_descriptor_mapping} 列出了每个特征轴所对应的O*NET描述符及其可辩护性说明。
 从O*NET下载所选descriptor的数值（均为0–100量表），再在全职业集合上做min-max归一化到[0,1]，得到digit(x), physical(x), iprisk(x)。
 
-\begin{table}[htbp]
+\begin{table}[H]
 \centering
 \caption{三维特征轴与O*NET描述符的对应关系}
 \label{tab:onet_descriptor_mapping}
@@ -194,7 +194,7 @@ Arts  & 27-3092.00 & \parbox[t]{6.6cm}{Court Reporters and Simultaneous Captione
 相应图示见图~\ref{fig:task_dna_17_pair}；其余两职业图示移至附录~\ref{fig:task_dna_49_pair}--\ref{fig:task_dna_27_pair}。
 
 \noindent\textbf{职业 17-2199.08：机器人工程师。}
-\begin{figure}[ht]
+\begin{figure}[H]
 \centering
 \begin{minipage}{0.62\linewidth}
     \centering
@@ -232,7 +232,7 @@ Arts  & 27-3092.00 & \parbox[t]{6.6cm}{Court Reporters and Simultaneous Captione
 
 \subsubsection{机制审计与最短修复路径}
 为避免解释力削弱，我们先对现有表格进行机制审计，并给出最短修复路径（表~\ref{tab:genai_audit}）。
-\begin{table}[htbp]
+\begin{table}[H]
 \centering
 \caption{GenAI能力表的机制审计与修复路径}
 \label{tab:genai_audit}
@@ -287,7 +287,7 @@ D9 的高分来自特定管线 &
 
 \subsubsection{九维能力量表（含原始评分与证据）}
 表~\ref{tab:genai_scale} 给出可直接落地的基线版本：每个维度包含原始评分、分段得到的 $M_k$、方向系数 $\rho_k$，以及对应的 $(s_k,c_k)$。
-\begin{table}[htbp]
+\begin{table}[H]
 \centering
 \caption{GenAI 九维能力映射总表：指标分段$\rightarrow M_k,\rho_k\rightarrow(s_k,c_k)$}
 \label{tab:genai_scale}
@@ -352,6 +352,39 @@ DocVQA 99.16\%；Text-to-SQL $>80\%$\citep{docvqa2017,spider2018} &
 
 总体来看，GenAI 在语言和编码等维度已达到高能力并呈替代效应，而在涉及物理、管理等维度时，仍主要作为辅助工具，与人类技能形成互补。
 \end{spacing}
+
+\begin{figure}[H]
+\centering
+\includegraphics[width=0.98\textwidth]{figures/task_dna_genai_mapping_triptych.pdf}
+\caption{基于GenAI能力$\rightarrow$任务映射数据的职业DNA维度权重分布（D1--D9）。三幅子图分别对应职业 17-2199.08、49-1011.00 与 27-3092.00；柱高表示任务权重在能力维度上的占比，水平线表示维度均值，标注点为主导维度。}
+\label{fig:task_dna_genai_mapping_triptych}
+\end{figure}
+
+\paragraph{三职业任务DNA的 $s,c$ 分布与负净冲击分析}
+基于权威映射表，表~\ref{tab:task_sc_negative_impact} 汇总了三职业中负净冲击任务（$\mu^{task}_{ij}<0$）的权重与典型任务。
+
+\begin{table}[H]
+\centering
+\caption{三职业负净冲击任务（$\mu^{task}_{ij}<0$）汇总}
+\label{tab:task_sc_negative_impact}
+\small
+\begin{tabular}{llccc}
+\toprule
+\textbf{SOC} & \textbf{职业名称} & \textbf{负冲击任务数} & $\sum_{j:\mu_{ij}<0} w_{ij}$ & \textbf{典型任务（task\_id, $w$, $\mu$, dims）} \\
+\midrule
+17-2199.08 & 机器人工程师 & 8 & 0.400 & 16521/16516/21057/16528等，$\mu=-0.20$，D3 \\
+49-1011.00 & 一线主管（机械维修） & 1 & 0.059 & 2912, 0.059, $-0.20$, D5 \\
+27-3092.00 & 法庭速录与字幕 & 5 & 0.413 & 8653/21183/8663/8656/8657，$\mu=-0.40$，D8 \\
+\bottomrule
+\end{tabular}
+\end{table}
+
+\noindent\textbf{解释性结论（基于数据）：}
+\begin{itemize}
+    \item \textbf{17-2199.08}：负净冲击权重总和为 0.400，8 项任务均落在 D3（算法编程与自动化），$\mu=-0.20$。这意味着该职业约 40\% 的核心任务存在可自动化压力，但净冲击幅度相对温和（$s=0.90,c=0.70$），体现为"高替代但仍有较强增强"的编码类任务。
+    \item \textbf{49-1011.00}：仅 1 项任务（调度排程，task\_id=2912）呈负净冲击，权重仅 0.059，落在 D5（规划与流程调度），$\mu=-0.20$。该职业的核心任务更多落在监督、培训与协调维度（D6/D7），与人类技能形成互补，整体替代风险最低。
+    \item \textbf{27-3092.00}：负净冲击权重总和高达 0.413，5 项任务集中落在 D8（语言理解与文本生成），$\mu=-0.40$，远高于其他两职业。这表明该职业的核心任务（速记、转写、校对）高度集中于语言自动化维度，GenAI 替代效应最强，预期将在后续动态演化中更早出现"任务份额跌破阈值"的时间点。
+\end{itemize}
 
 \paragraph{必要声明}
 \begin{itemize}

@@ -2,7 +2,7 @@ PWD /Users/shiwen/Downloads/ICM-FORMAL
 INPUT /usr/local/texlive/2025/texmf.cnf
 INPUT /usr/local/texlive/2025/texmf-dist/web2c/texmf.cnf
 INPUT /usr/local/texlive/2025/texmf-var/web2c/xetex/xelatex.fmt
-INPUT /Users/shiwen/Downloads/ICM-FORMAL/main.tex
+INPUT main.tex
 OUTPUT build/main.log
 INPUT /usr/local/texlive/2025/texmf-dist/tex/latex/mcmthesis/mcmthesis.cls
 INPUT /usr/local/texlive/2025/texmf-dist/tex/latex/mcmthesis/mcmthesis.cls
@@ -464,6 +464,9 @@ INPUT /usr/local/texlive/2025/texmf-dist/fonts/tfm/public/newtx/ntxsyc.tfm
 INPUT /usr/local/texlive/2025/texmf-dist/fonts/tfm/public/newtx/ntxsyc.tfm
 INPUT /usr/local/texlive/2025/texmf-dist/fonts/tfm/public/newtx/ntxexa.tfm
 INPUT /usr/local/texlive/2025/texmf-dist/fonts/tfm/public/newtx/ntxexa.tfm
+INPUT ./figures/task_dna_genai_mapping_triptych.pdf
+INPUT ./figures/task_dna_genai_mapping_triptych.pdf
+INPUT ./figures/task_dna_genai_mapping_triptych.pdf
 INPUT ./sections/mechanistic_power_check.tex
 INPUT ./sections/mechanistic_power_check.tex
 INPUT ./sections/mechanistic_power_check.tex

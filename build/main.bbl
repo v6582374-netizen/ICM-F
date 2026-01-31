@@ -15,58 +15,70 @@ Mark Chen et~al.
 \bibitem[Deng et~al.(2009)]{imagenet2009}
 Jia Deng et~al.
 \newblock {ImageNet: A Large-Scale Hierarchical Image Database}.
-\newblock \emph{Proceedings of the IEEE Conference on Computer Vision and Pattern Recognition}, 2009.
+\newblock \emph{Proceedings of the IEEE Conference on Computer Vision and
+  Pattern Recognition}, 2009.
 \newblock URL \url{https://www.image-net.org/}.
 \newblock Accessed January 30, 2026.
 
 \bibitem[Frey and Osborne(2017)]{freyosborne2017}
 Carl~Benedikt Frey and Michael~A. Osborne.
-\newblock {The Future of Employment: How Susceptible are Jobs to Computerisation?}
+\newblock {The Future of Employment: How Susceptible are Jobs to
+  Computerisation?}
 \newblock Technical report, Oxford Martin School, University of Oxford, 2017.
-\newblock URL \url{https://www.oxfordmartin.ox.ac.uk/downloads/academic/future-of-employment.pdf}.
+\newblock URL
+  \url{https://www.oxfordmartin.ox.ac.uk/downloads/academic/future-of-employment.pdf}.
 \newblock Accessed January 30, 2026.
 
 \bibitem[Matias et~al.(2017)]{docvqa2017}
 Jon Matias et~al.
 \newblock {DocVQA: A Dataset for Visual Question Answering on Document Images}.
-\newblock In \emph{Proceedings of the IEEE International Conference on Computer Vision Workshops}, 2017.
+\newblock In \emph{Proceedings of the IEEE International Conference on Computer
+  Vision Workshops}, 2017.
 \newblock URL \url{https://www.docvqa.org/}.
 \newblock Accessed January 30, 2026.
 
 \bibitem[{O*NET OnLine}(2025{\natexlab{a}})]{onetEmail}
 {O*NET OnLine}.
 \newblock {Work Context: Electronic Mail}, 2025{\natexlab{a}}.
-\newblock URL \url{https://www.onetonline.org/find/descriptor/result/4.C.1.a.2.h}.
+\newblock URL
+  \url{https://www.onetonline.org/find/descriptor/result/4.C.1.a.2.h}.
 \newblock Descriptor 4.C.1.a.2.h. Accessed January 31, 2026.
 
 \bibitem[{O*NET OnLine}(2025{\natexlab{b}})]{onetKneeling}
 {O*NET OnLine}.
-\newblock {Work Context: Spend Time Kneeling, Crouching, Stooping, or Crawling}, 2025{\natexlab{b}}.
-\newblock URL \url{https://www.onetonline.org/find/descriptor/result/4.C.2.d.1.e}.
+\newblock {Work Context: Spend Time Kneeling, Crouching, Stooping, or
+  Crawling}, 2025{\natexlab{b}}.
+\newblock URL
+  \url{https://www.onetonline.org/find/descriptor/result/4.C.2.d.1.e}.
 \newblock Descriptor 4.C.2.d.1.e. Accessed January 31, 2026.
 
 \bibitem[{O*NET OnLine}(2025{\natexlab{c}})]{onetOriginality}
 {O*NET OnLine}.
 \newblock {Abilities: Originality}, 2025{\natexlab{c}}.
-\newblock URL \url{https://www.onetonline.org/find/descriptor/result/1.A.1.b.2}.
+\newblock URL
+  \url{https://www.onetonline.org/find/descriptor/result/1.A.1.b.2}.
 \newblock Descriptor 1.A.1.b.2. Accessed January 31, 2026.
 
 \bibitem[{O*NET OnLine}(2025{\natexlab{d}})]{onetThinkingCreatively}
 {O*NET OnLine}.
 \newblock {Work Activities: Thinking Creatively}, 2025{\natexlab{d}}.
-\newblock URL \url{https://www.onetonline.org/find/descriptor/result/4.A.2.b.2}.
+\newblock URL
+  \url{https://www.onetonline.org/find/descriptor/result/4.A.2.b.2}.
 \newblock Descriptor 4.A.2.b.2. Accessed January 31, 2026.
 
 \bibitem[{O*NET OnLine}(2025{\natexlab{e}})]{onetUsingHands}
 {O*NET OnLine}.
-\newblock {Work Context: Spend Time Using Your Hands to Handle, Control, or Feel Objects, Tools, or Controls}, 2025{\natexlab{e}}.
-\newblock URL \url{https://www.onetonline.org/find/descriptor/result/4.C.2.d.1.g}.
+\newblock {Work Context: Spend Time Using Your Hands to Handle, Control, or
+  Feel Objects, Tools, or Controls}, 2025{\natexlab{e}}.
+\newblock URL
+  \url{https://www.onetonline.org/find/descriptor/result/4.C.2.d.1.g}.
 \newblock Descriptor 4.C.2.d.1.g. Accessed January 31, 2026.
 
 \bibitem[{O*NET OnLine}(2025{\natexlab{f}})]{onetWorkingWithComputers}
 {O*NET OnLine}.
 \newblock {Work Activities: Working with Computers}, 2025{\natexlab{f}}.
-\newblock URL \url{https://www.onetonline.org/find/descriptor/result/4.A.3.b.1}.
+\newblock URL
+  \url{https://www.onetonline.org/find/descriptor/result/4.A.3.b.1}.
 \newblock Descriptor 4.A.3.b.1. Accessed January 31, 2026.
 
 \bibitem[{O*NET Resource Center}(2019)]{onet2019structure}
@@ -109,8 +121,10 @@ Alec Radford et~al.
 
 \bibitem[Yu et~al.(2018)]{spider2018}
 Tao Yu et~al.
-\newblock {Spider: A Large-Scale Human-Labeled Dataset for Complex and Cross-Domain Semantic Parsing and Text-to-SQL Task}.
-\newblock In \emph{Proceedings of the 2018 Conference on Empirical Methods in Natural Language Processing}, 2018.
+\newblock {Spider: A Large-Scale Human-Labeled Dataset for Complex and
+  Cross-Domain Semantic Parsing and Text-to-SQL Task}.
+\newblock In \emph{Proceedings of the 2018 Conference on Empirical Methods in
+  Natural Language Processing}, 2018.
 \newblock URL \url{https://yale-lily.github.io/spider}.
 \newblock Accessed January 30, 2026.
 

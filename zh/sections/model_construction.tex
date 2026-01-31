@@ -60,15 +60,19 @@ O*NET基于专家调查和从业者反馈，为每个职业提供大量\emph{数
 
 \begin{figure}[H]
 \centering
-\includegraphics[width=0.78\textwidth]{figures/fig1_heterogeneity_3d.pdf}
-\caption{基于O*NET描述符（全局归一化）的所选STEM、技工和艺术职业的三维异质性。}
+\includegraphics[width=0.78\textwidth]{figures/fig_heterogeneity_3d_all_points_strict.pdf}
+\caption{基于O*NET描述符（全局归一化）的全体职业三维异质性点云与最优三角面（strict映射）。}
 \label{fig:heterogeneity3d}
 \end{figure}
 
+我们先在全点云上求解无约束的最大面积三角形，随后根据赛题要求加入“STEM/技工/艺术三域各取一职”的约束，在可行域内重新最优化，得到约束后的最优三点：STEM（Robotics Engineers）、技工/Trades（First-Line Supervisors of Mechanics, Installers, and Repairers）与艺术/媒体（Court Reporters and Simultaneous Captioners）。其三角形面积为 $0.262221$，最短边长为 $0.751378$，该约束最优结果刻画三域职业在三维特征空间上的最大异质性跨度。
+
+\vspace{0.6\baselineskip}
+
 \begin{figure}[H]
 \centering
-\includegraphics[width=0.92\textwidth]{figures/fig2_projections.pdf}
-\caption{异质性空间的二维投影；注释报告了剩余轴的值以增强可解释性（全局归一化）。}
+\includegraphics[width=0.92\textwidth]{figures/fig_heterogeneity_2d_projections_all_points_strict.pdf}
+\caption{全体职业异质性空间的二维投影与最优三点标注（strict映射，全局归一化）。}
 \label{fig:heterogeneity2d}
 \end{figure}
 

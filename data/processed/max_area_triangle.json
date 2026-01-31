@@ -1,0 +1,52 @@
+{
+  "triangle": [
+    {
+      "onet_soc_code": "29-2057.00",
+      "title": "Ophthalmic Medical Technicians",
+      "domain": "S",
+      "digit": 0.8870558375634517,
+      "physical": 0.75,
+      "iprisk": 0.2255243445692884
+    },
+    {
+      "onet_soc_code": "15-1255.01",
+      "title": "Video Game Designers",
+      "domain": "T",
+      "digit": 0.8168358714043005,
+      "physical": 0.416666666666864,
+      "iprisk": 0.928239700374532
+    },
+    {
+      "onet_soc_code": "53-3033.00",
+      "title": "Light Truck Drivers",
+      "domain": "A",
+      "digit": 0.31006768189489564,
+      "physical": 0.12500000000011102,
+      "iprisk": 0.3087265917602997
+    }
+  ],
+  "area3d": 0.2962388150787726,
+  "edge_lengths": {
+    "ab": 0.7809294629112555,
+    "ac": 0.8546712500835028,
+    "bc": 0.8518684957715037
+  },
+  "min_edge_length": 0.7809294629112555,
+  "tie_break": "maximize area; if tie, maximize min_edge_length",
+  "vector_ab": [
+    -0.07021996615915127,
+    -0.333333333333136,
+    0.7027153558052436
+  ],
+  "vector_ac": [
+    -0.5769881556685561,
+    -0.624999999999889,
+    0.0832022471910113
+  ],
+  "cross": [
+    0.4114630149812119,
+    -0.3996159781239225,
+    -0.14844190637327642
+  ],
+  "cross_norm": 0.5924776301575452
+}

@@ -1,0 +1,152 @@
+{
+  "mapping_mode": "strict",
+  "top_k": 50,
+  "results": [
+    {
+      "top_m": 200,
+      "area3d": 0.26222113875724185,
+      "min_edge_length": 0.7513783892359455,
+      "triangle": [
+        {
+          "onet_soc_code": "17-2199.08",
+          "title": "Robotics Engineers",
+          "domain": "S",
+          "digit": 0.6400169204735757,
+          "physical": 0.7083333333338391,
+          "iprisk": 0.8478464419475655
+        },
+        {
+          "onet_soc_code": "49-1011.00",
+          "title": "First-Line Supervisors of Mechanics, Installers, and Repairers",
+          "domain": "T",
+          "digit": 0.8527918781725887,
+          "physical": 0.0,
+          "iprisk": 0.5527715355805243
+        },
+        {
+          "onet_soc_code": "27-3092.00",
+          "title": "Court Reporters and Simultaneous Captioners",
+          "domain": "A",
+          "digit": 0.7901861252114071,
+          "physical": 0.5833333333334321,
+          "iprisk": 0.08333333333333333
+        }
+      ],
+      "edge_lengths": {
+        "ab": 0.7962904583775713,
+        "ac": 0.7890855994723838,
+        "bc": 0.7513783892359455
+      },
+      "vector_ab": [
+        0.212774957699013,
+        -0.7083333333338391,
+        -0.29507490636704126
+      ],
+      "vector_ac": [
+        0.15016920473783135,
+        -0.125000000000407,
+        -0.7645131086142322
+      ],
+      "cross_norm": 0.5244422775144837,
+      "same_points_as_baseline": true
+    },
+    {
+      "top_m": 400,
+      "area3d": 0.26222113875724185,
+      "min_edge_length": 0.7513783892359455,
+      "triangle": [
+        {
+          "onet_soc_code": "17-2199.08",
+          "title": "Robotics Engineers",
+          "domain": "S",
+          "digit": 0.6400169204735757,
+          "physical": 0.7083333333338391,
+          "iprisk": 0.8478464419475655
+        },
+        {
+          "onet_soc_code": "49-1011.00",
+          "title": "First-Line Supervisors of Mechanics, Installers, and Repairers",
+          "domain": "T",
+          "digit": 0.8527918781725887,
+          "physical": 0.0,
+          "iprisk": 0.5527715355805243
+        },
+        {
+          "onet_soc_code": "27-3092.00",
+          "title": "Court Reporters and Simultaneous Captioners",
+          "domain": "A",
+          "digit": 0.7901861252114071,
+          "physical": 0.5833333333334321,
+          "iprisk": 0.08333333333333333
+        }
+      ],
+      "edge_lengths": {
+        "ab": 0.7962904583775713,
+        "ac": 0.7890855994723838,
+        "bc": 0.7513783892359455
+      },
+      "vector_ab": [
+        0.212774957699013,
+        -0.7083333333338391,
+        -0.29507490636704126
+      ],
+      "vector_ac": [
+        0.15016920473783135,
+        -0.125000000000407,
+        -0.7645131086142322
+      ],
+      "cross_norm": 0.5244422775144837,
+      "same_points_as_baseline": true
+    },
+    {
+      "top_m": 800,
+      "area3d": 0.26222113875724185,
+      "min_edge_length": 0.7513783892359455,
+      "triangle": [
+        {
+          "onet_soc_code": "17-2199.08",
+          "title": "Robotics Engineers",
+          "domain": "S",
+          "digit": 0.6400169204735757,
+          "physical": 0.7083333333338391,
+          "iprisk": 0.8478464419475655
+        },
+        {
+          "onet_soc_code": "49-1011.00",
+          "title": "First-Line Supervisors of Mechanics, Installers, and Repairers",
+          "domain": "T",
+          "digit": 0.8527918781725887,
+          "physical": 0.0,
+          "iprisk": 0.5527715355805243
+        },
+        {
+          "onet_soc_code": "27-3092.00",
+          "title": "Court Reporters and Simultaneous Captioners",
+          "domain": "A",
+          "digit": 0.7901861252114071,
+          "physical": 0.5833333333334321,
+          "iprisk": 0.08333333333333333
+        }
+      ],
+      "edge_lengths": {
+        "ab": 0.7962904583775713,
+        "ac": 0.7890855994723838,
+        "bc": 0.7513783892359455
+      },
+      "vector_ab": [
+        0.212774957699013,
+        -0.7083333333338391,
+        -0.29507490636704126
+      ],
+      "vector_ac": [
+        0.15016920473783135,
+        -0.125000000000407,
+        -0.7645131086142322
+      ],
+      "cross_norm": 0.5244422775144837,
+      "same_points_as_baseline": true
+    }
+  ],
+  "max_area_diff_pct_vs_baseline": 0.0,
+  "baseline_top_m": 200
+}

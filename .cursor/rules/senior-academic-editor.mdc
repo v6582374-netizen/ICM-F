@@ -1,6 +1,4 @@
 ---
-description: "新增：顶级学术期刊资深编辑 & 科学传播专家角色约束"
-globs: ["**/*.tex", "**/*.md"]
 alwaysApply: false
 ---
 <project_background>

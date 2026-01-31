@@ -1,3 +1,53 @@
 \section{仿真结果与敏感性分析}
-通过图表提供可视化数据。讨论模型的稳健性。
-敏感性分析对于获得Meritorious或Outstanding奖项至关重要。
+
+\subsection{职业选择的剪枝敏感性检验}
+
+在最大面积三角形搜索中，穷举式遍历全体职业组合的计算复杂度为 $O(n^3)$，其中 $n$ 为职业总数。当 O*NET 数据库包含超过 1000 个职业时，这一暴力枚举耗时过长、资源成本过高。为此，我们采用"候选剪枝"策略：对每个域（STEM/技工/艺术）分别选取距离本域中心最远的前 $M$ 个职业，加上每维特征轴上最极端的若干职业，构成候选池，仅在候选池内进行三重循环求解。
+
+\paragraph{检验方法}
+为验证剪枝不会遗漏真正的最优解，我们对候选规模 $M$ 进行敏感性扫描。具体地，取 $M\in\{200,400,800\}$ 三档：
+\begin{itemize}
+    \item $M=200$：候选池较紧凑，计算效率最高；
+    \item $M=400$：候选池扩展一倍，覆盖更多边缘职业；
+    \item $M=800$：候选池接近全域职业规模，逼近全穷举。
+\end{itemize}
+
+\paragraph{检验结果}
+在三种候选规模下，最大面积三角形的求解结果如表~\ref{tab:sensitivity_M}所示。
+
+\begin{table}[H]
+\centering
+\caption{候选规模敏感性检验：最优三角形在不同 $M$ 下的求解结果}
+\label{tab:sensitivity_M}
+\begin{tabular}{@{}ccccc@{}}
+\toprule
+候选规模 $M$ & 三角形面积 & 最短边长 & 三点是否一致 & 面积差异 \\
+\midrule
+200 & 0.2622 & 0.7514 & 基准 & --- \\
+400 & 0.2622 & 0.7514 & 一致 & 0\% \\
+800 & 0.2622 & 0.7514 & 一致 & 0\% \\
+\bottomrule
+\end{tabular}
+\end{table}
+
+\begin{figure}[H]
+\centering
+\includegraphics[width=0.72\textwidth]{figures/fig_sensitivity_candidate_scale_strict.pdf}
+\caption{候选规模 $M$ 与最优三角形面积的关系（strict映射）。}
+\label{fig:sensitivity_candidate_scale}
+\end{figure}
+
+三次求解均返回相同的职业组合：
+\begin{itemize}
+    \item STEM：Robotics Engineers（17-2199.08）
+    \item 技工：First-Line Supervisors of Mechanics, Installers, and Repairers（49-1011.00）
+    \item 艺术：Court Reporters and Simultaneous Captioners（27-3092.00）
+\end{itemize}
+
+\paragraph{稳健性判定}
+若相同的"职业三角"在全部三次测试中持续胜出，则证明结果是稳健（可靠）的，而非数学上的偶然现象。本检验中，面积差异为 $0\%$，远低于 $5\%$ 的阈值标准，因此我们判定：
+\begin{quote}
+\textbf{三职业配置对候选规模的选择具有稳健性。}
+\end{quote}
+
+这一结论意味着，即使将候选池从 200 扩大到 800，最优解依然不变，排除了因剪枝不足而遗漏更优解的可能。

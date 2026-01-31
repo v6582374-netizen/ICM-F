@@ -48,6 +48,39 @@ O*NET任务评分（IM, FT） & 用于计算任务权重的重要性和频率评
 \end{tabular}
 \end{table}
 
+\section{补充图示：任务DNA}
+\label{app:task_dna_figures}
+
+\noindent\textbf{职业 49-1011.00：一线主管（机械/安装/维修）。}
+\begin{figure}[ht]
+\centering
+\begin{minipage}{0.62\linewidth}
+    \centering
+    \includegraphics[width=\linewidth]{figures/task_dna_49-1011.00_weights.pdf}
+\end{minipage}\hfill
+\begin{minipage}{0.35\linewidth}
+    \centering
+    \includegraphics[width=\linewidth]{figures/task_dna_49-1011.00_authoritative_sc_distribution.pdf}
+\end{minipage}
+\caption{职业 49-1011.00 的任务DNA与权威 $s,c$ 分布。（a）任务DNA权重分布：IM--FR 散点图，点面积与 $w$ 成正比；（b）权威 $s,c$ 档位分布。}
+\label{fig:task_dna_49_pair}
+\end{figure}
+
+\noindent\textbf{职业 27-3092.00：法庭速录与字幕。}
+\begin{figure}[ht]
+\centering
+\begin{minipage}{0.62\linewidth}
+    \centering
+    \includegraphics[width=\linewidth]{figures/task_dna_27-3092.00_weights.pdf}
+\end{minipage}\hfill
+\begin{minipage}{0.35\linewidth}
+    \centering
+    \includegraphics[width=\linewidth]{figures/task_dna_27-3092.00_authoritative_sc_distribution.pdf}
+\end{minipage}
+\caption{职业 27-3092.00 的任务DNA与权威 $s,c$ 分布。（a）任务DNA权重分布：IM--FR 散点图，点面积与 $w$ 成正比；（b）权威 $s,c$ 档位分布。}
+\label{fig:task_dna_27_pair}
+\end{figure}
+
 \section{Python实现代码}
 \begin{lstlisting}[language=Python]
 def model_solver(data):

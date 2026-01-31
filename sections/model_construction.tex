@@ -164,14 +164,213 @@ Arts  & 27-3092.00 & \parbox[t]{6.6cm}{Court Reporters and Simultaneous Captione
 
 \subsubsection{任务权重（Task DNA）与任务净冲击}
 
-设职业 $i$ 由任务 $j=1,\dots,J_i$ 组成，权重为 $w_{ij}$，满足
-\begin{equation}
-    \sum_{j=1}^{J_i} w_{ij} = 1.
-\end{equation}
-其中 $w_{ij}$ 由O*NET任务重要度与频率评分构造并归一化（Top-$N$任务内再归一化），确保可复现。
+\paragraph{任务DNA的定义与数据来源}
+对于职业 $i$，我们选取其\textbf{前20项核心任务}作为其任务DNA（任务索引 $j = 1, \ldots, 20$）。每项任务 $j$ 取自O*NET任务描述 $Task_j$，并从同一数据库中检索两个基于量表的描述符：
+\begin{itemize}
+    \item \textbf{任务重要性} $IM_j$（范围 0--100）；
+    \item \textbf{任务频率} $FR_j$（范围 0--100，或同等的频率量表）。
+\end{itemize}
+由于这些值可以直接从O*NET数据库下载，因此任务列表和基础度量是完全\textbf{可复现}的。
 
-对于每个任务 $j$，令 $s_{ij}\in[0,1]$ 表示替代强度，$c_{ij}\in[0,1]$ 表示增强（互补）强度。
-我们将任务层净冲击定义为
+\paragraph{任务权重的推导}
+我们将任务权重定义为重要性 $IM_j$ 与频率 $FR_j$ 乘积的归一化值。令未归一化的权重为：
+\begin{equation}
+    \tilde{w}_j = IM_j \cdot FR_j,
+\end{equation}
+然后通过下式进行归一化：
+\begin{equation}
+    w_{ij} = w_j = \frac{\tilde{w}_j}{\sum_{k=1}^{20} \tilde{w}_k}, \quad \sum_{j=1}^{20} w_j = 1.
+\end{equation}
+如果所选SOC（标准职业分类）代码缺少频率量表 $FR_j$，则应用降级规则，仅使用重要性值（即设 $\tilde{w}_j = IM_j$），并随后通过敏感性分析测试其稳健性。
+
+\paragraph{任务DNA与权威s,c分布（三职业）}
+为确保任务级建模输入可追溯，我们为三职业分别展示两类可视化图表：
+
+\begin{itemize}
+    \item \textbf{IM--FR 散点图}（左图）：横轴为任务重要性 $IM_j$，纵轴为任务频率 $FR_j$，每个点代表一项任务，点的面积与任务权重 $w_j$ 成正比。该图的作用是\emph{直观呈现职业内部的任务结构}：点越大、位置越靠右上角，表明该任务在职业中占据越核心的地位。通过观察点的分布形态，可以快速判断职业的任务集中度（少数任务主导 vs. 多任务均衡）以及任务的重要性--频率相关性。
+    \item \textbf{权威 $s,c$ 档位分布图}（右图）：展示经权威评估重标注后，各任务在替代强度 $s$ 和增强强度 $c$ 离散档位上的分布。该图的作用是\emph{揭示GenAI对该职业的潜在冲击模式}：若多数任务落在高 $s$ 低 $c$ 区域，表明该职业面临较高的自动化替代风险；反之，若多数任务落在低 $s$ 高 $c$ 区域，则GenAI更可能增强而非替代人类工作。
+\end{itemize}
+
+相应图示见图~\ref{fig:task_dna_17_pair}；其余两职业图示移至附录~\ref{fig:task_dna_49_pair}--\ref{fig:task_dna_27_pair}。
+
+\noindent\textbf{职业 17-2199.08：机器人工程师。}
+\begin{figure}[ht]
+\centering
+\begin{minipage}{0.62\linewidth}
+    \centering
+    \includegraphics[width=\linewidth]{figures/task_dna_17-2199.08_weights.pdf}
+\end{minipage}\hfill
+\begin{minipage}{0.35\linewidth}
+    \centering
+    \includegraphics[width=\linewidth]{figures/task_dna_17-2199.08_authoritative_sc_distribution.pdf}
+\end{minipage}
+\caption{职业 17-2199.08 的任务DNA与权威 $s,c$ 分布。（a）任务DNA权重分布：IM--FR 散点图，点面积与 $w$ 成正比；（b）权威 $s,c$ 档位分布。}
+\label{fig:task_dna_17_pair}
+\end{figure}
+\noindent\textbf{图示解读（17-2199.08）}：IM--FR 散点图中任务点集中在中高重要性与中等频率区间，且点面积差异不大，表明该职业的核心任务权重分布较为均衡，未出现单一任务强烈主导的结构。权威 $s,c$ 档位分布显示 $s$ 以 0.50 为主、辅以少量 0.30 与极少 0.90，而 $c$ 明显向高档位偏移（0.90 占多数）。这表明该职业的主要任务更可能体现为\emph{增强型冲击}，即GenAI倾向于提升系统集成与控制类任务的效率，而非直接替代。
+
+\noindent\textbf{职业 49-1011.00：一线主管（机械/安装/维修）。}（图见附录~\ref{fig:task_dna_49_pair}）
+\noindent\textbf{图示解读（49-1011.00）}：IM--FR 散点图显示任务分布覆盖较宽频率区间，但整体集中在中高重要性区域，点面积更均匀，说明管理与监督类任务构成了稳定的核心组合，而非由少数高权重任务驱动。权威 $s$ 档位呈现更分散的结构（0.10/0.30/0.50/0.70 同时存在），而 $c$ 以 0.50 与 0.70 为主，少量任务达到 0.90。该模式反映出该职业的任务冲击方向不单一：既包含可被流程化替代的监督环节，也包含可被工具强化的协调与资源管理环节。
+
+\noindent\textbf{职业 27-3092.00：法庭速录与字幕。}（图见附录~\ref{fig:task_dna_27_pair}）
+\noindent\textbf{图示解读（27-3092.00）}：IM--FR 散点图中任务点整体位于高重要性与高频率区域，且最大权重点明显大于其余点，说明该职业对少数高频核心任务（如记录、转写类任务）的依赖更强，任务结构集中度更高。权威 $s,c$ 档位分布显示 $s$ 在 0.90 与 0.30 间呈两端分化，而 $c$ 主要集中在 0.30 与 0.50。该结构意味着该职业中高频核心任务更接近\emph{替代型冲击}（高 $s$、低 $c$），与速记/转写类任务的自动化趋势一致。
+
+\paragraph{任务影响强度的离散化量表与证据约束}
+为了避免主观的连续评分，对于替代强度 $s_{ij}$ 和增强强度 $c_{ij}$，我们采用一个离散的等级量表：
+\begin{equation}
+    s_{ij},\ c_{ij} \in \{0.10,\ 0.30,\ 0.50,\ 0.70,\ 0.90\}.
+\end{equation}
+其中：
+\begin{itemize}
+    \item $s_{ij}$ 衡量任务 $j$ 被生成式人工智能（GenAI）驱动自动化/压缩的可行性。
+    \item $c_{ij}$ 衡量通过工具增强所获得的效率、质量或工作流程上的提升。
+\end{itemize}
+
+\subsection{基于权威基准的GenAI能力量表与可审计映射}
+
+为将任务层 $(s,c)$ 的来源从“主观估计”改为“可复现规则”，我们将GenAI能力表述为一套\textbf{权威基准$\rightarrow$能力分段$\rightarrow(s,c)$映射}的离散量表。该量表仅依赖公开的基准分数与可审计的分段规则，从而支持逐层追溯。
+
+\subsubsection{机制审计与最短修复路径}
+为避免解释力削弱，我们先对现有表格进行机制审计，并给出最短修复路径（表~\ref{tab:genai_audit}）。
+\begin{table}[htbp]
+\centering
+\caption{GenAI能力表的机制审计与修复路径}
+\label{tab:genai_audit}
+\small
+\setlength{\tabcolsep}{3pt}
+\renewcommand{\arraystretch}{1.15}
+\begin{tabular}{p{2.5cm} p{3.8cm} p{4.0cm} p{3.9cm}}
+\toprule
+\textbf{问题点} & \textbf{具体表现} & \textbf{可解释性风险} & \textbf{最短修复路径} \\
+\midrule
+$s_k,c_k$仍是“任务分析估计” &
+例如 D3 给出 $s=0.9,c=0.7$；D1 给出 $s=0.5,c=0.85$ &
+缺乏“为何不是相邻值”的可审计依据 &
+用统一分段规则：先由权威基准得到 $M_k$，再由方向系数 $\rho_k$ 约束 $(s_k,c_k)$ \\
+\addlinespace
+证据混入不稳定/非权威来源 &
+例如博客或二手表述的成功率 &
+证据链薄弱，易被质疑“挑数据” &
+仅保留论文/官方技术报告/官方基准页；其他仅作补充说明 \\
+\addlinespace
+指标口径不统一 &
+accuracy、WER、success rate 并存 &
+横向比较缺乏共同尺度 &
+用能力分段把异质指标统一到 $M_k$ 的离散档位 \\
+\addlinespace
+D9 的高分来自特定管线 &
+并非通用VLM的标准成绩 &
+可能被质疑偷换概念 &
+明确标注为“上界/可达性证据”，并允许敏感性下调 \\
+\bottomrule
+\end{tabular}
+\end{table}
+
+\subsubsection{能力量表：$M_k\rightarrow\rho_k\rightarrow(s_k,c_k)$}
+\paragraph{能力分段（$M_k$）}
+我们不做连续拟合，而采用阈值区间确定能力等级，并在区间内取代表值 $M_k$（见表~\ref{tab:genai_scale}）：
+\begin{itemize}
+    \item 高（$\ge 0.85$）、较高（$0.70$--$0.85$）、中等（$0.50$--$0.70$）、低（$0.30$--$0.50$）、极低（$<0.30$）。
+\end{itemize}
+该分段仅依赖公开分数与阈值，避免“伪精确”。
+
+\paragraph{方向系数（$\rho_k$）}
+我们用连续方向系数刻画“替代/互补/平衡”的偏向强度：
+\begin{itemize}
+    \item $\rho_k<0$：偏替代（AI可独立完成可交付物）。
+    \item $\rho_k>0$：偏互补（AI提供建议/辅助，人必须在环）。
+    \item $\rho_k=0$：平衡（两边都强，净效应不确定）。
+\end{itemize}
+
+\paragraph{可审计赋值}
+表~\ref{tab:genai_scale} 直接给出每个维度的 $M_k$、$\rho_k$ 及对应的 $(s_k,c_k)$ 取值，用于后续任务层映射与追溯。
+
+\subsubsection{九维能力量表（含原始评分与证据）}
+表~\ref{tab:genai_scale} 给出可直接落地的基线版本：每个维度包含原始评分、分段得到的 $M_k$、方向系数 $\rho_k$，以及对应的 $(s_k,c_k)$。
+\begin{table}[htbp]
+\centering
+\caption{GenAI 九维能力映射总表：指标分段$\rightarrow M_k,\rho_k\rightarrow(s_k,c_k)$}
+\label{tab:genai_scale}
+\small
+\setlength{\tabcolsep}{2pt}
+\renewcommand{\arraystretch}{1.15}
+\resizebox{\textwidth}{!}{%
+\begin{tabular}{p{2.6cm} p{3.6cm} p{4.6cm} p{2.2cm} p{1.0cm} p{1.0cm} p{0.9cm} p{0.9cm}}
+\toprule
+\textbf{维度（编号）} & \textbf{定义} & \textbf{代表性指标（来源 \& 分数）} & \textbf{能力等级（阈值规则）} & \textbf{$M_k$} & \textbf{$\rho_k$} & \textbf{$s_k$} & \textbf{$c_k$} \\
+\midrule
+D1 工程技术问题解决 &
+运用工程知识分析解决技术问题（调试维护、技术支持） &
+MMLU 86.4\%；ARC 96.3\%（GPT-4 报告\citep{openai2023gpt4}） &
+高（$\ge 0.85$） & 0.90 & $+0.35$ & 0.50 & 0.85 \\
+\addlinespace
+D2 数据分析与评估 &
+分析传感器/数值数据并据标准评估（质检、数据监控） &
+GSM8K 92.0\%；DROP 80.9（GPT-4 报告\citep{openai2023gpt4}） &
+较高（$0.70$--$0.85$） & 0.80 & $+0.20$ & 0.30 & 0.50 \\
+\addlinespace
+D3 算法编程与自动化 &
+编写和修正代码脚本实现需求（软件算法开发、自动化流程） &
+HumanEval 67.0\%；SWE-bench 修复 20\%\citep{openaicodex2021,swebench2024} &
+中等（$0.50$--$0.70$） & 0.67 & $-0.20$ & 0.90 & 0.70 \\
+\addlinespace
+D4 现场感知与物理操作 &
+感知物理环境及动手操作设备（现场检查、安全监督、设备调校） &
+AutoGPT 实体环境任务 24\%；视觉识别 $\approx 85\%+$\citep{autogpt2023,imagenet2009} &
+低（$0.30$--$0.50$） & 0.25 & $+0.40$ & 0.10 & 0.50 \\
+\addlinespace
+D5 规划与流程调度 &
+制定任务计划、优化流程顺序和资源分配（调度排程、进度管理） &
+AutoGPT 自主任务完成率 $\sim 65\%$；工具使用成功率 $\sim 80\%$\citep{autogpt2023} &
+中等（$0.50$--$0.70$） & 0.65 & $-0.10$ & 0.60 & 0.50 \\
+\addlinespace
+D6 协作沟通与培训 &
+沟通协作、传授知识并协调团队（培训、跨部门协作） &
+人类偏好：GPT-4 胜率 70.2\%\citep{openai2023gpt4} &
+较高（$0.70$--$0.85$） & 0.70 & $+0.45$ & 0.30 & 0.75 \\
+\addlinespace
+D7 监督管理与质量控制 &
+监督工作表现并确保质量达标（绩效管理、质检） &
+HellaSwag 95.3\%\citep{openai2023gpt4} &
+较高（$0.70$--$0.85$） & 0.80 & 0.00 & 0.68 & 0.68 \\
+\addlinespace
+D8 语言理解与文本生成 &
+理解口语/文本并生成书面内容（转录、写作、翻译） &
+Whisper WER $\approx 0.011$；GPT-4 文本偏好胜率 70\%\citep{whisper2022,openai2023gpt4} &
+高（$\ge 0.85$） & 0.95 & $-0.40$ & 0.90 & 0.50 \\
+\addlinespace
+D9 信息管理与检索 &
+有序存储组织信息并按需高速检索核验（档案管理、查询答复） &
+DocVQA 99.16\%；Text-to-SQL $>80\%$\citep{docvqa2017,spider2018} &
+高（$\ge 0.85$） & 0.90 & 0.00 & 0.30 & 0.30 \\
+\bottomrule
+\end{tabular}}
+\end{table}
+\begin{spacing}{0.9}
+\noindent
+\textbf{注：} 上表中能力等级按照统一阈值划分：\textbf{High} $\geq 0.85$，\textbf{Medium-High} $0.70$--$0.85$，\textbf{Medium} $0.50$--$0.70$，\textbf{Low} $0.30$--$0.50$，\textbf{Minimal} $<0.30$。\ $M_k$ 选取当前顶尖模型在相关指标上的代表性得分（0$\sim$1标准化后）。$\rho_k = c_k - s_k$ 表示GenAI对该维度人力需求的影响方向：正值为互补（提升人效使需求上升），负值为替代（可自动化使需求下降）。$s_k$ 和 $c_k$ 分别为我们根据任务分析估计的可替代率和可协同率。
+
+总体来看，GenAI 在语言和编码等维度已达到高能力并呈替代效应，而在涉及物理、管理等维度时，仍主要作为辅助工具，与人类技能形成互补。
+\end{spacing}
+
+\paragraph{必要声明}
+\begin{itemize}
+    \item D9 的 DocVQA 99.16\% 可视为文档问答场景的上界证据，不等价于所有检索情境与数据库规模下的通用能力。
+    \item D4/D5 采用 AutoGPT 端到端完成率与工具使用成功率作为下界证据，用于避免夸大“现场操作/流程调度”的可自动化程度。
+\end{itemize}
+
+
+
+
+为体现匹配强度对评分的影响，我们先根据维度默认值计算原始分值 $(s_{raw}, c_{raw})$，再用任务与维度的相似度强度 $r_{ij}$ 拉伸其偏离中值的幅度：
+\begin{equation}
+    s'_{ij}=0.5+(s_{raw}-0.5)\big(0.6+0.8\,r_{ij}\big),\quad
+    c'_{ij}=0.5+(c_{raw}-0.5)\big(0.6+0.8\,r_{ij}\big).
+\end{equation}
+最后将 $s'_{ij}, c'_{ij}$ 投影到上述离散档位。对于每项任务 $j$，我们需要一个\textbf{1--2行的证据说明}，该说明由\textbf{可复现的语义匹配规则}生成，并辅以有限的人工抽查验证。此约束将评分从临时性判断转化为\textbf{有规则触发、且带有可审计标注的赋值过程}，并支持后续的不确定性处理（例如，权重扰动和基于区间的敏感性检查）。
+
+\paragraph{任务层净冲击}
+我们将任务层净冲击定义为：
 \begin{equation}
     \mu^{task}_{ij}=c_{ij}-s_{ij}.
 \end{equation}
@@ -209,75 +408,6 @@ $\mu^{task}_{ij}>0$ 表示GenAI更可能增强该任务（提高产出/质量/�
 通过对Top任务的 $\tau_{ij}(\epsilon)$ 进行比较，我们可以直接回答：在不同采纳情景下，哪些任务会最先“消失”，哪些任务会长期保留，从而给出对该职业“未来”形态变化的可解释预测。
 
 
-\subsection{来自权威报告的GenAI能力维度评分：量表定义与证据叙述}
-
-为取代主观的"关键词标签"方法，我们采用来自权威评估和官方技术报告的能力评分。
-这些评分量化了GenAI在主要软件开发任务维度上的\textbf{替代}和\textbf{增强}能力，为将软件开发人员任务DNA映射到 $(s,c)$ 输入提供可审计的依据。
-
-\subsubsection{量表定义}
-
-我们使用三个级别（低/中/高）表示GenAI能力，编码为 $0.25$、$0.50$ 和 $0.75$：
-\begin{itemize}
-    \item \textbf{低（0.25）}：GenAI在该任务类型上的自主能力有限，无法在没有人工干预的情况下可靠地交付满意结果；只能替代一小部分工作，但在人工监督下仍可提供协助。
-    \item \textbf{中（0.50）}：GenAI表现中等，完成部分任务或提供有用建议，但仍需人工审查和协作；无法独立替代人工执行。
-    \item \textbf{高（0.75）}：GenAI表现强劲，在许多子任务上接近专业人类水平；在适当约束和验证下，可处理大部分工作流程并提供显著增强，但仍不完美。
-\end{itemize}
-
-\noindent\textbf{注意：}$0.25/0.50/0.75$ 的值是粗略的建模编码而非精确测量。所有级别都基于过去两年内发布的公开报告和对比实验。
-
-\begin{table}[htbp]
-\centering
-\caption{来自权威评估报告的GenAI能力维度标尺（用于将软件开发人员任务映射到 $s/c$）}
-\label{tab:genai_capability_rubric_en}
-\begin{tabular}{p{2.6cm} p{2.2cm} p{2.2cm} p{7.2cm}}
-\toprule
-任务类型 & 替代得分 & 增强得分 & 主要证据和支持 \\
-\midrule
-\textbf{代码生成} & 高（0.75） & 高（0.75） &
-GPT-4在HumanEval上达到67.0\% pass@1 \cite{openai2023gpt4}。\newline
-Claude 2达到71.2\% \cite{anthropic2023claude2}。\newline
-Google报告约25\%的新代码由AI生成 \cite{techcrunch2025aimodels}。 \\
-\textbf{测试与验证} & 中（0.50） & 高（0.75） &
-LLM生成的单元测试可达到有竞争力的覆盖率和可读性。\newline
-研究表明在静态分析引导下测试质量更高 \cite{arxiv2024unittest}。\newline
-仍需人工审查，因此替代保持中等。 \\
-\textbf{调试与错误修复} & 低（0.25） & 中（0.50） &
-Microsoft Research报告即使有调试工具，端到端调试成功率低于50\%（最佳模型48.4\%）\cite{techcrunch2025aimodels}。\newline
-提示修复建议有帮助，"自我调试"可提高准确率最多12个百分点 \cite{chen2023selfdebugging}。 \\
-\textbf{系统设计} & 低（0.25） & 中（0.50） &
-复杂架构需要综合推理；当前GenAI通常产生部分解决方案 \cite{openai2023gpt4}。\newline
-直接定量基准有限，但模型可以协助起草和文档以加速设计讨论 \cite{googleresearch2024seqmodels}。 \\
-\textbf{需求分析} & 低（0.25） & 中（0.50） &
-模型在NL$\rightarrow$spec任务上的提升有限（如Spider上2--3\%）\cite{chen2023selfdebugging}。\newline
-然而，总结和问题生成可以提高需求获取和分析效率 \cite{openai2023gpt4}。 \\
-\textbf{用户沟通与文档} & 中（0.50） & 高（0.75） &
-Claude 2等模型可以高效生成长篇结构化文档并回答常见问题 \cite{anthropic2023claude2}。\newline
-准确性仍是问题；关键内容仍需人工验证 \cite{openai2023gpt4}。 \\
-\bottomrule
-\end{tabular}
-\end{table}
-
-\subsection{任务影响的权威评估驱动重标记：从关键词标签到能力维度分配}
-
-为提高任务影响参数 $(s_{ij},c_{ij})$ 的可辩护性和可重现性，我们放弃主观关键词标签，
-采用"\textbf{权威评估 $\rightarrow$ 能力维度 $\rightarrow$ 语义匹配 $\rightarrow$ 分段分配}"的重标记工作流。
-核心思想是从官方评估报告中提取一组\emph{能力维度}（如代码生成、调试、测试/验证、需求分析、系统设计、文档/沟通）的替代/增强级别，
-将每个软件开发人员任务映射到1--2个能力维度，然后在离散网格上分配 $(s_j,c_j)$。
-
-\paragraph{能力映射与可追溯性要求}
-对于每个任务 $j$，定义其映射的能力集 $\textit{dim}_j$（通常为1--2个维度以保持可解释性）。
-任务级替代和增强在离散量表上分配：
-\begin{equation}
-s_j,\ c_j\in\{0.25,\ 0.5,\ 0.75\}.
-\end{equation}
-为满足"数据驱动"审计标准，每个任务必须携带\textbf{可追溯链}：(i) 映射的能力维度 $\textit{dim}_j$，(ii) 至少一个权威来源链接，(iii) 任务到维度匹配逻辑的简要说明。
-这确保 $(s_j,c_j)$ 是可审查的而非基于研究者直觉。
-
-\paragraph{语义阈值、异常报告与有限人工覆盖}
-由于语义匹配可能导致漏报和误报，匹配阈值被视为可控决策参数：
-阈值过高可能遗漏有效匹配；过低可能引入错误匹配。
-因此，重标记输出必须包含相似度得分和异常报告（如低相似度匹配、多维度分配冲突），并允许对少量语义模糊的高权重任务进行小规模人工覆盖列表。
-这保持了整体可重现性，同时防止少量错误标签偏移职业级聚合值 $(\alpha_i,\beta_i)$。
 
 \subsection{将任务DNA聚合为职业级冲击参数：软件开发人员}
 

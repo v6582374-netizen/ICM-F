@@ -43,161 +43,167 @@
 \@writefile{toc}{\contentsline {subsubsection}{\numberline {3.2.2}模型框架选择与理由}{10}{subsubsection.3.2.2}\protected@file@percent }
 \@writefile{toc}{\contentsline {subsection}{\numberline {3.3}任务层动态预测模型（Task-first）}{10}{subsection.3.3}\protected@file@percent }
 \@writefile{toc}{\contentsline {subsubsection}{\numberline {3.3.1}任务权重（Task DNA）与任务净冲击}{10}{subsubsection.3.3.1}\protected@file@percent }
-\@writefile{toc}{\contentsline {subsubsection}{\numberline {3.3.2}将“发展轨迹”与“任务需求”紧密耦合：采纳混合机制}{10}{subsubsection.3.3.2}\protected@file@percent }
-\@writefile{toc}{\contentsline {paragraph}{解释性}{11}{section*.7}\protected@file@percent }
-\@writefile{toc}{\contentsline {paragraph}{未来时间点}{11}{section*.8}\protected@file@percent }
-\@writefile{toc}{\contentsline {subsection}{\numberline {3.4}来自权威报告的GenAI能力维度评分：量表定义与证据叙述}{11}{subsection.3.4}\protected@file@percent }
-\@writefile{toc}{\contentsline {subsubsection}{\numberline {3.4.1}量表定义}{11}{subsubsection.3.4.1}\protected@file@percent }
+\@writefile{toc}{\contentsline {paragraph}{任务DNA的定义与数据来源}{10}{section*.7}\protected@file@percent }
+\@writefile{toc}{\contentsline {paragraph}{任务权重的推导}{10}{section*.8}\protected@file@percent }
+\@writefile{toc}{\contentsline {paragraph}{任务DNA与权威s,c分布（三职业）}{11}{section*.9}\protected@file@percent }
+\@writefile{lof}{\contentsline {figure}{\numberline {3}{\ignorespaces 职业 17-2199.08 的任务DNA与权威 $s,c$ 分布。（a）任务DNA权重分布：IM--FR 散点图，点面积与 $w$ 成正比；（b）权威 $s,c$ 档位分布。}}{11}{figure.caption.10}\protected@file@percent }
+\newlabel{fig:task_dna_17_pair}{{3}{11}{职业 17-2199.08 的任务DNA与权威 $s,c$ 分布。（a）任务DNA权重分布：IM--FR 散点图，点面积与 $w$ 成正比；（b）权威 $s,c$ 档位分布。}{figure.caption.10}{}}
+\@writefile{toc}{\contentsline {paragraph}{任务影响强度的离散化量表与证据约束}{12}{section*.11}\protected@file@percent }
+\@writefile{toc}{\contentsline {subsection}{\numberline {3.4}基于权威基准的GenAI能力量表与可审计映射}{12}{subsection.3.4}\protected@file@percent }
+\@writefile{toc}{\contentsline {subsubsection}{\numberline {3.4.1}机制审计与最短修复路径}{12}{subsubsection.3.4.1}\protected@file@percent }
+\@writefile{toc}{\contentsline {subsubsection}{\numberline {3.4.2}能力量表：$M_k\rightarrow \rho _k\rightarrow (s_k,c_k)$}{12}{subsubsection.3.4.2}\protected@file@percent }
+\@writefile{toc}{\contentsline {paragraph}{能力分段（$M_k$）}{12}{section*.13}\protected@file@percent }
 \citation{openai2023gpt4}
-\citation{anthropic2023claude2}
-\citation{techcrunch2025aimodels}
-\citation{arxiv2024unittest}
-\citation{techcrunch2025aimodels}
-\citation{chen2023selfdebugging}
 \citation{openai2023gpt4}
-\citation{googleresearch2024seqmodels}
-\citation{chen2023selfdebugging}
+\citation{openaicodex2021,swebench2024}
+\citation{autogpt2023,imagenet2009}
+\citation{autogpt2023}
 \citation{openai2023gpt4}
-\citation{anthropic2023claude2}
 \citation{openai2023gpt4}
-\@writefile{lot}{\contentsline {table}{\numberline {4}{\ignorespaces 来自权威评估报告的GenAI能力维度标尺（用于将软件开发人员任务映射到 $s/c$）}}{12}{table.caption.9}\protected@file@percent }
-\newlabel{tab:genai_capability_rubric_en}{{4}{12}{来自权威评估报告的GenAI能力维度标尺（用于将软件开发人员任务映射到 $s/c$）}{table.caption.9}{}}
-\@writefile{toc}{\contentsline {subsection}{\numberline {3.5}任务影响的权威评估驱动重标记：从关键词标签到能力维度分配}{12}{subsection.3.5}\protected@file@percent }
-\@writefile{toc}{\contentsline {paragraph}{能力映射与可追溯性要求}{12}{section*.10}\protected@file@percent }
-\@writefile{toc}{\contentsline {paragraph}{语义阈值、异常报告与有限人工覆盖}{13}{section*.11}\protected@file@percent }
-\@writefile{toc}{\contentsline {subsection}{\numberline {3.6}将任务DNA聚合为职业级冲击参数：软件开发人员}{13}{subsection.3.6}\protected@file@percent }
-\@writefile{toc}{\contentsline {subsubsection}{\numberline {3.6.1}Top-$N$ 可用性与聚合}{13}{subsubsection.3.6.1}\protected@file@percent }
-\@writefile{toc}{\contentsline {subsubsection}{\numberline {3.6.2}可解释性分解：Top-$K$ 贡献下界}{13}{subsubsection.3.6.2}\protected@file@percent }
-\@writefile{toc}{\contentsline {subsubsection}{\numberline {3.6.3}最小校准：带有限人工审查的类别默认值}{13}{subsubsection.3.6.3}\protected@file@percent }
-\@writefile{toc}{\contentsline {section}{\numberline {4}权威重标记后的机制力量检验与职业级聚合（软件开发人员）}{13}{section.4}\protected@file@percent }
-\@writefile{toc}{\contentsline {subsection}{\numberline {4.1}职业级冲击聚合值}{14}{subsection.4.1}\protected@file@percent }
-\@writefile{toc}{\contentsline {subsection}{\numberline {4.2}诊断：异质性与有效多样性}{14}{subsection.4.2}\protected@file@percent }
-\@writefile{toc}{\contentsline {paragraph}{(1) 加权方差（异质性）}{14}{section*.12}\protected@file@percent }
-\@writefile{toc}{\contentsline {paragraph}{(2) 加权层级直方图（避免单层级主导）}{14}{section*.13}\protected@file@percent }
-\@writefile{toc}{\contentsline {paragraph}{(3) 能力维度权重质量（避免权重集中）}{14}{section*.14}\protected@file@percent }
-\@writefile{toc}{\contentsline {subsection}{\numberline {4.3}工程阈值与行动（$E(t)$ 前的门控）}{14}{subsection.4.3}\protected@file@percent }
-\@writefile{toc}{\contentsline {section}{\numberline {5}一致性检验与演化方程的实例化：软件开发人员的 $(\alpha ,\beta ,\mu _{\mathrm  {occ}})$}{14}{section.5}\protected@file@percent }
-\@writefile{toc}{\contentsline {subsection}{\numberline {5.1}聚合值与一致性检验}{15}{subsection.5.1}\protected@file@percent }
-\@writefile{toc}{\contentsline {subsection}{\numberline {5.2}机制力量（异质性）检验：无得分坍缩}{15}{subsection.5.2}\protected@file@percent }
-\@writefile{toc}{\contentsline {subsection}{\numberline {5.3}低置信度任务的最小敏感性（上界论证）}{15}{subsection.5.3}\protected@file@percent }
-\@writefile{toc}{\contentsline {subsection}{\numberline {5.4}修正 $\mu _{\mathrm  {occ}}$ 后进入职业演化}{15}{subsection.5.4}\protected@file@percent }
-\@writefile{toc}{\contentsline {section}{\numberline {6}任务级功能需求模型与职业重新定义}{16}{section.6}\protected@file@percent }
-\newlabel{sec:task_level_model}{{6}{16}{任务级功能需求模型与职业重新定义}{section.6}{}}
-\@writefile{toc}{\contentsline {subsection}{\numberline {6.1}任务级功能需求模型（替代职业级岗位需求）}{16}{subsection.6.1}\protected@file@percent }
-\@writefile{toc}{\contentsline {subsubsection}{\numberline {6.1.1}建模目标与符号}{16}{subsubsection.6.1.1}\protected@file@percent }
-\newlabel{sec:notation}{{6.1.1}{16}{建模目标与符号}{subsubsection.6.1.1}{}}
-\@writefile{toc}{\contentsline {subsubsection}{\numberline {6.1.2}双渠道动力学：自动化与规模化}{16}{subsubsection.6.1.2}\protected@file@percent }
-\newlabel{sec:two_channel}{{6.1.2}{16}{双渠道动力学：自动化与规模化}{subsubsection.6.1.2}{}}
-\@writefile{toc}{\contentsline {paragraph}{(a) 自动化渠道：替代降低劳动强度。}{16}{section*.15}\protected@file@percent }
-\newlabel{eq:labor_intensity_ode}{{25}{16}{(a) 自动化渠道：替代降低劳动强度。}{equation.25}{}}
-\newlabel{eq:labor_intensity_closed}{{26}{16}{(a) 自动化渠道：替代降低劳动强度。}{equation.26}{}}
-\@writefile{toc}{\contentsline {paragraph}{(b) 任务结构更新：职业内部重新分配。}{17}{section*.16}\protected@file@percent }
-\newlabel{eq:share_update}{{27}{17}{(b) 任务结构更新：职业内部重新分配。}{equation.27}{}}
-\@writefile{toc}{\contentsline {paragraph}{(c) 规模化渠道（可选）：增强扩展整体功能需求。}{17}{section*.17}\protected@file@percent }
-\newlabel{eq:Q_ode}{{28}{17}{(c) 规模化渠道（可选）：增强扩展整体功能需求。}{equation.28}{}}
-\newlabel{eq:cbar}{{29}{17}{(c) 规模化渠道（可选）：增强扩展整体功能需求。}{equation.29}{}}
-\@writefile{toc}{\contentsline {paragraph}{(d) 任务劳动需求指数。}{17}{section*.18}\protected@file@percent }
-\newlabel{eq:D_def}{{30}{17}{(d) 任务劳动需求指数。}{equation.30}{}}
-\@writefile{toc}{\contentsline {subsubsection}{\numberline {6.1.3}采纳情景 $A(t)$}{17}{subsubsection.6.1.3}\protected@file@percent }
-\newlabel{sec:adoption}{{6.1.3}{17}{采纳情景 $A(t)$}{subsubsection.6.1.3}{}}
-\newlabel{eq:adoption_logistic}{{31}{17}{采纳情景 $A(t)$}{equation.31}{}}
-\@writefile{toc}{\contentsline {subsubsection}{\numberline {6.1.4}职业重新定义触发器（工作本质变化）}{17}{subsubsection.6.1.4}\protected@file@percent }
-\newlabel{sec:redefinition}{{6.1.4}{17}{职业重新定义触发器（工作本质变化）}{subsubsection.6.1.4}{}}
-\@writefile{toc}{\contentsline {paragraph}{(a) 消亡质量（任务需求变得可忽略不计）。}{17}{section*.19}\protected@file@percent }
-\newlabel{eq:extinction_rule}{{32}{17}{(a) 消亡质量（任务需求变得可忽略不计）。}{equation.32}{}}
-\newlabel{eq:Mdrop}{{33}{18}{(a) 消亡质量（任务需求变得可忽略不计）。}{equation.33}{}}
-\newlabel{eq:Mdrop_trigger}{{34}{18}{(a) 消亡质量（任务需求变得可忽略不计）。}{equation.34}{}}
-\@writefile{toc}{\contentsline {paragraph}{(b) 任务结构漂移（分布变化）。}{18}{section*.20}\protected@file@percent }
-\newlabel{eq:JS_trigger}{{35}{18}{(b) 任务结构漂移（分布变化）。}{equation.35}{}}
-\newlabel{eq:tstar}{{36}{18}{(b) 任务结构漂移（分布变化）。}{equation.36}{}}
-\@writefile{toc}{\contentsline {subsubsection}{\numberline {6.1.5}计算算法（可重现流程）}{18}{subsubsection.6.1.5}\protected@file@percent }
-\newlabel{sec:algorithm}{{6.1.5}{18}{计算算法（可重现流程）}{subsubsection.6.1.5}{}}
-\@writefile{toc}{\contentsline {subsubsection}{\numberline {6.1.6}参数表（待实例化）}{18}{subsubsection.6.1.6}\protected@file@percent }
-\newlabel{sec:param_table}{{6.1.6}{18}{参数表（待实例化）}{subsubsection.6.1.6}{}}
-\@writefile{toc}{\contentsline {subsection}{\numberline {6.2}可视化方案}{18}{subsection.6.2}\protected@file@percent }
-\newlabel{sec:viz_plan}{{6.2}{18}{可视化方案}{subsection.6.2}{}}
-\@writefile{lot}{\contentsline {table}{\numberline {5}{\ignorespaces 任务级模型参数及通俗语言含义。}}{19}{table.caption.21}\protected@file@percent }
-\newlabel{tab:params_task_model}{{5}{19}{任务级模型参数及通俗语言含义。}{table.caption.21}{}}
-\@writefile{toc}{\contentsline {subsubsection}{\numberline {6.2.1}任务DNA与权威s,c分布（三职业）}{19}{subsubsection.6.2.1}\protected@file@percent }
-\newlabel{sec:task_dna_viz}{{6.2.1}{19}{任务DNA与权威s,c分布（三职业）}{subsubsection.6.2.1}{}}
-\@writefile{lof}{\contentsline {figure}{\numberline {3}{\ignorespaces 职业 17-2199.08 的任务DNA与权威 $s,c$ 分布。（a）任务DNA权重分布：IM--FR 散点图，点面积与 $w$ 成正比；（b）权威 $s,c$ 档位分布。}}{19}{figure.caption.23}\protected@file@percent }
-\newlabel{fig:task_dna_17_pair}{{3}{19}{职业 17-2199.08 的任务DNA与权威 $s,c$ 分布。（a）任务DNA权重分布：IM--FR 散点图，点面积与 $w$ 成正比；（b）权威 $s,c$ 档位分布。}{figure.caption.23}{}}
-\@writefile{toc}{\contentsline {paragraph}{职业 17-2199.08：机器人工程师。}{19}{figure.caption.23}\protected@file@percent }
-\@writefile{lof}{\contentsline {figure}{\numberline {4}{\ignorespaces 职业 49-1011.00 的任务DNA与权威 $s,c$ 分布。（a）任务DNA权重分布：IM--FR 散点图，点面积与 $w$ 成正比；（b）权威 $s,c$ 档位分布。}}{19}{figure.caption.25}\protected@file@percent }
-\newlabel{fig:task_dna_49_pair}{{4}{19}{职业 49-1011.00 的任务DNA与权威 $s,c$ 分布。（a）任务DNA权重分布：IM--FR 散点图，点面积与 $w$ 成正比；（b）权威 $s,c$ 档位分布。}{figure.caption.25}{}}
-\@writefile{toc}{\contentsline {paragraph}{职业 49-1011.00：一线主管（机械/安装/维修）。}{20}{figure.caption.25}\protected@file@percent }
-\@writefile{lof}{\contentsline {figure}{\numberline {5}{\ignorespaces 职业 27-3092.00 的任务DNA与权威 $s,c$ 分布。（a）任务DNA权重分布：IM--FR 散点图，点面积与 $w$ 成正比；（b）权威 $s,c$ 档位分布。}}{20}{figure.caption.27}\protected@file@percent }
-\newlabel{fig:task_dna_27_pair}{{5}{20}{职业 27-3092.00 的任务DNA与权威 $s,c$ 分布。（a）任务DNA权重分布：IM--FR 散点图，点面积与 $w$ 成正比；（b）权威 $s,c$ 档位分布。}{figure.caption.27}{}}
-\@writefile{toc}{\contentsline {paragraph}{职业 27-3092.00：法庭速录与字幕。}{20}{figure.caption.27}\protected@file@percent }
-\@writefile{toc}{\contentsline {subsubsection}{\numberline {6.2.2}图表模板}{20}{subsubsection.6.2.2}\protected@file@percent }
-\newlabel{sec:fig_templates}{{6.2.2}{20}{图表模板}{subsubsection.6.2.2}{}}
-\@writefile{lof}{\contentsline {figure}{\numberline {6}{\ignorespaces 由 \eqref  {eq:adoption_logistic} 定义的GenAI采纳情景 $A(t)$（快速/中速/慢速）。拐点时间 $t_0$ 标记50\%采纳。}}{20}{figure.caption.29}\protected@file@percent }
-\newlabel{fig:adoption}{{6}{20}{由 \eqref {eq:adoption_logistic} 定义的GenAI采纳情景 $A(t)$（快速/中速/慢速）。拐点时间 $t_0$ 标记50\%采纳。}{figure.caption.29}{}}
-\@writefile{toc}{\contentsline {paragraph}{图1：采纳情景 $A(t)$。}{20}{figure.caption.29}\protected@file@percent }
-\@writefile{lof}{\contentsline {figure}{\numberline {7}{\ignorespaces 职业 $i$ 中基线权重最高的前 $K$ 个任务在各采纳情景下的相对任务劳动需求轨迹 $D_{ij}(t)/D_{ij}(0)$。此图直接显示哪些任务变得可忽略不计，哪些任务仍然核心。}}{20}{figure.caption.31}\protected@file@percent }
-\newlabel{fig:task_demand_top}{{7}{20}{职业 $i$ 中基线权重最高的前 $K$ 个任务在各采纳情景下的相对任务劳动需求轨迹 $D_{ij}(t)/D_{ij}(0)$。此图直接显示哪些任务变得可忽略不计，哪些任务仍然核心。}{figure.caption.31}{}}
-\@writefile{toc}{\contentsline {paragraph}{图2：顶部任务的任务劳动需求轨迹。}{20}{figure.caption.31}\protected@file@percent }
-\@writefile{lof}{\contentsline {figure}{\numberline {8}{\ignorespaces 时变任务结构 $w_{ij}(t)$（堆叠面积图或热图）。此图可视化由 \eqref  {eq:share_update} 驱动的替代引起的职业内部重新分配。}}{20}{figure.caption.33}\protected@file@percent }
-\newlabel{fig:task_structure}{{8}{20}{时变任务结构 $w_{ij}(t)$（堆叠面积图或热图）。此图可视化由 \eqref {eq:share_update} 驱动的替代引起的职业内部重新分配。}{figure.caption.33}{}}
-\@writefile{toc}{\contentsline {paragraph}{图3：任务结构漂移 $w_{ij}(t)$。}{20}{figure.caption.33}\protected@file@percent }
-\@writefile{toc}{\contentsline {paragraph}{图4：重新定义证据和触发时间 $t^*$。}{20}{figure.caption.35}\protected@file@percent }
-\@writefile{toc}{\contentsline {subsection}{\numberline {6.3}敏感性与稳健性}{20}{subsection.6.3}\protected@file@percent }
-\newlabel{sec:sensitivity}{{6.3}{20}{敏感性与稳健性}{subsection.6.3}{}}
-\@writefile{toc}{\contentsline {subsubsection}{\numberline {6.3.1}低置信度任务敏感性}{20}{subsubsection.6.3.1}\protected@file@percent }
-\newlabel{sec:low_conf_task}{{6.3.1}{20}{低置信度任务敏感性}{subsubsection.6.3.1}{}}
-\@writefile{lof}{\contentsline {figure}{\numberline {9}{\ignorespaces 随时间的重新定义证据：消亡质量 $M_{\text  {drop}}(t)$ 及阈值 $\theta $，以及（可选）$\mathrm  {JS}(w_i(t)\|w_i(0))$ 及阈值 $\delta $。最早的交叉点在 \eqref  {eq:tstar} 中定义 $t^*$。}}{21}{figure.caption.35}\protected@file@percent }
-\newlabel{fig:redefinition_trigger}{{9}{21}{随时间的重新定义证据：消亡质量 $M_{\text {drop}}(t)$ 及阈值 $\theta $，以及（可选）$\mathrm {JS}(w_i(t)\|w_i(0))$ 及阈值 $\delta $。最早的交叉点在 \eqref {eq:tstar} 中定义 $t^*$。}{figure.caption.35}{}}
-\@writefile{toc}{\contentsline {subsubsection}{\numberline {6.3.2}关键参数敏感性}{21}{subsubsection.6.3.2}\protected@file@percent }
-\newlabel{sec:param_sens}{{6.3.2}{21}{关键参数敏感性}{subsubsection.6.3.2}{}}
-\@writefile{toc}{\contentsline {subsection}{\numberline {6.4}输出摘要模板（每个职业）}{21}{subsection.6.4}\protected@file@percent }
-\newlabel{sec:output_template}{{6.4}{21}{输出摘要模板（每个职业）}{subsection.6.4}{}}
-\@writefile{toc}{\contentsline {section}{\numberline {7}仿真结果与敏感性分析}{21}{section.7}\protected@file@percent }
-\@writefile{toc}{\contentsline {subsection}{\numberline {7.1}职业选择的剪枝敏感性检验}{21}{subsection.7.1}\protected@file@percent }
-\@writefile{toc}{\contentsline {paragraph}{检验方法}{21}{section*.36}\protected@file@percent }
-\@writefile{toc}{\contentsline {paragraph}{检验结果}{22}{section*.37}\protected@file@percent }
-\@writefile{lot}{\contentsline {table}{\numberline {6}{\ignorespaces 候选规模敏感性检验：最优三角形在不同 $M$ 下的求解结果}}{22}{table.caption.38}\protected@file@percent }
-\newlabel{tab:sensitivity_M}{{6}{22}{候选规模敏感性检验：最优三角形在不同 $M$ 下的求解结果}{table.caption.38}{}}
-\@writefile{lof}{\contentsline {figure}{\numberline {10}{\ignorespaces 候选规模 $M$ 与最优三角形面积的关系（strict映射）。}}{22}{figure.caption.39}\protected@file@percent }
-\newlabel{fig:sensitivity_candidate_scale}{{10}{22}{候选规模 $M$ 与最优三角形面积的关系（strict映射）。}{figure.caption.39}{}}
-\@writefile{toc}{\contentsline {paragraph}{稳健性判定}{22}{section*.40}\protected@file@percent }
+\citation{whisper2022,openai2023gpt4}
+\citation{docvqa2017,spider2018}
+\@writefile{lot}{\contentsline {table}{\numberline {4}{\ignorespaces GenAI能力表的机制审计与修复路径}}{13}{table.caption.12}\protected@file@percent }
+\newlabel{tab:genai_audit}{{4}{13}{GenAI能力表的机制审计与修复路径}{table.caption.12}{}}
+\@writefile{toc}{\contentsline {paragraph}{方向系数（$\rho _k$）}{13}{section*.14}\protected@file@percent }
+\@writefile{toc}{\contentsline {paragraph}{可审计赋值}{13}{section*.15}\protected@file@percent }
+\@writefile{toc}{\contentsline {subsubsection}{\numberline {3.4.3}九维能力量表（含原始评分与证据）}{13}{subsubsection.3.4.3}\protected@file@percent }
+\@writefile{toc}{\contentsline {paragraph}{必要声明}{13}{section*.17}\protected@file@percent }
+\@writefile{lot}{\contentsline {table}{\numberline {5}{\ignorespaces GenAI 九维能力映射总表：指标分段$\rightarrow M_k,\rho _k\rightarrow (s_k,c_k)$}}{14}{table.caption.16}\protected@file@percent }
+\newlabel{tab:genai_scale}{{5}{14}{GenAI 九维能力映射总表：指标分段$\rightarrow M_k,\rho _k\rightarrow (s_k,c_k)$}{table.caption.16}{}}
+\@writefile{toc}{\contentsline {paragraph}{任务层净冲击}{14}{section*.18}\protected@file@percent }
+\@writefile{toc}{\contentsline {subsubsection}{\numberline {3.4.4}将“发展轨迹”与“任务需求”紧密耦合：采纳混合机制}{15}{subsubsection.3.4.4}\protected@file@percent }
+\@writefile{toc}{\contentsline {paragraph}{解释性}{15}{section*.19}\protected@file@percent }
+\@writefile{toc}{\contentsline {paragraph}{未来时间点}{15}{section*.20}\protected@file@percent }
+\@writefile{toc}{\contentsline {subsection}{\numberline {3.5}将任务DNA聚合为职业级冲击参数：软件开发人员}{15}{subsection.3.5}\protected@file@percent }
+\@writefile{toc}{\contentsline {subsubsection}{\numberline {3.5.1}Top-$N$ 可用性与聚合}{15}{subsubsection.3.5.1}\protected@file@percent }
+\@writefile{toc}{\contentsline {subsubsection}{\numberline {3.5.2}可解释性分解：Top-$K$ 贡献下界}{16}{subsubsection.3.5.2}\protected@file@percent }
+\@writefile{toc}{\contentsline {subsubsection}{\numberline {3.5.3}最小校准：带有限人工审查的类别默认值}{16}{subsubsection.3.5.3}\protected@file@percent }
+\@writefile{toc}{\contentsline {section}{\numberline {4}权威重标记后的机制力量检验与职业级聚合（软件开发人员）}{16}{section.4}\protected@file@percent }
+\@writefile{toc}{\contentsline {subsection}{\numberline {4.1}职业级冲击聚合值}{16}{subsection.4.1}\protected@file@percent }
+\@writefile{toc}{\contentsline {subsection}{\numberline {4.2}诊断：异质性与有效多样性}{16}{subsection.4.2}\protected@file@percent }
+\@writefile{toc}{\contentsline {paragraph}{(1) 加权方差（异质性）}{16}{section*.21}\protected@file@percent }
+\@writefile{toc}{\contentsline {paragraph}{(2) 加权层级直方图（避免单层级主导）}{17}{section*.22}\protected@file@percent }
+\@writefile{toc}{\contentsline {paragraph}{(3) 能力维度权重质量（避免权重集中）}{17}{section*.23}\protected@file@percent }
+\@writefile{toc}{\contentsline {subsection}{\numberline {4.3}工程阈值与行动（$E(t)$ 前的门控）}{17}{subsection.4.3}\protected@file@percent }
+\@writefile{toc}{\contentsline {section}{\numberline {5}一致性检验与演化方程的实例化：软件开发人员的 $(\alpha ,\beta ,\mu _{\mathrm  {occ}})$}{17}{section.5}\protected@file@percent }
+\@writefile{toc}{\contentsline {subsection}{\numberline {5.1}聚合值与一致性检验}{17}{subsection.5.1}\protected@file@percent }
+\@writefile{toc}{\contentsline {subsection}{\numberline {5.2}机制力量（异质性）检验：无得分坍缩}{18}{subsection.5.2}\protected@file@percent }
+\@writefile{toc}{\contentsline {subsection}{\numberline {5.3}低置信度任务的最小敏感性（上界论证）}{18}{subsection.5.3}\protected@file@percent }
+\@writefile{toc}{\contentsline {subsection}{\numberline {5.4}修正 $\mu _{\mathrm  {occ}}$ 后进入职业演化}{18}{subsection.5.4}\protected@file@percent }
+\@writefile{toc}{\contentsline {section}{\numberline {6}任务级功能需求模型与职业重新定义}{18}{section.6}\protected@file@percent }
+\newlabel{sec:task_level_model}{{6}{18}{任务级功能需求模型与职业重新定义}{section.6}{}}
+\@writefile{toc}{\contentsline {subsection}{\numberline {6.1}任务级功能需求模型（替代职业级岗位需求）}{18}{subsection.6.1}\protected@file@percent }
+\@writefile{toc}{\contentsline {subsubsection}{\numberline {6.1.1}建模目标与符号}{18}{subsubsection.6.1.1}\protected@file@percent }
+\newlabel{sec:notation}{{6.1.1}{18}{建模目标与符号}{subsubsection.6.1.1}{}}
+\@writefile{toc}{\contentsline {subsubsection}{\numberline {6.1.2}双渠道动力学：自动化与规模化}{19}{subsubsection.6.1.2}\protected@file@percent }
+\newlabel{sec:two_channel}{{6.1.2}{19}{双渠道动力学：自动化与规模化}{subsubsection.6.1.2}{}}
+\@writefile{toc}{\contentsline {paragraph}{(a) 自动化渠道：替代降低劳动强度。}{19}{section*.24}\protected@file@percent }
+\newlabel{eq:labor_intensity_ode}{{27}{19}{(a) 自动化渠道：替代降低劳动强度。}{equation.27}{}}
+\newlabel{eq:labor_intensity_closed}{{28}{19}{(a) 自动化渠道：替代降低劳动强度。}{equation.28}{}}
+\@writefile{toc}{\contentsline {paragraph}{(b) 任务结构更新：职业内部重新分配。}{19}{section*.25}\protected@file@percent }
+\newlabel{eq:share_update}{{29}{19}{(b) 任务结构更新：职业内部重新分配。}{equation.29}{}}
+\@writefile{toc}{\contentsline {paragraph}{(c) 规模化渠道（可选）：增强扩展整体功能需求。}{19}{section*.26}\protected@file@percent }
+\newlabel{eq:Q_ode}{{30}{19}{(c) 规模化渠道（可选）：增强扩展整体功能需求。}{equation.30}{}}
+\newlabel{eq:cbar}{{31}{19}{(c) 规模化渠道（可选）：增强扩展整体功能需求。}{equation.31}{}}
+\@writefile{toc}{\contentsline {paragraph}{(d) 任务劳动需求指数。}{20}{section*.27}\protected@file@percent }
+\newlabel{eq:D_def}{{32}{20}{(d) 任务劳动需求指数。}{equation.32}{}}
+\@writefile{toc}{\contentsline {subsubsection}{\numberline {6.1.3}采纳情景 $A(t)$}{20}{subsubsection.6.1.3}\protected@file@percent }
+\newlabel{sec:adoption}{{6.1.3}{20}{采纳情景 $A(t)$}{subsubsection.6.1.3}{}}
+\newlabel{eq:adoption_logistic}{{33}{20}{采纳情景 $A(t)$}{equation.33}{}}
+\@writefile{toc}{\contentsline {subsubsection}{\numberline {6.1.4}职业重新定义触发器（工作本质变化）}{20}{subsubsection.6.1.4}\protected@file@percent }
+\newlabel{sec:redefinition}{{6.1.4}{20}{职业重新定义触发器（工作本质变化）}{subsubsection.6.1.4}{}}
+\@writefile{toc}{\contentsline {paragraph}{(a) 消亡质量（任务需求变得可忽略不计）。}{20}{section*.28}\protected@file@percent }
+\newlabel{eq:extinction_rule}{{34}{20}{(a) 消亡质量（任务需求变得可忽略不计）。}{equation.34}{}}
+\newlabel{eq:Mdrop}{{35}{20}{(a) 消亡质量（任务需求变得可忽略不计）。}{equation.35}{}}
+\newlabel{eq:Mdrop_trigger}{{36}{20}{(a) 消亡质量（任务需求变得可忽略不计）。}{equation.36}{}}
+\@writefile{toc}{\contentsline {paragraph}{(b) 任务结构漂移（分布变化）。}{20}{section*.29}\protected@file@percent }
+\newlabel{eq:JS_trigger}{{37}{21}{(b) 任务结构漂移（分布变化）。}{equation.37}{}}
+\newlabel{eq:tstar}{{38}{21}{(b) 任务结构漂移（分布变化）。}{equation.38}{}}
+\@writefile{toc}{\contentsline {subsubsection}{\numberline {6.1.5}计算算法（可重现流程）}{21}{subsubsection.6.1.5}\protected@file@percent }
+\newlabel{sec:algorithm}{{6.1.5}{21}{计算算法（可重现流程）}{subsubsection.6.1.5}{}}
+\@writefile{toc}{\contentsline {subsubsection}{\numberline {6.1.6}参数表（待实例化）}{21}{subsubsection.6.1.6}\protected@file@percent }
+\newlabel{sec:param_table}{{6.1.6}{21}{参数表（待实例化）}{subsubsection.6.1.6}{}}
+\@writefile{lot}{\contentsline {table}{\numberline {6}{\ignorespaces 任务级模型参数及通俗语言含义。}}{21}{table.caption.30}\protected@file@percent }
+\newlabel{tab:params_task_model}{{6}{21}{任务级模型参数及通俗语言含义。}{table.caption.30}{}}
+\@writefile{toc}{\contentsline {subsection}{\numberline {6.2}可视化方案}{21}{subsection.6.2}\protected@file@percent }
+\newlabel{sec:viz_plan}{{6.2}{21}{可视化方案}{subsection.6.2}{}}
+\@writefile{toc}{\contentsline {subsubsection}{\numberline {6.2.1}图表模板}{21}{subsubsection.6.2.1}\protected@file@percent }
+\newlabel{sec:fig_templates}{{6.2.1}{21}{图表模板}{subsubsection.6.2.1}{}}
+\@writefile{toc}{\contentsline {paragraph}{图1：采纳情景 $A(t)$。}{21}{figure.caption.32}\protected@file@percent }
+\@writefile{lof}{\contentsline {figure}{\numberline {4}{\ignorespaces 由 \eqref  {eq:adoption_logistic} 定义的GenAI采纳情景 $A(t)$（快速/中速/慢速）。拐点时间 $t_0$ 标记50\%采纳。}}{22}{figure.caption.32}\protected@file@percent }
+\newlabel{fig:adoption}{{4}{22}{由 \eqref {eq:adoption_logistic} 定义的GenAI采纳情景 $A(t)$（快速/中速/慢速）。拐点时间 $t_0$ 标记50\%采纳。}{figure.caption.32}{}}
+\@writefile{lof}{\contentsline {figure}{\numberline {5}{\ignorespaces 职业 $i$ 中基线权重最高的前 $K$ 个任务在各采纳情景下的相对任务劳动需求轨迹 $D_{ij}(t)/D_{ij}(0)$。此图直接显示哪些任务变得可忽略不计，哪些任务仍然核心。}}{22}{figure.caption.34}\protected@file@percent }
+\newlabel{fig:task_demand_top}{{5}{22}{职业 $i$ 中基线权重最高的前 $K$ 个任务在各采纳情景下的相对任务劳动需求轨迹 $D_{ij}(t)/D_{ij}(0)$。此图直接显示哪些任务变得可忽略不计，哪些任务仍然核心。}{figure.caption.34}{}}
+\@writefile{toc}{\contentsline {paragraph}{图2：顶部任务的任务劳动需求轨迹。}{22}{figure.caption.34}\protected@file@percent }
+\@writefile{lof}{\contentsline {figure}{\numberline {6}{\ignorespaces 时变任务结构 $w_{ij}(t)$（堆叠面积图或热图）。此图可视化由 \eqref  {eq:share_update} 驱动的替代引起的职业内部重新分配。}}{22}{figure.caption.36}\protected@file@percent }
+\newlabel{fig:task_structure}{{6}{22}{时变任务结构 $w_{ij}(t)$（堆叠面积图或热图）。此图可视化由 \eqref {eq:share_update} 驱动的替代引起的职业内部重新分配。}{figure.caption.36}{}}
+\@writefile{toc}{\contentsline {paragraph}{图3：任务结构漂移 $w_{ij}(t)$。}{22}{figure.caption.36}\protected@file@percent }
+\@writefile{lof}{\contentsline {figure}{\numberline {7}{\ignorespaces 随时间的重新定义证据：消亡质量 $M_{\text  {drop}}(t)$ 及阈值 $\theta $，以及（可选）$\mathrm  {JS}(w_i(t)\|w_i(0))$ 及阈值 $\delta $。最早的交叉点在 \eqref  {eq:tstar} 中定义 $t^*$。}}{22}{figure.caption.38}\protected@file@percent }
+\newlabel{fig:redefinition_trigger}{{7}{22}{随时间的重新定义证据：消亡质量 $M_{\text {drop}}(t)$ 及阈值 $\theta $，以及（可选）$\mathrm {JS}(w_i(t)\|w_i(0))$ 及阈值 $\delta $。最早的交叉点在 \eqref {eq:tstar} 中定义 $t^*$。}{figure.caption.38}{}}
+\@writefile{toc}{\contentsline {paragraph}{图4：重新定义证据和触发时间 $t^*$。}{22}{figure.caption.38}\protected@file@percent }
+\@writefile{toc}{\contentsline {subsection}{\numberline {6.3}敏感性与稳健性}{22}{subsection.6.3}\protected@file@percent }
+\newlabel{sec:sensitivity}{{6.3}{22}{敏感性与稳健性}{subsection.6.3}{}}
+\@writefile{toc}{\contentsline {subsubsection}{\numberline {6.3.1}低置信度任务敏感性}{22}{subsubsection.6.3.1}\protected@file@percent }
+\newlabel{sec:low_conf_task}{{6.3.1}{22}{低置信度任务敏感性}{subsubsection.6.3.1}{}}
+\@writefile{toc}{\contentsline {subsubsection}{\numberline {6.3.2}关键参数敏感性}{22}{subsubsection.6.3.2}\protected@file@percent }
+\newlabel{sec:param_sens}{{6.3.2}{22}{关键参数敏感性}{subsubsection.6.3.2}{}}
+\@writefile{toc}{\contentsline {subsection}{\numberline {6.4}输出摘要模板（每个职业）}{23}{subsection.6.4}\protected@file@percent }
+\newlabel{sec:output_template}{{6.4}{23}{输出摘要模板（每个职业）}{subsection.6.4}{}}
+\@writefile{toc}{\contentsline {section}{\numberline {7}仿真结果与敏感性分析}{23}{section.7}\protected@file@percent }
+\@writefile{toc}{\contentsline {subsection}{\numberline {7.1}职业选择的剪枝敏感性检验}{23}{subsection.7.1}\protected@file@percent }
+\@writefile{toc}{\contentsline {paragraph}{检验方法}{23}{section*.39}\protected@file@percent }
+\@writefile{toc}{\contentsline {paragraph}{检验结果}{23}{section*.40}\protected@file@percent }
+\@writefile{lot}{\contentsline {table}{\numberline {7}{\ignorespaces 候选规模敏感性检验：最优三角形在不同 $M$ 下的求解结果}}{23}{table.caption.41}\protected@file@percent }
+\newlabel{tab:sensitivity_M}{{7}{23}{候选规模敏感性检验：最优三角形在不同 $M$ 下的求解结果}{table.caption.41}{}}
 \bibstyle{plainnat}
 \bibdata{references}
-\bibcite{arxiv2024unittest}{{1}{2024}{{Alshahwan et~al.}}{{}}}
-\bibcite{anthropic2023claude2}{{2}{2023}{{Anthropic}}{{}}}
-\bibcite{chen2023selfdebugging}{{3}{2023}{{Chen et~al.}}{{Chen, Lin, Sch{\"a}rli, and Zhou}}}
-\bibcite{freyosborne2017}{{4}{2017}{{Frey and Osborne}}{{}}}
-\bibcite{googleresearch2024seqmodels}{{5}{2024}{{Google Research}}{{}}}
-\bibcite{onetEmail}{{6}{2025{}}{{O*NET OnLine}}{{}}}
-\bibcite{onetKneeling}{{7}{2025{}}{{O*NET OnLine}}{{}}}
-\bibcite{onetOriginality}{{8}{2025{}}{{O*NET OnLine}}{{}}}
-\bibcite{onetThinkingCreatively}{{9}{2025{}}{{O*NET OnLine}}{{}}}
-\@writefile{toc}{\contentsline {section}{\numberline {8}讨论：优势与不足}{23}{section.8}\protected@file@percent }
-\@writefile{toc}{\contentsline {subsection}{\numberline {8.1}优势}{23}{subsection.8.1}\protected@file@percent }
-\@writefile{toc}{\contentsline {subsection}{\numberline {8.2}不足}{23}{subsection.8.2}\protected@file@percent }
-\@writefile{toc}{\contentsline {section}{\numberline {9}结论}{23}{section.9}\protected@file@percent }
-\bibcite{onetUsingHands}{{10}{2025{}}{{O*NET OnLine}}{{}}}
-\bibcite{onetWorkingWithComputers}{{11}{2025{}}{{O*NET OnLine}}{{}}}
-\bibcite{onet2019structure}{{12}{2019}{{O*NET Resource Center}}{{}}}
-\bibcite{onet2025database}{{13}{2025}{{O*NET Resource Center}}{{}}}
-\bibcite{openai2023gpt4}{{14}{2023}{{OpenAI}}{{}}}
-\bibcite{techcrunch2025aimodels}{{15}{2025}{{Wiggers}}{{}}}
+\@writefile{lof}{\contentsline {figure}{\numberline {8}{\ignorespaces 候选规模 $M$ 与最优三角形面积的关系（strict映射）。}}{24}{figure.caption.42}\protected@file@percent }
+\newlabel{fig:sensitivity_candidate_scale}{{8}{24}{候选规模 $M$ 与最优三角形面积的关系（strict映射）。}{figure.caption.42}{}}
+\@writefile{toc}{\contentsline {paragraph}{稳健性判定}{24}{section*.43}\protected@file@percent }
+\@writefile{toc}{\contentsline {section}{\numberline {8}讨论：优势与不足}{24}{section.8}\protected@file@percent }
+\@writefile{toc}{\contentsline {subsection}{\numberline {8.1}优势}{24}{subsection.8.1}\protected@file@percent }
+\@writefile{toc}{\contentsline {subsection}{\numberline {8.2}不足}{24}{subsection.8.2}\protected@file@percent }
+\bibcite{openaicodex2021}{{1}{2021}{{Chen et~al.}}{{}}}
+\bibcite{imagenet2009}{{2}{2009}{{Deng et~al.}}{{}}}
+\bibcite{freyosborne2017}{{3}{2017}{{Frey and Osborne}}{{}}}
+\bibcite{docvqa2017}{{4}{2017}{{Matias et~al.}}{{}}}
+\bibcite{onetEmail}{{5}{2025{}}{{O*NET OnLine}}{{}}}
+\bibcite{onetKneeling}{{6}{2025{}}{{O*NET OnLine}}{{}}}
+\bibcite{onetOriginality}{{7}{2025{}}{{O*NET OnLine}}{{}}}
+\bibcite{onetThinkingCreatively}{{8}{2025{}}{{O*NET OnLine}}{{}}}
+\bibcite{onetUsingHands}{{9}{2025{}}{{O*NET OnLine}}{{}}}
+\bibcite{onetWorkingWithComputers}{{10}{2025{}}{{O*NET OnLine}}{{}}}
+\bibcite{onet2019structure}{{11}{2019}{{O*NET Resource Center}}{{}}}
+\bibcite{onet2025database}{{12}{2025}{{O*NET Resource Center}}{{}}}
+\@writefile{toc}{\contentsline {section}{\numberline {9}结论}{25}{section.9}\protected@file@percent }
+\bibcite{openai2023gpt4}{{13}{2023}{{OpenAI}}{{}}}
+\bibcite{whisper2022}{{14}{2022}{{Radford et~al.}}{{}}}
+\bibcite{autogpt2023}{{15}{2023}{{Significant Gravitas}}{{}}}
+\bibcite{swebench2024}{{16}{2024}{{SWE-bench}}{{}}}
+\bibcite{spider2018}{{17}{2018}{{Yu et~al.}}{{}}}
 \citation{onet2025database}
 \citation{onet2025database}
 \citation{onet2025database}
 \citation{onet2025database}
-\@writefile{toc}{\contentsline {section}{Appendices}{24}{section*.42}\protected@file@percent }
-\@writefile{toc}{\contentsline {section}{附录 \numberline {A}数据来源与变量定义}{24}{appendix.1.A}\protected@file@percent }
-\newlabel{app:data_sources}{{A}{24}{数据来源与变量定义}{appendix.1.A}{}}
-\@writefile{toc}{\contentsline {subsection}{\numberline {A.1}O*NET描述符数据来源}{24}{subsection.1.A.1}\protected@file@percent }
-\newlabel{app:onet_descriptors}{{A.1}{24}{O*NET描述符数据来源}{subsection.1.A.1}{}}
-\@writefile{toc}{\contentsline {subsection}{\numberline {A.2}任务DNA变量}{24}{subsection.1.A.2}\protected@file@percent }
-\newlabel{app:task_dna_sources}{{A.2}{24}{任务DNA变量}{subsection.1.A.2}{}}
-\@writefile{toc}{\contentsline {section}{附录 \numberline {B}Python实现代码}{24}{appendix.1.B}\protected@file@percent }
-\@writefile{lot}{\contentsline {table}{\numberline {7}{\ignorespaces O*NET描述符数据来源与访问链接}}{25}{table.caption.43}\protected@file@percent }
-\newlabel{tab:onet_descriptor_sources}{{7}{25}{O*NET描述符数据来源与访问链接}{table.caption.43}{}}
-\@writefile{lot}{\contentsline {table}{\numberline {8}{\ignorespaces 任务DNA的数据来源与变量}}{25}{table.caption.44}\protected@file@percent }
-\newlabel{tab:data_sources_task_dna}{{8}{25}{任务DNA的数据来源与变量}{table.caption.44}{}}
-\newlabel{LastPage}{{9}{27}{3. 风险验证}{page.27}{}}
-\gdef\lastpage@lastpage{27}
-\gdef\lastpage@lastpageHy{27}
-\gdef \@abspage@last{28}
+\@writefile{toc}{\contentsline {section}{Appendices}{26}{section*.45}\protected@file@percent }
+\@writefile{toc}{\contentsline {section}{附录 \numberline {A}数据来源与变量定义}{26}{appendix.1.A}\protected@file@percent }
+\newlabel{app:data_sources}{{A}{26}{数据来源与变量定义}{appendix.1.A}{}}
+\@writefile{toc}{\contentsline {subsection}{\numberline {A.1}O*NET描述符数据来源}{26}{subsection.1.A.1}\protected@file@percent }
+\newlabel{app:onet_descriptors}{{A.1}{26}{O*NET描述符数据来源}{subsection.1.A.1}{}}
+\@writefile{toc}{\contentsline {subsection}{\numberline {A.2}任务DNA变量}{26}{subsection.1.A.2}\protected@file@percent }
+\newlabel{app:task_dna_sources}{{A.2}{26}{任务DNA变量}{subsection.1.A.2}{}}
+\@writefile{toc}{\contentsline {section}{附录 \numberline {B}补充图示：任务DNA}{26}{appendix.1.B}\protected@file@percent }
+\newlabel{app:task_dna_figures}{{B}{26}{补充图示：任务DNA}{appendix.1.B}{}}
+\@writefile{lot}{\contentsline {table}{\numberline {8}{\ignorespaces O*NET描述符数据来源与访问链接}}{27}{table.caption.46}\protected@file@percent }
+\newlabel{tab:onet_descriptor_sources}{{8}{27}{O*NET描述符数据来源与访问链接}{table.caption.46}{}}
+\@writefile{lot}{\contentsline {table}{\numberline {9}{\ignorespaces 任务DNA的数据来源与变量}}{27}{table.caption.47}\protected@file@percent }
+\newlabel{tab:data_sources_task_dna}{{9}{27}{任务DNA的数据来源与变量}{table.caption.47}{}}
+\@writefile{lof}{\contentsline {figure}{\numberline {9}{\ignorespaces 职业 49-1011.00 的任务DNA与权威 $s,c$ 分布。（a）任务DNA权重分布：IM--FR 散点图，点面积与 $w$ 成正比；（b）权威 $s,c$ 档位分布。}}{28}{figure.caption.48}\protected@file@percent }
+\newlabel{fig:task_dna_49_pair}{{9}{28}{职业 49-1011.00 的任务DNA与权威 $s,c$ 分布。（a）任务DNA权重分布：IM--FR 散点图，点面积与 $w$ 成正比；（b）权威 $s,c$ 档位分布。}{figure.caption.48}{}}
+\@writefile{toc}{\contentsline {section}{附录 \numberline {C}Python实现代码}{28}{appendix.1.C}\protected@file@percent }
+\@writefile{lof}{\contentsline {figure}{\numberline {10}{\ignorespaces 职业 27-3092.00 的任务DNA与权威 $s,c$ 分布。（a）任务DNA权重分布：IM--FR 散点图，点面积与 $w$ 成正比；（b）权威 $s,c$ 档位分布。}}{29}{figure.caption.49}\protected@file@percent }
+\newlabel{fig:task_dna_27_pair}{{10}{29}{职业 27-3092.00 的任务DNA与权威 $s,c$ 分布。（a）任务DNA权重分布：IM--FR 散点图，点面积与 $w$ 成正比；（b）权威 $s,c$ 档位分布。}{figure.caption.49}{}}
+\newlabel{LastPage}{{9}{30}{3. 风险验证}{page.30}{}}
+\gdef\lastpage@lastpage{30}
+\gdef\lastpage@lastpageHy{30}
+\gdef \@abspage@last{31}

@@ -1,18 +1,17 @@
 <summary>
   <rows>20</rows>
   <dim_counts>
-    <dim id="D1">0</dim>
-    <dim id="D2">1</dim>
-    <dim id="D3">1</dim>
-    <dim id="D4">2</dim>
-    <dim id="D5">9</dim>
-    <dim id="D6">2</dim>
-    <dim id="D7">0</dim>
+    <dim id="D1">1</dim>
+    <dim id="D2">3</dim>
+    <dim id="D3">0</dim>
+    <dim id="D4">4</dim>
+    <dim id="D5">2</dim>
+    <dim id="D6">3</dim>
+    <dim id="D7">10</dim>
     <dim id="D8">0</dim>
-    <dim id="D9">4</dim>
-    <dim id="D10">1</dim>
+    <dim id="D9">1</dim>
   </dim_counts>
-  <low_confidence_count>12</low_confidence_count>
+  <low_confidence_count>4</low_confidence_count>
   <weight_stats>
     <w_sum>0.999997</w_sum>
     <w_min>0.033335</w_min>

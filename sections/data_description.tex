@@ -1,5 +1,6 @@
 \subsection{数据描述与任务DNA来源}
 我们从O*NET 30.1文本数据库中提取各职业的任务陈述和任务评分，并根据重要性（IM）和任务频率（FT）评分计算任务权重。\cite{onet2025database}
+任务层 $s/c$ 的基准维度来自权威基准与公开技术报告，并通过语义嵌入将任务文本映射到九维能力空间。\cite{openai2023gpt4,openaicodex2021,swebench2024,autogpt2023,whisper2022,docvqa2017,spider2018,imagenet2009}
 
 \begin{table}[htbp]
 \centering
@@ -11,6 +12,7 @@
 \midrule
 O*NET任务陈述 & 各职业的任务文本和标识符 & O*NET 30.1数据库\newline \cite{onet2025database} \\
 O*NET任务评分（IM, FT） & 用于计算任务权重的重要性和频率评分 & O*NET 30.1数据库\newline \cite{onet2025database} \\
+能力维度与$s/c$基准 & 九维能力量表与基准分数，用于映射任务层$s/c$ & GPT-4、HumanEval、SWE-bench、AutoGPT、Whisper、DocVQA、Spider、ImageNet\newline \cite{openai2023gpt4,openaicodex2021,swebench2024,autogpt2023,whisper2022,docvqa2017,spider2018,imagenet2009} \\
 任务DNA CSV & 包含IM、FR、权重和基于规则的s/c的处理后任务表 & 基于O*NET 30.1衍生\newline \cite{onet2025database} \\
 \bottomrule
 \end{tabular}

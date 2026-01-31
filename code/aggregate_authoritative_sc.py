@@ -98,7 +98,7 @@ def aggregate_task_dna(input_csv: Path, output_json: Path) -> Dict[str, object]:
     hist_c = to_hist(c_vals, weights, hist_levels)
     hist_mu_task = to_hist(mu_task_vals, weights, [-0.50, -0.25, 0.00, 0.25, 0.50])
 
-    dim_mass = {f"D{i}": 0.0 for i in range(1, 11)}
+    dim_mass = {f"D{i}": 0.0 for i in range(1, 10)}
     low_conf = []
     for _, row in df.iterrows():
         evidence = parse_evidence_note(str(row["evidence_note"]))

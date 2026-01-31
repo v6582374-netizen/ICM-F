@@ -16,7 +16,10 @@ from decimal import Decimal, ROUND_HALF_UP
 from pathlib import Path
 from typing import Dict, List, Optional, Sequence, Tuple
 
-import numpy as np
+try:
+    import numpy as np
+except Exception:  # pragma: no cover - optional dependency
+    np = None
 
 try:
     from rapidfuzz.fuzz import token_set_ratio
@@ -28,7 +31,7 @@ INPUT_CSV = Path("data/processed/task_dna_15-1252.csv")
 SOURCES_MD = Path("data/processed/authoritative_sc_sources_domainpack.md")
 
 DEFAULT_MODEL_NAME = "sentence-transformers/all-MiniLM-L6-v2"
-ALLOWED_LEVELS = (0.25, 0.5, 0.75)
+ALLOWED_LEVELS = (0.1, 0.3, 0.5, 0.7, 0.9)
 SIM_THRESHOLD = 0.35
 TWO_DIM_THRESHOLD = 0.45
 TWO_DIM_GAP = 0.08
@@ -36,53 +39,38 @@ TWO_DIM_GAP = 0.08
 
 AUTHORITATIVE_SOURCES = [
     (
-        "O1 O*NET Summary - Robotics Engineers (17-2199.08): "
-        "https://www.onetonline.org/link/summary/17-2199.08",
-        ["O1"],
+        "G1 OpenAI GPT-4 Technical Report (MMLU, ARC, GSM8K, DROP, HellaSwag, preference): "
+        "https://cdn.openai.com/papers/gpt-4.pdf",
+        ["G1"],
     ),
     (
-        "O2 O*NET Summary - First-Line Supervisors of Mechanics, Installers, and Repairers (49-1011.00): "
-        "https://www.onetonline.org/link/summary/49-1011.00",
-        ["O2"],
+        "G2 HumanEval benchmark (code generation): https://arxiv.org/abs/2107.03374",
+        ["G2"],
     ),
     (
-        "O3 O*NET Summary - Court Reporters and Simultaneous Captioners (27-3092.00): "
-        "https://www.onetonline.org/link/summary/27-3092.00",
-        ["O3"],
+        "G3 SWE-bench benchmark (software issue resolution): https://www.swe-bench.com/",
+        ["G3"],
     ),
     (
-        "R1 ISO 10218-1: Robotics — Safety requirements Part 1: Industrial robots: "
-        "https://www.iso.org/standard/73933.html",
-        ["R1"],
+        "G4 AutoGPT project (autonomous task completion): "
+        "https://github.com/Significant-Gravitas/AutoGPT",
+        ["G4"],
     ),
     (
-        "R2 ISO 10218-2: Robotics — Safety requirements Part 2: Industrial robot applications and robot cells: "
-        "https://www.iso.org/standard/73934.html",
-        ["R2"],
+        "G5 Whisper ASR (WER performance): https://arxiv.org/abs/2212.04356",
+        ["G5"],
     ),
     (
-        "R3 NIST IR 8093 - Tools for Robotics in SME Workcells (Calibration & Registration): "
-        "https://www.nist.gov/publications/tools-robotics-sme-workcells-challenges-and-approaches-calibration-and-registration",
-        ["R3"],
+        "G6 DocVQA benchmark: https://www.docvqa.org/",
+        ["G6"],
     ),
     (
-        "S1 OSHA 29 CFR 1910.212 - General requirements for all machines (machine guarding): "
-        "https://www.osha.gov/laws-regs/regulations/standardnumber/1910/1910.212",
-        ["S1"],
+        "G7 Spider Text-to-SQL benchmark: https://yale-lily.github.io/spider",
+        ["G7"],
     ),
     (
-        "C1 NCRA - What is Court Reporting?: https://www.ncra.org/home/the-profession/Court-Reporting",
-        ["C1"],
-    ),
-    (
-        "C2 NCRA - Code of Professional Ethics (COPE) Guidelines: "
-        "https://www.ncra.org/home/the-profession/NCRA-Code-of-Professional-Ethics/cope---guidelines-for-professional-practice",
-        ["C2"],
-    ),
-    (
-        "C3 NCRA - Certified Realtime Captioner (CRC): "
-        "https://www.ncra.org/certification/NCRA-Certifications/certified-realtime-captioner",
-        ["C3"],
+        "G8 ImageNet benchmark (vision recognition performance): https://www.image-net.org/",
+        ["G8"],
     ),
 ]
 
@@ -104,133 +92,147 @@ def build_dimension_profiles() -> List[DimensionProfile]:
     return [
         DimensionProfile(
             dim_id="D1",
-            name="Systems Integration / Controls Engineering",
-            description="System integration, controls design, robotics programming, and integration testing.",
+            name="Engineering Problem Solving",
+            description=(
+                "Apply engineering knowledge to analyze and resolve technical issues "
+                "(debugging, maintenance, technical support)."
+            ),
             exemplar_phrases=(
-                "integrate robotic systems",
-                "configure control systems",
-                "robot cell integration",
+                "diagnose technical issues",
+                "troubleshoot system faults",
+                "provide technical support",
             ),
             default_s=0.5,
-            default_c=0.75,
-            sources=("O1", "R2", "R3"),
+            default_c=0.85,
+            sources=("G1",),
         ),
         DimensionProfile(
             dim_id="D2",
-            name="Field Commissioning / Troubleshooting",
-            description="On-site testing, calibration, diagnostics, maintenance, and fault isolation.",
-            exemplar_phrases=(
-                "commission equipment",
-                "diagnose failures",
-                "calibrate sensors",
+            name="Data Analysis and Evaluation",
+            description=(
+                "Analyze sensor or numerical data and evaluate results against standards "
+                "(quality checks, data monitoring)."
             ),
-            default_s=0.25,
+            exemplar_phrases=(
+                "analyze sensor data",
+                "evaluate quality metrics",
+                "monitor data streams",
+            ),
+            default_s=0.3,
             default_c=0.5,
-            sources=("O1", "R3"),
+            sources=("G1",),
         ),
         DimensionProfile(
             dim_id="D3",
-            name="Automation Software / PLC Programming",
-            description="Programming automation scripts, PLC logic, HMI interfaces, and control code.",
-            exemplar_phrases=(
-                "program PLC logic",
-                "develop automation scripts",
-                "configure HMI",
+            name="Algorithmic Programming and Automation",
+            description=(
+                "Write and fix code/scripts to implement requirements "
+                "(software development, automation workflows)."
             ),
-            default_s=0.75,
-            default_c=0.75,
-            sources=("O1", "R3"),
+            exemplar_phrases=(
+                "write automation scripts",
+                "debug software code",
+                "implement algorithms",
+            ),
+            default_s=0.9,
+            default_c=0.7,
+            sources=("G1", "G2", "G3"),
         ),
         DimensionProfile(
             dim_id="D4",
-            name="Safety / Regulatory Compliance",
-            description="Safety procedures, risk assessments, and regulatory compliance for operations.",
-            exemplar_phrases=(
-                "enforce safety procedures",
-                "risk assessments",
-                "regulatory compliance",
+            name="Field Perception and Physical Operations",
+            description=(
+                "Perceive physical environments and operate equipment on-site "
+                "(inspection, safety checks, device calibration)."
             ),
-            default_s=0.25,
+            exemplar_phrases=(
+                "inspect physical equipment",
+                "perform on-site checks",
+                "calibrate devices",
+            ),
+            default_s=0.1,
             default_c=0.5,
-            sources=("S1", "R1", "R2"),
+            sources=("G4", "G8"),
         ),
         DimensionProfile(
             dim_id="D5",
-            name="Scheduling / Resource Coordination",
-            description="Shift planning, workload scheduling, and resource allocation.",
-            exemplar_phrases=(
-                "schedule staff",
-                "allocate resources",
-                "plan shifts",
+            name="Planning and Process Scheduling",
+            description=(
+                "Plan tasks and optimize sequences and resource allocation "
+                "(scheduling, progress management)."
             ),
-            default_s=0.5,
+            exemplar_phrases=(
+                "schedule work activities",
+                "allocate resources",
+                "optimize task sequences",
+            ),
+            default_s=0.6,
             default_c=0.5,
-            sources=("O2",),
+            sources=("G4",),
         ),
         DimensionProfile(
             dim_id="D6",
-            name="Supervision / Communication / Training",
-            description="Supervise teams, coordinate work, train staff, and communicate updates.",
-            exemplar_phrases=(
-                "supervise workers",
-                "train staff",
-                "coordinate work",
+            name="Collaboration, Communication, and Training",
+            description=(
+                "Communicate and coordinate with people, provide training, "
+                "and facilitate cross-team collaboration."
             ),
-            default_s=0.25,
+            exemplar_phrases=(
+                "train staff",
+                "coordinate teams",
+                "communicate procedures",
+            ),
+            default_s=0.3,
             default_c=0.75,
-            sources=("O2",),
+            sources=("G1",),
         ),
         DimensionProfile(
             dim_id="D7",
-            name="Documentation / QA / Reporting",
-            description="Maintain records, produce reports, quality checks, and documentation.",
-            exemplar_phrases=(
-                "maintain records",
-                "prepare reports",
-                "quality assurance",
+            name="Supervision and Quality Control",
+            description=(
+                "Supervise work performance and ensure outputs meet standards "
+                "(performance management, QA)."
             ),
-            default_s=0.5,
-            default_c=0.75,
-            sources=("O2", "O3"),
+            exemplar_phrases=(
+                "review work quality",
+                "monitor performance",
+                "conduct quality checks",
+            ),
+            default_s=0.68,
+            default_c=0.68,
+            sources=("G1",),
         ),
         DimensionProfile(
             dim_id="D8",
-            name="Realtime Transcription / ASR Editing",
-            description="Realtime transcription, captioning, and correction of ASR output.",
-            exemplar_phrases=(
-                "real-time transcription",
-                "captioning services",
-                "edit ASR output",
+            name="Language Understanding and Text Generation",
+            description=(
+                "Understand spoken or written language and generate accurate written content "
+                "(transcription, writing, translation)."
             ),
-            default_s=0.75,
+            exemplar_phrases=(
+                "transcribe audio",
+                "generate written reports",
+                "translate documents",
+            ),
+            default_s=0.9,
             default_c=0.5,
-            sources=("O3", "C1", "C3"),
+            sources=("G5", "G1"),
         ),
         DimensionProfile(
             dim_id="D9",
-            name="Legal Procedure / Court Protocol",
-            description="Legal terminology, courtroom procedures, confidentiality, and official record-keeping.",
-            exemplar_phrases=(
-                "courtroom procedures",
-                "legal terminology",
-                "official record",
+            name="Information Management and Retrieval",
+            description=(
+                "Organize information and retrieve it accurately on demand "
+                "(record management, query answering)."
             ),
-            default_s=0.25,
-            default_c=0.5,
-            sources=("O3", "C2"),
-        ),
-        DimensionProfile(
-            dim_id="D10",
-            name="Client / Stakeholder Service",
-            description="Interact with judges, attorneys, clients, and stakeholders; service coordination.",
             exemplar_phrases=(
-                "liaise with clients",
-                "coordinate with stakeholders",
-                "service coordination",
+                "manage records",
+                "retrieve documents",
+                "answer database queries",
             ),
-            default_s=0.5,
-            default_c=0.5,
-            sources=("O2", "O3"),
+            default_s=0.3,
+            default_c=0.3,
+            sources=("G6", "G7"),
         ),
     ]
 
@@ -240,27 +242,36 @@ def write_sources_md(path: Path) -> None:
     lines = [
         "# Authoritative Sources Domain Pack",
         "",
-        "## Occupational Base Sources (O*NET)",
+        "## Core LLM Benchmarks",
         " - " + AUTHORITATIVE_SOURCES[0][0],
         " - " + AUTHORITATIVE_SOURCES[1][0],
         " - " + AUTHORITATIVE_SOURCES[2][0],
         "",
-        "## Robotics / Systems Integration / Safety",
+        "## Agent Autonomy / Task Completion",
         " - " + AUTHORITATIVE_SOURCES[3][0],
+        "",
+        "## Speech and Vision Perception",
         " - " + AUTHORITATIVE_SOURCES[4][0],
+        " - " + AUTHORITATIVE_SOURCES[7][0],
+        "",
+        "## Information Retrieval and Structured Query",
         " - " + AUTHORITATIVE_SOURCES[5][0],
         " - " + AUTHORITATIVE_SOURCES[6][0],
-        "",
-        "## Court Reporting / Realtime Captioning / Ethics",
-        " - " + AUTHORITATIVE_SOURCES[7][0],
-        " - " + AUTHORITATIVE_SOURCES[8][0],
-        " - " + AUTHORITATIVE_SOURCES[9][0],
         "",
     ]
     path.write_text("\n".join(lines), encoding="utf-8")
 
 
-def _hash_embedding(texts: Sequence[str], dim: int = 128) -> np.ndarray:
+def _hash_embedding(texts: Sequence[str], dim: int = 128):
+    if np is None:
+        vectors = [[0.0 for _ in range(dim)] for _ in range(len(texts))]
+        for i, text in enumerate(texts):
+            tokens = re.findall(r"[a-z0-9]+", text.lower())
+            for token in tokens:
+                digest = hashlib.md5(token.encode("utf-8")).hexdigest()
+                idx = int(digest, 16) % dim
+                vectors[i][idx] += 1.0
+        return _normalize_vectors(vectors)
     vectors = np.zeros((len(texts), dim), dtype=np.float32)
     for i, text in enumerate(texts):
         tokens = re.findall(r"[a-z0-9]+", text.lower())
@@ -271,7 +282,15 @@ def _hash_embedding(texts: Sequence[str], dim: int = 128) -> np.ndarray:
     return _normalize_vectors(vectors)
 
 
-def _normalize_vectors(vectors: np.ndarray) -> np.ndarray:
+def _normalize_vectors(vectors):
+    if np is None:
+        normed = []
+        for row in vectors:
+            norm = sum(val * val for val in row) ** 0.5
+            if norm == 0:
+                norm = 1.0
+            normed.append([val / norm for val in row])
+        return normed
     norms = np.linalg.norm(vectors, axis=1, keepdims=True)
     norms[norms == 0] = 1.0
     return vectors / norms
@@ -295,6 +314,8 @@ def embed_texts(
     if backend == "hash":
         return _hash_embedding(texts), "hash"
     if backend == "sentence_transformers":
+        if np is None:
+            raise RuntimeError("numpy not available; install numpy or set SC_EMBEDDING_BACKEND=hash")
         try:
             model = _get_sentence_model(model_name)
         except Exception as exc:  # pragma: no cover - runtime dependency
@@ -304,6 +325,8 @@ def embed_texts(
         embeddings = model.encode(list(texts), normalize_embeddings=True)
         return np.asarray(embeddings, dtype=np.float32), "sentence_transformers"
     if backend == "tfidf":
+        if np is None:
+            raise RuntimeError("numpy not available; install numpy or set SC_EMBEDDING_BACKEND=hash")
         try:
             from sklearn.feature_extraction.text import TfidfVectorizer
         except Exception as exc:  # pragma: no cover - runtime dependency
@@ -332,7 +355,9 @@ def build_dimension_texts(dimensions: Sequence[DimensionProfile]) -> List[str]:
     return texts
 
 
-def cosine_similarity_matrix(a: np.ndarray, b: np.ndarray) -> np.ndarray:
+def cosine_similarity_matrix(a, b):
+    if np is None:
+        return [[sum(x * y for x, y in zip(row, col)) for col in b] for row in a]
     return np.matmul(a, b.T)
 
 
@@ -381,13 +406,23 @@ def snap_to_levels(value: float) -> float:
     return min(ALLOWED_LEVELS, key=lambda x: abs(x - value))
 
 
+def _apply_strength(value: float, strength: float) -> float:
+    scale = 0.6 + 0.8 * max(0.0, min(1.0, strength))
+    adjusted = 0.5 + (value - 0.5) * scale
+    return max(0.0, min(1.0, adjusted))
+
+
 def assign_sc(
     dims: Sequence[DimensionProfile],
     weights: Sequence[float],
-) -> Tuple[float, float, float, float]:
+    scores: Sequence[float],
+) -> Tuple[float, float, float, float, float]:
     raw_s = sum(d.default_s * w for d, w in zip(dims, weights))
     raw_c = sum(d.default_c * w for d, w in zip(dims, weights))
-    return snap_to_levels(raw_s), snap_to_levels(raw_c), raw_s, raw_c
+    strength = sum(score * w for score, w in zip(scores, weights)) if scores else 0.0
+    adj_s = _apply_strength(raw_s, strength)
+    adj_c = _apply_strength(raw_c, strength)
+    return snap_to_levels(adj_s), snap_to_levels(adj_c), raw_s, raw_c, strength
 
 
 def compute_mu_task(c_val: float, s_val: float) -> str:
@@ -401,6 +436,7 @@ def build_evidence_note(
     weights: Optional[Sequence[float]],
     final_s: float,
     final_c: float,
+    strength: float,
 ) -> str:
     dim_ids = ",".join(d.dim_id for d in dims)
     sim_parts = ",".join(f"{dim_id}:{score:.2f}" for dim_id, score in similarity_triplet)
@@ -417,6 +453,7 @@ def build_evidence_note(
         f"{weight_text}"
         f"s={final_s:.2f};"
         f"c={final_c:.2f};"
+        f"strength={strength:.2f};"
         f"sources={source_text}"
     )
 
@@ -468,13 +505,18 @@ def relabel_task_rows(
 
     for idx, row in enumerate(rows):
         task_text = task_texts[idx]
-        emb_scores = sim_matrix[idx].tolist()
+        emb_scores = sim_matrix[idx]
+        if hasattr(emb_scores, "tolist"):
+            emb_scores = emb_scores.tolist()
         score_values, fuzzy_ok = compute_similarity_scores(task_text, dim_texts, emb_scores)
         if not fuzzy_ok:
             fuzzy_available = False
         selected_idx, weights, used_two = select_dimensions(dim_ids, score_values)
         selected_dims = [dimensions[i] for i in selected_idx]
-        final_s, final_c, raw_s, raw_c = assign_sc(selected_dims, weights)
+        selected_scores = [score_values[i] for i in selected_idx]
+        final_s, final_c, raw_s, raw_c, strength = assign_sc(
+            selected_dims, weights, selected_scores
+        )
 
         top3 = sorted(
             [(dim_ids[i], score_values[i]) for i in range(len(dim_ids))],
@@ -482,7 +524,12 @@ def relabel_task_rows(
             reverse=True,
         )[:3]
         evidence_note = build_evidence_note(
-            selected_dims, top3, weights if used_two else None, final_s, final_c
+            selected_dims,
+            top3,
+            weights if used_two else None,
+            final_s,
+            final_c,
+            strength,
         )
         dims_text = ",".join(d.dim_id for d in selected_dims)
         sim_text = ",".join(f"{dim_id}:{score:.2f}" for dim_id, score in top3)
@@ -616,20 +663,26 @@ def plot_distribution(rows: Sequence[Dict[str, str]], output_path: Path) -> Opti
     s_counts = [s_vals.count(level) for level in levels]
     c_counts = [c_vals.count(level) for level in levels]
 
-    fig, ax = plt.subplots(figsize=(8.2, 5.2), dpi=300)
-    width = 0.35
+    fig, ax = plt.subplots(figsize=(6.6, 4.4), dpi=300)
+    width = 0.34
     x = np.arange(len(levels))
-    ax.bar(x - width / 2, s_counts, width, label="s counts", color="#A7BFD9")
-    ax.bar(x + width / 2, c_counts, width, label="c counts", color="#C9B59A")
+    ax.bar(x - width / 2, s_counts, width, label="s counts", color="#C9D6E6")
+    ax.bar(x + width / 2, c_counts, width, label="c counts", color="#D8CBBE")
     ax.plot(x, s_counts, color="#6B7280", marker="o", linestyle="--", label="s trend")
-    ax.plot(x, c_counts, color="#8B7A63", marker="o", linestyle="--", label="c trend")
+    ax.plot(x, c_counts, color="#8A7A6A", marker="o", linestyle="--", label="c trend")
     ax.set_xticks(x)
     ax.set_xticklabels([f"{lvl:.2f}" for lvl in levels])
-    ax.set_xlabel("s / c levels")
-    ax.set_ylabel("Task count")
-    ax.set_title("Authoritative s,c distribution")
-    ax.grid(axis="y", linestyle="--", alpha=0.35)
-    ax.legend()
+    ax.set_facecolor("#FBFBFB")
+    ax.set_xlabel("s / c levels", fontsize=11)
+    ax.set_ylabel("Task count", fontsize=11)
+    ax.set_title("Authoritative s,c distribution", fontsize=11)
+    ax.grid(axis="y", linestyle="--", alpha=0.22)
+    ax.legend(frameon=False, fontsize=8)
+    ax.tick_params(axis="both", labelsize=10)
+    for spine in ["top", "right"]:
+        ax.spines[spine].set_visible(False)
+    for spine in ["left", "bottom"]:
+        ax.spines[spine].set_color("#D1D5DB")
 
     max_count = max(s_counts + c_counts) if s_counts or c_counts else 0
     if max_count > 0:

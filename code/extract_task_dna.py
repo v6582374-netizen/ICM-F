@@ -216,17 +216,24 @@ def plot_weights_if_available(rows: List[Dict[str, str]], output_path: Path) -> 
 
     data.sort(key=lambda x: x[2], reverse=True)
     im_vals, fr_vals, w_vals, c_vals, s_vals, labels = zip(*data)
-    size_scale = 2400.0
-    sizes = [max(50.0, w * size_scale) for w in w_vals]
-    edge_widths = [0.6 + 1.0 * s for s in s_vals]
+    max_w = max(w_vals)
+    min_w = min(w_vals)
+    if max_w > min_w:
+        norm_w = [(w - min_w) / (max_w - min_w) for w in w_vals]
+    else:
+        norm_w = [0.5 for _ in w_vals]
+    size_exp = 1.7
+    min_size = 140.0
+    max_size = 2600.0
+    sizes = [min_size + (n ** size_exp) * (max_size - min_size) for n in norm_w]
+    edge_widths = [0.9 + 1.3 * s for s in s_vals]
 
     letters = list(string.ascii_uppercase)
-    tag_list = []
-    for i in range(len(labels)):
-        tag_list.append(letters[i % len(letters)])
+    tag_list = [letters[i % len(letters)] for i in range(len(labels))]
 
-    fig = plt.figure(figsize=(10.5, 6.6), dpi=300)
-    gs = fig.add_gridspec(1, 2, width_ratios=[1.35, 1.0])
+    fig = plt.figure(figsize=(8.6, 5.4), dpi=300)
+    fig.set_constrained_layout(True)
+    gs = fig.add_gridspec(1, 2, width_ratios=[1.55, 1.0], wspace=0.06)
     ax = fig.add_subplot(gs[0, 0])
     ax_text = fig.add_subplot(gs[0, 1])
 
@@ -235,8 +242,8 @@ def plot_weights_if_available(rows: List[Dict[str, str]], output_path: Path) -> 
         fr_vals,
         s=sizes,
         c=c_vals,
-        cmap="BuGn",
-        alpha=0.65,
+        cmap="GnBu",
+        alpha=0.78,
         edgecolors="#6B7280",
         linewidths=edge_widths,
     )
@@ -248,39 +255,79 @@ def plot_weights_if_available(rows: List[Dict[str, str]], output_path: Path) -> 
             (x, y),
             textcoords="offset points",
             xytext=(dx, dy),
-            fontsize=8,
+            fontsize=9.5,
             color="#1F2937",
             weight="bold",
         )
-    ax.set_xlabel("Importance (IM, 1-5)")
-    ax.set_ylabel("Frequency rating (FR, expected FT category)")
-    ax.grid(axis="both", linestyle="--", alpha=0.25)
-    ax.set_xlim(1.0, 5.0)
-    ax.set_ylim(1.0, 7.0)
+    ax.set_facecolor("#FBFBFB")
+    ax.set_xlabel("Importance (IM, 1-5)", fontsize=11)
+    ax.set_ylabel("Frequency rating (FR, expected FT category)", fontsize=11)
+    ax.grid(axis="both", linestyle="--", alpha=0.22)
+    for spine in ["top", "right"]:
+        ax.spines[spine].set_visible(False)
+    for spine in ["left", "bottom"]:
+        ax.spines[spine].set_color("#D1D5DB")
+    if len(im_vals) >= 2 and len(fr_vals) >= 2:
+        x_min, x_max = min(im_vals), max(im_vals)
+        y_min, y_max = min(fr_vals), max(fr_vals)
+        x_pad = max(0.18, 0.10 * (x_max - x_min))
+        y_pad = max(0.18, 0.10 * (y_max - y_min))
+        ax.set_xlim(x_min - x_pad, x_max + x_pad)
+        ax.set_ylim(y_min - y_pad, y_max + y_pad)
     if len(im_vals) >= 2:
         coeffs = np.polyfit(im_vals, fr_vals, 1)
         x_line = np.linspace(min(im_vals), max(im_vals), 100)
         y_line = coeffs[0] * x_line + coeffs[1]
         ax.plot(x_line, y_line, color="#64748B", linestyle="--", linewidth=1.0, label="trend")
-    cbar = fig.colorbar(scatter, ax=ax, pad=0.02)
-    cbar.set_label("Complementarity c (rule-based)")
-    ax.legend(loc="lower right", frameon=False, fontsize=8)
+    cbar = fig.colorbar(scatter, ax=ax, pad=0.02, fraction=0.05)
+    cbar.set_label("Complementarity c (rule-based)", fontsize=9.5)
+    cbar.ax.tick_params(labelsize=8.5)
+    ax.legend(loc="lower right", frameon=False, fontsize=8.5)
+    ax.tick_params(axis="both", labelsize=10)
 
+    ax_text.set_facecolor("#FBFBFB")
     ax_text.axis("off")
-    ax_text.set_title("Task Text Legend (sorted by weight w)", fontsize=9, color="#111827")
-    y = 0.98
-    line_step = 0.055
+    ax_text.set_title(
+        "Task Text Legend (sorted by weight w)",
+        fontsize=10.2,
+        color="#111827",
+        loc="left",
+        pad=6,
+    )
+    entries = []
     for tag, label, im_v, fr_v, w_v in zip(tag_list, labels, im_vals, fr_vals, w_vals):
-        wrapped = textwrap.fill(
-            f"{tag}. {label} (IM={im_v:.2f}, FR={fr_v:.2f}, w={w_v:.3f})",
-            width=42,
+        entries.append(
+            f"{tag}. {label} (IM={im_v:.2f}, FR={fr_v:.2f}, w={w_v:.3f})"
         )
-        ax_text.text(0.0, y, wrapped, ha="left", va="top", fontsize=7.6, color="#374151")
-        y -= line_step * (wrapped.count("\n") + 1)
-        if y < 0.05:
-            break
+    mid = (len(entries) + 1) // 2
+    left_entries = entries[:mid]
+    right_entries = entries[mid:]
 
-    fig.tight_layout()
+    wrap_width = 42
+
+    def _column_line_count(items: List[str]) -> int:
+        return sum(max(1, len(textwrap.wrap(item, width=wrap_width))) for item in items)
+
+    def _draw_column(items: List[str], x_pos: float) -> None:
+        total_lines = _column_line_count(items)
+        line_step = min(0.078, 0.90 / max(total_lines, 1))
+        y = 0.98
+        for item in items:
+            wrapped = textwrap.fill(item, width=wrap_width)
+            ax_text.text(
+                x_pos,
+                y,
+                wrapped,
+                ha="left",
+                va="top",
+                fontsize=9.2,
+                color="#374151",
+            )
+            y -= line_step * (wrapped.count("\n") + 1)
+
+    _draw_column(left_entries, 0.02)
+    _draw_column(right_entries, 0.52)
+
     output_path.parent.mkdir(parents=True, exist_ok=True)
     fig.savefig(output_path, dpi=300)
     max_idx = int(w_vals.index(max(w_vals))) if w_vals else None

@@ -1,26 +1,25 @@
 {
-  "input_csv": "data/processed/task_dna_27-3092.00.csv",
+  "input_csv": "/Users/shiwen/Downloads/ICM-FORMAL/data/processed/task_dna_27-3092.00.csv",
   "output_csv": "data/processed/task_dna_27-3092.00_authoritative_sc.csv",
   "rows": 14,
   "dim_counts": {
-    "D1": 2,
+    "D1": 0,
     "D2": 1,
-    "D3": 1,
+    "D3": 0,
     "D4": 0,
-    "D5": 1,
-    "D6": 3,
-    "D7": 1,
-    "D8": 0,
-    "D9": 4,
-    "D10": 1
+    "D5": 0,
+    "D6": 0,
+    "D7": 2,
+    "D8": 5,
+    "D9": 6
   },
-  "low_confidence_count": 10,
+  "low_confidence_count": 9,
   "thresholds": {
     "sim_threshold": 0.35,
     "two_dim_threshold": 0.45,
     "two_dim_gap": 0.08
   },
-  "embedding_backend": "hash",
+  "embedding_backend": "sentence_transformers",
   "embedding_model": "sentence-transformers/all-MiniLM-L6-v2",
   "fuzzy_available": true,
   "weight_stats": {
@@ -29,8 +28,10 @@
     "w_max": 0.097478
   },
   "allowed_levels": [
-    0.25,
+    0.1,
+    0.3,
     0.5,
-    0.75
+    0.7,
+    0.9
   ]
 }

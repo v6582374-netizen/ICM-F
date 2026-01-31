@@ -1,21 +1,21 @@
-task_id,task_text,IM,FR,w,s,c,evidence_note
-16517,Process or interpret signals or sensor data.,4.0400,4.3216,0.069000,0.25,0.50,"dims=D2;sim=[D2:0.23,D5:0.21,D9:0.13];s=0.25;c=0.50;sources=O1|R3"
-16509,"Supervise technologists, technicians, or other engineers.",3.7600,4.3077,0.064011,0.25,0.50,"dims=D9;sim=[D9:0.21,D6:0.18,D2:0.12];s=0.25;c=0.50;sources=C2|O3"
-16511,Provide technical support for robotic systems.,3.8100,4.0771,0.061390,0.50,0.75,"dims=D1;sim=[D1:0.35,D2:0.19,D3:0.14];s=0.50;c=0.75;sources=O1|R2|R3"
-16521,Debug robotics programs.,3.9200,3.9165,0.060675,0.50,0.75,"dims=D1;sim=[D1:0.15,D6:0.03,D3:0.03];s=0.50;c=0.75;sources=O1|R2|R3"
-16512,"Review or approve designs, calculations, or cost estimates.",4.1100,3.6785,0.059750,0.25,0.50,"dims=D9;sim=[D9:0.26,D5:0.22,D1:0.20];s=0.25;c=0.50;sources=C2|O3"
-16516,Create back-ups of robot programs or parameters.,3.8500,3.6539,0.055595,0.50,0.50,"dims=D5;sim=[D5:0.22,D6:0.21,D1:0.14];s=0.50;c=0.50;sources=O2"
-21057,"Build, configure, or test robots or robotic applications.",3.8900,3.6073,0.055456,0.50,0.75,"dims=D1;sim=[D1:0.20,D5:0.14,D3:0.13];s=0.50;c=0.75;sources=O1|R2|R3"
-16520,"Install, calibrate, operate, or maintain robots.",3.6800,3.6000,0.052357,0.50,0.75,"dims=D7;sim=[D7:0.19,D5:0.18,D3:0.15];s=0.50;c=0.75;sources=O2|O3"
-21058,Evaluate robotic systems or prototypes.,3.6800,3.4000,0.049448,0.50,0.75,"dims=D1;sim=[D1:0.27,D9:0.16,D2:0.12];s=0.50;c=0.75;sources=O1|R2|R3"
-16528,"Design software to control robotic systems for applications, such as military defense or manufacturing.",3.7500,3.3335,0.049403,0.50,0.75,"dims=D1;sim=[D1:0.37,D2:0.27,D6:0.24];s=0.50;c=0.75;sources=O1|R2|R3"
-16523,Conduct research on robotic technology to create new robotic systems or system capabilities.,3.7400,3.2309,0.047755,0.25,0.50,"dims=D2;sim=[D2:0.34,D1:0.25,D9:0.20];s=0.25;c=0.50;sources=O1|R3"
-16514,"Document robotic application development, maintenance, or changes.",3.6000,3.2000,0.045528,0.50,0.50,"dims=D5;sim=[D5:0.24,D2:0.20,D6:0.17];s=0.50;c=0.50;sources=O2"
-16510,"Integrate robotics with peripherals, such as welders, controllers, or other equipment.",3.6900,3.1153,0.045431,0.25,0.50,"dims=D9;sim=[D9:0.33,D10:0.17,D2:0.15];s=0.25;c=0.50;sources=C2|O3"
-16515,Write algorithms or programming code for ad hoc robotic applications.,3.4100,3.2274,0.043494,0.50,0.75,"dims=D1;sim=[D1:0.22,D5:0.21,D3:0.18];s=0.50;c=0.75;sources=O1|R2|R3"
-16530,"Design robotic systems, such as automatic vehicle control, autonomous vehicles, advanced displays, advanced sensing, robotic platforms, computer vision, or telematics systems.",3.7800,2.8260,0.042217,0.50,0.75,"dims=D1;sim=[D1:0.39,D2:0.25,D7:0.17];s=0.50;c=0.75;sources=O1|R2|R3"
-16518,Plan mobile robot paths and teach path plans to robots.,3.3200,3.2000,0.041987,0.25,0.50,"dims=D9;sim=[D9:0.39,D5:0.30,D2:0.26];s=0.25;c=0.50;sources=C2|O3"
-16519,Investigate mechanical failures or unexpected maintenance problems.,3.7100,2.8277,0.041460,0.25,0.50,"dims=D2;sim=[D2:0.19,D7:0.18,D5:0.11];s=0.25;c=0.50;sources=O1|R3"
-16525,"Conduct research into the feasibility, design, operation, or performance of robotic mechanisms, components, or systems, such as planetary rovers, multiple mobile robots, reconfigurable robots, or man-machine interactions.",3.6100,2.8259,0.040317,0.50,0.75,"dims=D1;sim=[D1:0.29,D9:0.23,D3:0.22];s=0.50;c=0.75;sources=O1|R2|R3"
-16522,Design end-of-arm tooling.,3.7900,2.6817,0.040167,0.25,0.75,"dims=D6;sim=[D6:0.38,D10:0.15,D2:0.11];s=0.25;c=0.75;sources=O2"
-16513,Make system device lists or event timing charts.,3.1800,2.7500,0.034560,0.75,0.75,"dims=D3;sim=[D3:0.13,D6:0.10,D5:0.10];s=0.75;c=0.75;sources=O1|R3"
+task_id,task_text,IM,FR,w,s,c,mu_task,evidence_note,dims,sim,sources
+16517,Process or interpret signals or sensor data.,4.0400,4.3216,0.069000,0.30,0.50,0.20,"dims=D2;sim=[D2:0.57,D4:0.48,D6:0.31];s=0.30;c=0.50;strength=0.57;sources=G1",D2,"D2:0.57,D4:0.48,D6:0.31",G1
+16509,"Supervise technologists, technicians, or other engineers.",3.7600,4.3077,0.064011,0.50,0.90,0.40,"dims=D1;sim=[D1:0.41,D7:0.40,D4:0.32];s=0.50;c=0.90;strength=0.41;sources=G1",D1,"D1:0.41,D7:0.40,D4:0.32",G1
+16511,Provide technical support for robotic systems.,3.8100,4.0771,0.061390,0.10,0.50,0.40,"dims=D4;sim=[D4:0.34,D6:0.31,D1:0.31];s=0.10;c=0.50;strength=0.34;sources=G4|G8",D4,"D4:0.34,D6:0.31,D1:0.31",G4|G8
+16521,Debug robotics programs.,3.9200,3.9165,0.060675,0.90,0.70,-0.20,"dims=D3;sim=[D3:0.38,D1:0.26,D4:0.26];s=0.90;c=0.70;strength=0.38;sources=G1|G2|G3",D3,"D3:0.38,D1:0.26,D4:0.26",G1|G2|G3
+16512,"Review or approve designs, calculations, or cost estimates.",4.1100,3.6785,0.059750,0.70,0.70,0.00,"dims=D7;sim=[D7:0.36,D2:0.33,D5:0.28];s=0.70;c=0.70;strength=0.36;sources=G1",D7,"D7:0.36,D2:0.33,D5:0.28",G1
+16516,Create back-ups of robot programs or parameters.,3.8500,3.6539,0.055595,0.90,0.70,-0.20,"dims=D3;sim=[D3:0.39,D5:0.26,D4:0.22];s=0.90;c=0.70;strength=0.39;sources=G1|G2|G3",D3,"D3:0.39,D5:0.26,D4:0.22",G1|G2|G3
+21057,"Build, configure, or test robots or robotic applications.",3.8900,3.6073,0.055456,0.90,0.70,-0.20,"dims=D3;sim=[D3:0.39,D4:0.38,D5:0.32];s=0.90;c=0.70;strength=0.39;sources=G1|G2|G3",D3,"D3:0.39,D4:0.38,D5:0.32",G1|G2|G3
+16520,"Install, calibrate, operate, or maintain robots.",3.6800,3.6000,0.052357,0.10,0.50,0.40,"dims=D4;sim=[D4:0.42,D7:0.30,D2:0.29];s=0.10;c=0.50;strength=0.42;sources=G4|G8",D4,"D4:0.42,D7:0.30,D2:0.29",G4|G8
+21058,Evaluate robotic systems or prototypes.,3.6800,3.4000,0.049448,0.10,0.50,0.40,"dims=D4;sim=[D4:0.44,D2:0.30,D3:0.28];s=0.10;c=0.50;strength=0.44;sources=G4|G8",D4,"D4:0.44,D2:0.30,D3:0.28",G4|G8
+16528,"Design software to control robotic systems for applications, such as military defense or manufacturing.",3.7500,3.3335,0.049403,0.90,0.70,-0.20,"dims=D3;sim=[D3:0.35,D4:0.27,D5:0.23];s=0.90;c=0.70;strength=0.35;sources=G1|G2|G3",D3,"D3:0.35,D4:0.27,D5:0.23",G1|G2|G3
+16523,Conduct research on robotic technology to create new robotic systems or system capabilities.,3.7400,3.2309,0.047755,0.90,0.70,-0.20,"dims=D3;sim=[D3:0.33,D4:0.28,D6:0.26];s=0.90;c=0.70;strength=0.33;sources=G1|G2|G3",D3,"D3:0.33,D4:0.28,D6:0.26",G1|G2|G3
+16514,"Document robotic application development, maintenance, or changes.",3.6000,3.2000,0.045528,0.90,0.70,-0.20,"dims=D3;sim=[D3:0.35,D9:0.31,D8:0.29];s=0.90;c=0.70;strength=0.35;sources=G1|G2|G3",D3,"D3:0.35,D9:0.31,D8:0.29",G1|G2|G3
+16510,"Integrate robotics with peripherals, such as welders, controllers, or other equipment.",3.6900,3.1153,0.045431,0.10,0.50,0.40,"dims=D4;sim=[D4:0.40,D3:0.33,D6:0.31];s=0.10;c=0.50;strength=0.40;sources=G4|G8",D4,"D4:0.40,D3:0.33,D6:0.31",G4|G8
+16515,Write algorithms or programming code for ad hoc robotic applications.,3.4100,3.2274,0.043494,0.90,0.70,-0.20,"dims=D3;sim=[D3:0.53,D6:0.31,D5:0.30];s=0.90;c=0.70;strength=0.53;sources=G1|G2|G3",D3,"D3:0.53,D6:0.31,D5:0.30",G1|G2|G3
+16530,"Design robotic systems, such as automatic vehicle control, autonomous vehicles, advanced displays, advanced sensing, robotic platforms, computer vision, or telematics systems.",3.7800,2.8260,0.042217,0.90,0.70,-0.20,"dims=D3;sim=[D3:0.44,D4:0.35,D5:0.33];s=0.90;c=0.70;strength=0.44;sources=G1|G2|G3",D3,"D3:0.44,D4:0.35,D5:0.33",G1|G2|G3
+16518,Plan mobile robot paths and teach path plans to robots.,3.3200,3.2000,0.041987,0.50,0.50,0.00,"dims=D5;sim=[D5:0.34,D6:0.28,D3:0.28];s=0.50;c=0.50;strength=0.34;sources=G4",D5,"D5:0.34,D6:0.28,D3:0.28",G4
+16519,Investigate mechanical failures or unexpected maintenance problems.,3.7100,2.8277,0.041460,0.50,0.90,0.40,"dims=D1;sim=[D1:0.32,D7:0.29,D4:0.29];s=0.50;c=0.90;strength=0.32;sources=G1",D1,"D1:0.32,D7:0.29,D4:0.29",G1
+16525,"Conduct research into the feasibility, design, operation, or performance of robotic mechanisms, components, or systems, such as planetary rovers, multiple mobile robots, reconfigurable robots, or man-machine interactions.",3.6100,2.8259,0.040317,0.10,0.50,0.40,"dims=D4;sim=[D4:0.37,D3:0.34,D6:0.30];s=0.10;c=0.50;strength=0.37;sources=G4|G8",D4,"D4:0.37,D3:0.34,D6:0.30",G4|G8
+16522,Design end-of-arm tooling.,3.7900,2.6817,0.040167,0.10,0.50,0.40,"dims=D4;sim=[D4:0.19,D7:0.18,D5:0.17];s=0.10;c=0.50;strength=0.19;sources=G4|G8",D4,"D4:0.19,D7:0.18,D5:0.17",G4|G8
+16513,Make system device lists or event timing charts.,3.1800,2.7500,0.034560,0.30,0.50,0.20,"dims=D2;sim=[D2:0.26,D4:0.23,D5:0.21];s=0.30;c=0.50;strength=0.26;sources=G1",D2,"D2:0.26,D4:0.23,D5:0.21",G1

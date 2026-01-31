@@ -19,7 +19,7 @@
 Q_i(t) &:\ \text{职业 } i \text{ 的整体功能输出需求指数},\\
 \ell_{ij}(t) &:\ \text{任务 } j \text{ 的劳动强度（单位输出的人力努力）},\\
 w_{ij}(t) &:\ \text{时变任务劳动份额（任务结构）},\\
-D_{ij}(t) &:\ \text{任务 } j \text{ 的人力劳动需求指数}。
+D_{ij}(t) &:\ \text{任务 } j \text{ 的人力劳动需求指数}
 \end{align*}
 直观上，$s_{ij}$ 控制人力努力对任务变得不必要的速度（自动化渠道），而 $c_{ij}$ 控制整体功能需求可以扩张的程度（规模化渠道）。这些是不同的机制，不会强制抵消。
 
@@ -156,56 +156,6 @@ $\delta$ & 例如 $0.10$--$0.30$ & 任务份额漂移阈值（JS散度） \\
 \subsection{可视化方案}
 \label{sec:viz_plan}
 本节定义展示任务结构变化和重新定义证据所需的图表。
-
-\subsubsection{任务DNA与权威s,c分布（三职业）}
-\label{sec:task_dna_viz}
-为确保任务级建模输入可追溯，我们展示三职业的基线任务权重分布（IM--FR 散点，点面积为 $w$）以及权威重标注后的 $s,c$ 档位分布。这些图表对应已确认的三条职业：17-2199.08（机器人工程师）、49-1011.00（一线主管：机械/安装/维修）、27-3092.00（法庭速录与字幕）。
-相应图示见图~\ref{fig:task_dna_17_pair}--\ref{fig:task_dna_27_pair}。
-
-\paragraph{职业 17-2199.08：机器人工程师。}
-\begin{figure}[ht]
-\centering
-\begin{minipage}{0.48\linewidth}
-    \centering
-    \includegraphics[width=\linewidth]{figures/task_dna_17-2199.08_weights.pdf}
-\end{minipage}\hfill
-\begin{minipage}{0.48\linewidth}
-    \centering
-    \includegraphics[width=\linewidth]{figures/task_dna_17-2199.08_authoritative_sc_distribution.pdf}
-\end{minipage}
-\caption{职业 17-2199.08 的任务DNA与权威 $s,c$ 分布。（a）任务DNA权重分布：IM--FR 散点图，点面积与 $w$ 成正比；（b）权威 $s,c$ 档位分布。}
-\label{fig:task_dna_17_pair}
-\end{figure}
-
-\paragraph{职业 49-1011.00：一线主管（机械/安装/维修）。}
-\begin{figure}[ht]
-\centering
-\begin{minipage}{0.48\linewidth}
-    \centering
-    \includegraphics[width=\linewidth]{figures/task_dna_49-1011.00_weights.pdf}
-\end{minipage}\hfill
-\begin{minipage}{0.48\linewidth}
-    \centering
-    \includegraphics[width=\linewidth]{figures/task_dna_49-1011.00_authoritative_sc_distribution.pdf}
-\end{minipage}
-\caption{职业 49-1011.00 的任务DNA与权威 $s,c$ 分布。（a）任务DNA权重分布：IM--FR 散点图，点面积与 $w$ 成正比；（b）权威 $s,c$ 档位分布。}
-\label{fig:task_dna_49_pair}
-\end{figure}
-
-\paragraph{职业 27-3092.00：法庭速录与字幕。}
-\begin{figure}[ht]
-\centering
-\begin{minipage}{0.48\linewidth}
-    \centering
-    \includegraphics[width=\linewidth]{figures/task_dna_27-3092.00_weights.pdf}
-\end{minipage}\hfill
-\begin{minipage}{0.48\linewidth}
-    \centering
-    \includegraphics[width=\linewidth]{figures/task_dna_27-3092.00_authoritative_sc_distribution.pdf}
-\end{minipage}
-\caption{职业 27-3092.00 的任务DNA与权威 $s,c$ 分布。（a）任务DNA权重分布：IM--FR 散点图，点面积与 $w$ 成正比；（b）权威 $s,c$ 档位分布。}
-\label{fig:task_dna_27_pair}
-\end{figure}
 
 \subsubsection{图表模板}
 \label{sec:fig_templates}

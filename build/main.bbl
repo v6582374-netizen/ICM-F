@@ -1,28 +1,22 @@
-\begin{thebibliography}{15}
+\begin{thebibliography}{17}
 \providecommand{\natexlab}[1]{#1}
 \providecommand{\url}[1]{\texttt{#1}}
 \expandafter\ifx\csname urlstyle\endcsname\relax
   \providecommand{\doi}[1]{doi: #1}\else
   \providecommand{\doi}{doi: \begingroup \urlstyle{rm}\Url}\fi
 
-\bibitem[Alshahwan et~al.(2024)]{arxiv2024unittest}
-Nadia Alshahwan et~al.
-\newblock {Automated Unit Test Generation using Large Language Models at Meta}.
-\newblock \emph{arXiv preprint arXiv:2409.03093}, 2024.
-\newblock URL \url{https://arxiv.org/abs/2409.03093}.
+\bibitem[Chen et~al.(2021)]{openaicodex2021}
+Mark Chen et~al.
+\newblock {Evaluating Large Language Models Trained on Code}.
+\newblock \emph{arXiv preprint arXiv:2107.03374}, 2021.
+\newblock URL \url{https://arxiv.org/abs/2107.03374}.
 \newblock Accessed January 30, 2026.
 
-\bibitem[{Anthropic}(2023)]{anthropic2023claude2}
-{Anthropic}.
-\newblock {Claude 2 Model Card}, 2023.
-\newblock URL \url{https://www.anthropic.com/claude-2-model-card}.
-\newblock Accessed January 30, 2026.
-
-\bibitem[Chen et~al.(2023)Chen, Lin, Sch{\"a}rli, and Zhou]{chen2023selfdebugging}
-Xinyun Chen, Maxwell Lin, Nathanael Sch{\"a}rli, and Denny Zhou.
-\newblock {Teaching Large Language Models to Self-Debug}.
-\newblock \emph{arXiv preprint arXiv:2304.05128}, 2023.
-\newblock URL \url{https://arxiv.org/abs/2304.05128}.
+\bibitem[Deng et~al.(2009)]{imagenet2009}
+Jia Deng et~al.
+\newblock {ImageNet: A Large-Scale Hierarchical Image Database}.
+\newblock \emph{Proceedings of the IEEE Conference on Computer Vision and Pattern Recognition}, 2009.
+\newblock URL \url{https://www.image-net.org/}.
 \newblock Accessed January 30, 2026.
 
 \bibitem[Frey and Osborne(2017)]{freyosborne2017}
@@ -32,11 +26,11 @@ Carl~Benedikt Frey and Michael~A. Osborne.
 \newblock URL \url{https://www.oxfordmartin.ox.ac.uk/downloads/academic/future-of-employment.pdf}.
 \newblock Accessed January 30, 2026.
 
-\bibitem[{Google Research}(2024)]{googleresearch2024seqmodels}
-{Google Research}.
-\newblock {Large Sequence Models for Software Development Activities}.
-\newblock Google Research Blog, 2024.
-\newblock URL \url{https://research.google/blog/large-sequence-models-for-software-development-activities/}.
+\bibitem[Matias et~al.(2017)]{docvqa2017}
+Jon Matias et~al.
+\newblock {DocVQA: A Dataset for Visual Question Answering on Document Images}.
+\newblock In \emph{Proceedings of the IEEE International Conference on Computer Vision Workshops}, 2017.
+\newblock URL \url{https://www.docvqa.org/}.
 \newblock Accessed January 30, 2026.
 
 \bibitem[{O*NET OnLine}(2025{\natexlab{a}})]{onetEmail}
@@ -94,11 +88,30 @@ Carl~Benedikt Frey and Michael~A. Osborne.
 \newblock URL \url{https://cdn.openai.com/papers/gpt-4.pdf}.
 \newblock Accessed January 30, 2026.
 
-\bibitem[Wiggers(2025)]{techcrunch2025aimodels}
-Kyle Wiggers.
-\newblock {AI Models Still Struggle to Debug Software, Microsoft Study Shows}.
-\newblock TechCrunch, 2025.
-\newblock URL \url{https://techcrunch.com/2025/04/10/ai-models-still-struggle-to-debug-software-microsoft-study-shows/}.
+\bibitem[Radford et~al.(2022)]{whisper2022}
+Alec Radford et~al.
+\newblock {Robust Speech Recognition via Large-Scale Weak Supervision}.
+\newblock \emph{arXiv preprint arXiv:2212.04356}, 2022.
+\newblock URL \url{https://arxiv.org/abs/2212.04356}.
+\newblock Accessed January 30, 2026.
+
+\bibitem[{Significant Gravitas}(2023)]{autogpt2023}
+{Significant Gravitas}.
+\newblock {AutoGPT: An Autonomous GPT-4 Experiment}, 2023.
+\newblock URL \url{https://github.com/Significant-Gravitas/AutoGPT}.
+\newblock Accessed January 30, 2026.
+
+\bibitem[{SWE-bench}(2024)]{swebench2024}
+{SWE-bench}.
+\newblock {SWE-bench: A Benchmark for Software Issue Resolution}, 2024.
+\newblock URL \url{https://www.swe-bench.com/}.
+\newblock Accessed January 30, 2026.
+
+\bibitem[Yu et~al.(2018)]{spider2018}
+Tao Yu et~al.
+\newblock {Spider: A Large-Scale Human-Labeled Dataset for Complex and Cross-Domain Semantic Parsing and Text-to-SQL Task}.
+\newblock In \emph{Proceedings of the 2018 Conference on Empirical Methods in Natural Language Processing}, 2018.
+\newblock URL \url{https://yale-lily.github.io/spider}.
 \newblock Accessed January 30, 2026.
 
 \end{thebibliography}

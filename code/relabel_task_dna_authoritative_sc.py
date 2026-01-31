@@ -1,16 +1,18 @@
 #!/usr/bin/env python3
 """
-Relabel (s, c) for task_dna_15-1252.csv using authoritative capability evidence,
+Relabel (s, c) for task_dna_{soc}.csv using authoritative capability evidence,
 semantic matching, and tiered rubric. No keyword heuristics are used for scoring.
 """
 from __future__ import annotations
 
+from argparse import ArgumentParser
 import csv
 import hashlib
 import json
 import os
 import re
 from dataclasses import dataclass
+from decimal import Decimal, ROUND_HALF_UP
 from pathlib import Path
 from typing import Dict, List, Optional, Sequence, Tuple
 
@@ -23,12 +25,7 @@ except Exception:  # pragma: no cover - optional dependency
 
 
 INPUT_CSV = Path("data/processed/task_dna_15-1252.csv")
-OUTPUT_CSV = Path("data/processed/task_dna_15-1252_authoritative_sc.csv")
-SOURCES_MD = Path("data/processed/authoritative_sc_sources.md")
-ANOMALY_MD = Path("data/processed/task_dna_15-1252_authoritative_anomaly_report.md")
-SUMMARY_JSON = Path("data/processed/task_dna_15-1252_authoritative_summary.json")
-SUMMARY_XML = Path("data/processed/task_dna_15-1252_authoritative_summary.xml")
-FIG_PATH = Path("figures/task_dna_15-1252_authoritative_sc_distribution.pdf")
+SOURCES_MD = Path("data/processed/authoritative_sc_sources_domainpack.md")
 
 DEFAULT_MODEL_NAME = "sentence-transformers/all-MiniLM-L6-v2"
 ALLOWED_LEVELS = (0.25, 0.5, 0.75)
@@ -39,32 +36,53 @@ TWO_DIM_GAP = 0.08
 
 AUTHORITATIVE_SOURCES = [
     (
-        "S1 OpenAI GPT-4 Technical Report (HumanEval etc.): https://arxiv.org/pdf/2303.08774.pdf",
+        "O1 O*NET Summary - Robotics Engineers (17-2199.08): "
+        "https://www.onetonline.org/link/summary/17-2199.08",
+        ["O1"],
+    ),
+    (
+        "O2 O*NET Summary - First-Line Supervisors of Mechanics, Installers, and Repairers (49-1011.00): "
+        "https://www.onetonline.org/link/summary/49-1011.00",
+        ["O2"],
+    ),
+    (
+        "O3 O*NET Summary - Court Reporters and Simultaneous Captioners (27-3092.00): "
+        "https://www.onetonline.org/link/summary/27-3092.00",
+        ["O3"],
+    ),
+    (
+        "R1 ISO 10218-1: Robotics — Safety requirements Part 1: Industrial robots: "
+        "https://www.iso.org/standard/73933.html",
+        ["R1"],
+    ),
+    (
+        "R2 ISO 10218-2: Robotics — Safety requirements Part 2: Industrial robot applications and robot cells: "
+        "https://www.iso.org/standard/73934.html",
+        ["R2"],
+    ),
+    (
+        "R3 NIST IR 8093 - Tools for Robotics in SME Workcells (Calibration & Registration): "
+        "https://www.nist.gov/publications/tools-robotics-sme-workcells-challenges-and-approaches-calibration-and-registration",
+        ["R3"],
+    ),
+    (
+        "S1 OSHA 29 CFR 1910.212 - General requirements for all machines (machine guarding): "
+        "https://www.osha.gov/laws-regs/regulations/standardnumber/1910/1910.212",
         ["S1"],
     ),
     (
-        "S2 Anthropic Claude 2 announcement (HumanEval 71.2%): https://www.anthropic.com/news/claude-2",
-        ["S2"],
+        "C1 NCRA - What is Court Reporting?: https://www.ncra.org/home/the-profession/Court-Reporting",
+        ["C1"],
     ),
     (
-        "S3 Anthropic Claude 2 Model Card (PDF): https://www-cdn.anthropic.com/bd2a28d2535bfb0494cc8e2a3bf135d2e7523226/Model-Card-Claude-2.pdf",
-        ["S3"],
+        "C2 NCRA - Code of Professional Ethics (COPE) Guidelines: "
+        "https://www.ncra.org/home/the-profession/NCRA-Code-of-Professional-Ethics/cope---guidelines-for-professional-practice",
+        ["C2"],
     ),
     (
-        "S4 Microsoft Research Debug-gym blog: https://www.microsoft.com/en-us/research/blog/debug-gym-an-environment-for-ai-coding-tools-to-learn-how-to-debug-code-like-programmers/",
-        ["S4"],
-    ),
-    (
-        "S5 IBM Research ASTER blog: https://research.ibm.com/blog/aster-llm-unit-testing",
-        ["S5"],
-    ),
-    (
-        "S6 IBM Research ASTER publication page: https://research.ibm.com/publications/aster-natural-and-multi-language-unit-test-generation-with-llms",
-        ["S6"],
-    ),
-    (
-        "(Optional) OpenAI GPT-4 research page: https://openai.com/index/gpt-4-research/",
-        ["S7"],
+        "C3 NCRA - Certified Realtime Captioner (CRC): "
+        "https://www.ncra.org/certification/NCRA-Certifications/certified-realtime-captioner",
+        ["C3"],
     ),
 ]
 
@@ -86,103 +104,160 @@ def build_dimension_profiles() -> List[DimensionProfile]:
     return [
         DimensionProfile(
             dim_id="D1",
-            name="Code Generation / Implementation",
-            description="Writing new code, implementing features, producing code artifacts.",
+            name="Systems Integration / Controls Engineering",
+            description="System integration, controls design, robotics programming, and integration testing.",
             exemplar_phrases=(
-                "implement new features",
-                "write source code",
-                "create software components",
+                "integrate robotic systems",
+                "configure control systems",
+                "robot cell integration",
             ),
-            default_s=0.75,
+            default_s=0.5,
             default_c=0.75,
-            sources=("S1", "S2"),
+            sources=("O1", "R2", "R3"),
         ),
         DimensionProfile(
             dim_id="D2",
-            name="Code Modification / Refactoring",
-            description="Modify existing software, adapt to hardware, upgrade interfaces, performance improvements.",
+            name="Field Commissioning / Troubleshooting",
+            description="On-site testing, calibration, diagnostics, maintenance, and fault isolation.",
             exemplar_phrases=(
-                "modify existing software",
-                "refactor modules",
-                "optimize performance",
+                "commission equipment",
+                "diagnose failures",
+                "calibrate sensors",
             ),
-            default_s=0.5,
-            default_c=0.75,
-            sources=("S1", "S2"),
+            default_s=0.25,
+            default_c=0.5,
+            sources=("O1", "R3"),
         ),
         DimensionProfile(
             dim_id="D3",
-            name="Testing / Validation / Documentation-as-code",
-            description="Unit tests, validation procedures, generating test scaffolds, test-driven verification.",
+            name="Automation Software / PLC Programming",
+            description="Programming automation scripts, PLC logic, HMI interfaces, and control code.",
             exemplar_phrases=(
-                "unit test generation",
-                "validation procedures",
-                "test harness creation",
+                "program PLC logic",
+                "develop automation scripts",
+                "configure HMI",
             ),
-            default_s=0.5,
+            default_s=0.75,
             default_c=0.75,
-            sources=("S5", "S6"),
+            sources=("O1", "R3"),
         ),
         DimensionProfile(
             dim_id="D4",
-            name="Debugging / Issue Resolving / Tool-using repair",
-            description="Finding root cause, fixing bugs, using debuggers, resolving repo issues.",
+            name="Safety / Regulatory Compliance",
+            description="Safety procedures, risk assessments, and regulatory compliance for operations.",
             exemplar_phrases=(
-                "debug software defects",
-                "resolve errors",
-                "trace root cause",
+                "enforce safety procedures",
+                "risk assessments",
+                "regulatory compliance",
             ),
             default_s=0.25,
             default_c=0.5,
-            sources=("S4",),
+            sources=("S1", "R1", "R2"),
         ),
         DimensionProfile(
             dim_id="D5",
-            name="Requirements & Feasibility Analysis",
-            description="Analyze user needs, feasibility within cost/time, define standards.",
+            name="Scheduling / Resource Coordination",
+            description="Shift planning, workload scheduling, and resource allocation.",
             exemplar_phrases=(
-                "analyze requirements",
-                "feasibility assessment",
-                "define standards",
+                "schedule staff",
+                "allocate resources",
+                "plan shifts",
             ),
-            default_s=0.25,
+            default_s=0.5,
             default_c=0.5,
-            sources=("S1", "S3"),
+            sources=("O2",),
         ),
         DimensionProfile(
             dim_id="D6",
-            name="Communication / Reporting / Coordination / Training",
-            description="Prepare reports, confer with stakeholders, coordinate installation, train users, supervision.",
+            name="Supervision / Communication / Training",
+            description="Supervise teams, coordinate work, train staff, and communicate updates.",
             exemplar_phrases=(
-                "prepare reports",
-                "coordinate installation",
-                "train users",
+                "supervise workers",
+                "train staff",
+                "coordinate work",
             ),
-            default_s=0.5,
+            default_s=0.25,
             default_c=0.75,
-            sources=("S3",),
+            sources=("O2",),
         ),
         DimensionProfile(
             dim_id="D7",
-            name="Monitoring / Operations",
-            description="Monitor equipment/system functioning, ensure conformance with specs.",
+            name="Documentation / QA / Reporting",
+            description="Maintain records, produce reports, quality checks, and documentation.",
             exemplar_phrases=(
-                "monitor system performance",
-                "ensure conformance",
-                "operations monitoring",
+                "maintain records",
+                "prepare reports",
+                "quality assurance",
+            ),
+            default_s=0.5,
+            default_c=0.75,
+            sources=("O2", "O3"),
+        ),
+        DimensionProfile(
+            dim_id="D8",
+            name="Realtime Transcription / ASR Editing",
+            description="Realtime transcription, captioning, and correction of ASR output.",
+            exemplar_phrases=(
+                "real-time transcription",
+                "captioning services",
+                "edit ASR output",
+            ),
+            default_s=0.75,
+            default_c=0.5,
+            sources=("O3", "C1", "C3"),
+        ),
+        DimensionProfile(
+            dim_id="D9",
+            name="Legal Procedure / Court Protocol",
+            description="Legal terminology, courtroom procedures, confidentiality, and official record-keeping.",
+            exemplar_phrases=(
+                "courtroom procedures",
+                "legal terminology",
+                "official record",
             ),
             default_s=0.25,
             default_c=0.5,
-            sources=("S4",),
+            sources=("O3", "C2"),
+        ),
+        DimensionProfile(
+            dim_id="D10",
+            name="Client / Stakeholder Service",
+            description="Interact with judges, attorneys, clients, and stakeholders; service coordination.",
+            exemplar_phrases=(
+                "liaise with clients",
+                "coordinate with stakeholders",
+                "service coordination",
+            ),
+            default_s=0.5,
+            default_c=0.5,
+            sources=("O2", "O3"),
         ),
     ]
 
 
 def write_sources_md(path: Path) -> None:
     path.parent.mkdir(parents=True, exist_ok=True)
-    lines = [line for line, _ in AUTHORITATIVE_SOURCES]
-    content = "\n".join(lines) + "\n"
-    path.write_text(content, encoding="utf-8")
+    lines = [
+        "# Authoritative Sources Domain Pack",
+        "",
+        "## Occupational Base Sources (O*NET)",
+        " - " + AUTHORITATIVE_SOURCES[0][0],
+        " - " + AUTHORITATIVE_SOURCES[1][0],
+        " - " + AUTHORITATIVE_SOURCES[2][0],
+        "",
+        "## Robotics / Systems Integration / Safety",
+        " - " + AUTHORITATIVE_SOURCES[3][0],
+        " - " + AUTHORITATIVE_SOURCES[4][0],
+        " - " + AUTHORITATIVE_SOURCES[5][0],
+        " - " + AUTHORITATIVE_SOURCES[6][0],
+        "",
+        "## Court Reporting / Realtime Captioning / Ethics",
+        " - " + AUTHORITATIVE_SOURCES[7][0],
+        " - " + AUTHORITATIVE_SOURCES[8][0],
+        " - " + AUTHORITATIVE_SOURCES[9][0],
+        "",
+    ]
+    path.write_text("\n".join(lines), encoding="utf-8")
 
 
 def _hash_embedding(texts: Sequence[str], dim: int = 128) -> np.ndarray:
@@ -315,6 +390,11 @@ def assign_sc(
     return snap_to_levels(raw_s), snap_to_levels(raw_c), raw_s, raw_c
 
 
+def compute_mu_task(c_val: float, s_val: float) -> str:
+    mu_task = Decimal(str(c_val)) - Decimal(str(s_val))
+    return f"{mu_task.quantize(Decimal('0.01'), rounding=ROUND_HALF_UP):.2f}"
+
+
 def build_evidence_note(
     dims: Sequence[DimensionProfile],
     similarity_triplet: Sequence[Tuple[str, float]],
@@ -404,12 +484,16 @@ def relabel_task_rows(
         evidence_note = build_evidence_note(
             selected_dims, top3, weights if used_two else None, final_s, final_c
         )
+        dims_text = ",".join(d.dim_id for d in selected_dims)
+        sim_text = ",".join(f"{dim_id}:{score:.2f}" for dim_id, score in top3)
+        sources_text = "|".join(sorted({src for d in selected_dims for src in d.sources}))
 
         if top3[0][1] < SIM_THRESHOLD:
             anomalies.append(
                 {
                     "task_id": row["task_id"],
                     "task_text": task_text,
+                    "w": row["w"],
                     "top_dim": top3[0][0],
                     "top_score": f"{top3[0][1]:.2f}",
                     "second_dim": top3[1][0],
@@ -420,10 +504,20 @@ def relabel_task_rows(
         for dim in selected_dims:
             dim_counts[dim.dim_id] += 1
 
-        updated_row = dict(row)
-        updated_row["s"] = f"{final_s:.2f}"
-        updated_row["c"] = f"{final_c:.2f}"
-        updated_row["evidence_note"] = evidence_note
+        updated_row = {
+            "task_id": row["task_id"],
+            "task_text": row["task_text"],
+            "IM": row["IM"],
+            "FR": row["FR"],
+            "w": row["w"],
+            "s": f"{final_s:.2f}",
+            "c": f"{final_c:.2f}",
+            "mu_task": compute_mu_task(final_c, final_s),
+            "evidence_note": evidence_note,
+            "dims": dims_text,
+            "sim": sim_text,
+            "sources": sources_text,
+        }
         updated.append(updated_row)
 
     weights = [float(r["w"]) for r in rows]
@@ -448,11 +542,11 @@ def write_anomaly_report(path: Path, anomalies: Sequence[Dict[str, str]]) -> Non
         lines.append("No low-confidence matches were detected.")
         path.write_text("\n".join(lines) + "\n", encoding="utf-8")
         return
-    lines.append("| task_id | task_text | top_dim | top_score | second_dim | second_score |")
-    lines.append("|---|---|---:|---:|---:|---:|")
+    lines.append("| task_id | w | task_text | top_dim | top_score | second_dim | second_score |")
+    lines.append("|---|---:|---|---:|---:|---:|---:|")
     for item in anomalies:
         lines.append(
-            f"| {item['task_id']} | {item['task_text']} | {item['top_dim']} | "
+            f"| {item['task_id']} | {item['w']} | {item['task_text']} | {item['top_dim']} | "
             f"{item['top_score']} | {item['second_dim']} | {item['second_score']} |"
         )
     lines.append("")
@@ -469,10 +563,12 @@ def write_summary_json(
     backend: str,
     model_name: str,
     fuzzy_available: bool,
+    output_csv: Path,
+    input_csv: Path,
 ) -> None:
     summary = {
-        "input_csv": str(INPUT_CSV),
-        "output_csv": str(OUTPUT_CSV),
+        "input_csv": str(input_csv),
+        "output_csv": str(output_csv),
         "rows": len(rows),
         "dim_counts": dim_counts,
         "low_confidence_count": len(anomalies),
@@ -523,10 +619,10 @@ def plot_distribution(rows: Sequence[Dict[str, str]], output_path: Path) -> Opti
     fig, ax = plt.subplots(figsize=(8.2, 5.2), dpi=300)
     width = 0.35
     x = np.arange(len(levels))
-    ax.bar(x - width / 2, s_counts, width, label="s counts", color="#60A5FA")
-    ax.bar(x + width / 2, c_counts, width, label="c counts", color="#F59E0B")
-    ax.plot(x, s_counts, color="#1D4ED8", marker="o", linestyle="--", label="s trend")
-    ax.plot(x, c_counts, color="#B45309", marker="o", linestyle="--", label="c trend")
+    ax.bar(x - width / 2, s_counts, width, label="s counts", color="#A7BFD9")
+    ax.bar(x + width / 2, c_counts, width, label="c counts", color="#C9B59A")
+    ax.plot(x, s_counts, color="#6B7280", marker="o", linestyle="--", label="s trend")
+    ax.plot(x, c_counts, color="#8B7A63", marker="o", linestyle="--", label="c trend")
     ax.set_xticks(x)
     ax.set_xticklabels([f"{lvl:.2f}" for lvl in levels])
     ax.set_xlabel("s / c levels")
@@ -554,8 +650,25 @@ def plot_distribution(rows: Sequence[Dict[str, str]], output_path: Path) -> Opti
     return output_path
 
 
+def _derive_soc_code(input_csv: Path) -> str:
+    match = re.search(r"task_dna_([^_]+)\.csv", input_csv.name)
+    return match.group(1) if match else "unknown"
+
+
+def _paths_for_soc(soc_code: str) -> Dict[str, Path]:
+    return {
+        "output_csv": Path(f"data/processed/task_dna_{soc_code}_authoritative_sc.csv"),
+        "anomaly_md": Path(f"data/processed/task_dna_{soc_code}_authoritative_anomaly_report.md"),
+        "summary_json": Path(f"data/processed/task_dna_{soc_code}_authoritative_summary.json"),
+        "summary_xml": Path(f"data/processed/task_dna_{soc_code}_authoritative_summary.xml"),
+        "fig_path": Path(f"figures/task_dna_{soc_code}_authoritative_sc_distribution.pdf"),
+    }
+
+
 def run_pipeline(input_csv: Path) -> None:
     assert input_csv.exists(), f"Missing input file: {input_csv}"
+    soc_code = _derive_soc_code(input_csv)
+    outputs = _paths_for_soc(soc_code)
     rows = load_csv(input_csv)
     dimensions = build_dimension_profiles()
     backend = get_backend_from_env()
@@ -565,14 +678,23 @@ def run_pipeline(input_csv: Path) -> None:
         rows, dimensions, backend, model_name
     )
     write_sources_md(SOURCES_MD)
-    write_csv(OUTPUT_CSV, updated)
-    write_anomaly_report(ANOMALY_MD, anomalies)
+    write_csv(outputs["output_csv"], updated)
+    write_anomaly_report(outputs["anomaly_md"], anomalies)
     write_summary_json(
-        SUMMARY_JSON, updated, dim_counts, anomalies, w_stats, backend, model_name, fuzzy_available
+        outputs["summary_json"],
+        updated,
+        dim_counts,
+        anomalies,
+        w_stats,
+        backend,
+        model_name,
+        fuzzy_available,
+        outputs["output_csv"],
+        input_csv,
     )
-    summary = json.loads(SUMMARY_JSON.read_text(encoding="utf-8"))
-    write_summary_xml(SUMMARY_XML, summary)
-    plot_distribution(updated, FIG_PATH)
+    summary = json.loads(outputs["summary_json"].read_text(encoding="utf-8"))
+    write_summary_xml(outputs["summary_xml"], summary)
+    plot_distribution(updated, outputs["fig_path"])
 
 
 def _dummy_data_demo() -> None:
@@ -625,7 +747,11 @@ def _dummy_data_demo() -> None:
 
 if __name__ == "__main__":
     _dummy_data_demo()
-    if INPUT_CSV.exists():
-        run_pipeline(INPUT_CSV)
+    parser = ArgumentParser()
+    parser.add_argument("--input", default=str(INPUT_CSV))
+    args = parser.parse_args()
+    input_csv = Path(args.input)
+    if input_csv.exists():
+        run_pipeline(input_csv)
     else:
-        print(f"Input CSV not found: {INPUT_CSV}")
+        print(f"Input CSV not found: {input_csv}")

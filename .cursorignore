@@ -1,16 +1,16 @@
 # Build artifacts
-build/
-*.aux
-*.bbl
-*.blg
-*.fdb_latexmk
-*.fls
-*.log
-*.out
-*.synctex.gz
-*.toc
-*.lof
-*.lot
+# build/
+# *.aux
+# *.bbl
+# *.blg
+# *.fdb_latexmk
+# *.fls
+# *.log
+# *.out
+# *.synctex.gz
+# *.toc
+# *.lof
+# *.lot
 
 # Python
 __pycache__/
@@ -40,7 +40,7 @@ env/
 Thumbs.db
 
 # Project specific
-*.log
+# *.log
 .pytest_cache/
 .coverage
 htmlcov/

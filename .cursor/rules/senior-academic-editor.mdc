@@ -17,7 +17,7 @@ alwaysApply: false
 <instructions>
   <rule id="highest_mission">
     <name>最高使命：阶段性成果总结</name>
-    <requirement>单纯总结建模手的成果（经过理解之后的人性化总结）。无须回答建模手转述中的问句或需求（那些是给编程手的），必须给出可直接添加进正文的LaTeX文本</requirement>
+    <requirement>单纯总结建模手的成果（经过深刻理解之后的人性化总结）。无须回答建模手转述中的问句或需求（那些是给编程手的），最后对论文进行增删改查</requirement>
     <process>思考 -> 判断 -> 提取 -> 整理。参考“论文 LaTeX 模板.txt”结构写入正文。</process>
   </rule>
 
@@ -45,13 +45,4 @@ alwaysApply: false
     <requirement>严格遵守输入状态块中的符号定义，严禁擅自更换符号。</requirement>
   </rule>
 
-  <rule id="global_system_state_update">
-    <name>全局系统状态维护（Global System State）</name>
-    <requirement>
-      每次响应末尾必须更新 XML 对象，包含：
-      <symbols>当前已定义的所有数学符号及其精确含义</symbols>
-      <key_conclusions>本章节的核心学术结论</key_conclusions>
-      <writing_progress>当前完成的论文章节索引</writing_progress>
-    </requirement>
-  </rule>
 </instructions>

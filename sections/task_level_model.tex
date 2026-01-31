@@ -1,0 +1,274 @@
+\section{任务级功能需求模型与职业重新定义}
+\label{sec:task_level_model}
+
+\subsection{任务级功能需求模型（替代职业级岗位需求）}
+\subsubsection{建模目标与符号}
+\label{sec:notation}
+我们不预测职业级岗位数量，而是预测在GenAI采纳下职业的\emph{任务组成}如何演化，以及与每个任务相关的\emph{人力劳动需求}如何随时间变化。核心主张是，当一个职业的基线任务束中足够大的部分变得可忽略不计时，该职业的性质已经改变，应被重新定义（确切的新职位名称不是模型的核心）。
+
+考虑一个职业 $i$ 分解为任务 $j=1,\dots,J_i$。对于每个任务，我们假设以下输入已经通过任务DNA和权威重标记流程构建完成：
+\begin{itemize}
+  \item 基线任务权重 $w_{ij}(0)$，满足 $\sum_{j} w_{ij}(0)=1$。
+  \item 替代分数 $s_{ij}\in[0,1]$：GenAI能够在多大程度上减少任务 $j$ 的人力努力。
+  \item 增强分数 $c_{ij}\in[0,1]$：GenAI能够在多大程度上扩展与任务 $j$ 相关的\emph{功能}范围/需求。
+  \item 采纳曲线 $A(t)\in[0,1]$：时刻 $t$ 的GenAI采纳比例/强度（情景驱动）。
+\end{itemize}
+
+我们引入四个状态变量：
+\begin{align*}
+Q_i(t) &:\ \text{职业 } i \text{ 的整体功能输出需求指数},\\
+\ell_{ij}(t) &:\ \text{任务 } j \text{ 的劳动强度（单位输出的人力努力）},\\
+w_{ij}(t) &:\ \text{时变任务劳动份额（任务结构）},\\
+D_{ij}(t) &:\ \text{任务 } j \text{ 的人力劳动需求指数}。
+\end{align*}
+直观上，$s_{ij}$ 控制人力努力对任务变得不必要的速度（自动化渠道），而 $c_{ij}$ 控制整体功能需求可以扩张的程度（规模化渠道）。这些是不同的机制，不会强制抵消。
+
+\subsubsection{双渠道动力学：自动化与规模化}
+\label{sec:two_channel}
+
+\paragraph{(a) 自动化渠道：替代降低劳动强度。}
+我们假设随着GenAI采纳增加，替代分数更高的任务每单位输出所需的人力努力更少：
+\begin{equation}
+\label{eq:labor_intensity_ode}
+\frac{d \ln \ell_{ij}(t)}{dt} = -\kappa_s\,A(t)\,s_{ij}, \qquad \kappa_s>0.
+\end{equation}
+闭式解为
+\begin{equation}
+\label{eq:labor_intensity_closed}
+\ell_{ij}(t) = \exp\!\left(-\kappa_s s_{ij}\int_0^t A(\tau)\,d\tau\right).
+\end{equation}
+\noindent\textbf{参数含义（通俗语言）。} $\kappa_s$ 是\emph{替代速度系数}。更大的 $\kappa_s$ 意味着在相同的 $A(t)$ 和 $s_{ij}$ 下人力努力下降更快。
+
+\paragraph{(b) 任务结构更新：职业内部重新分配。}
+自动化改变了职业的内部组成。我们形成未归一化份额并重新归一化：
+\begin{equation}
+\label{eq:share_update}
+\tilde w_{ij}(t) = w_{ij}(0)\,\ell_{ij}(t), 
+\qquad
+w_{ij}(t)=\frac{\tilde w_{ij}(t)}{\sum_{k} \tilde w_{ik}(t)}.
+\end{equation}
+\noindent\textbf{解释。} 高度自动化的任务（小的 $\ell_{ij}(t)$）失去份额；剩余的人力劳动转移到更难替代的任务。
+
+\paragraph{(c) 规模化渠道（可选）：增强扩展整体功能需求。}
+为了捕捉生产力工具可能增加组织选择完成的工作总量这一可能性，我们建模整体功能需求指数：
+\begin{equation}
+\label{eq:Q_ode}
+\frac{d \ln Q_i(t)}{dt} = g_i + \kappa_c\,A(t)\,\bar c_i,
+\end{equation}
+其中
+\begin{equation}
+\label{eq:cbar}
+\bar c_i = \sum_{j} w_{ij}(0)\,c_{ij}.
+\end{equation}
+\noindent\textbf{参数含义（通俗语言）。} $g_i$ 是功能需求的基线（非GenAI）增长；如果想避免宏观假设，可设 $g_i=0$。$\kappa_c\ge 0$ 是\emph{增强对需求}的放大因子。$\bar c_i$ 总结了职业在基线组成下的增强潜力。（一种变体用 $w_{ij}(t)$ 替代 $w_{ij}(0)$；我们使用 \eqref{eq:cbar} 以简化和参数稳定性。）
+
+\paragraph{(d) 任务劳动需求指数。}
+我们通过当前任务结构将功能需求分配给任务：
+\begin{equation}
+\label{eq:D_def}
+D_{ij}(t) = Q_i(t)\,w_{ij}(t),
+\qquad
+\frac{D_{ij}(t)}{D_{ij}(0)}=\frac{Q_i(t)\,w_{ij}(t)}{w_{ij}(0)}.
+\end{equation}
+\noindent\textbf{解释。} 即使整体需求 $Q_i(t)$ 增长，如果任务份额 $w_{ij}(t)$ 因替代而崩溃，任务的人力需求仍可能缩减。
+
+\subsubsection{采纳情景 $A(t)$}
+\label{sec:adoption}
+我们使用简约、可解释的逻辑斯蒂族：
+\begin{equation}
+\label{eq:adoption_logistic}
+A(t) = \frac{1}{1+\exp\!\left(-k(t-t_0)\right)}.
+\end{equation}
+\noindent\textbf{参数含义（通俗语言）。} $k$ 控制陡峭程度（采纳加速的速度）。$t_0$ 是拐点时间，此时采纳达到50\%。我们通过选择三对 $(k,t_0)$ 定义三种情景（快速/中速/慢速）；这保持了驱动因子数量较少，同时支持敏感性比较。
+
+\subsubsection{职业重新定义触发器（工作本质变化）}
+\label{sec:redefinition}
+我们通过\emph{任务消亡}和\emph{任务结构漂移}形式化"工作本质变化"。两个标准中任一标准均可触发重新定义。
+
+\paragraph{(a) 消亡质量（任务需求变得可忽略不计）。}
+当任务的人力需求指数降至其基线的一小部分以下时，该任务被视为功能上可忽略不计：
+\begin{equation}
+\label{eq:extinction_rule}
+\frac{D_{ij}(t)}{D_{ij}(0)}<\varepsilon,
+\end{equation}
+其中 $\varepsilon\in(0,1)$（例如，$\varepsilon=0.05$）。定义基线加权的消亡质量：
+\begin{equation}
+\label{eq:Mdrop}
+M_{\text{drop}}(t)=\sum_{j:\,D_{ij}(t)/D_{ij}(0)<\varepsilon} w_{ij}(0).
+\end{equation}
+我们认为职业在本质上已改变，当且仅当
+\begin{equation}
+\label{eq:Mdrop_trigger}
+M_{\text{drop}}(t)\ge \theta,
+\end{equation}
+其中 $\theta\in(0,1)$（例如，$\theta=0.30$）是在触发重新定义之前必须变得可忽略不计的基线任务质量份额。
+
+\paragraph{(b) 任务结构漂移（分布变化）。}
+即使没有许多任务完全变得可忽略不计，如果职业的任务份额分布发生足够大的变化，该职业也可能在性质上变得不同。令 $w_i(t)$ 表示向量 $(w_{i1}(t),\dots,w_{iJ_i}(t))$。我们使用Jensen--Shannon散度作为对称、有界的漂移度量：
+\begin{equation}
+\label{eq:JS_trigger}
+\mathrm{JS}\!\left(w_i(t)\,\|\,w_i(0)\right) \ge \delta,
+\end{equation}
+其中 $\delta>0$ 是为稳健性选择的保守阈值。
+
+\noindent\textbf{触发时间。} 定义
+\begin{equation}
+\label{eq:tstar}
+t^*=\inf\left\{t:\ M_{\text{drop}}(t)\ge\theta\ \ \text{或}\ \ \mathrm{JS}(w_i(t)\|w_i(0))\ge\delta\right\}.
+\end{equation}
+我们报告 $t^*$ 是否存在于预测范围内，并将其用作职业应被重新定义的基于模型的证据。
+
+\subsubsection{计算算法（可重现流程）}
+\label{sec:algorithm}
+对于每个职业 $i$ 和每个采纳情景：
+\begin{enumerate}
+  \item 从 \eqref{eq:adoption_logistic} 计算 $A(t)$，以及累积采纳积分 $I(t)=\int_0^t A(\tau)d\tau$（数值求积）。
+  \item 使用 \eqref{eq:labor_intensity_closed} 计算劳动强度 $\ell_{ij}(t)$。
+  \item 通过 \eqref{eq:share_update} 更新任务份额 $w_{ij}(t)$。
+  \item 使用 \eqref{eq:Q_ode} 求解 $Q_i(t)$。如果避免宏观假设，设 $g_i=0$ 和 $\kappa_c=0$，使得 $Q_i(t)\equiv 1$。
+  \item 从 \eqref{eq:D_def} 计算任务劳动需求指数 $D_{ij}(t)$。
+  \item 评估重新定义标准 \eqref{eq:Mdrop_trigger} 和 \eqref{eq:JS_trigger}，如果存在则通过 \eqref{eq:tstar} 获得 $t^*$。
+\end{enumerate}
+
+\subsubsection{参数表（待实例化）}
+\label{sec:param_table}
+表~\ref{tab:params_task_model} 总结了需要指定的参数。我们优先考虑可解释性和低驱动因子数量。
+
+\begin{table}[ht]
+\centering
+\caption{任务级模型参数及通俗语言含义。}
+\label{tab:params_task_model}
+\begin{tabular}{lll}
+\hline
+参数 & 典型范围/设置 & 含义（通俗语言） \\
+\hline
+$k,\,t_0$ & 情景特定 & 采纳速度和50\%采纳时间 \\
+$\kappa_s$ & $>0$ & 替代降低人力努力的速度 \\
+$g_i$ & $0$（默认） & 基线功能需求增长（非GenAI） \\
+$\kappa_c$ & $0$ 或 $>0$ & 增强扩展总需求的强度 \\
+$\varepsilon$ & 例如 $0.05$ & "可忽略任务"阈值（基线的5\%） \\
+$\theta$ & 例如 $0.30$ & 重新定义职业所需的消亡质量 \\
+$\delta$ & 例如 $0.10$--$0.30$ & 任务份额漂移阈值（JS散度） \\
+\hline
+\end{tabular}
+\end{table}
+
+\subsection{可视化方案}
+\label{sec:viz_plan}
+本节定义展示任务结构变化和重新定义证据所需的图表。
+
+\subsubsection{任务DNA与权威s,c分布（三职业）}
+\label{sec:task_dna_viz}
+为确保任务级建模输入可追溯，我们展示三职业的基线任务权重分布（IM--FR 散点，点面积为 $w$）以及权威重标注后的 $s,c$ 档位分布。这些图表对应已确认的三条职业：17-2199.08（机器人工程师）、49-1011.00（一线主管：机械/安装/维修）、27-3092.00（法庭速录与字幕）。
+相应图示见图~\ref{fig:task_dna_17_weights}--\ref{fig:task_dna_27_sc}。
+
+\paragraph{职业 17-2199.08：机器人工程师。}
+\begin{figure}[ht]
+\centering
+\includegraphics[width=0.9\linewidth]{figures/task_dna_17-2199.08_weights.pdf}
+\caption{职业 17-2199.08 的任务DNA权重分布：IM--FR 散点图，点面积与 $w$ 成正比。}
+\label{fig:task_dna_17_weights}
+\end{figure}
+
+\begin{figure}[ht]
+\centering
+\includegraphics[width=0.8\linewidth]{figures/task_dna_17-2199.08_authoritative_sc_distribution.pdf}
+\caption{职业 17-2199.08 的权威 $s,c$ 档位分布。}
+\label{fig:task_dna_17_sc}
+\end{figure}
+
+\paragraph{职业 49-1011.00：一线主管（机械/安装/维修）。}
+\begin{figure}[ht]
+\centering
+\includegraphics[width=0.9\linewidth]{figures/task_dna_49-1011.00_weights.pdf}
+\caption{职业 49-1011.00 的任务DNA权重分布：IM--FR 散点图，点面积与 $w$ 成正比。}
+\label{fig:task_dna_49_weights}
+\end{figure}
+
+\begin{figure}[ht]
+\centering
+\includegraphics[width=0.8\linewidth]{figures/task_dna_49-1011.00_authoritative_sc_distribution.pdf}
+\caption{职业 49-1011.00 的权威 $s,c$ 档位分布。}
+\label{fig:task_dna_49_sc}
+\end{figure}
+
+\paragraph{职业 27-3092.00：法庭速录与字幕。}
+\begin{figure}[ht]
+\centering
+\includegraphics[width=0.9\linewidth]{figures/task_dna_27-3092.00_weights.pdf}
+\caption{职业 27-3092.00 的任务DNA权重分布：IM--FR 散点图，点面积与 $w$ 成正比。}
+\label{fig:task_dna_27_weights}
+\end{figure}
+
+\begin{figure}[ht]
+\centering
+\includegraphics[width=0.8\linewidth]{figures/task_dna_27-3092.00_authoritative_sc_distribution.pdf}
+\caption{职业 27-3092.00 的权威 $s,c$ 档位分布。}
+\label{fig:task_dna_27_sc}
+\end{figure}
+
+\subsubsection{图表模板}
+\label{sec:fig_templates}
+
+\paragraph{图1：采纳情景 $A(t)$。}
+\begin{figure}[ht]
+\centering
+% \includegraphics[width=0.85\linewidth]{figures/figA_adoption_scenarios.pdf}
+\caption{由 \eqref{eq:adoption_logistic} 定义的GenAI采纳情景 $A(t)$（快速/中速/慢速）。拐点时间 $t_0$ 标记50\%采纳。}
+\label{fig:adoption}
+\end{figure}
+
+\paragraph{图2：顶部任务的任务劳动需求轨迹。}
+\begin{figure}[ht]
+\centering
+% \includegraphics[width=0.95\linewidth]{figures/figB_task_demand_top_tasks.pdf}
+\caption{职业 $i$ 中基线权重最高的前 $K$ 个任务在各采纳情景下的相对任务劳动需求轨迹 $D_{ij}(t)/D_{ij}(0)$。此图直接显示哪些任务变得可忽略不计，哪些任务仍然核心。}
+\label{fig:task_demand_top}
+\end{figure}
+
+\paragraph{图3：任务结构漂移 $w_{ij}(t)$。}
+\begin{figure}[ht]
+\centering
+% \includegraphics[width=0.95\linewidth]{figures/figC_task_structure_drift.pdf}
+\caption{时变任务结构 $w_{ij}(t)$（堆叠面积图或热图）。此图可视化由 \eqref{eq:share_update} 驱动的替代引起的职业内部重新分配。}
+\label{fig:task_structure}
+\end{figure}
+
+\paragraph{图4：重新定义证据和触发时间 $t^*$。}
+\begin{figure}[ht]
+\centering
+% \includegraphics[width=0.95\linewidth]{figures/figD_redefinition_trigger.pdf}
+\caption{随时间的重新定义证据：消亡质量 $M_{\text{drop}}(t)$ 及阈值 $\theta$，以及（可选）$\mathrm{JS}(w_i(t)\|w_i(0))$ 及阈值 $\delta$。最早的交叉点在 \eqref{eq:tstar} 中定义 $t^*$。}
+\label{fig:redefinition_trigger}
+\end{figure}
+
+\subsection{敏感性与稳健性}
+\label{sec:sensitivity}
+
+\subsubsection{低置信度任务敏感性}
+\label{sec:low_conf_task}
+由于与权威评估维度的语义匹配较弱，某些任务可能具有低置信度的 $(s_{ij},c_{ij})$ 分配。对于每个标记的任务，我们运行两种有界敏感性情况：
+\begin{itemize}
+  \item \textbf{删除：} 从集合中移除该任务，并重新归一化剩余的 $w_{ij}(0)$。
+  \item \textbf{重新标记：} 保持 $w_{ij}(0)$，但用第二最佳可接受映射（或保守界限）替换 $(s_{ij},c_{ij})$。
+\end{itemize}
+我们报告以下变化：(i) 重新定义是否在范围内发生，(ii) 触发时间 $t^*$，以及 (iii) 消亡质量曲线 $M_{\text{drop}}(t)$。
+
+\subsubsection{关键参数敏感性}
+\label{sec:param_sens}
+我们仅变化最小、高杠杆的参数集以避免过拟合：
+\begin{itemize}
+  \item $\kappa_s$（替代速度）：慢速/中速/快速值。
+  \item $\kappa_c$（规模化开/关）：$\kappa_c=0$ 与正值。
+  \item 阈值 $(\varepsilon,\theta,\delta)$：保守与激进设置。
+\end{itemize}
+对于每种组合，我们总结定性结论的稳定性（哪些任务变得可忽略不计，以及是否/何时触发重新定义）。
+
+\subsection{输出摘要模板（每个职业）}
+\label{sec:output_template}
+对于每个职业和每个采纳情景，我们呈现：
+\begin{enumerate}
+  \item \textbf{任务需求结果：} 按 $D_{ij}(15)/D_{ij}(0)$ 排名的任务列表，突出显示低于 $\varepsilon$ 的任务。
+  \item \textbf{任务结构变化：} $w_{ij}(t)$ 的可视化以及漂移度量 $\mathrm{JS}(w_i(t)\|w_i(0))$。
+  \item \textbf{重新定义决策：} \eqref{eq:Mdrop_trigger} 或 \eqref{eq:JS_trigger} 中的标准是否满足，以及触发时间 $t^*$（如适用）。
+\end{enumerate}

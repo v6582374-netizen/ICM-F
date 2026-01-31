@@ -1,0 +1,92 @@
+%!TeX program = xelatex
+%!TeX encoding = UTF-8
+
+\documentclass{mcmthesis} % 核心文档类 
+\usepackage[fontset=fandol]{ctex}
+\mcmsetup{
+  tcn = {2621043},            % 修改为您的控制编号 
+  problem = {F},              % 参赛题号 (A, B, C, D, E, F) [5, 16]
+  sheet = true,               % 启用 Summary Sheet 自动生成 
+  titleinsheet = true,        % 在摘要页显示文章标题
+  keywordsinsheet = true,     % 在摘要页显示关键词
+  titlepage = false,          % 2026规则下不强制要求额外封面页 [17]
+  abstract = true             % 保持摘要环境可用
+}
+
+% --- 加载公认的权威学术宏包 ---
+\usepackage{newtxtext, newtxmath}
+\usepackage{amsmath, amsfonts, amssymb}
+\usepackage{graphicx}
+\usepackage{booktabs}
+\usepackage{longtable}
+\usepackage{float}
+\usepackage{listings}
+\usepackage{xcolor}
+\usepackage{enumitem}
+\usepackage{geometry}
+\usepackage{tocloft}
+\usepackage{helvet}
+\usepackage[labelfont={bf,sf}, font=normalsize]{caption}
+\usepackage{lastpage}
+\usepackage{setspace}
+\usepackage{amsthm}
+\usepackage[numbers]{natbib}
+\usepackage{hyperref}
+\newtheoremstyle{scplain}{}{}{\itshape}{}{\bfseries\scshape}{.}{.5em}{}
+\theoremstyle{scplain}
+\newtheorem{theorem}{Theorem}[section]
+\newlength{\figwidthsingle}
+\setlength{\figwidthsingle}{89mm}
+\newlength{\figwidthdouble}
+\setlength{\figwidthdouble}{183mm}
+\graphicspath{{./}}
+
+% --- 源代码高亮风格定义 ---
+\definecolor{codegreen}{rgb}{0,0.6,0}
+\lstset{
+  language=Python,
+  basicstyle=\small\ttfamily,
+  keywordstyle=\color{blue},
+  commentstyle=\color{codegreen},
+  stringstyle=\color{orange},
+  breaklines=true,
+  frame=single,
+  numbers=left,
+  showstringspaces=false
+}
+
+% --- 文档元数据 ---
+\title{复杂系统的优化建模与预测分析}
+\author{Team \# 2621043}
+\date{\today}
+
+\begin{document}
+
+\begin{abstract}
+\input{sections/abstract}
+\end{abstract}
+
+\maketitle
+\tableofcontents 
+\newpage
+
+\input{sections/introduction}
+\input{sections/assumptions}
+\input{sections/data_sources}
+\input{sections/model_construction}
+\input{sections/mechanistic_power_check}
+\input{sections/consistency_check}
+\input{sections/task_level_model}
+\input{sections/results_sensitivity}
+\input{sections/discussion}
+\input{sections/conclusion}
+
+\bibliographystyle{plainnat}
+\bibliography{references}
+
+\input{sections/appendices}
+
+\newpage
+\input{sections/ai_tools_report}
+
+\end{document}

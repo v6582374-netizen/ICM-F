@@ -1,0 +1,288 @@
+
+\section{模型构建与实现}
+
+\subsection{职业选择作为建模决策}
+
+问题的前提要求从STEM、技工和艺术领域各选择一个职业。
+我们没有将这一步骤视为临时假设（主观选择），而是明确地将职业选择建模为一个优化问题。
+这确保了后续关于AI驱动影响和教育建议的分析建立在可重现且数据驱动的框架之上。
+职业选择的核心目标不是所有职业的代表性，而是\emph{解释性对比}。
+具体而言，三个职业的任务结构应当在与GenAI的交互方式上存在显著差异。
+除了机制对比外，问题还明确强调数据驱动的推理以及后文的政策建议。因此，所选职业同时需要有完备的数据支撑以及政策相关性。
+
+\subsubsection{基于O*NET的职业特征参数客观化}
+
+为避免职业特征参数 $\textit{digit}(x)$、$\textit{physical}(x)$ 和 $\textit{iprisk}(x)$ 的主观赋值，我们采用美国劳工部维护的\textbf{O*NET}职业数据库作为统一数据源。
+O*NET基于专家调查和从业者反馈，为每个职业提供大量\emph{数值量表描述符}，大多数指标自然地给出在$0$--$100$之间的实数上，适合直接用于定量建模。
+
+我们不试图为每个维度找到"唯一正确"的指标，对于每个特征轴，我们选择少量语义上直接对应且可下载的O*NET描述符，并将其用作该轴的代理变量。
+对于没有描述（descriptor字段缺失）的职业直接剔除。
+基于问题陈述和数据可用性约束，我们识别出三个主导维度，这些维度控制着AI影响在各职业间的异质性：
+\begin{itemize}
+    \item \textbf{数字化程度$digit(x)$}：核心任务可以以数字方式表示、自动化或增强的程度；
+    \item \textbf{物理锚定$physical(x)$}：任务执行对现场物理存在或与环境的手动交互的依赖程度；
+    \item \textbf{知识产权和署名风险$iprisk(x)$}：价值创造对作者身份、原创性和所有权的敏感程度。
+\end{itemize}
+
+每个候选职业$x$由一个归一化的三维特征向量表示
+\begin{equation}
+    f(x)=\big(digit(x),\,physical(x),\,iprisk(x)\big)\in[0,1]^3,
+\end{equation}
+其中较高的值表示相应特征的存在更强。
+\[
+x_S \in STEM,\quad x_T \in Trades,\quad x_A \in Arts.
+\]
+为衡量三种职业在特征空间中的异质性，我们用三点在三维空间中所形成三角形的面积作为衡量标准，定义为
+\[
+Area3D(x_S, x_T, x_A) = \frac{1}{2} \left\lVert \big(f(x_T) - f(x_S)\big) \times \big(f(x_A) - f(x_S)\big) \right\rVert_2,
+\]
+我们以最大化该三角形面积为目标，形式化为
+\[
+\max_{x_S \in S,\; x_T \in T,\; x_A \in A} \; Area3D(x_S, x_T, x_A).
+\]
+此外，为便于后续可视化表达，定义其在二维投影下的面积为
+\[
+Area2D_{\pi}(x_S, x_T, x_A) = \frac{1}{2} \left| \det \left([\pi(f(x_T)) - \pi(f(x_S)),\ \pi(f(x_A)) - \pi(f(x_S))] \right) \right|,
+\]
+其中 $\pi(\cdot)$ 表示三维特征到二维空间的投影映射。
+
+\paragraph{归一化与可重现性}
+对于每个职业 $x$，令 $v_m(x)$ 表示其在O*NET描述符 $m$ 下的原始评分（$0$--$100$）。
+我们在整个职业集上应用最小-最大归一化：
+\begin{equation}
+    z_m(x)=\frac{v_m(x)-\min_{y}v_m(y)}{\max_{y}v_m(y)-\min_{y}v_m(y)} \in [0,1],
+\end{equation}
+并对同一特征轴下的多个描述符取等权平均，得到 $\textit{digit}(x)$、$\textit{physical}(x)$ 和 $\textit{iprisk}(x)$。
+该过程完全基于公开可用数据和明确规则，确保参数值的可重现性和可审计性。
+
+我们可视化了三维异质性及其二维投影，以验证所选职业在特征空间中占据不同区域（图~\ref{fig:heterogeneity3d} 和图~\ref{fig:heterogeneity2d}）。
+
+\begin{figure}[H]
+\centering
+\includegraphics[width=0.78\textwidth]{figures/fig_heterogeneity_3d_all_points_strict.pdf}
+\caption{基于O*NET描述符（全局归一化）的全体职业三维异质性点云与最优三角面（strict映射）。}
+\label{fig:heterogeneity3d}
+\end{figure}
+
+我们先在全点云上求解无约束的最大面积三角形，随后根据赛题要求加入“STEM/技工/艺术三域各取一职”的约束，在可行域内重新最优化，得到约束后的最优三点：STEM（Robotics Engineers）、技工/Trades（First-Line Supervisors of Mechanics, Installers, and Repairers）与艺术/媒体（Court Reporters and Simultaneous Captioners）。其三角形面积为 $0.262221$，最短边长为 $0.751378$，该约束最优结果刻画三域职业在三维特征空间上的最大异质性跨度。
+
+\vspace{0.6\baselineskip}
+
+\begin{figure}[H]
+\centering
+\includegraphics[width=0.92\textwidth]{figures/fig_heterogeneity_2d_projections_all_points_strict.pdf}
+\caption{全体职业异质性空间的二维投影与最优三点标注（strict映射，全局归一化）。}
+\label{fig:heterogeneity2d}
+\end{figure}
+
+\begin{table}[H]
+\centering
+\caption{最大三角形面积解中三域（STEM、技工、艺术）所选代表职业与 O*NET-SOC 代码。三个点分别代表在三维特征空间选出的异质性最大化顶点，即模型异质性指标的最优解。}
+\label{tab:heterogeneity_tri_vertices}
+\begin{tabular}{c c p{6.6cm} p{4.2cm}}
+\toprule
+\textbf{领域} & \textbf{O*NET-SOC代码} & \textbf{职业名称} & \textbf{3D最大面积解中的角色} \\
+\midrule
+STEM  & 17-2199.08 & \parbox[t]{6.6cm}{Robotics Engineers} & \parbox[t]{4.2cm}{最优三角形顶点（S）} \\
+Trade & 49-1011.00 & \parbox[t]{6.6cm}{First-Line Supervisors of Mechanics, Installers, and Repairers} & \parbox[t]{4.2cm}{最优三角形顶点（T）} \\
+Arts  & 27-3092.00 & \parbox[t]{6.6cm}{Court Reporters and Simultaneous Captioners} & \parbox[t]{4.2cm}{最优三角形顶点（A）} \\
+\bottomrule
+\end{tabular}
+\end{table}
+三种职业均包含于官方对三个领域的定义\cite{onet2019structure}。
+
+\paragraph{稳健性证据与数值结果}
+为验证最大异质性三角形选取结果的稳健性，我们在不同参数设置与采样条件下均重复求解，并发现核心指标高度一致。具体地，基于严格映射与全局归一化方法，三维最大面积三角形的面积为
+\begin{equation*}
+    \mathrm{Area3D} = 0.262221
+\end{equation*}
+最短边长为
+\begin{equation*}
+    \mathrm{min\_edge\_length} = 0.751378
+\end{equation*}
+进一步，在不同采样规模 $M\in\{200, 400, 800\}$ 下，最优三角形面积的相对差异均为 $0.0\%$，表明所建模型和结论具备高度的鲁棒性与可重复性。
+
+
+
+\subsection{职业演化的模型选择}
+
+问题的第二个核心要求是构建一个\emph{数据驱动}的未来演化模型，并明确说明“当前轨迹（current trajectory）”以及会因GenAI而发生变化的驱动因素。
+在我们框架中，预测对象不直接设为“职业岗位数”，而是设为\textbf{职业内部的任务需求结构}：即在给定GenAI采纳轨迹下，各任务在职业内的重要性（或相对需求）如何随时间变化。
+因此，我们首先构建 Task DNA 的任务权重 $w_{ij}$，并以权威来源重标注任务级替代/增强强度 $(s_{ij},c_{ij})$，进而得到任务级净冲击
+\begin{equation}
+    \mu_{ij}^{task}=c_{ij}-s_{ij},
+\end{equation}
+并将“当前轨迹”形式化为外生采纳路径 $A(t)\in[0,1]$（快速/中速/慢速情景），用于驱动任务需求随时间的演化。
+
+\vspace{0.5\baselineskip}
+
+\subsubsection{未来演化的可计算定义}
+为消除题目中“future”的时间模糊性，我们将未来定义为\textbf{任务层面的可计算事件}：当某个关键任务在职业内的相对需求（份额）下降至一个足够小的阈值 $\epsilon$ 以下时，即认为该任务在可操作意义上“趋近于消失”。
+具体地，若 $p_{ij}(t)$ 表示职业 $i$ 中任务 $j$ 在时刻 $t$ 的相对需求份额（定义见后文），则定义任务 $j$ 的“有效归零时间”为
+\begin{equation}
+    \tau_{ij}(\epsilon)=\min\{t:\ p_{ij}(t)\le \epsilon\}.
+\end{equation}
+该定义可直接用于回答“未来何时发生显著变化”的问题，并允许通过不同 $\epsilon$ 取值进行敏感性分析。
+
+\subsubsection{模型框架选择与理由}
+我们采用一个以任务为核心的最小化框架：
+(1) 职业由任务集合组成，任务具有可从O*NET复现的权重；
+(2) GenAI的影响在任务级体现为替代/增强（互补）强度；
+(3) “当前轨迹”由采纳路径 $A(t)$ 表示，采纳越深，任务级冲击释放越充分。
+该框架直接对应任务分解视角下的技术冲击机制（技术以任务为单位改变工作内容），并避免对“职业岗位数”做强外推。
+
+\subsection{任务层动态预测模型（Task-first）}
+
+在上述论证之后，我们给出任务层预测的数学公式。
+模型包含两类输入：\textbf{任务结构}（来自O*NET任务数据）与\textbf{发展轨迹}（GenAI采纳路径 $A(t)$）。
+预测输出为：每个职业内部任务的相对需求演化 $p_{ij}(t)$，以及“有效归零时间” $\tau_{ij}(\epsilon)$。
+
+\subsubsection{任务权重（Task DNA）与任务净冲击}
+
+设职业 $i$ 由任务 $j=1,\dots,J_i$ 组成，权重为 $w_{ij}$，满足
+\begin{equation}
+    \sum_{j=1}^{J_i} w_{ij} = 1.
+\end{equation}
+其中 $w_{ij}$ 由O*NET任务重要度与频率评分构造并归一化（Top-$N$任务内再归一化），确保可复现。
+
+对于每个任务 $j$，令 $s_{ij}\in[0,1]$ 表示替代强度，$c_{ij}\in[0,1]$ 表示增强（互补）强度。
+我们将任务层净冲击定义为
+\begin{equation}
+    \mu^{task}_{ij}=c_{ij}-s_{ij}.
+\end{equation}
+$\mu^{task}_{ij}>0$ 表示GenAI更可能增强该任务（提高产出/质量/速度），$\mu^{task}_{ij}<0$ 表示该任务更可能被替代或显著压缩。
+
+\subsubsection{将“发展轨迹”与“任务需求”紧密耦合：采纳混合机制}
+
+题目要求“given the current trajectory and expected impacts of Gen-AI”，其中“current trajectory”可操作地对应为\textbf{采纳程度随时间的扩散}。
+我们用外生的采纳路径 $A(t)\in[0,1]$ 表示在时间 $t$ 已采纳GenAI的工作流占比（或强度）。
+直观上：在 $A(t)=0$ 时，任务结构保持基线；在 $A(t)$ 增大时，任务层净冲击 $\mu^{task}_{ij}$ 逐步释放，任务需求结构随之重排。
+
+为避免凭空设定“绝对任务需求”的总量，我们以任务\textbf{相对需求权重}作为预测对象，并采用“采纳者/未采纳者混合”的最小机制：
+未采纳部分保持基线权重 $w_{ij}$；采纳部分对任务权重施加与 $\mu^{task}_{ij}$ 单调一致的乘性变换（保证权重为正）。
+定义未归一化任务权重
+\begin{equation}
+    q_{ij}(t)=w_{ij}\Big[(1-A(t))+A(t)\exp\big(\eta\,\mu^{task}_{ij}\big)\Big],
+\end{equation}
+其中 $\eta>0$ 为冲击强度缩放（无量纲），用于刻画“单位采纳带来的任务结构重排幅度”，并在敏感性分析中报告其影响。
+
+将 $q_{ij}(t)$ 归一化得到任务相对需求份额
+\begin{equation}
+    p_{ij}(t)=\frac{q_{ij}(t)}{\sum_{k=1}^{J_i} q_{ik}(t)}.
+\end{equation}
+该定义保证 $\sum_j p_{ij}(t)=1$，从而直接刻画职业内部任务结构如何随采纳轨迹而演化。
+
+\paragraph{解释性}
+当 $A(t)$ 上升（GenAI扩散加深）时，若 $\mu^{task}_{ij}<0$，则 $q_{ij}(t)$ 相对缩小，$p_{ij}(t)$ 下降；反之若 $\mu^{task}_{ij}>0$，则该任务份额上升。
+因此，$A(t)$ 将“发展轨迹”以严格数学方式映射为任务层需求结构的时间变化，从而满足题面关于“当前轨迹+预期影响”的建模要求。
+
+\paragraph{未来时间点}
+结合前述定义，任务的有效归零时间仍为
+\begin{equation}
+    \tau_{ij}(\epsilon)=\min\{t:\ p_{ij}(t)\le \epsilon\}.
+\end{equation}
+通过对Top任务的 $\tau_{ij}(\epsilon)$ 进行比较，我们可以直接回答：在不同采纳情景下，哪些任务会最先“消失”，哪些任务会长期保留，从而给出对该职业“未来”形态变化的可解释预测。
+
+
+\subsection{来自权威报告的GenAI能力维度评分：量表定义与证据叙述}
+
+为取代主观的"关键词标签"方法，我们采用来自权威评估和官方技术报告的能力评分。
+这些评分量化了GenAI在主要软件开发任务维度上的\textbf{替代}和\textbf{增强}能力，为将软件开发人员任务DNA映射到 $(s,c)$ 输入提供可审计的依据。
+
+\subsubsection{量表定义}
+
+我们使用三个级别（低/中/高）表示GenAI能力，编码为 $0.25$、$0.50$ 和 $0.75$：
+\begin{itemize}
+    \item \textbf{低（0.25）}：GenAI在该任务类型上的自主能力有限，无法在没有人工干预的情况下可靠地交付满意结果；只能替代一小部分工作，但在人工监督下仍可提供协助。
+    \item \textbf{中（0.50）}：GenAI表现中等，完成部分任务或提供有用建议，但仍需人工审查和协作；无法独立替代人工执行。
+    \item \textbf{高（0.75）}：GenAI表现强劲，在许多子任务上接近专业人类水平；在适当约束和验证下，可处理大部分工作流程并提供显著增强，但仍不完美。
+\end{itemize}
+
+\noindent\textbf{注意：}$0.25/0.50/0.75$ 的值是粗略的建模编码而非精确测量。所有级别都基于过去两年内发布的公开报告和对比实验。
+
+\begin{table}[htbp]
+\centering
+\caption{来自权威评估报告的GenAI能力维度标尺（用于将软件开发人员任务映射到 $s/c$）}
+\label{tab:genai_capability_rubric_en}
+\begin{tabular}{p{2.6cm} p{2.2cm} p{2.2cm} p{7.2cm}}
+\toprule
+任务类型 & 替代得分 & 增强得分 & 主要证据和支持 \\
+\midrule
+\textbf{代码生成} & 高（0.75） & 高（0.75） &
+GPT-4在HumanEval上达到67.0\% pass@1 \cite{openai2023gpt4}。\newline
+Claude 2达到71.2\% \cite{anthropic2023claude2}。\newline
+Google报告约25\%的新代码由AI生成 \cite{techcrunch2025aimodels}。 \\
+\textbf{测试与验证} & 中（0.50） & 高（0.75） &
+LLM生成的单元测试可达到有竞争力的覆盖率和可读性。\newline
+研究表明在静态分析引导下测试质量更高 \cite{arxiv2024unittest}。\newline
+仍需人工审查，因此替代保持中等。 \\
+\textbf{调试与错误修复} & 低（0.25） & 中（0.50） &
+Microsoft Research报告即使有调试工具，端到端调试成功率低于50\%（最佳模型48.4\%）\cite{techcrunch2025aimodels}。\newline
+提示修复建议有帮助，"自我调试"可提高准确率最多12个百分点 \cite{chen2023selfdebugging}。 \\
+\textbf{系统设计} & 低（0.25） & 中（0.50） &
+复杂架构需要综合推理；当前GenAI通常产生部分解决方案 \cite{openai2023gpt4}。\newline
+直接定量基准有限，但模型可以协助起草和文档以加速设计讨论 \cite{googleresearch2024seqmodels}。 \\
+\textbf{需求分析} & 低（0.25） & 中（0.50） &
+模型在NL$\rightarrow$spec任务上的提升有限（如Spider上2--3\%）\cite{chen2023selfdebugging}。\newline
+然而，总结和问题生成可以提高需求获取和分析效率 \cite{openai2023gpt4}。 \\
+\textbf{用户沟通与文档} & 中（0.50） & 高（0.75） &
+Claude 2等模型可以高效生成长篇结构化文档并回答常见问题 \cite{anthropic2023claude2}。\newline
+准确性仍是问题；关键内容仍需人工验证 \cite{openai2023gpt4}。 \\
+\bottomrule
+\end{tabular}
+\end{table}
+
+\subsection{任务影响的权威评估驱动重标记：从关键词标签到能力维度分配}
+
+为提高任务影响参数 $(s_{ij},c_{ij})$ 的可辩护性和可重现性，我们放弃主观关键词标签，
+采用"\textbf{权威评估 $\rightarrow$ 能力维度 $\rightarrow$ 语义匹配 $\rightarrow$ 分段分配}"的重标记工作流。
+核心思想是从官方评估报告中提取一组\emph{能力维度}（如代码生成、调试、测试/验证、需求分析、系统设计、文档/沟通）的替代/增强级别，
+将每个软件开发人员任务映射到1--2个能力维度，然后在离散网格上分配 $(s_j,c_j)$。
+
+\paragraph{能力映射与可追溯性要求}
+对于每个任务 $j$，定义其映射的能力集 $\textit{dim}_j$（通常为1--2个维度以保持可解释性）。
+任务级替代和增强在离散量表上分配：
+\begin{equation}
+s_j,\ c_j\in\{0.25,\ 0.5,\ 0.75\}.
+\end{equation}
+为满足"数据驱动"审计标准，每个任务必须携带\textbf{可追溯链}：(i) 映射的能力维度 $\textit{dim}_j$，(ii) 至少一个权威来源链接，(iii) 任务到维度匹配逻辑的简要说明。
+这确保 $(s_j,c_j)$ 是可审查的而非基于研究者直觉。
+
+\paragraph{语义阈值、异常报告与有限人工覆盖}
+由于语义匹配可能导致漏报和误报，匹配阈值被视为可控决策参数：
+阈值过高可能遗漏有效匹配；过低可能引入错误匹配。
+因此，重标记输出必须包含相似度得分和异常报告（如低相似度匹配、多维度分配冲突），并允许对少量语义模糊的高权重任务进行小规模人工覆盖列表。
+这保持了整体可重现性，同时防止少量错误标签偏移职业级聚合值 $(\alpha_i,\beta_i)$。
+
+\subsection{将任务DNA聚合为职业级冲击参数：软件开发人员}
+
+本节将软件开发人员任务DNA从任务级输入 $(w_{ij}, s_{ij}, c_{ij})$ 聚合为职业级冲击参数 $(\alpha_i,\beta_i,\mu_i)$，
+这将输入演化方程 $\frac{dE_i(t)}{dt}=E_i(t)\big(g_i + A(t)(\beta_i-\alpha_i)\big)$。
+
+\subsubsection{Top-$N$ 可用性与聚合}
+
+在实践中，O*NET任务评分可能对某些任务缺失。
+因此我们采用"Top-$N_i$ 可用任务"策略：对于职业 $i$，我们只保留具有足够评分以构建权重的任务，并重新归一化使得 $\sum_{j=1}^{N_i} w_{ij}=1$。
+职业级替代压力、增强收益和净方向定义为
+\begin{equation}
+    \alpha_i=\sum_{j=1}^{N_i} w_{ij} s_{ij},\qquad
+    \beta_i=\sum_{j=1}^{N_i} w_{ij} c_{ij},\qquad
+\end{equation}
+
+\subsubsection{可解释性分解：Top-$K$ 贡献下界}
+
+为增强可解释性，我们分解高权重任务的贡献。定义部分和
+\begin{equation}
+    \alpha_i^{(K)}=\sum_{j\in \text{Top-}K} w_{ij}s_{ij},\qquad
+    \beta_i^{(K)}=\sum_{j\in \text{Top-}K} w_{ij}c_{ij}.
+\end{equation}
+对于当前可用的Top-5样本，$\sum_{j\in \text{Top-}5} w_{ij}=0.360897$，
+部分贡献 $\alpha_i^{(5)}=0.1804485$ 和 $\beta_i^{(5)}=0.2153186$，
+表明高权重任务（通常是测试/维护/需求/协作）将主导聚合冲击。
+
+
+\subsubsection{最小校准：带有限人工审查的类别默认值}
+
+为避免重新收集数据，我们仅通过一小组任务类别校准 $s/c$，同时保持任务列表和权重 $w_{ij}$ 不变。
+令 $\kappa(j)$ 将每个任务映射到一个粗类别（如需求/利益相关者、编码/实现、测试/验证/安全、监控/运维），并带有默认 $(s,c)$ 对。
+然后我们仅手动审查少量高权重任务并记录简要证据说明，在保持可重现性和透明性的同时提高 $(\alpha_i,\beta_i)$ 的可识别性。

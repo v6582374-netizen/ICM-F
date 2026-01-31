@@ -1,0 +1,36 @@
+{
+  "input_csv": "data/processed/task_dna_17-2199.08.csv",
+  "output_csv": "data/processed/task_dna_17-2199.08_authoritative_sc.csv",
+  "rows": 20,
+  "dim_counts": {
+    "D1": 8,
+    "D2": 3,
+    "D3": 1,
+    "D4": 0,
+    "D5": 2,
+    "D6": 1,
+    "D7": 1,
+    "D8": 0,
+    "D9": 4,
+    "D10": 0
+  },
+  "low_confidence_count": 15,
+  "thresholds": {
+    "sim_threshold": 0.35,
+    "two_dim_threshold": 0.45,
+    "two_dim_gap": 0.08
+  },
+  "embedding_backend": "hash",
+  "embedding_model": "sentence-transformers/all-MiniLM-L6-v2",
+  "fuzzy_available": true,
+  "weight_stats": {
+    "w_sum": 1.000001,
+    "w_min": 0.03456,
+    "w_max": 0.069
+  },
+  "allowed_levels": [
+    0.25,
+    0.5,
+    0.75
+  ]
+}

@@ -1,0 +1,16 @@
+<summary>
+  <rows>20</rows>
+  <missing_im>0</missing_im>
+  <missing_fr>0</missing_fr>
+  <weight_stats>
+    <w_sum>0.999997</w_sum>
+    <w_min>0.033335</w_min>
+    <w_max>0.060013</w_max>
+  </weight_stats>
+  <selection>
+    <top_n>20</top_n>
+    <selected_n>20</selected_n>
+    <total_tasks>22</total_tasks>
+    <reason>ok</reason>
+  </selection>
+</summary>

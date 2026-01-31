@@ -1,4 +1,4 @@
-\begin{thebibliography}{11}
+\begin{thebibliography}{9}
 \providecommand{\natexlab}[1]{#1}
 \providecommand{\url}[1]{\texttt{#1}}
 \expandafter\ifx\csname urlstyle\endcsname\relax
@@ -39,17 +39,11 @@ Carl~Benedikt Frey and Michael~A. Osborne.
 \newblock URL \url{https://research.google/blog/large-sequence-models-for-software-development-activities/}.
 \newblock Accessed January 30, 2026.
 
-\bibitem[{National Center for Education Statistics}(2019)]{ncesipeds2018}
-{National Center for Education Statistics}.
-\newblock {Integrated Postsecondary Education Data System (IPEDS) 2018-19 Final Release}, 2019.
-\newblock URL \url{https://nces.ed.gov/ipeds/}.
-\newblock Accessed January 30, 2026.
-
-\bibitem[{National Center for Education Statistics}(2020)]{ncescip2020soc2018}
-{National Center for Education Statistics}.
-\newblock {CIP2020-SOC2018 Crosswalk}, 2020.
-\newblock URL \url{https://nces.ed.gov/ipeds/cipcode/}.
-\newblock Accessed January 30, 2026.
+\bibitem[{O*NET Resource Center}(2019)]{onet2019structure}
+{O*NET Resource Center}.
+\newblock {O*NET-SOC and SOC structure - Occupational Listings}, 2019.
+\newblock URL \url{https://www.onetcenter.org/taxonomy/2019/structure.html}.
+\newblock Accessed January 31, 2026.
 
 \bibitem[{O*NET Resource Center}(2025)]{onet2025database}
 {O*NET Resource Center}.
@@ -62,12 +56,6 @@ Carl~Benedikt Frey and Michael~A. Osborne.
 \newblock {GPT-4 Technical Report}.
 \newblock Technical report, 2023.
 \newblock URL \url{https://cdn.openai.com/papers/gpt-4.pdf}.
-\newblock Accessed January 30, 2026.
-
-\bibitem[{U.S. Census Bureau}(2025)]{censuspseo2025}
-{U.S. Census Bureau}.
-\newblock {Post-Secondary Employment Outcomes (PSEO) Release R2025Q2}, 2025.
-\newblock URL \url{https://lehd.ces.census.gov/data/pseo_beta.html}.
 \newblock Accessed January 30, 2026.
 
 \bibitem[Wiggers(2025)]{techcrunch2025aimodels}

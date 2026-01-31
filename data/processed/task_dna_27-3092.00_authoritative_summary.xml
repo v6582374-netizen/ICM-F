@@ -1,0 +1,21 @@
+<summary>
+  <rows>14</rows>
+  <dim_counts>
+    <dim id="D1">2</dim>
+    <dim id="D2">1</dim>
+    <dim id="D3">1</dim>
+    <dim id="D4">0</dim>
+    <dim id="D5">1</dim>
+    <dim id="D6">3</dim>
+    <dim id="D7">1</dim>
+    <dim id="D8">0</dim>
+    <dim id="D9">4</dim>
+    <dim id="D10">1</dim>
+  </dim_counts>
+  <low_confidence_count>10</low_confidence_count>
+  <weight_stats>
+    <w_sum>0.999999</w_sum>
+    <w_min>0.043847</w_min>
+    <w_max>0.097478</w_max>
+  </weight_stats>
+</summary>

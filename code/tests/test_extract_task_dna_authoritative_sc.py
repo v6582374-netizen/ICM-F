@@ -47,9 +47,17 @@ class TestAuthoritativeScRelabel(unittest.TestCase):
             self.assertEqual(original["w"], row["w"])
             self.assertIn(float(row["s"]), ALLOWED_LEVELS)
             self.assertIn(float(row["c"]), ALLOWED_LEVELS)
+            self.assertAlmostEqual(
+                float(row["mu_task"]),
+                float(row["c"]) - float(row["s"]),
+                places=6,
+            )
             self.assertIn("dims=", row["evidence_note"])
             self.assertIn("sim=[", row["evidence_note"])
             self.assertIn("sources=", row["evidence_note"])
+            self.assertTrue(row["dims"])
+            self.assertTrue(row["sim"])
+            self.assertTrue(row["sources"])
 
 
 if __name__ == "__main__":

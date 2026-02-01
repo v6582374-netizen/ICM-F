@@ -31,59 +31,24 @@
 \contentsline {paragraph}{任务层净冲击}{16}{section*.21}%
 \contentsline {subsubsection}{\numberline {3.4.4}将“发展轨迹”与“任务需求”紧密耦合：采纳混合机制}{16}{subsubsection.3.4.4}%
 \contentsline {paragraph}{解释性}{16}{section*.22}%
-\contentsline {paragraph}{未来时间点}{17}{section*.23}%
+\contentsline {paragraph}{未来时间点}{16}{section*.23}%
 \contentsline {subsection}{\numberline {3.5}将任务DNA聚合为职业级冲击参数：软件开发人员}{17}{subsection.3.5}%
 \contentsline {subsubsection}{\numberline {3.5.1}Top-$N$ 可用性与聚合}{17}{subsubsection.3.5.1}%
 \contentsline {subsubsection}{\numberline {3.5.2}可解释性分解：Top-$K$ 贡献下界}{17}{subsubsection.3.5.2}%
 \contentsline {subsubsection}{\numberline {3.5.3}最小校准：带有限人工审查的类别默认值}{17}{subsubsection.3.5.3}%
-\contentsline {section}{\numberline {4}权威重标记后的机制力量检验与职业级聚合（软件开发人员）}{17}{section.4}%
-\contentsline {subsection}{\numberline {4.1}职业级冲击聚合值}{18}{subsection.4.1}%
-\contentsline {subsection}{\numberline {4.2}诊断：异质性与有效多样性}{18}{subsection.4.2}%
-\contentsline {paragraph}{(1) 加权方差（异质性）}{18}{section*.24}%
-\contentsline {paragraph}{(2) 加权层级直方图（避免单层级主导）}{18}{section*.25}%
-\contentsline {paragraph}{(3) 能力维度权重质量（避免权重集中）}{18}{section*.26}%
-\contentsline {subsection}{\numberline {4.3}工程阈值与行动（$E(t)$ 前的门控）}{18}{subsection.4.3}%
-\contentsline {section}{\numberline {5}一致性检验与演化方程的实例化：软件开发人员的 $(\alpha ,\beta ,\mu _{\mathrm {occ}})$}{18}{section.5}%
-\contentsline {subsection}{\numberline {5.1}聚合值与一致性检验}{19}{subsection.5.1}%
-\contentsline {subsection}{\numberline {5.2}机制力量（异质性）检验：无得分坍缩}{19}{subsection.5.2}%
-\contentsline {subsection}{\numberline {5.3}低置信度任务的最小敏感性（上界论证）}{19}{subsection.5.3}%
-\contentsline {subsection}{\numberline {5.4}修正 $\mu _{\mathrm {occ}}$ 后进入职业演化}{19}{subsection.5.4}%
-\contentsline {section}{\numberline {6}任务级功能需求模型与职业重新定义}{20}{section.6}%
-\contentsline {subsection}{\numberline {6.1}任务级功能需求模型（替代职业级岗位需求）}{20}{subsection.6.1}%
-\contentsline {subsubsection}{\numberline {6.1.1}建模目标与符号}{20}{subsubsection.6.1.1}%
-\contentsline {subsubsection}{\numberline {6.1.2}双渠道动力学：自动化与规模化}{20}{subsubsection.6.1.2}%
-\contentsline {paragraph}{(a) 自动化渠道：替代降低劳动强度。}{20}{section*.27}%
-\contentsline {paragraph}{(b) 任务结构更新：职业内部重新分配。}{21}{section*.28}%
-\contentsline {paragraph}{(c) 规模化渠道（可选）：增强扩展整体功能需求。}{21}{section*.29}%
-\contentsline {paragraph}{(d) 任务劳动需求指数。}{21}{section*.30}%
-\contentsline {subsubsection}{\numberline {6.1.3}采纳情景 $A(t)$}{21}{subsubsection.6.1.3}%
-\contentsline {subsubsection}{\numberline {6.1.4}职业重新定义触发器（工作本质变化）}{21}{subsubsection.6.1.4}%
-\contentsline {paragraph}{(a) 消亡质量（任务需求变得可忽略不计）。}{21}{section*.31}%
-\contentsline {paragraph}{(b) 任务结构漂移（分布变化）。}{22}{section*.32}%
-\contentsline {subsubsection}{\numberline {6.1.5}计算算法（可重现流程）}{22}{subsubsection.6.1.5}%
-\contentsline {subsubsection}{\numberline {6.1.6}参数表（待实例化）}{22}{subsubsection.6.1.6}%
-\contentsline {subsection}{\numberline {6.2}可视化方案}{23}{subsection.6.2}%
-\contentsline {subsubsection}{\numberline {6.2.1}图表模板}{23}{subsubsection.6.2.1}%
-\contentsline {paragraph}{图1：采纳情景 $A(t)$。}{23}{figure.caption.35}%
-\contentsline {paragraph}{图2：顶部任务的任务劳动需求轨迹。}{23}{figure.caption.37}%
-\contentsline {paragraph}{图3：任务结构漂移 $w_{ij}(t)$。}{23}{figure.caption.39}%
-\contentsline {paragraph}{图4：重新定义证据和触发时间 $t^*$。}{23}{figure.caption.41}%
-\contentsline {subsection}{\numberline {6.3}敏感性与稳健性}{24}{subsection.6.3}%
-\contentsline {subsubsection}{\numberline {6.3.1}低置信度任务敏感性}{24}{subsubsection.6.3.1}%
-\contentsline {subsubsection}{\numberline {6.3.2}关键参数敏感性}{24}{subsubsection.6.3.2}%
-\contentsline {subsection}{\numberline {6.4}输出摘要模板（每个职业）}{24}{subsection.6.4}%
-\contentsline {section}{\numberline {7}仿真结果与敏感性分析}{24}{section.7}%
-\contentsline {subsection}{\numberline {7.1}职业选择的剪枝敏感性检验}{24}{subsection.7.1}%
-\contentsline {paragraph}{检验方法}{25}{section*.42}%
-\contentsline {paragraph}{检验结果}{25}{section*.43}%
-\contentsline {paragraph}{稳健性判定}{26}{section*.46}%
-\contentsline {section}{\numberline {8}讨论：优势与不足}{26}{section.8}%
-\contentsline {subsection}{\numberline {8.1}优势}{26}{subsection.8.1}%
-\contentsline {subsection}{\numberline {8.2}不足}{26}{subsection.8.2}%
-\contentsline {section}{\numberline {9}结论}{26}{section.9}%
-\contentsline {section}{Appendices}{28}{section*.48}%
-\contentsline {section}{附录 \numberline {A}数据来源与变量定义}{28}{appendix.1.A}%
-\contentsline {subsection}{\numberline {A.1}O*NET描述符数据来源}{28}{subsection.1.A.1}%
-\contentsline {subsection}{\numberline {A.2}任务DNA变量}{28}{subsection.1.A.2}%
-\contentsline {section}{附录 \numberline {B}补充图示：任务DNA}{29}{appendix.1.B}%
-\contentsline {section}{附录 \numberline {C}Python实现代码}{30}{appendix.1.C}%
+\contentsline {section}{\numberline {4}仿真结果与敏感性分析}{17}{section.4}%
+\contentsline {subsection}{\numberline {4.1}职业选择的剪枝敏感性检验}{17}{subsection.4.1}%
+\contentsline {paragraph}{检验方法}{17}{section*.24}%
+\contentsline {paragraph}{检验结果}{18}{section*.25}%
+\contentsline {paragraph}{稳健性判定}{18}{section*.28}%
+\contentsline {section}{\numberline {5}讨论：优势与不足}{19}{section.5}%
+\contentsline {subsection}{\numberline {5.1}优势}{19}{subsection.5.1}%
+\contentsline {subsection}{\numberline {5.2}不足}{19}{subsection.5.2}%
+\contentsline {section}{\numberline {6}结论}{19}{section.6}%
+\contentsline {section}{Appendices}{20}{section*.30}%
+\contentsline {section}{附录 \numberline {A}数据来源与变量定义}{20}{appendix.1.A}%
+\contentsline {subsection}{\numberline {A.1}O*NET描述符数据来源}{20}{subsection.1.A.1}%
+\contentsline {subsection}{\numberline {A.2}任务DNA变量}{21}{subsection.1.A.2}%
+\contentsline {section}{附录 \numberline {B}补充图示：任务DNA}{21}{appendix.1.B}%
+\contentsline {section}{附录 \numberline {C}补充图示：任务份额预测}{23}{appendix.1.C}%
+\contentsline {section}{附录 \numberline {D}Python实现代码}{24}{appendix.1.D}%

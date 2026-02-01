@@ -1,0 +1,32 @@
+{
+  "schema": [
+    "t_year",
+    "A_value",
+    "definition",
+    "source_name",
+    "source_url"
+  ],
+  "values": [
+    {
+      "t_year": 2024,
+      "A_value": 0.65,
+      "definition": "organizations regularly using GenAI in at least one business function",
+      "source_name": "McKinsey State of AI (early 2024)",
+      "source_url": "https://www.mckinsey.com/capabilities/quantumblack/our-insights/the-state-of-ai-2024"
+    },
+    {
+      "t_year": 2025,
+      "A_value": 0.71,
+      "definition": "organizations regularly using GenAI",
+      "source_name": "McKinsey State of AI (2025)",
+      "source_url": "https://www.mckinsey.com/capabilities/quantumblack/our-insights/the-state-of-ai-how-organizations-are-rewiring-to-capture-value"
+    },
+    {
+      "t_year": 2026,
+      "A_value": 0.80,
+      "definition": "upper-bound scenario: >80% enterprises will have used GenAI by 2026",
+      "source_name": "Gartner (Oct 2023 press release)",
+      "source_url": "https://www.gartner.com/en/newsroom/press-releases/2023-10-11-gartner-says-more-than-80-percent-of-enterprises-will-have-used-generative-ai-apis-or-deployed-generative-ai-enabled-applications-by-2026"
+    }
+  ]
+}

@@ -12,7 +12,7 @@
 \centering
 \caption{O*NET描述符数据来源与访问链接}
 \label{tab:onet_descriptor_sources}
-\begin{tabular}{@{}p{2.8cm} p{3.2cm} p{5.5cm} p{2.5cm}@{}}
+\begin{tabular}{@{}>{\raggedright\arraybackslash}p{2.8cm} >{\raggedright\arraybackslash}p{3.2cm} >{\raggedright\arraybackslash}p{5.5cm} >{\raggedright\arraybackslash}p{2.5cm}@{}}
 \toprule
 \textbf{特征轴} & \textbf{描述符名称} & \textbf{URL} & \textbf{描述符ID} \\
 \midrule
@@ -20,7 +20,7 @@
  & Electronic Mail & \url{https://www.onetonline.org/find/descriptor/result/4.C.1.a.2.h} & 4.C.1.a.2.h \\
 \addlinespace
 \multirow{2}{*}{$physical(x)$} & Using Hands to Handle Objects & \url{https://www.onetonline.org/find/descriptor/result/4.C.2.d.1.g} & 4.C.2.d.1.g \\
- & Kneeling/Crouching/Stooping & \url{https://www.onetonline.org/find/descriptor/result/4.C.2.d.1.e} & 4.C.2.d.1.e \\
+& \shortstack{Kneeling/Crouching/\\Stooping} & \url{https://www.onetonline.org/find/descriptor/result/4.C.2.d.1.e} & 4.C.2.d.1.e \\
 \addlinespace
 \multirow{2}{*}{$iprisk(x)$} & Originality & \url{https://www.onetonline.org/find/descriptor/result/1.A.1.b.2} & 1.A.1.b.2 \\
  & Thinking Creatively & \url{https://www.onetonline.org/find/descriptor/result/4.A.2.b.2} & 4.A.2.b.2 \\
@@ -79,6 +79,33 @@ O*NET任务评分（IM, FT） & 用于计算任务权重的重要性和频率评
 \end{minipage}
 \caption{职业 27-3092.00 的任务DNA与权威 $s,c$ 分布。（a）任务DNA权重分布：IM--FR 散点图，点面积与 $w$ 成正比；（b）权威 $s,c$ 档位分布。}
 \label{fig:task_dna_27_pair}
+\end{figure}
+
+\section{补充图示：任务份额预测}
+\label{app:task_share_figures}
+
+\noindent\textbf{职业 17-2199.08：全部任务份额轨迹（基准情景）。}
+\begin{figure}[H]
+\centering
+\includegraphics[width=0.92\textwidth]{figures/fig_STEM_task_share_all_tasks_appendix.pdf}
+\caption{STEM职业在基准情景下全部任务份额随时间的演化。}
+\label{fig:task_share_all_stem}
+\end{figure}
+
+\noindent\textbf{职业 49-1011.00：全部任务份额轨迹（基准情景）。}
+\begin{figure}[H]
+\centering
+\includegraphics[width=0.92\textwidth]{figures/fig_task_share_all_49-1011.00.pdf}
+\caption{技工职业在基准情景下全部任务份额随时间的演化。}
+\label{fig:task_share_all_trade}
+\end{figure}
+
+\noindent\textbf{职业 27-3092.00：全部任务份额轨迹（基准情景）。}
+\begin{figure}[H]
+\centering
+\includegraphics[width=0.92\textwidth]{figures/fig_task_share_all_27-3092.00.pdf}
+\caption{艺术职业在基准情景下全部任务份额随时间的演化。}
+\label{fig:task_share_all_arts}
 \end{figure}
 
 \section{Python实现代码}

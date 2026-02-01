@@ -31,7 +31,7 @@ O*NET基于专家调查和从业者反馈，为每个职业提供大量\emph{数
 \centering
 \caption{三维特征轴与O*NET描述符的对应关系}
 \label{tab:onet_descriptor_mapping}
-\begin{tabular}{@{}p{2.2cm} p{4.0cm} p{4.8cm} p{3.0cm}@{}}
+\begin{tabular}{@{}>{\raggedright\arraybackslash}p{2.2cm} >{\raggedright\arraybackslash}p{4.0cm} >{\raggedright\arraybackslash}p{4.8cm} >{\raggedright\arraybackslash}p{3.0cm}@{}}
 \toprule
 \textbf{特征轴} & \textbf{客观取值方式} & \textbf{O*NET描述符} & \textbf{可辩护性} \\
 \midrule
@@ -266,7 +266,7 @@ D9 的高分来自特定管线 &
 \end{tabular}
 \end{table}
 
-\subsubsection{能力量表：$M_k\rightarrow\rho_k\rightarrow(s_k,c_k)$}
+\subsubsection{\texorpdfstring{能力量表：$M_k\rightarrow\rho_k\rightarrow(s_k,c_k)$}{能力量表：Mk→rho k→(s k, c k)}}
 \paragraph{能力分段（$M_k$）}
 我们不做连续拟合，而采用阈值区间确定能力等级，并在区间内取代表值 $M_k$（见表~\ref{tab:genai_scale}）：
 \begin{itemize}
@@ -289,7 +289,7 @@ D9 的高分来自特定管线 &
 表~\ref{tab:genai_scale} 给出可直接落地的基线版本：每个维度包含原始评分、分段得到的 $M_k$、方向系数 $\rho_k$，以及对应的 $(s_k,c_k)$。
 \begin{table}[H]
 \centering
-\caption{GenAI 九维能力映射总表：指标分段$\rightarrow M_k,\rho_k\rightarrow(s_k,c_k)$}
+\caption[GenAI 九维能力映射总表]{GenAI 九维能力映射总表：指标分段$\rightarrow M_k,\rho_k\rightarrow(s_k,c_k)$}
 \label{tab:genai_scale}
 \small
 \setlength{\tabcolsep}{2pt}
@@ -362,6 +362,7 @@ DocVQA 99.16\%；Text-to-SQL $>80\%$\citep{docvqa2017,spider2018} &
 
 \paragraph{三职业任务DNA的 $s,c$ 分布与负净冲击分析}
 基于权威映射表，表~\ref{tab:task_sc_negative_impact} 汇总了三职业中负净冲击任务（$\mu^{task}_{ij}<0$）的权重与典型任务。
+负净冲击（被替代倾向）
 
 \begin{table}[H]
 \centering
@@ -391,16 +392,6 @@ DocVQA 99.16\%；Text-to-SQL $>80\%$\citep{docvqa2017,spider2018} &
     \item D9 的 DocVQA 99.16\% 可视为文档问答场景的上界证据，不等价于所有检索情境与数据库规模下的通用能力。
     \item D4/D5 采用 AutoGPT 端到端完成率与工具使用成功率作为下界证据，用于避免夸大“现场操作/流程调度”的可自动化程度。
 \end{itemize}
-
-
-
-
-为体现匹配强度对评分的影响，我们先根据维度默认值计算原始分值 $(s_{raw}, c_{raw})$，再用任务与维度的相似度强度 $r_{ij}$ 拉伸其偏离中值的幅度：
-\begin{equation}
-    s'_{ij}=0.5+(s_{raw}-0.5)\big(0.6+0.8\,r_{ij}\big),\quad
-    c'_{ij}=0.5+(c_{raw}-0.5)\big(0.6+0.8\,r_{ij}\big).
-\end{equation}
-最后将 $s'_{ij}, c'_{ij}$ 投影到上述离散档位。对于每项任务 $j$，我们需要一个\textbf{1--2行的证据说明}，该说明由\textbf{可复现的语义匹配规则}生成，并辅以有限的人工抽查验证。此约束将评分从临时性判断转化为\textbf{有规则触发、且带有可审计标注的赋值过程}，并支持后续的不确定性处理（例如，权重扰动和基于区间的敏感性检查）。
 
 \paragraph{任务层净冲击}
 我们将任务层净冲击定义为：
@@ -447,7 +438,7 @@ $\mu^{task}_{ij}>0$ 表示GenAI更可能增强该任务（提高产出/质量/�
 本节将软件开发人员任务DNA从任务级输入 $(w_{ij}, s_{ij}, c_{ij})$ 聚合为职业级冲击参数 $(\alpha_i,\beta_i,\mu_i)$，
 这将输入演化方程 $\frac{dE_i(t)}{dt}=E_i(t)\big(g_i + A(t)(\beta_i-\alpha_i)\big)$。
 
-\subsubsection{Top-$N$ 可用性与聚合}
+\subsubsection{\texorpdfstring{Top-$N$ 可用性与聚合}{Top-N 可用性与聚合}}
 
 在实践中，O*NET任务评分可能对某些任务缺失。
 因此我们采用"Top-$N_i$ 可用任务"策略：对于职业 $i$，我们只保留具有足够评分以构建权重的任务，并重新归一化使得 $\sum_{j=1}^{N_i} w_{ij}=1$。
@@ -457,7 +448,7 @@ $\mu^{task}_{ij}>0$ 表示GenAI更可能增强该任务（提高产出/质量/�
     \beta_i=\sum_{j=1}^{N_i} w_{ij} c_{ij},\qquad
 \end{equation}
 
-\subsubsection{可解释性分解：Top-$K$ 贡献下界}
+\subsubsection{\texorpdfstring{可解释性分解：Top-$K$ 贡献下界}{可解释性分解：Top-K 贡献下界}}
 
 为增强可解释性，我们分解高权重任务的贡献。定义部分和
 \begin{equation}

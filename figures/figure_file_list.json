@@ -1,0 +1,28 @@
+{
+  "figures": [
+    {
+      "pdf": "/Users/shiwen/Downloads/ICM-FORMAL/figures/fig_A_t_scenarios.pdf",
+      "png": "/Users/shiwen/Downloads/ICM-FORMAL/figures/png/fig_A_t_scenarios.png"
+    },
+    {
+      "pdf": "/Users/shiwen/Downloads/ICM-FORMAL/figures/fig_STEM_task_share_topK.pdf",
+      "png": "/Users/shiwen/Downloads/ICM-FORMAL/figures/png/fig_STEM_task_share_topK.png"
+    },
+    {
+      "pdf": "/Users/shiwen/Downloads/ICM-FORMAL/figures/fig_STEM_task_share_all_tasks_appendix.pdf",
+      "png": "/Users/shiwen/Downloads/ICM-FORMAL/figures/png/fig_STEM_task_share_all_tasks_appendix.png"
+    },
+    {
+      "pdf": "/Users/shiwen/Downloads/ICM-FORMAL/figures/fig_STEM_tstar_bar.pdf",
+      "png": "/Users/shiwen/Downloads/ICM-FORMAL/figures/png/fig_STEM_tstar_bar.png"
+    },
+    {
+      "pdf": "/Users/shiwen/Downloads/ICM-FORMAL/figures/fig_task_share_all_49-1011.00.pdf",
+      "png": "/Users/shiwen/Downloads/ICM-FORMAL/figures/png/fig_task_share_all_49-1011.00.png"
+    },
+    {
+      "pdf": "/Users/shiwen/Downloads/ICM-FORMAL/figures/fig_task_share_all_27-3092.00.pdf",
+      "png": "/Users/shiwen/Downloads/ICM-FORMAL/figures/png/fig_task_share_all_27-3092.00.png"
+    }
+  ]
+}

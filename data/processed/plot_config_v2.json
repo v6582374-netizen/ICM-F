@@ -1,0 +1,62 @@
+{
+  "soc_list": [
+    "17-2199.08",
+    "49-1011.00",
+    "27-3092.00"
+  ],
+  "scenario_main": "Baseline",
+  "eta_main": 1.0,
+  "time_grid": {
+    "t_start": 2024.0,
+    "t_end": 2035.0,
+    "step": 0.25
+  },
+  "topK": 8,
+  "topK_rule": "TopK by |delta_p| between t_start and t_end under (Baseline, eta=1) with top-2 by w guardrail",
+  "other_bucket": true,
+  "scenario_plot_mode": "overlay",
+  "topK_by_soc": {
+    "17-2199.08": {
+      "task_id": [
+        "16517",
+        "16509",
+        "16511",
+        "16521",
+        "16520",
+        "16516",
+        "21057",
+        "21058"
+      ],
+      "rule": "TopK by |delta_p| between t_start and t_end (Baseline, eta=1)",
+      "guardrail": "force-include top-2 by w"
+    },
+    "49-1011.00": {
+      "task_id": [
+        "2914",
+        "2912",
+        "2929",
+        "2918",
+        "2925",
+        "2915",
+        "2930",
+        "2932"
+      ],
+      "rule": "TopK by |delta_p| between t_start and t_end (Baseline, eta=1)",
+      "guardrail": "force-include top-2 by w"
+    },
+    "27-3092.00": {
+      "task_id": [
+        "8653",
+        "21183",
+        "8662",
+        "8663",
+        "8656",
+        "8657",
+        "8655",
+        "8659"
+      ],
+      "rule": "TopK by |delta_p| between t_start and t_end (Baseline, eta=1)",
+      "guardrail": "force-include top-2 by w"
+    }
+  }
+}

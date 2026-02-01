@@ -1,0 +1,67 @@
+{
+  "time_grid": {
+    "t_start_year": 2024,
+    "t_end_year": 2035,
+    "step_year": 0.25
+  },
+  "A_family_primary": "piecewise_linear_saturation",
+  "A_family_secondary": "logistic",
+  "constraints": {
+    "Baseline": "passes through 2024=0.65 and 2025=0.71; moderate post-2025 slope; saturate <=1",
+    "Fast": "bounded above by 2026>=0.80; saturate <=1",
+    "Slow": "matches 2024/2025 anchors; lowest plausible post-2025 slope; saturate <=1"
+  },
+  "piecewise_linear_params": {
+    "Baseline": {
+      "post_2025_slope": 0.03,
+      "saturation": 0.95
+    },
+    "Fast": {
+      "post_2025_target_2026": 0.80,
+      "post_2026_slope": 0.04,
+      "saturation": 1.0
+    },
+    "Slow": {
+      "post_2025_slope": 0.015,
+      "saturation": 0.90
+    }
+  },
+  "logistic_param_ranges": {
+    "Baseline": {
+      "A_min": 0.0,
+      "A_max": 1.0,
+      "k_range": [
+        0.20,
+        0.45
+      ],
+      "t_mid_range": [
+        2027.0,
+        2029.0
+      ]
+    },
+    "Fast": {
+      "A_min": 0.0,
+      "A_max": 1.0,
+      "k_range": [
+        0.30,
+        0.60
+      ],
+      "t_mid_range": [
+        2026.0,
+        2028.0
+      ]
+    },
+    "Slow": {
+      "A_min": 0.0,
+      "A_max": 0.95,
+      "k_range": [
+        0.15,
+        0.35
+      ],
+      "t_mid_range": [
+        2028.0,
+        2030.5
+      ]
+    }
+  }
+}

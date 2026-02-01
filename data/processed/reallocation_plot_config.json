@@ -1,0 +1,76 @@
+{
+  "t_start": 2024.0,
+  "t_end": 2035.0,
+  "m_list": [
+    5,
+    8,
+    10
+  ],
+  "eta_grid": [
+    0.5,
+    1.0,
+    2.0,
+    4.0,
+    8.0
+  ],
+  "scenario_list": [
+    "Slow",
+    "Baseline",
+    "Fast"
+  ],
+  "label_rule": "dims + keyword from task_text; task_id only in appendix table",
+  "topK_rule": "TopK by |Delta_p| between t_start and t_end with top-2 by w guardrail",
+  "monotone_check_R_vs_A": {
+    "17-2199.08": {
+      "Slow_eta0.5": true,
+      "Slow_eta1.0": true,
+      "Slow_eta2.0": true,
+      "Slow_eta4.0": true,
+      "Slow_eta8.0": true,
+      "Baseline_eta0.5": true,
+      "Baseline_eta1.0": true,
+      "Baseline_eta2.0": true,
+      "Baseline_eta4.0": true,
+      "Baseline_eta8.0": true,
+      "Fast_eta0.5": true,
+      "Fast_eta1.0": true,
+      "Fast_eta2.0": true,
+      "Fast_eta4.0": true,
+      "Fast_eta8.0": true
+    },
+    "49-1011.00": {
+      "Slow_eta0.5": true,
+      "Slow_eta1.0": true,
+      "Slow_eta2.0": true,
+      "Slow_eta4.0": true,
+      "Slow_eta8.0": true,
+      "Baseline_eta0.5": true,
+      "Baseline_eta1.0": true,
+      "Baseline_eta2.0": true,
+      "Baseline_eta4.0": true,
+      "Baseline_eta8.0": true,
+      "Fast_eta0.5": true,
+      "Fast_eta1.0": true,
+      "Fast_eta2.0": true,
+      "Fast_eta4.0": true,
+      "Fast_eta8.0": true
+    },
+    "27-3092.00": {
+      "Slow_eta0.5": true,
+      "Slow_eta1.0": true,
+      "Slow_eta2.0": true,
+      "Slow_eta4.0": true,
+      "Slow_eta8.0": true,
+      "Baseline_eta0.5": true,
+      "Baseline_eta1.0": true,
+      "Baseline_eta2.0": true,
+      "Baseline_eta4.0": true,
+      "Baseline_eta8.0": true,
+      "Fast_eta0.5": true,
+      "Fast_eta1.0": true,
+      "Fast_eta2.0": true,
+      "Fast_eta4.0": true,
+      "Fast_eta8.0": true
+    }
+  }
+}

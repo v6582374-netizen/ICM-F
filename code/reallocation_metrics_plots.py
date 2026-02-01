@@ -12,7 +12,6 @@ import argparse
 import json
 import math
 import re
-from collections import defaultdict
 from pathlib import Path
 from typing import Dict, List, Tuple
 
@@ -318,28 +317,6 @@ def compute_top_rank_reversals(
     return pd.DataFrame(rows)
 
 
-def select_topk_by_delta(
-    p_share: pd.DataFrame,
-    task_dna: pd.DataFrame,
-    top_k: int,
-    guardrail: int = 2,
-) -> List[str]:
-    t_start = p_share["t"].min()
-    t_end = p_share["t"].max()
-    start = p_share[p_share["t"] == t_start].set_index("task_id")["p_ij"]
-    end = p_share[p_share["t"] == t_end].set_index("task_id")["p_ij"]
-    delta_abs = (end - start).abs().sort_values(ascending=False)
-    top_by_delta = list(delta_abs.index.astype(str)[:top_k])
-    top_by_w = (
-        task_dna.set_index("task_id")["w"].sort_values(ascending=False).head(guardrail).index.astype(str).tolist()
-    )
-    selected = []
-    for tid in top_by_w + top_by_delta:
-        if tid not in selected:
-            selected.append(tid)
-    return selected[:top_k]
-
-
 def plot_reallocation_mass(
     metrics: Dict[str, pd.DataFrame],
     t_grid: np.ndarray,
@@ -431,17 +408,19 @@ def plot_waterfall_contribution(
             f"{int(row['rank_w'])}",
             (row["rank_w"], y[i]),
             textcoords="offset points",
-            xytext=(2, 4),
-            fontsize=8,
+            xytext=(4, 6),
+            fontsize=9,
             color="#2b2f33",
+            bbox=dict(boxstyle="round,pad=0.2", facecolor="white", edgecolor="#b0b8c2", linewidth=0.5),
         )
         plt.annotate(
             f"{int(row['rank_p_end'])}",
             (row["rank_p_end"], y[i]),
             textcoords="offset points",
-            xytext=(2, -10),
-            fontsize=8,
+            xytext=(4, -12),
+            fontsize=9,
             color="#2b2f33",
+            bbox=dict(boxstyle="round,pad=0.2", facecolor="white", edgecolor="#b0b8c2", linewidth=0.5),
         )
     plt.yticks(y, [labels[tid] for tid in df["task_id"]])
     plt.xlabel("Rank (1 = highest share)")
@@ -453,88 +432,6 @@ def plot_waterfall_contribution(
     plt.close()
 
 
-def plot_heatmap_tasks(
-    t_grid: np.ndarray,
-    p_share: pd.DataFrame,
-    task_dna: pd.DataFrame,
-    output_path: Path,
-    sort_by: str = "delta",
-) -> None:
-    apply_plot_style()
-    pivot = p_share.pivot(index="task_id", columns="t", values="p_ij").fillna(0.0)
-    t_start = t_grid.min()
-    t_end = t_grid.max()
-    start = pivot[t_start]
-    end = pivot[t_end]
-    delta = (end - start).fillna(0.0)
-    info = task_dna.set_index("task_id")[["dims", "mu_task"]]
-    info["delta"] = delta
-
-    def sort_key(row):
-        if sort_by == "mu":
-            return row["mu_task"]
-        return abs(row["delta"])
-
-    grouped = defaultdict(list)
-    for tid, row in info.iterrows():
-        grouped[str(row["dims"])].append((str(tid), sort_key(row)))
-
-    order = []
-    for dims in sorted(grouped.keys()):
-        items = sorted(grouped[dims], key=lambda x: x[1], reverse=True)
-        order.extend([tid for tid, _ in items])
-
-    matrix = pivot.loc[order].values
-    plt.figure(figsize=(7.2, 5.2), dpi=300)
-    im = plt.imshow(matrix, aspect="auto", cmap="cividis")
-    plt.colorbar(im, fraction=0.03, pad=0.02, label="p_ij(t)")
-    plt.yticks(range(len(order)), order, fontsize=6)
-    plt.xticks(
-        np.linspace(0, len(t_grid) - 1, 6),
-        [f"{t_grid[int(i)]:.0f}" for i in np.linspace(0, len(t_grid) - 1, 6)],
-    )
-    plt.xlabel("Year")
-    plt.ylabel("Task ID")
-    plt.title("Task share heatmap (sorted by dims, within-dims by |Delta_p|)")
-    idx = 0
-    for dims in sorted(grouped.keys()):
-        idx += len(grouped[dims])
-        plt.axhline(idx - 0.5, color="white", linewidth=0.6, alpha=0.6)
-    plt.tight_layout()
-    plt.savefig(output_path, format="pdf")
-    plt.close()
-
-
-def plot_p_vs_A(
-    t_grid: np.ndarray,
-    a_values: np.ndarray,
-    p_share: pd.DataFrame,
-    task_ids: List[str],
-    labels: Dict[str, str],
-    output_path: Path,
-) -> None:
-    apply_plot_style()
-    pivot = p_share.pivot(index="t", columns="task_id", values="p_ij")
-    plt.figure(figsize=(7.2, 4.2), dpi=300)
-    palette = muted_palette()
-    for i, tid in enumerate(task_ids):
-        if tid not in pivot.columns:
-            continue
-        plt.plot(
-            a_values,
-            pivot[tid].values,
-            color=palette[i % len(palette)],
-            linewidth=1.6,
-            label=labels[tid],
-        )
-    plt.xlabel("Adoption rate A(t)")
-    plt.ylabel("Task share p_ij(t)")
-    plt.title("Task share vs adoption (TopK by |Delta_p|)")
-    plt.grid(True, alpha=0.3)
-    plt.legend(frameon=False, fontsize=7, ncol=2)
-    plt.tight_layout()
-    plt.savefig(output_path, format="pdf")
-    plt.close()
 
 
 def parse_args() -> argparse.Namespace:
@@ -608,18 +505,6 @@ def main() -> None:
                 monotone = bool(np.all(np.diff(r_vals) >= -1e-8))
                 monotone_report[f"{scenario}_eta{eta}"] = monotone
 
-            # p vs A plot (baseline eta=1 only)
-            if scenario == "Baseline":
-                p_share = load_p_share(processed / f"p_share_{soc}_{scenario}_eta1.0.csv")
-                topk = select_topk_by_delta(p_share, task_dna, top_k=8, guardrail=2)
-                plot_p_vs_A(
-                    t_grid,
-                    a_values,
-                    p_share,
-                    topk,
-                    labels,
-                    output_dir / f"fig_p_vs_A_{soc}.pdf",
-                )
 
         metrics_df = pd.concat(metrics_rows, ignore_index=True)
         metrics_df.to_csv(processed / f"reallocation_metrics_{soc}.csv", index=False)
@@ -629,16 +514,7 @@ def main() -> None:
 
         metrics_by_soc[soc] = metrics_df[metrics_df["eta"] == 1.0].copy()
 
-        # Heatmap by soc (baseline eta=1)
         p_share_base = load_p_share(processed / f"p_share_{soc}_Baseline_eta1.0.csv")
-        plot_heatmap_tasks(
-            t_grid,
-            p_share_base,
-            task_dna,
-            output_dir / f"fig_heatmap_tasks_over_time_{soc}.pdf",
-            sort_by="delta",
-        )
-
         if soc == "17-2199.08":
             plot_dumbbell_delta_p(
                 p_share_base,
@@ -651,7 +527,7 @@ def main() -> None:
             plot_waterfall_contribution(
                 contrib,
                 labels,
-                output_dir / "fig_STEM_waterfall_contribution.pdf",
+                output_dir / "fig_STEM_rankflip_contribution_v2.pdf",
             )
 
     plot_reallocation_mass(

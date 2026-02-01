@@ -13,7 +13,6 @@ import json
 import re
 import importlib.util
 import sys
-from collections import defaultdict
 from pathlib import Path
 from typing import Dict, List, Tuple
 
@@ -312,59 +311,6 @@ def plot_dumbbell_topk(
     plt.close()
 
 
-def plot_heatmap_tasks(
-    t_grid: np.ndarray,
-    p_share: pd.DataFrame,
-    task_dna: pd.DataFrame,
-    output_path: Path,
-    sort_by: str = "delta",
-) -> None:
-    apply_plot_style()
-    pivot = p_share.pivot(index="task_id", columns="t", values="p_ij").fillna(0.0)
-    t_start = t_grid.min()
-    t_end = t_grid.max()
-    start = pivot[t_start]
-    end = pivot[t_end]
-    delta = (end - start).fillna(0.0)
-    info = task_dna.set_index("task_id")[["dims", "mu_task"]]
-    info["delta"] = delta
-
-    def sort_key(row):
-        if sort_by == "mu":
-            return row["mu_task"]
-        return row["delta"]
-
-    grouped = defaultdict(list)
-    for tid, row in info.iterrows():
-        grouped[str(row["dims"])].append((str(tid), sort_key(row)))
-
-    order = []
-    for dims in sorted(grouped.keys()):
-        items = sorted(grouped[dims], key=lambda x: x[1], reverse=True)
-        order.extend([tid for tid, _ in items])
-
-    order = [str(tid) for tid in order]
-    matrix = pivot.loc[order].values
-    plt.figure(figsize=(7.2, 5.2), dpi=300)
-    im = plt.imshow(matrix, aspect="auto", cmap="cividis")
-    plt.colorbar(im, fraction=0.03, pad=0.02, label="p_ij(t)")
-    plt.yticks(range(len(order)), order, fontsize=6)
-    plt.xticks(
-        np.linspace(0, len(t_grid) - 1, 6),
-        [f"{t_grid[int(i)]:.0f}" for i in np.linspace(0, len(t_grid) - 1, 6)],
-    )
-    plt.xlabel("Year")
-    plt.ylabel("Task ID")
-    plt.title("Task share heatmap (sorted by dims, within-dims by delta_p)")
-
-    # dims block separators
-    idx = 0
-    for dims in sorted(grouped.keys()):
-        idx += len(grouped[dims])
-        plt.axhline(idx - 0.5, color="white", linewidth=0.6, alpha=0.6)
-    plt.tight_layout()
-    plt.savefig(output_path, format="pdf")
-    plt.close()
 
 
 def plot_tstar_facet(
@@ -503,13 +449,6 @@ def main() -> None:
                 output_dir / "fig_STEM_task_share_dumbbell_v2.pdf",
             )
 
-        plot_heatmap_tasks(
-            t_grid,
-            p_share,
-            task_dna,
-            output_dir / f"fig_task_share_heatmap_{soc}_v2.pdf",
-            sort_by="delta",
-        )
 
     t_star = pd.read_csv(processed / "t_star_table_17-2199.08.csv")
     t_star = t_star[(t_star["scenario"] == scenario_main) & (t_star["eta"] == eta_main)].copy()

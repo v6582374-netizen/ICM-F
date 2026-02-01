@@ -129,6 +129,49 @@ GPT-4基准分数 & MMLU 86.4\%、ARC 96.3\%、GSM8K 92.0\%、DROP 80.9、HellaS
 \label{fig:task_share_all_arts}
 \end{figure}
 
+\section{教育项目推荐详表}
+\label{app:program_recommendations}
+
+表~\ref{tab:programs_genai_rationale}汇总了三个代表性职业的推荐教育项目及其选择理由。
+
+\begin{table}[H]
+\centering
+\renewcommand{\arraystretch}{1.3}
+\small
+\caption{推荐教育项目与选择理由}
+\label{tab:programs_genai_rationale}
+\begin{tabular}{@{}p{0.18\textwidth}p{0.26\textwidth}p{0.51\textwidth}@{}}
+\toprule
+\textbf{职业及院校类型} & \textbf{推荐院校及专业} & \textbf{选择理由} \\
+\midrule
+
+机器人工程师 \newline（大学） &
+卡内基梅隆大学（Carnegie Mellon University）\newline
+机器人研究院：机器人系统开发理学硕士（MRSD） &
+\textbf{（1）机构层面具备"领路者"属性：}机器人研究院自1979年成立以来强调在机器人研究与教育方面的领先定位~\cite{cmu_ri_2026}。\newline
+\textbf{（2）项目培养目标对齐产业与系统工程能力：}MRSD定位为面向产业实践的高级学位，强调多学科技术与商业能力，并包含与产业伙伴相关的实习路径~\cite{cmu_mrsd_2026}。\newline
+\textbf{（3）Gen-AI适配的校内资源明确可用：}学校提供"生成式AI与大模型"研究生证书项目，可作为机器人课程中引入LLM/Gen-AI（例如自然语言规划、人机协作、生成式设计）的制度化资源接口~\cite{cmu_gai_cert_2026}。 \\
+\addlinespace
+
+机械、安装与维修人员的一线主管 \newline（职业/技校） &
+Universal Technical Institute（UTI）\newline
+汽车与柴油技术等相关项目 &
+\textbf{（1）行业对齐与课程迭代能力强：}UTI通过与Bosch合作开发电动车（BEV）新课件，作为其电动车训练策略的一部分，体现其能快速响应产业技术迁移~\cite{uti_bosch_2022}。\newline
+\textbf{（2）将"AI化诊断/估损"纳入技能语境具备现实基础：}UTI公开内容已直接讨论"AI支持的诊断"用于识别隐性损伤并辅助估算维修所需零件与工时，说明其在教学叙事与训练模块上具备纳入AI工具链的入口~\cite{uti_collision_ai_2026}。\newline
+\textbf{（3）对主管岗位的Gen-AI建议落点：}应将Gen-AI从"技术员工具"上移到"班组/车间管理工具"，围绕工单生成、诊断知识库、预测性维护、培训内容自动化与合规安全（SOP）等模块设计课程与实训。 \\
+\addlinespace
+
+法庭速录师与同声字幕员 \newline（艺术/专门院校） &
+Generations College（原MacCormac School）\newline
+Court Reporting 副学士（A.A.S.） &
+\textbf{（1）项目历史与行业代表性强：}学校明确宣称其在1912年建立了美国同类项目中的"首创"法庭速录项目，且在招生页面强调其行业声誉~\cite{generations_court_2026}。\newline
+\textbf{（2）实时（Realtime）训练在项目目标中被明确要求：}在线项目页面明确写入"核心课程中获得Realtime reporting经验"~\cite{generations_online_2026}。\newline
+\textbf{（3）与行业质量标准存在对接抓手：}NCRA公布的"批准项目"列表中包含Generations College（并标注批准有效期），可作为项目质量与realtime教育承诺的外部背书线索~\cite{ncra_approved_2026}。\newline
+\textbf{（4）Gen-AI建议落点：}将Gen-AI定位为"转写与后编辑（post-editing）/术语库构建/质量控制"的增效工具，同时强化伦理与可审计性（chain of custody）训练，确保学生在AI辅助环境中仍能提供可置信的官方记录。 \\
+\bottomrule
+\end{tabular}
+\end{table}
+
 \section{Python实现代码}
 \begin{lstlisting}[language=Python]
 def model_solver(data):

@@ -1,9 +1,27 @@
-\begin{thebibliography}{23}
+\begin{thebibliography}{31}
 \providecommand{\natexlab}[1]{#1}
 \providecommand{\url}[1]{\texttt{#1}}
 \expandafter\ifx\csname urlstyle\endcsname\relax
   \providecommand{\doi}[1]{doi: #1}\else
   \providecommand{\doi}{doi: \begingroup \urlstyle{rm}\Url}\fi
+
+\bibitem[{Carnegie Mellon University}(2026{\natexlab{a}})]{cmu_gai_cert_2026}
+{Carnegie Mellon University}.
+\newblock {Graduate Certificate in Generative AI and Large Language Models}, 2026{\natexlab{a}}.
+\newblock URL \url{https://www.cmu.edu/online/gai-llm/}.
+\newblock Accessed February 1, 2026.
+
+\bibitem[{Carnegie Mellon University}(2026{\natexlab{b}})]{cmu_mrsd_2026}
+{Carnegie Mellon University}.
+\newblock {Master of Science in Robotic Systems Development (MRSD)}, 2026{\natexlab{b}}.
+\newblock URL \url{https://mrsd.ri.cmu.edu/}.
+\newblock Accessed February 1, 2026. Program overview: \url{https://mrsd.ri.cmu.edu/about-mrsd/}.
+
+\bibitem[{Carnegie Mellon University Robotics Institute}(2026)]{cmu_ri_2026}
+{Carnegie Mellon University Robotics Institute}.
+\newblock {About the Robotics Institute}, 2026.
+\newblock URL \url{https://www.ri.cmu.edu/}.
+\newblock Accessed February 1, 2026. See also: \url{https://www.ri.cmu.edu/about/ri-history/}.
 
 \bibitem[Chen et~al.(2021)]{openaicodex2021}
 Mark Chen et~al.
@@ -15,116 +33,112 @@ Mark Chen et~al.
 \bibitem[Deng et~al.(2009)]{imagenet2009}
 Jia Deng et~al.
 \newblock {ImageNet: A Large-Scale Hierarchical Image Database}.
-\newblock \emph{Proceedings of the IEEE Conference on Computer Vision and
-  Pattern Recognition}, 2009.
+\newblock \emph{Proceedings of the IEEE Conference on Computer Vision and Pattern Recognition}, 2009.
 \newblock URL \url{https://www.image-net.org/}.
 \newblock Accessed January 30, 2026.
 
 \bibitem[Frey and Osborne(2017)]{freyosborne2017}
 Carl~Benedikt Frey and Michael~A. Osborne.
-\newblock {The Future of Employment: How Susceptible are Jobs to
-  Computerisation?}
+\newblock {The Future of Employment: How Susceptible are Jobs to Computerisation?}
 \newblock Technical report, Oxford Martin School, University of Oxford, 2017.
-\newblock URL
-  \url{https://www.oxfordmartin.ox.ac.uk/downloads/academic/future-of-employment.pdf}.
+\newblock URL \url{https://www.oxfordmartin.ox.ac.uk/downloads/academic/future-of-employment.pdf}.
 \newblock Accessed January 30, 2026.
 
 \bibitem[{Gartner}(2023)]{gartner2023genai}
 {Gartner}.
 \newblock {Gartner Press Release on Generative AI Adoption (Oct 2023)}, 2023.
-\newblock URL
-  \url{https://www.gartner.com/en/newsroom/press-releases/2023-10-11-gartner-says-more-than-80-percent-of-enterprises-will-have-used-generative-ai-apis-or-deployed-generative-ai-enabled-applications-by-2026}.
+\newblock URL \url{https://www.gartner.com/en/newsroom/press-releases/2023-10-11-gartner-says-more-than-80-percent-of-enterprises-will-have-used-generative-ai-apis-or-deployed-generative-ai-enabled-applications-by-2026}.
 \newblock Accessed February 1, 2026.
+
+\bibitem[{Generations College}(2026{\natexlab{a}})]{generations_court_2026}
+{Generations College}.
+\newblock {Court Reporting Major -- Associate Degree Program}, 2026{\natexlab{a}}.
+\newblock URL \url{https://www.generations.edu/academics/associates-degree-programs/court-reporting-major/}.
+\newblock Accessed February 1, 2026. Formerly MacCormac School.
+
+\bibitem[{Generations College}(2026{\natexlab{b}})]{generations_online_2026}
+{Generations College}.
+\newblock {Online Court Reporting Program}, 2026{\natexlab{b}}.
+\newblock URL \url{https://www.generations.edu/academics/online-degree-programs/online-court-reporting/}.
+\newblock Accessed February 1, 2026. Emphasizes realtime reporting training.
 
 \bibitem[Matias et~al.(2017)]{docvqa2017}
 Jon Matias et~al.
 \newblock {DocVQA: A Dataset for Visual Question Answering on Document Images}.
-\newblock In \emph{Proceedings of the IEEE International Conference on Computer
-  Vision Workshops}, 2017.
+\newblock In \emph{Proceedings of the IEEE International Conference on Computer Vision Workshops}, 2017.
 \newblock URL \url{https://www.docvqa.org/}.
 \newblock Accessed January 30, 2026.
 
 \bibitem[{McKinsey \& Company}(2023)]{mckinsey_maintenance_2023}
 {McKinsey \& Company}.
-\newblock {Predictive Maintenance and Industrial AI: Transforming Operations},
-  2023.
-\newblock URL
-  \url{https://www.mckinsey.com/capabilities/operations/our-insights/predictive-maintenance}.
-\newblock Accessed February 1, 2026. Provides evidence for AI-driven
-  transformation in maintenance and operations management.
+\newblock {Predictive Maintenance and Industrial AI: Transforming Operations}, 2023.
+\newblock URL \url{https://www.mckinsey.com/capabilities/operations/our-insights/predictive-maintenance}.
+\newblock Accessed February 1, 2026. Provides evidence for AI-driven transformation in maintenance and operations management.
 
 \bibitem[{McKinsey \& Company}(2024)]{mckinsey2024stateai}
 {McKinsey \& Company}.
 \newblock {The State of AI in 2024}, 2024.
-\newblock URL
-  \url{https://www.mckinsey.com/capabilities/quantumblack/our-insights/the-state-of-ai-2024}.
+\newblock URL \url{https://www.mckinsey.com/capabilities/quantumblack/our-insights/the-state-of-ai-2024}.
 \newblock Accessed February 1, 2026.
 
 \bibitem[{McKinsey \& Company}(2025)]{mckinsey2025stateai}
 {McKinsey \& Company}.
 \newblock {The State of AI in 2025}, 2025.
-\newblock URL
-  \url{https://www.mckinsey.com/capabilities/quantumblack/our-insights/the-state-of-ai-how-organizations-are-rewiring-to-capture-value}.
+\newblock URL \url{https://www.mckinsey.com/capabilities/quantumblack/our-insights/the-state-of-ai-how-organizations-are-rewiring-to-capture-value}.
 \newblock Accessed February 1, 2026.
 
 \bibitem[{National Court Reporters Association}(2024)]{ncra_trends_2024}
 {National Court Reporters Association}.
-\newblock {Industry Trends: Technology and the Future of Court Reporting},
-  2024.
+\newblock {Industry Trends: Technology and the Future of Court Reporting}, 2024.
 \newblock URL \url{https://www.ncra.org/}.
-\newblock Accessed February 1, 2026. Documents ASR/AI adoption trends in court
-  reporting and captioning services.
+\newblock Accessed February 1, 2026. Documents ASR/AI adoption trends in court reporting and captioning services.
+
+\bibitem[{National Court Reporters Association}(2026)]{ncra_approved_2026}
+{National Court Reporters Association}.
+\newblock {NCRA Approved Court Reporting Programs}, 2026.
+\newblock URL \url{https://www.ncra.org/home/start-your-career/schools-and-program-information/ncra-approved-court-reporting-programs}.
+\newblock Accessed February 1, 2026. Official list of approved programs.
 
 \bibitem[{NVIDIA Corporation}(2024)]{nvidia_isaac_2024}
 {NVIDIA Corporation}.
-\newblock {NVIDIA Isaac Platform for Robotics: Generative AI-Powered
-  Development}, 2024.
+\newblock {NVIDIA Isaac Platform for Robotics: Generative AI-Powered Development}, 2024.
 \newblock URL \url{https://developer.nvidia.com/isaac}.
-\newblock Accessed February 1, 2026. Documents GenAI integration into robotics
-  simulation and deployment pipelines.
+\newblock Accessed February 1, 2026. Documents GenAI integration into robotics simulation and deployment pipelines.
 
 \bibitem[{O*NET OnLine}(2025{\natexlab{a}})]{onetEmail}
 {O*NET OnLine}.
 \newblock {Work Context: Electronic Mail}, 2025{\natexlab{a}}.
-\newblock URL
-  \url{https://www.onetonline.org/find/descriptor/result/4.C.1.a.2.h}.
+\newblock URL \url{https://www.onetonline.org/find/descriptor/result/4.C.1.a.2.h}.
 \newblock Descriptor 4.C.1.a.2.h. Accessed January 31, 2026.
 
 \bibitem[{O*NET OnLine}(2025{\natexlab{b}})]{onetKneeling}
 {O*NET OnLine}.
-\newblock {Work Context: Spend Time Kneeling, Crouching, Stooping, or
-  Crawling}, 2025{\natexlab{b}}.
-\newblock URL
-  \url{https://www.onetonline.org/find/descriptor/result/4.C.2.d.1.e}.
+\newblock {Work Context: Spend Time Kneeling, Crouching, Stooping, or Crawling}, 2025{\natexlab{b}}.
+\newblock URL \url{https://www.onetonline.org/find/descriptor/result/4.C.2.d.1.e}.
 \newblock Descriptor 4.C.2.d.1.e. Accessed January 31, 2026.
 
 \bibitem[{O*NET OnLine}(2025{\natexlab{c}})]{onetOriginality}
 {O*NET OnLine}.
 \newblock {Abilities: Originality}, 2025{\natexlab{c}}.
-\newblock URL
-  \url{https://www.onetonline.org/find/descriptor/result/1.A.1.b.2}.
+\newblock URL \url{https://www.onetonline.org/find/descriptor/result/1.A.1.b.2}.
 \newblock Descriptor 1.A.1.b.2. Accessed January 31, 2026.
 
 \bibitem[{O*NET OnLine}(2025{\natexlab{d}})]{onetThinkingCreatively}
 {O*NET OnLine}.
 \newblock {Work Activities: Thinking Creatively}, 2025{\natexlab{d}}.
-\newblock URL
-  \url{https://www.onetonline.org/find/descriptor/result/4.A.2.b.2}.
+\newblock URL \url{https://www.onetonline.org/find/descriptor/result/4.A.2.b.2}.
 \newblock Descriptor 4.A.2.b.2. Accessed January 31, 2026.
 
 \bibitem[{O*NET OnLine}(2025{\natexlab{e}})]{onetUsingHands}
 {O*NET OnLine}.
-\newblock {Work Context: Spend Time Using Your Hands to Handle, Control, or
-  Feel Objects, Tools, or Controls}, 2025{\natexlab{e}}.
-\newblock URL
-  \url{https://www.onetonline.org/find/descriptor/result/4.C.2.d.1.g}.
+\newblock {Work Context: Spend Time Using Your Hands to Handle, Control, or Feel Objects, Tools, or Controls}, 2025{\natexlab{e}}.
+\newblock URL \url{https://www.onetonline.org/find/descriptor/result/4.C.2.d.1.g}.
 \newblock Descriptor 4.C.2.d.1.g. Accessed January 31, 2026.
 
 \bibitem[{O*NET OnLine}(2025{\natexlab{f}})]{onetWorkingWithComputers}
 {O*NET OnLine}.
 \newblock {Work Activities: Working with Computers}, 2025{\natexlab{f}}.
-\newblock URL
-  \url{https://www.onetonline.org/find/descriptor/result/4.A.3.b.1}.
+\newblock URL \url{https://www.onetonline.org/find/descriptor/result/4.A.3.b.1}.
 \newblock Descriptor 4.A.3.b.1. Accessed January 31, 2026.
 
 \bibitem[{O*NET Resource Center}(2019)]{onet2019structure}
@@ -165,12 +179,23 @@ Alec Radford et~al.
 \newblock URL \url{https://www.swe-bench.com/}.
 \newblock Accessed January 30, 2026.
 
+\bibitem[{Universal Technical Institute}(2022)]{uti_bosch_2022}
+{Universal Technical Institute}.
+\newblock {Universal Technical Institute Selects Bosch to Develop New Courseware, Further Advancing its Electric Vehicle Training Strategy}.
+\newblock Investor Relations Press Release, 2022.
+\newblock URL \url{https://investor.uti.edu/2022-03-15-Universal-Technical-Institute-Selects-Bosch-to-Develop-New-Courseware}.
+\newblock Accessed February 1, 2026.
+
+\bibitem[{Universal Technical Institute}(2026)]{uti_collision_ai_2026}
+{Universal Technical Institute}.
+\newblock {The Future of Collision Repair: How Technology Is Transforming the Industry}, 2026.
+\newblock URL \url{https://www.uti.edu/blog/collision/the-future-of-collision-repair-how-technology-is}.
+\newblock Accessed February 1, 2026. Discusses AI-powered diagnostics in collision repair.
+
 \bibitem[Yu et~al.(2018)]{spider2018}
 Tao Yu et~al.
-\newblock {Spider: A Large-Scale Human-Labeled Dataset for Complex and
-  Cross-Domain Semantic Parsing and Text-to-SQL Task}.
-\newblock In \emph{Proceedings of the 2018 Conference on Empirical Methods in
-  Natural Language Processing}, 2018.
+\newblock {Spider: A Large-Scale Human-Labeled Dataset for Complex and Cross-Domain Semantic Parsing and Text-to-SQL Task}.
+\newblock In \emph{Proceedings of the 2018 Conference on Empirical Methods in Natural Language Processing}, 2018.
 \newblock URL \url{https://yale-lily.github.io/spider}.
 \newblock Accessed January 30, 2026.
 

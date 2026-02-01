@@ -8,56 +8,63 @@
 \contentsline {section}{\numberline {3}模型构建与实现}{7}{section.3}%
 \contentsline {subsection}{\numberline {3.1}职业选择作为建模决策}{7}{subsection.3.1}%
 \contentsline {subsubsection}{\numberline {3.1.1}基于O*NET的职业特征参数客观化}{7}{subsubsection.3.1.1}%
-\contentsline {paragraph}{归一化与可重现性}{8}{section*.2}%
-\contentsline {paragraph}{稳健性证据与数值结果}{11}{section*.6}%
+\contentsline {paragraph}{归一化与可重现性}{9}{section*.3}%
+\contentsline {paragraph}{稳健性证据与数值结果}{11}{section*.7}%
 \contentsline {subsection}{\numberline {3.2}职业演化的模型选择}{11}{subsection.3.2}%
-\contentsline {subsubsection}{\numberline {3.2.1}未来演化的可计算定义}{11}{subsubsection.3.2.1}%
+\contentsline {subsubsection}{\numberline {3.2.1}未来演化的可计算定义}{12}{subsubsection.3.2.1}%
 \contentsline {subsubsection}{\numberline {3.2.2}模型框架选择与理由}{12}{subsubsection.3.2.2}%
 \contentsline {subsection}{\numberline {3.3}任务层动态预测模型（Task-first）}{12}{subsection.3.3}%
 \contentsline {subsubsection}{\numberline {3.3.1}任务权重（Task DNA）与任务净冲击}{12}{subsubsection.3.3.1}%
-\contentsline {paragraph}{任务DNA的定义与数据来源}{12}{section*.7}%
-\contentsline {paragraph}{任务权重的推导}{12}{section*.8}%
-\contentsline {paragraph}{任务DNA与权威s,c分布（三职业）}{12}{section*.9}%
-\contentsline {paragraph}{任务影响强度的离散化量表与证据约束}{13}{section*.10}%
+\contentsline {paragraph}{任务DNA的定义与数据来源}{12}{section*.8}%
+\contentsline {paragraph}{任务权重的推导}{12}{section*.9}%
+\contentsline {paragraph}{任务DNA与权威s,c分布（三职业）}{13}{section*.10}%
+\contentsline {paragraph}{任务影响强度的离散化量表与证据约束}{13}{section*.11}%
 \contentsline {subsection}{\numberline {3.4}基于权威基准的GenAI能力量表与可审计映射}{13}{subsection.3.4}%
 \contentsline {subsubsection}{\numberline {3.4.1}机制审计与最短修复路径}{13}{subsubsection.3.4.1}%
 \contentsline {subsubsection}{\numberline {3.4.2}能力量表：$M_k\rightarrow \rho _k\rightarrow (s_k,c_k)$}{14}{subsubsection.3.4.2}%
-\contentsline {paragraph}{能力分段（$M_k$）}{14}{section*.12}%
-\contentsline {paragraph}{方向系数（$\rho _k$）}{14}{section*.13}%
+\contentsline {paragraph}{能力分段（$M_k$）}{14}{section*.13}%
+\contentsline {paragraph}{方向系数（$\rho _k$）}{14}{section*.14}%
 \contentsline {subsubsection}{\numberline {3.4.3}九维能力量表（含原始评分与证据）}{14}{subsubsection.3.4.3}%
-\contentsline {paragraph}{必要声明}{15}{section*.15}%
-\contentsline {paragraph}{任务层净冲击}{15}{section*.17}%
-\contentsline {paragraph}{三职业任务DNA的 $s,c$ 分布与负净冲击分析}{16}{section*.19}%
+\contentsline {paragraph}{必要声明}{15}{section*.16}%
+\contentsline {paragraph}{任务层净冲击}{16}{section*.18}%
+\contentsline {paragraph}{三职业任务DNA的 $s,c$ 分布与负净冲击分析}{16}{section*.20}%
 \contentsline {subsubsection}{\numberline {3.4.4}Driver Specification: Adoption as the Core Temporal Mechanism}{17}{subsubsection.3.4.4}%
-\contentsline {paragraph}{Driver 定义与机制}{17}{section*.21}%
-\contentsline {paragraph}{三类职业的 Driver 合理性}{17}{section*.22}%
-\contentsline {subparagraph}{Robotics Engineers (O*NET 17-2199.08)}{17}{section*.23}%
-\contentsline {subparagraph}{First-Line Supervisors of Mechanics (O*NET 49-1011.00)}{17}{section*.24}%
-\contentsline {subparagraph}{Court Reporters and Simultaneous Captioners (O*NET 27-3092.00)}{17}{section*.25}%
-\contentsline {subsubsection}{\numberline {3.4.5}将“发展轨迹”与“任务需求”紧密耦合：采纳混合机制}{17}{subsubsection.3.4.5}%
-\contentsline {paragraph}{解释性}{18}{section*.26}%
-\contentsline {paragraph}{未来时间点}{18}{section*.27}%
-\contentsline {subsubsection}{\numberline {3.4.6}结构读出层：职业重新定义的可计算判据}{18}{subsubsection.3.4.6}%
-\contentsline {paragraph}{基线参考点的选择}{18}{section*.28}%
-\contentsline {paragraph}{(i) 份额变化}{18}{section*.29}%
-\contentsline {paragraph}{(ii) Top contributor（贡献分解）}{19}{section*.30}%
-\contentsline {paragraph}{(iii) Top-$m$ 换血率}{19}{section*.31}%
-\contentsline {paragraph}{(iv) 排名翻转与归一化翻转强度}{19}{section*.32}%
-\contentsline {paragraph}{职业重新定义的综合判据}{19}{section*.33}%
-\contentsline {paragraph}{结构指标的可视化}{19}{section*.34}%
-\contentsline {section}{\numberline {4}仿真结果与敏感性分析}{20}{section.4}%
-\contentsline {subsection}{\numberline {4.1}职业选择的剪枝敏感性检验}{20}{subsection.4.1}%
-\contentsline {paragraph}{检验方法}{20}{section*.36}%
-\contentsline {paragraph}{检验结果}{21}{section*.37}%
-\contentsline {paragraph}{稳健性判定}{21}{section*.40}%
-\contentsline {section}{\numberline {5}讨论：优势与不足}{22}{section.5}%
-\contentsline {subsection}{\numberline {5.1}优势}{22}{subsection.5.1}%
-\contentsline {subsection}{\numberline {5.2}不足}{22}{subsection.5.2}%
-\contentsline {section}{\numberline {6}结论}{22}{section.6}%
-\contentsline {section}{Appendices}{24}{section*.42}%
-\contentsline {section}{附录 \numberline {A}数据来源与变量定义}{24}{appendix.1.A}%
-\contentsline {subsection}{\numberline {A.1}O*NET描述符数据来源}{24}{subsection.1.A.1}%
-\contentsline {subsection}{\numberline {A.2}任务DNA与GenAI能力数据}{25}{subsection.1.A.2}%
-\contentsline {section}{附录 \numberline {B}补充图示：任务DNA权重分布}{26}{appendix.1.B}%
-\contentsline {section}{附录 \numberline {C}补充图示：任务份额预测}{28}{appendix.1.C}%
-\contentsline {section}{附录 \numberline {D}Python实现代码}{30}{appendix.1.D}%
+\contentsline {paragraph}{Driver 定义与机制}{17}{section*.22}%
+\contentsline {paragraph}{三类职业的 Driver 合理性}{17}{section*.23}%
+\contentsline {subparagraph}{Robotics Engineers (O*NET 17-2199.08)}{17}{section*.24}%
+\contentsline {subparagraph}{First-Line Supervisors of Mechanics (O*NET 49-1011.00)}{18}{section*.25}%
+\contentsline {subparagraph}{Court Reporters and Simultaneous Captioners (O*NET 27-3092.00)}{18}{section*.26}%
+\contentsline {subsubsection}{\numberline {3.4.5}将“发展轨迹”与“任务需求”紧密耦合：采纳混合机制}{18}{subsubsection.3.4.5}%
+\contentsline {paragraph}{解释性}{18}{section*.27}%
+\contentsline {paragraph}{未来时间点}{19}{section*.28}%
+\contentsline {subsubsection}{\numberline {3.4.6}结构读出层：职业重新定义的可计算判据}{19}{subsubsection.3.4.6}%
+\contentsline {paragraph}{基线参考点的选择}{19}{section*.29}%
+\contentsline {paragraph}{(i) 份额变化}{19}{section*.30}%
+\contentsline {paragraph}{(ii) Top contributor（贡献分解）}{19}{section*.31}%
+\contentsline {paragraph}{(iii) Top-$m$ 换血率}{20}{figure.caption.33}%
+\contentsline {paragraph}{(iv) 排名翻转与归一化翻转强度}{20}{section*.34}%
+\contentsline {paragraph}{职业重新定义的综合判据}{20}{section*.35}%
+\contentsline {paragraph}{结构指标的可视化}{21}{section*.36}%
+\contentsline {subsection}{\numberline {3.5}教育项目推荐与Gen-AI整合策略}{21}{subsection.3.5}%
+\contentsline {subsubsection}{\numberline {3.5.1}课程优化元模型：剪枝-增补两阶段框架}{22}{subsubsection.3.5.1}%
+\contentsline {paragraph}{变量定义与符号约定}{22}{section*.38}%
+\contentsline {paragraph}{双轴目标函数}{22}{section*.39}%
+\contentsline {paragraph}{两阶段优化策略}{23}{section*.40}%
+\contentsline {paragraph}{模型特性与适用边界}{23}{section*.41}%
+\contentsline {section}{\numberline {4}仿真结果与敏感性分析}{23}{section.4}%
+\contentsline {subsection}{\numberline {4.1}职业选择的剪枝敏感性检验}{23}{subsection.4.1}%
+\contentsline {paragraph}{检验方法}{23}{section*.42}%
+\contentsline {paragraph}{检验结果}{23}{section*.43}%
+\contentsline {paragraph}{稳健性判定}{24}{section*.46}%
+\contentsline {section}{\numberline {5}讨论：优势与不足}{25}{section.5}%
+\contentsline {subsection}{\numberline {5.1}优势}{25}{subsection.5.1}%
+\contentsline {subsection}{\numberline {5.2}不足}{25}{subsection.5.2}%
+\contentsline {section}{\numberline {6}结论}{25}{section.6}%
+\contentsline {section}{Appendices}{28}{section*.48}%
+\contentsline {section}{附录 \numberline {A}数据来源与变量定义}{28}{appendix.1.A}%
+\contentsline {subsection}{\numberline {A.1}O*NET描述符数据来源}{28}{subsection.1.A.1}%
+\contentsline {subsection}{\numberline {A.2}任务DNA与GenAI能力数据}{28}{subsection.1.A.2}%
+\contentsline {section}{附录 \numberline {B}补充图示：任务DNA权重分布}{29}{appendix.1.B}%
+\contentsline {section}{附录 \numberline {C}补充图示：任务份额预测}{31}{appendix.1.C}%
+\contentsline {section}{附录 \numberline {D}教育项目推荐详表}{33}{appendix.1.D}%
+\contentsline {section}{附录 \numberline {E}Python实现代码}{34}{appendix.1.E}%

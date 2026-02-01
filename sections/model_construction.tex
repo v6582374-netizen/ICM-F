@@ -27,6 +27,13 @@ O*NET基于专家调查和从业者反馈，为每个职业提供大量\emph{数
 表~\ref{tab:onet_descriptor_mapping} 列出了每个特征轴所对应的O*NET描述符及其可辩护性说明。
 从O*NET下载所选descriptor的数值（均为0–100量表）\cite{onet2025database}，再在全职业集合上做min-max归一化到[0,1]，得到digit(x), physical(x), iprisk(x)。
 
+\begin{figure}[H]
+\centering
+\includegraphics[width=0.86\textwidth]{figures/fig_genai_taskdna_chord_17-2199.08.pdf}
+\caption{GenAI 能力 $\rightarrow$ Task DNA 映射弦图（机器人⼯程师，17-2199.08）。}
+\label{fig:genai_taskdna_chord_robotics}
+\end{figure}
+
 \begin{table}[H]
 \centering
 \caption{三维特征轴与O*NET描述符的对应关系}
@@ -263,6 +270,7 @@ D9 的高分来自特定管线 &
 \subsubsection{九维能力量表（含原始评分与证据）}
 表~\ref{tab:genai_scale} 给出可直接落地的基线版本：每个维度包含原始评分、分段得到的 $M_k$、方向系数 $\rho_k$，以及对应的 $(s_k,c_k)$。并且该分段仅依赖公开测试分数与阈值，避免主观评分。\\
 这部分表格可以考虑放到附录，减少解释。
+
 \begin{table}[H]
 \centering
 \caption[GenAI 九维能力映射总表]{GenAI 九维能力映射总表：指标分段$\rightarrow M_k,\rho_k\rightarrow(s_k,c_k)$}
@@ -489,6 +497,12 @@ r_{ij}(t_0,t_1)=\frac{1}{2}\left|\Delta p_{ij}(t_0,t_1)\right|.
 按 $r_{ij}$ 降序排列，可识别出对结构变化贡献最大的任务（Top contributors）。该指标取代原先"按均值选取 TopK"的方式，避免挑到稳定大头而掩盖结构重排。
 
 \paragraph{(iii) Top-$m$ 换血率}
+\begin{figure}[H]
+\centering
+\includegraphics[width=0.82\textwidth]{figures/fig_robotics_task_dna_wordcloud.pdf}
+\caption{Robotics 工程师 Task DNA 词云：颜色使用低饱和柔和色调，Top 任务以更高权重与更深色调突出。}
+\label{fig:robotics_task_dna_wordcloud}
+\end{figure}
 定义职业的核心任务集为按 $p_{ij}(t)$ 降序的前 $m$ 个任务，记为 $\mathrm{Top}_m(p_i(t))$。换血率衡量核心任务集合的更替程度：
 \begin{equation}
 \label{eq:turnover}
@@ -532,3 +546,5 @@ I_i(t_0,t_1)=\#\{(a,b):\ \mathrm{rank}_i(a,t_0)<\mathrm{rank}_i(b,t_0)\ \wedge\ 
 \caption{STEM职业（17-2199.08）从基线（$t_0=0$, $A=0$）到末期（$t_1=2040$）的排名翻转。连线两端分别为 $\mathrm{rank}_i(j,t_0)$ 与 $\mathrm{rank}_i(j,t_1)$，翻转幅度越大、线越陡，结构性重排越显著。STEM职业（17-2199.08）结构变化的 Top contributors 贡献分解。按 $r_{ij}$ 降序展示各任务对总份额变化的累积贡献，揭示结构重排的主要驱动任务。}
 \label{fig:rank_flip_stem}
 \end{figure}
+
+\input{sections/task3_program_recommendations}

@@ -1,0 +1,68 @@
+\subsection{教育项目推荐与Gen-AI整合策略}
+\label{subsec:task3_programs}
+
+基于前述职业选择及其任务层面的Gen-AI影响分析，我们为三个代表性职业推荐具体的教育项目。
+推荐遵循三重准则：\textbf{（1）机构层面的行业领导力}、\textbf{（2）课程与产业需求的对齐度}、以及\textbf{（3）Gen-AI资源整合的制度化路径}。
+具体推荐项目及其详细选择依据见附录表~\ref{tab:programs_genai_rationale}。
+
+针对\textbf{机器人工程师}，我们推荐卡内基梅隆大学机器人研究院的MRSD项目，该项目具备行业领导力且已建立Gen-AI课程资源接口。
+针对\textbf{机械维修一线主管}，Universal Technical Institute（UTI）展现出快速响应产业技术迁移的能力，并已将AI诊断纳入教学叙事。
+针对\textbf{法庭速录师}，Generations College作为美国首创法庭速录项目的历史传承者，其Realtime训练体系可与Gen-AI后编辑工具形成互补。
+
+\subsubsection{课程优化元模型：剪枝-增补两阶段框架}
+\label{subsubsec:curriculum_prune_add}
+
+在具体项目推荐之上，我们构建一个通用的\textbf{课程优化元模型}（Curriculum Prune-Add Meta-Model），将教育项目视为带学分成本的模块组合。该模型的核心思想是：在有限的学分预算约束下，先通过剪枝释放冗余资源，再在保证就业能力下限的前提下最大化人文素养维度。
+
+\paragraph{变量定义与符号约定}
+设课程模块索引 $m = 1, \ldots, M$，任务索引 $j$ 沿用第二问的任务体系。定义以下核心变量：
+\begin{itemize}[leftmargin=2em]
+  \item $x_m \in \{0, 1\}$：课程模块 $m$ 的保留决策（1为保留，0为剔除）；
+  \item $c_m$：课程模块 $m$ 的学分成本；
+  \item $a_{mj} \in [0, 1]$：课程 $m$ 对任务 $j$ 的覆盖系数，可通过课程描述文本相似度或专家编码获得；
+  \item $d_j$：任务 $j$ 的未来权重，直接复用第二问任务采纳驱动模型在毕业时间窗口的任务份额预测值；
+  \item $b_{mk}$：课程 $m$ 在人文素养维度 $k$ 上的得分，$k \in \{\text{civic}, \text{agency}, \text{wellbeing}, \text{lifelong}\}$；
+  \item $C$：总学分预算上限。
+\end{itemize}
+
+\paragraph{双轴目标函数}
+模型追求两个相互关联但逻辑独立的优化目标：
+
+\textbf{就业能力轴（Employability Axis）}：度量课程组合对未来劳动力市场任务需求的覆盖程度。其数学表达为：
+\begin{equation}
+  E(\mathbf{x}) = \sum_j d_j \cdot \min\left(1, \sum_m x_m a_{mj}\right)
+  \label{eq:employability_axis}
+\end{equation}
+该函数的设计逻辑如下：对于每个未来任务 $j$，我们计算所有被保留课程对其覆盖系数之和，但通过 $\min(1, \cdot)$ 截断——这意味着任务一旦被"充分覆盖"，额外的课程不再增加边际收益。随后以任务权重 $d_j$ 加权汇总，确保高需求任务获得更大权重。
+
+\textbf{人文素养轴（Humanistic Axis）}：度量课程组合在公民素养（civic）、自主能力（agency）、身心健康（wellbeing）和终身学习（lifelong）四个维度上的累积贡献：
+\begin{equation}
+  H_k(\mathbf{x}) = \sum_m x_m b_{mk}, \quad k \in \{\text{civic}, \text{agency}, \text{wellbeing}, \text{lifelong}\}
+  \label{eq:humanistic_axis}
+\end{equation}
+这里采用线性累加形式，反映人文素养的可叠加性——更多相关课程带来更高的人文素养积累。
+
+\paragraph{两阶段优化策略}
+
+我们采用\textbf{剪枝-增补}（Prune-Add）两阶段策略，在学分预算约束下实现就业与人文的双重优化：
+
+\textbf{阶段一：剪枝（Prune）}——在保证就业能力下限 $\underline{E}$ 的前提下，最小化课程价值损失：
+\begin{equation}
+  \min_{\mathbf{x}} \; \text{LostValue}(\mathbf{x}) \quad \text{s.t.} \quad E(\mathbf{x}) \geq \underline{E}
+  \label{eq:prune_phase}
+\end{equation}
+该阶段的作用类似于"过滤器"：识别并移除那些对就业能力贡献边际递减的冗余课程，释放学分预算空间。
+
+\textbf{阶段二：增补（Add）}——利用剪枝释放的预算，在维持就业下限的同时最大化人文素养加权和：
+\begin{equation}
+  \max_{\mathbf{x}} \; \sum_k \lambda_k H_k(\mathbf{x}) \quad \text{s.t.} \quad E(\mathbf{x}) \geq \underline{E}, \; \sum_m x_m c_m \leq C
+  \label{eq:add_phase}
+\end{equation}
+其中 $\lambda_k$ 为各人文维度的政策权重，可根据机构优先级调整。该阶段确保在就业"安全线"之上，将资源投向培养学生的公民意识、自主决策能力、心理韧性和终身学习习惯。
+
+\paragraph{模型特性与适用边界}
+
+该元模型具有以下特性：（1）就业轴权重 $d_j$ 直接复用第二问的任务演化输出，避免引入劳动力市场均衡假设，保持模型的内洽性；（2）采用模块化设计，课程-任务映射矩阵 $a_{mj}$ 可通过文本嵌入相似度或专家打分灵活构建；（3）两阶段分解将组合优化问题转化为可处理的规模。
+
+需指出的是，该模型目前为\textbf{元架构}（meta-architecture）：其实例化需要具体课程数据和 $a_{mj}$ 映射的提取编码，这构成后续数据工程的工作内容。
+

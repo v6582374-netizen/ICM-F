@@ -1,0 +1,9 @@
+<summary>
+  <soc>17-2199.08</soc>
+  <top_n>8</top_n>
+  <total_tasks>20</total_tasks>
+  <max_task_text>Process or interpret signals or sensor data.</max_task_text>
+  <max_weight>0.1104</max_weight>
+  <min_task_text>Make system device lists or event timing charts.</min_task_text>
+  <min_weight>0.03456</min_weight>
+</summary>

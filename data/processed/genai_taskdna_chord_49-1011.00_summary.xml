@@ -1,0 +1,10 @@
+<summary>
+  <soc>49-1011.00</soc>
+  <title>First-Line Supervisors (Mech/Install/Repair)</title>
+  <max_dim>D7</max_dim>
+  <max_dim_weight>0.275237</max_dim_weight>
+  <max_task>Other</max_task>
+  <max_task_weight>0.566216</max_task_weight>
+  <edges>60</edges>
+  <tasks_shown>9</tasks_shown>
+</summary>

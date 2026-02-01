@@ -32,59 +32,33 @@
 \contentsline {subsubsection}{\numberline {3.4.4}将“发展轨迹”与“任务需求”紧密耦合：采纳混合机制}{16}{subsubsection.3.4.4}%
 \contentsline {paragraph}{解释性}{16}{section*.22}%
 \contentsline {paragraph}{未来时间点}{16}{section*.23}%
-\contentsline {subsection}{\numberline {3.5}将任务DNA聚合为职业级冲击参数：软件开发人员}{17}{subsection.3.5}%
-\contentsline {subsubsection}{\numberline {3.5.1}Top-$N$ 可用性与聚合}{17}{subsubsection.3.5.1}%
-\contentsline {subsubsection}{\numberline {3.5.2}可解释性分解：Top-$K$ 贡献下界}{17}{subsubsection.3.5.2}%
-\contentsline {subsubsection}{\numberline {3.5.3}最小校准：带有限人工审查的类别默认值}{17}{subsubsection.3.5.3}%
-\contentsline {section}{\numberline {4}任务级功能需求模型与职业重新定义}{17}{section.4}%
-\contentsline {subsection}{\numberline {4.1}任务级功能需求模型（替代职业级岗位需求）}{17}{subsection.4.1}%
-\contentsline {subsubsection}{\numberline {4.1.1}建模目标与符号}{17}{subsubsection.4.1.1}%
-\contentsline {subsubsection}{\numberline {4.1.2}双渠道动力学：自动化与规模化}{18}{subsubsection.4.1.2}%
-\contentsline {paragraph}{(a) 自动化渠道：替代降低劳动强度。}{18}{section*.24}%
-\contentsline {paragraph}{(b) 任务结构更新：职业内部重新分配。}{18}{section*.25}%
-\contentsline {paragraph}{(b') 结构重分配指标体系：从机制到证据。}{18}{section*.26}%
-\contentsline {subparagraph}{基线参考点的选择。}{18}{section*.27}%
-\contentsline {subparagraph}{(i) 份额变化。}{19}{section*.28}%
-\contentsline {subparagraph}{(ii) Top contributor（贡献分解）。}{19}{section*.29}%
-\contentsline {subparagraph}{(iii) Top-$m$ 换血率。}{19}{section*.30}%
-\contentsline {subparagraph}{(iv) 排名翻转与归一化翻转强度。}{19}{section*.31}%
-\contentsline {paragraph}{结构指标的可视化。}{19}{section*.32}%
-\contentsline {paragraph}{(c) 规模化渠道（可选）：增强扩展整体功能需求。}{19}{section*.33}%
-\contentsline {paragraph}{(d) 任务劳动需求指数。}{20}{section*.34}%
-\contentsline {subsubsection}{\numberline {4.1.3}采纳情景 $A(t)$}{20}{subsubsection.4.1.3}%
-\contentsline {subsubsection}{\numberline {4.1.4}职业重新定义触发器（工作本质变化）}{20}{subsubsection.4.1.4}%
-\contentsline {paragraph}{(a) 主证据：结构重排指标。}{20}{section*.35}%
-\contentsline {subparagraph}{(a.1) 归一化翻转强度触发。}{20}{section*.36}%
-\contentsline {subparagraph}{(a.2) Top-$m$ 换血率触发。}{20}{section*.37}%
-\contentsline {paragraph}{(b) 辅助证据：消亡质量（任务需求变得可忽略不计）。}{21}{section*.38}%
-\contentsline {paragraph}{(c) 综合触发规则。}{21}{section*.39}%
-\contentsline {subsubsection}{\numberline {4.1.5}计算算法（可重现流程）}{21}{subsubsection.4.1.5}%
-\contentsline {subsubsection}{\numberline {4.1.6}参数表（待实例化）}{22}{subsubsection.4.1.6}%
-\contentsline {subsection}{\numberline {4.2}可视化方案}{22}{subsection.4.2}%
-\contentsline {subsubsection}{\numberline {4.2.1}图表模板}{22}{subsubsection.4.2.1}%
-\contentsline {paragraph}{图1：采纳情景 $A(t)$。}{22}{figure.caption.42}%
-\contentsline {paragraph}{图2：顶部任务的任务劳动需求轨迹。}{23}{figure.caption.44}%
-\contentsline {paragraph}{图3：任务结构漂移 $w_{ij}(t)$。}{23}{section*.45}%
-\contentsline {paragraph}{图4：重新定义证据和触发时间 $t^*$。}{24}{figure.caption.47}%
-\contentsline {paragraph}{图5：排名翻转的重分配证据。}{25}{figure.caption.49}%
-\contentsline {paragraph}{图6：Top contributors 贡献分解瀑布图。}{26}{figure.caption.51}%
-\contentsline {subsection}{\numberline {4.3}敏感性与稳健性}{26}{subsection.4.3}%
-\contentsline {subsubsection}{\numberline {4.3.1}低置信度任务敏感性}{26}{subsubsection.4.3.1}%
-\contentsline {subsubsection}{\numberline {4.3.2}关键参数敏感性}{26}{subsubsection.4.3.2}%
-\contentsline {subsection}{\numberline {4.4}输出摘要模板（每个职业）}{27}{subsection.4.4}%
-\contentsline {section}{\numberline {5}仿真结果与敏感性分析}{27}{section.5}%
-\contentsline {subsection}{\numberline {5.1}职业选择的剪枝敏感性检验}{27}{subsection.5.1}%
-\contentsline {paragraph}{检验方法}{27}{section*.52}%
-\contentsline {paragraph}{检验结果}{27}{section*.53}%
-\contentsline {paragraph}{稳健性判定}{28}{section*.56}%
-\contentsline {section}{\numberline {6}讨论：优势与不足}{28}{section.6}%
-\contentsline {subsection}{\numberline {6.1}优势}{28}{subsection.6.1}%
-\contentsline {subsection}{\numberline {6.2}不足}{28}{subsection.6.2}%
-\contentsline {section}{\numberline {7}结论}{29}{section.7}%
-\contentsline {section}{Appendices}{30}{section*.58}%
-\contentsline {section}{附录 \numberline {A}数据来源与变量定义}{30}{appendix.1.A}%
-\contentsline {subsection}{\numberline {A.1}O*NET描述符数据来源}{30}{subsection.1.A.1}%
-\contentsline {subsection}{\numberline {A.2}任务DNA变量}{31}{subsection.1.A.2}%
-\contentsline {section}{附录 \numberline {B}补充图示：任务DNA}{31}{appendix.1.B}%
-\contentsline {section}{附录 \numberline {C}补充图示：任务份额预测}{33}{appendix.1.C}%
-\contentsline {section}{附录 \numberline {D}Python实现代码}{34}{appendix.1.D}%
+\contentsline {subsubsection}{\numberline {3.4.5}结构读出层：职业重新定义的可计算判据}{17}{subsubsection.3.4.5}%
+\contentsline {paragraph}{基线参考点的选择}{17}{section*.24}%
+\contentsline {paragraph}{(i) 份额变化}{17}{section*.25}%
+\contentsline {paragraph}{(ii) Top contributor（贡献分解）}{17}{section*.26}%
+\contentsline {paragraph}{(iii) Top-$m$ 换血率}{17}{section*.27}%
+\contentsline {paragraph}{(iv) 排名翻转与归一化翻转强度}{17}{section*.28}%
+\contentsline {paragraph}{职业重新定义的综合判据}{18}{section*.29}%
+\contentsline {paragraph}{结构指标的可视化}{18}{section*.30}%
+\contentsline {subsection}{\numberline {3.5}Driver Specification: Adoption as the Core Temporal Mechanism}{19}{subsection.3.5}%
+\contentsline {paragraph}{Driver 定义与机制}{19}{section*.33}%
+\contentsline {paragraph}{三类职业的 Driver 合理性}{19}{section*.34}%
+\contentsline {subparagraph}{Robotics Engineers (O*NET 17-2199.08)}{19}{section*.35}%
+\contentsline {subparagraph}{First-Line Supervisors of Mechanics (O*NET 49-1011.00)}{20}{section*.36}%
+\contentsline {subparagraph}{Court Reporters and Simultaneous Captioners (O*NET 27-3092.00)}{20}{section*.37}%
+\contentsline {section}{\numberline {4}仿真结果与敏感性分析}{20}{section.4}%
+\contentsline {subsection}{\numberline {4.1}职业选择的剪枝敏感性检验}{20}{subsection.4.1}%
+\contentsline {paragraph}{检验方法}{20}{section*.38}%
+\contentsline {paragraph}{检验结果}{20}{section*.39}%
+\contentsline {paragraph}{稳健性判定}{21}{section*.42}%
+\contentsline {section}{\numberline {5}讨论：优势与不足}{21}{section.5}%
+\contentsline {subsection}{\numberline {5.1}优势}{21}{subsection.5.1}%
+\contentsline {subsection}{\numberline {5.2}不足}{21}{subsection.5.2}%
+\contentsline {section}{\numberline {6}结论}{22}{section.6}%
+\contentsline {section}{Appendices}{23}{section*.44}%
+\contentsline {section}{附录 \numberline {A}数据来源与变量定义}{23}{appendix.1.A}%
+\contentsline {subsection}{\numberline {A.1}O*NET描述符数据来源}{23}{subsection.1.A.1}%
+\contentsline {subsection}{\numberline {A.2}任务DNA变量}{24}{subsection.1.A.2}%
+\contentsline {section}{附录 \numberline {B}补充图示：任务DNA}{24}{appendix.1.B}%
+\contentsline {section}{附录 \numberline {C}补充图示：任务份额预测}{26}{appendix.1.C}%
+\contentsline {section}{附录 \numberline {D}Python实现代码}{27}{appendix.1.D}%

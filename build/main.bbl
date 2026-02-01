@@ -1,4 +1,4 @@
-\begin{thebibliography}{17}
+\begin{thebibliography}{20}
 \providecommand{\natexlab}[1]{#1}
 \providecommand{\url}[1]{\texttt{#1}}
 \expandafter\ifx\csname urlstyle\endcsname\relax
@@ -36,6 +36,31 @@ Jon Matias et~al.
   Vision Workshops}, 2017.
 \newblock URL \url{https://www.docvqa.org/}.
 \newblock Accessed January 30, 2026.
+
+\bibitem[{McKinsey \& Company}(2023)]{mckinsey_maintenance_2023}
+{McKinsey \& Company}.
+\newblock {Predictive Maintenance and Industrial AI: Transforming Operations},
+  2023.
+\newblock URL
+  \url{https://www.mckinsey.com/capabilities/operations/our-insights/predictive-maintenance}.
+\newblock Accessed February 1, 2026. Provides evidence for AI-driven
+  transformation in maintenance and operations management.
+
+\bibitem[{National Court Reporters Association}(2024)]{ncra_trends_2024}
+{National Court Reporters Association}.
+\newblock {Industry Trends: Technology and the Future of Court Reporting},
+  2024.
+\newblock URL \url{https://www.ncra.org/}.
+\newblock Accessed February 1, 2026. Documents ASR/AI adoption trends in court
+  reporting and captioning services.
+
+\bibitem[{NVIDIA Corporation}(2024)]{nvidia_isaac_2024}
+{NVIDIA Corporation}.
+\newblock {NVIDIA Isaac Platform for Robotics: Generative AI-Powered
+  Development}, 2024.
+\newblock URL \url{https://developer.nvidia.com/isaac}.
+\newblock Accessed February 1, 2026. Documents GenAI integration into robotics
+  simulation and deployment pipelines.
 
 \bibitem[{O*NET OnLine}(2025{\natexlab{a}})]{onetEmail}
 {O*NET OnLine}.

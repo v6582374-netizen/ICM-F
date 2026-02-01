@@ -1,18 +1,14 @@
 # Fdb version 4
-["bibtex build/main"] 1769926615.89952 "build/main.aux" "build/main.bbl" "build/main" 1769926617.81585 0
-  "./references.bib" 1769919539.92487 11570 d83a7ed2bae4c894add6355e9ef8cde0 ""
+["bibtex build/main"] 1769928380.0335 "build/main.aux" "build/main.bbl" "build/main" 1769928397.95434 0
+  "./references.bib" 1769928272.18999 12823 1a572af7bbc2b3e6f7920d668bbe27f3 ""
   "/usr/local/texlive/2025/texmf-dist/bibtex/bst/natbib/plainnat.bst" 1233624470 26816 ffe5423d2019860bad9f54bc402fac15 ""
-  "build/main.aux" 1769926617.21475 27602 33ceec96bfbfb38ba8bab8dac368a1c7 "xelatex"
+  "build/main.aux" 1769928397.68623 20174 613f22841e2b7f3998f6dc3710142235 "pdflatex"
   (generated)
   "build/main.bbl"
   "build/main.blg"
   (rewritten before read)
-["xdvipdfmx"] 1769926617.44698 "build/main.xdv" "build/main.pdf" "build/main" 1769926617.81779 0
-  "build/main.xdv" 1769926617.21645 482020 bdc481b4ca7a685e94300e76fcc13d17 "xelatex"
-  (generated)
-  "build/main.pdf"
-  (rewritten before read)
-["xelatex"] 1769926615.97625 "main.tex" "build/main.xdv" "main" 1769926617.81593 0
+["pdflatex"] 1769928396.57088 "/Users/shiwen/Downloads/ICM-FORMAL/main.tex" "build/main.pdf" "main" 1769928397.95457 0
+  "/Users/shiwen/Downloads/ICM-FORMAL/main.tex" 1769927185.62343 2258 6f565f1abe6a658c7ff74b1b6808b173 ""
   "/usr/local/texlive/2025/texmf-dist/fonts/map/fontname/texfonts.map" 1577235249 3524 cb3e574dea2d1052e39280babc910dc8 ""
   "/usr/local/texlive/2025/texmf-dist/fonts/tfm/adobe/symbol/psyr.tfm" 1136768653 1408 5937f58aa508ea2cea4901c07d10f5fe ""
   "/usr/local/texlive/2025/texmf-dist/fonts/tfm/adobe/zapfding/pzdr.tfm" 1136768653 1528 f853c4d1b4e0550255e02831fdc8496f ""
@@ -206,15 +202,12 @@
   "/usr/local/texlive/2025/texmf-dist/web2c/texmf.cnf" 1739380943 42148 61becc7c670cd061bb319c643c27fdd4 ""
   "/usr/local/texlive/2025/texmf-var/web2c/xetex/xelatex.fmt" 1764787184 5639809 56121d7525456f8b31558434d881d50c ""
   "/usr/local/texlive/2025/texmf.cnf" 1741450484 577 418a7058ec8e006d8704f60ecd22c938 ""
-  "build/main.aux" 1769926617.21475 27602 33ceec96bfbfb38ba8bab8dac368a1c7 "xelatex"
-  "build/main.bbl" 1769926615.97155 5267 c25086034e95ff322a509ae072a0a0c0 "bibtex build/main"
-  "build/main.out" 1769926617.21614 7285 e8a954d261fac7f7fad057e49d3d657b "xelatex"
-  "build/main.toc" 1769926617.21641 8169 f01758a29f55c046ae7fb858bfae070f "xelatex"
-  "figures/fig_A_t_scenarios.pdf" 1769920118.02852 15379 6190a20b546e0c9649a42d00b60fe377 ""
+  "build/main.aux" 1769928397.68623 20174 613f22841e2b7f3998f6dc3710142235 "pdflatex"
+  "build/main.bbl" 1769928380.17298 6379 e091462c9bc2ed85a3f868754440cc57 "bibtex build/main"
+  "build/main.out" 1769928397.68716 5040 ee41dd4f666c953757fd8d52f8f81084 "pdflatex"
+  "build/main.toc" 1769928397.68728 5502 721b065e68b3d4554c98ccb6a3051ed7 "pdflatex"
   "figures/fig_STEM_rankflip_contribution_v2.pdf" 1769923903.04386 22070 6cd509ced95c4c2f6c53c2fde1b2a64a ""
   "figures/fig_STEM_task_share_all_tasks_appendix.pdf" 1769920118.17029 22151 8f12ad9f019a73f12e2c76517a07964e ""
-  "figures/fig_STEM_task_share_topK.pdf" 1769920118.09986 19630 bf52366ab1cf188fa17c0e3275be7c47 ""
-  "figures/fig_STEM_tstar_bar.pdf" 1769920118.23208 12976 347ea524091913de0844656af5dae7b3 ""
   "figures/fig_STEM_waterfall_contribution.pdf" 1769923478.59655 22070 ea34714d6606564870317d5c6a5da478 ""
   "figures/fig_heterogeneity_2d_projections_all_points_strict.pdf" 1769849550.62485 38403 5d7d6e2461c36aadacc14c9322c845d4 ""
   "figures/fig_heterogeneity_3d_all_points_strict.pdf" 1769849550.45737 30386 4a7146f79c8f080e49d194f36f301dfa ""
@@ -228,7 +221,7 @@
   "figures/task_dna_49-1011.00_authoritative_sc_distribution.pdf" 1769892786.07322 15092 bc29cdf020046e98c7e3ca3dd31543e6 ""
   "figures/task_dna_49-1011.00_weights.pdf" 1769883978.53948 39331 4fd89fc7a8908e6d059e8eb47114970d ""
   "figures/task_dna_genai_mapping_triptych.pdf" 1769894352.72799 19135 a570f7046f1eac9034bd02ff546e7247 ""
-  "main.tex" 1769924631.55561 2292 7c056c38b9acf64538d88c21f10f4fa4 ""
+  "main.tex" 1769927185.62343 2258 6f565f1abe6a658c7ff74b1b6808b173 ""
   "sections/abstract.tex" 1769925653.16009 1807 141343704b406d392dcf88e6b849a9ac ""
   "sections/ai_tools_report.tex" 1769870791.77386 1299 6690c6c9d236de8c2ad49181832060f0 ""
   "sections/appendices.tex" 1769924073.42959 5129 c8c25bc8ba5d329d655d6de150d3210b ""
@@ -236,14 +229,13 @@
   "sections/conclusion.tex" 1769870803.59605 68 c5568011a7b27624e05cd090cbfb4c6a ""
   "sections/discussion.tex" 1769923450.57037 357 43d52ee4ec8819f099bf47b5a0ee5478 ""
   "sections/introduction.tex" 1769870844.79325 3321 4c5f8f4f44b3d04245c2941453aa8532 ""
-  "sections/model_construction.tex" 1769925174.56171 30987 3fb3480733f9f2bf253acf3dd290ebd8 ""
+  "sections/model_construction.tex" 1769928396.47904 36661 086e6e5f2c34e535743a0e075bde8e51 ""
   "sections/notations.tex" 1769870950.77743 5470 098b7f49a12d64c43fe23f1fab0fb5a3 ""
   "sections/results_sensitivity.tex" 1769870962.3911 2680 3af78f9cfaf1fc40f9af91841d9fed81 ""
-  "sections/task_level_model.tex" 1769926609.9242 17412 ea2a5278ecda812b89cf4dc33bfee5a1 ""
   (generated)
   "build/main.aux"
   "build/main.log"
   "build/main.out"
+  "build/main.pdf"
   "build/main.toc"
-  "build/main.xdv"
   (rewritten before read)

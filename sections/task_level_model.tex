@@ -49,61 +49,15 @@ w_{ij}(t)=\frac{\tilde w_{ij}(t)}{\sum_{k} \tilde w_{ik}(t)}.
 \end{equation}
 \noindent\textbf{解释。} 高度自动化的任务（小的 $\ell_{ij}(t)$）失去份额；剩余的人力劳动转移到更难替代的任务。
 
-\paragraph{(b') 结构重分配指标体系：从机制到证据。}
-\label{sec:structural_indicators}
-
-为将"职业重新定义"从定性描述转化为可计算、可审计的判断，我们构建一套完整的\textbf{结构读出层}指标。这些指标均由机制层输出 $p_{ij}(t)$ 直接计算得出，无需额外估计。
-
-\subparagraph{基线参考点的选择。}
-结构比较需要明确的参考点。我们定义两种可操作的基线：
-\begin{itemize}
-  \item \textbf{机制基线}：$A=0 \Rightarrow p_{ij}(0)=w_{ij}$（最干净、可解释）；
-  \item \textbf{现实基线}：$t_0=2024$（与锚点一致的当前快照）。
-\end{itemize}
-正文采用机制基线作为主证据，现实基线结果置于稳健性附录。
-
-\subparagraph{(i) 份额变化。}
-对于任意两个时间点 $t_0,t_1$，任务 $j$ 的份额变化定义为
+\paragraph{(b') 排名翻转指标：重分配的可视证据。}
+我们用“排名翻转”量化任务相对重要性的结构性变化。令 $rank_w(j)$ 表示基线权重 $w_{ij}(0)$ 的排序名次（1 为最高），
+令 $rank_p(j)$ 表示末期份额 $p_{ij}(t_{\text{end}})$ 的排序名次，则定义
 \begin{equation}
-\label{eq:delta_p}
-\Delta p_{ij}(t_0,t_1)=p_{ij}(t_1)-p_{ij}(t_0).
+\label{eq:rank_flip}
+F_{ij}=\left|rank_p(j)-rank_w(j)\right|.
 \end{equation}
-
-\subparagraph{(ii) Top contributor（贡献分解）。}
-我们用绝对份额变化量衡量每个任务对职业结构重排的贡献：
-\begin{equation}
-\label{eq:contributor}
-r_{ij}(t_0,t_1)=\frac{1}{2}\left|\Delta p_{ij}(t_0,t_1)\right|.
-\end{equation}
-按 $r_{ij}$ 降序排列，可识别出对结构变化贡献最大的任务（Top contributors）。该指标取代原先"按均值选取 TopK"的方式，避免挑到稳定大头而掩盖结构重排。
-
-\subparagraph{(iii) Top-$m$ 换血率。}
-定义职业的核心任务集为按 $p_{ij}(t)$ 降序的前 $m$ 个任务，记为 $\mathrm{Top}_m(p_i(t))$。换血率衡量核心任务集合的更替程度：
-\begin{equation}
-\label{eq:turnover}
-J_i(t_0,t_1;m)=1-\frac{\left|\mathrm{Top}_m(p_i(t_0))\cap \mathrm{Top}_m(p_i(t_1))\right|}{m}.
-\end{equation}
-当 $J_i=0$ 时，核心任务集完全不变；当 $J_i=1$ 时，核心任务集完全换血。
-
-\subparagraph{(iv) 排名翻转与归一化翻转强度。}
-令 $\mathrm{rank}_i(j,t)$ 表示任务 $j$ 在职业 $i$ 中按 $p_{ij}(t)$ 降序的名次（1 为最高）。定义翻转对数为
-\begin{equation}
-\label{eq:inversion_count}
-I_i(t_0,t_1)=\#\{(a,b):\ \mathrm{rank}_i(a,t_0)<\mathrm{rank}_i(b,t_0)\ \wedge\ \mathrm{rank}_i(a,t_1)>\mathrm{rank}_i(b,t_1)\}.
-\end{equation}
-该指标计数"在 $t_0$ 时 $a$ 排在 $b$ 前面，但在 $t_1$ 时 $a$ 落到 $b$ 后面"的任务对数目。为便于跨职业比较，我们进行归一化：
-\begin{equation}
-\label{eq:normalized_inversion}
-\widetilde I_i(t_0,t_1)=\frac{2I_i(t_0,t_1)}{N_i(N_i-1)}\in[0,1],
-\end{equation}
-其中 $N_i$ 为职业 $i$ 的任务总数。$\widetilde I_i$ 的工作职责是：作为Kendall $\tau$ 距离的归一化形式，刻画任务相对重要性序列的结构性扰动程度。
-
-\paragraph{结构指标的可视化。}
-我们据此构建两类核心可视化：
-\begin{enumerate}
-  \item \textbf{排名翻转图}（图~\ref{fig:rank_flip_stem}）：连线两端分别为 $\mathrm{rank}_i(j,t_0)$ 与 $\mathrm{rank}_i(j,t_1)$，翻转幅度越大、线越陡，结构性重排越显著。
-  \item \textbf{贡献分解瀑布图}（图~\ref{fig:waterfall}）：按 $r_{ij}$ 降序展示 Top contributors 对总份额变化的累积贡献。
-\end{enumerate}
+该指标的工作职责是：捕捉“重要任务是否从前排滑落/从后排跃升”的结构性翻转，而非仅看数值涨跌。
+我们据此选出翻转幅度最大的任务并作图（图~\ref{fig:rank_flip_stem}），作为重分配证据的核心可视化。
 
 \paragraph{(c) 规模化渠道（可选）：增强扩展整体功能需求。}
 为了捕捉生产力工具可能增加组织选择完成的工作总量这一可能性，我们建模整体功能需求指数：
@@ -116,7 +70,7 @@ I_i(t_0,t_1)=\#\{(a,b):\ \mathrm{rank}_i(a,t_0)<\mathrm{rank}_i(b,t_0)\ \wedge\ 
 \label{eq:cbar}
 \bar c_i = \sum_{j} w_{ij}(0)\,c_{ij}.
 \end{equation}
-\noindent\textbf{参数含义（通俗语言）。} $g_i$ 是功能需求的基线（非GenAI）增长；如果想避免宏观假设，可设 $g_i=0$。$\kappa_c\ge 0$ 是\emph{增强对需求}的放大因子。$\bar c_i$ 总结了职业在基线组成下的增强潜力。
+\noindent\textbf{参数含义（通俗语言）。} $g_i$ 是功能需求的基线（非GenAI）增长；如果想避免宏观假设，可设 $g_i=0$。$\kappa_c\ge 0$ 是\emph{增强对需求}的放大因子。$\bar c_i$ 总结了职业在基线组成下的增强潜力。（一种变体用 $w_{ij}(t)$ 替代 $w_{ij}(0)$；我们使用 \eqref{eq:cbar} 以简化和参数稳定性。）
 
 \paragraph{(d) 任务劳动需求指数。}
 我们通过当前任务结构将功能需求分配给任务：
@@ -139,30 +93,10 @@ A(t) = \frac{1}{1+\exp\!\left(-k(t-t_0)\right)}.
 
 \subsubsection{职业重新定义触发器（工作本质变化）}
 \label{sec:redefinition}
+我们通过\emph{任务消亡}和\emph{任务结构漂移}形式化"工作本质变化"。两个标准中任一标准均可触发重新定义。
 
-我们将"工作本质变化"形式化为可计算的结构判据。核心改进是：用\textbf{排名翻转结构指标}和\textbf{Top contributors}替代原先"折线趋近于0"的证据方式，以避免$A(t)$起点高、$\mu^{task}$分布窄时折线不显著的解释力削弱问题。
-
-\paragraph{(a) 主证据：结构重排指标。}
-我们采用两类结构指标作为"职业已重新定义"的主要判据：
-
-\subparagraph{(a.1) 归一化翻转强度触发。}
-当任务排名的结构性扰动超过阈值时，认为职业结构已发生根本性改变：
-\begin{equation}
-\label{eq:inversion_trigger}
-\widetilde I_i(t_0,t_1) \ge \theta_{I},
-\end{equation}
-其中 $\theta_{I}\in(0,1)$ 为翻转强度阈值（例如 $\theta_{I}=0.15$）。该指标的工作职责是：捕捉"有多少任务对的相对重要性发生了逆转"，而非仅看数值涨跌幅度。
-
-\subparagraph{(a.2) Top-$m$ 换血率触发。}
-当核心任务集合的更替程度超过阈值时，认为职业的核心工作内容已发生实质性换血：
-\begin{equation}
-\label{eq:turnover_trigger}
-J_i(t_0,t_1;m) \ge \theta_{J},
-\end{equation}
-其中 $m$ 为核心任务数（例如 $m=5$），$\theta_{J}\in(0,1)$ 为换血率阈值（例如 $\theta_{J}=0.40$）。
-
-\paragraph{(b) 辅助证据：消亡质量（任务需求变得可忽略不计）。}
-作为结构指标的补充，我们保留消亡质量作为辅助判据。当任务的人力需求指数降至其基线的一小部分以下时，该任务被视为功能上可忽略不计：
+\paragraph{(a) 消亡质量（任务需求变得可忽略不计）。}
+当任务的人力需求指数降至其基线的一小部分以下时，该任务被视为功能上可忽略不计：
 \begin{equation}
 \label{eq:extinction_rule}
 \frac{D_{ij}(t)}{D_{ij}(0)}<\varepsilon,
@@ -172,16 +106,27 @@ J_i(t_0,t_1;m) \ge \theta_{J},
 \label{eq:Mdrop}
 M_{\text{drop}}(t)=\sum_{j:\,D_{ij}(t)/D_{ij}(0)<\varepsilon} w_{ij}(0).
 \end{equation}
-
-\paragraph{(c) 综合触发规则。}
-我们采用"主证据优先"的判定逻辑：当\textbf{任一}结构指标超过阈值时，即认定职业结构已发生根本性变化：
+我们认为职业在本质上已改变，当且仅当
 \begin{equation}
-\label{eq:redefinition_trigger}
-\text{结构已重定义} \Longleftrightarrow \widetilde I_i(t_0,t_1) \ge \theta_{I} \quad \text{或} \quad J_i(t_0,t_1;m) \ge \theta_{J}.
+\label{eq:Mdrop_trigger}
+M_{\text{drop}}(t)\ge \theta,
 \end{equation}
-消亡质量 $M_{\text{drop}}(t)$ 和任务结构漂移（JS散度）作为辅助验证，用于敏感性分析和稳健性检验。
+其中 $\theta\in(0,1)$（例如，$\theta=0.30$）是在触发重新定义之前必须变得可忽略不计的基线任务质量份额。
 
-\noindent\textbf{阈值选择说明。} 阈值 $\theta_{I}$、$\theta_{J}$ 不作为固定常数，而是作为\emph{情景参数}报告：我们在多个阈值设置下计算结果，展示结论的稳健性区间，而非给出单一"触发/未触发"的二元判断。
+\paragraph{(b) 任务结构漂移（分布变化）。}
+即使没有许多任务完全变得可忽略不计，如果职业的任务份额分布发生足够大的变化，该职业也可能在性质上变得不同。令 $w_i(t)$ 表示向量 $(w_{i1}(t),\dots,w_{iJ_i}(t))$。我们使用Jensen--Shannon散度作为对称、有界的漂移度量：
+\begin{equation}
+\label{eq:JS_trigger}
+\mathrm{JS}\!\left(w_i(t)\,\|\,w_i(0)\right) \ge \delta,
+\end{equation}
+其中 $\delta>0$ 是为稳健性选择的保守阈值。
+
+\noindent\textbf{触发时间。} 定义
+\begin{equation}
+\label{eq:tstar}
+t^*=\inf\left\{t:\ M_{\text{drop}}(t)\ge\theta\ \ \text{或}\ \ \mathrm{JS}(w_i(t)\|w_i(0))\ge\delta\right\}.
+\end{equation}
+我们报告 $t^*$ 是否存在于预测范围内，并将其用作职业应被重新定义的基于模型的证据。
 
 \subsubsection{计算算法（可重现流程）}
 \label{sec:algorithm}
@@ -189,16 +134,10 @@ M_{\text{drop}}(t)=\sum_{j:\,D_{ij}(t)/D_{ij}(0)<\varepsilon} w_{ij}(0).
 \begin{enumerate}
   \item 从 \eqref{eq:adoption_logistic} 计算 $A(t)$，以及累积采纳积分 $I(t)=\int_0^t A(\tau)d\tau$（数值求积）。
   \item 使用 \eqref{eq:labor_intensity_closed} 计算劳动强度 $\ell_{ij}(t)$。
-  \item 通过 \eqref{eq:share_update} 更新任务份额 $w_{ij}(t)$（或等价地，$p_{ij}(t)$）。
+  \item 通过 \eqref{eq:share_update} 更新任务份额 $w_{ij}(t)$。
   \item 使用 \eqref{eq:Q_ode} 求解 $Q_i(t)$。如果避免宏观假设，设 $g_i=0$ 和 $\kappa_c=0$，使得 $Q_i(t)\equiv 1$。
   \item 从 \eqref{eq:D_def} 计算任务劳动需求指数 $D_{ij}(t)$。
-  \item 计算结构指标：
-    \begin{itemize}
-      \item 份额变化 $\Delta p_{ij}(t_0,t_1)$ 及 Top contributors $r_{ij}$（\eqref{eq:delta_p}, \eqref{eq:contributor}）；
-      \item Top-$m$ 换血率 $J_i(t_0,t_1;m)$（\eqref{eq:turnover}）；
-      \item 排名翻转数 $I_i(t_0,t_1)$ 及归一化翻转强度 $\widetilde I_i$（\eqref{eq:inversion_count}, \eqref{eq:normalized_inversion}）。
-    \end{itemize}
-  \item 评估重新定义判据 \eqref{eq:redefinition_trigger}；辅以消亡质量 \eqref{eq:Mdrop} 进行稳健性验证。
+  \item 评估重新定义标准 \eqref{eq:Mdrop_trigger} 和 \eqref{eq:JS_trigger}，如果存在则通过 \eqref{eq:tstar} 获得 $t^*$。
 \end{enumerate}
 
 \subsubsection{参数表（待实例化）}
@@ -209,26 +148,17 @@ M_{\text{drop}}(t)=\sum_{j:\,D_{ij}(t)/D_{ij}(0)<\varepsilon} w_{ij}(0).
 \centering
 \caption{任务级模型参数及通俗语言含义。}
 \label{tab:params_task_model}
-\begin{tabular}{llll}
+\begin{tabular}{lll}
 \hline
-\textbf{层级} & \textbf{参数} & \textbf{典型范围/设置} & \textbf{含义（通俗语言）} \\
+参数 & 典型范围/设置 & 含义（通俗语言） \\
 \hline
-\multirow{4}{*}{机制层} 
-  & $k,\,t_0$ & 情景特定 & 采纳速度和50\%采纳时间 \\
-  & $\kappa_s$ & $>0$ & 替代降低人力努力的速度 \\
-  & $g_i$ & $0$（默认） & 基线功能需求增长（非GenAI） \\
-  & $\kappa_c$ & $0$ 或 $>0$ & 增强扩展总需求的强度 \\
-\hline
-\multirow{5}{*}{结构读出层} 
-  & $t_0,\,t_1$ & $t_0=0$ 或 $2024$；$t_1=2040$ & 结构比较的端点时间 \\
-  & $m$ & 例如 $5$ & Top-$m$ 核心任务数 \\
-  & $\theta_{I}$ & 例如 $0.10$--$0.20$ & 翻转强度阈值（$\widetilde I_i$） \\
-  & $\theta_{J}$ & 例如 $0.30$--$0.50$ & 换血率阈值（$J_i$） \\
-  & $\delta$ & 可选，例如 $0.01$ & 忽略"微小份额任务"阈值 \\
-\hline
-\multirow{2}{*}{辅助判据} 
-  & $\varepsilon$ & 例如 $0.05$ & "可忽略任务"阈值（基线的5\%） \\
-  & $\theta$ & 例如 $0.30$ & 消亡质量阈值 \\
+$k,\,t_0$ & 情景特定 & 采纳速度和50\%采纳时间 \\
+$\kappa_s$ & $>0$ & 替代降低人力努力的速度 \\
+$g_i$ & $0$（默认） & 基线功能需求增长（非GenAI） \\
+$\kappa_c$ & $0$ 或 $>0$ & 增强扩展总需求的强度 \\
+$\varepsilon$ & 例如 $0.05$ & "可忽略任务"阈值（基线的5\%） \\
+$\theta$ & 例如 $0.30$ & 重新定义职业所需的消亡质量 \\
+$\delta$ & 例如 $0.10$--$0.30$ & 任务份额漂移阈值（JS散度） \\
 \hline
 \end{tabular}
 \end{table}
@@ -271,16 +201,9 @@ M_{\text{drop}}(t)=\sum_{j:\,D_{ij}(t)/D_{ij}(0)<\varepsilon} w_{ij}(0).
 \begin{figure}[H]
 \centering
 \includegraphics[width=0.95\linewidth]{figures/fig_STEM_rankflip_contribution_v2.pdf}
-\caption{STEM职业（17-2199.08）从基线（$t_0=0$, $A=0$）到末期（$t_1=2040$）的排名翻转。连线两端分别为 $\mathrm{rank}_i(j,t_0)$ 与 $\mathrm{rank}_i(j,t_1)$，翻转幅度越大、线越陡，结构性重排越显著。归一化翻转强度 $\widetilde I_i$ 标注于图中。}
-\label{fig:rank_flip_stem}
-\end{figure}
+\caption{STEM职业从基线权重到末期份额的排名翻转。连线两端分别为 $rank_w$ 与 $rank_p$，翻转幅度越大，结构性重排越显著。}
 
-\paragraph{图6：Top contributors 贡献分解瀑布图。}
-\begin{figure}[H]
-\centering
-\includegraphics[width=0.95\linewidth]{figures/fig_STEM_waterfall_contribution.pdf}
-\caption{STEM职业（17-2199.08）结构变化的 Top contributors 贡献分解。按 $r_{ij}$ 降序展示各任务对总份额变化的累积贡献，正值（增）与负值（减）分别标注，揭示结构重排的主要驱动任务。}
-\label{fig:waterfall}
+\label{fig:rank_flip_stem}
 \end{figure}
 
 
@@ -312,5 +235,5 @@ M_{\text{drop}}(t)=\sum_{j:\,D_{ij}(t)/D_{ij}(0)<\varepsilon} w_{ij}(0).
 \begin{enumerate}
   \item \textbf{任务需求结果：} 按 $D_{ij}(15)/D_{ij}(0)$ 排名的任务列表，突出显示低于 $\varepsilon$ 的任务。
   \item \textbf{任务结构变化：} $w_{ij}(t)$ 的可视化以及漂移度量 $\mathrm{JS}(w_i(t)\|w_i(0))$。
-  \item \textbf{重新定义决策：} 结构指标 $\widetilde I_i$ 或 $J_i$ 是否超过阈值（\eqref{eq:redefinition_trigger}），并辅以消亡质量 \eqref{eq:Mdrop} 进行验证。
+  \item \textbf{重新定义决策：} \eqref{eq:Mdrop_trigger} 或 \eqref{eq:JS_trigger} 中的标准是否满足，以及触发时间 $t^*$（如适用）。
 \end{enumerate}

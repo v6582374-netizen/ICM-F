@@ -1,4 +1,4 @@
-\begin{thebibliography}{20}
+\begin{thebibliography}{23}
 \providecommand{\natexlab}[1]{#1}
 \providecommand{\url}[1]{\texttt{#1}}
 \expandafter\ifx\csname urlstyle\endcsname\relax
@@ -29,6 +29,13 @@ Carl~Benedikt Frey and Michael~A. Osborne.
   \url{https://www.oxfordmartin.ox.ac.uk/downloads/academic/future-of-employment.pdf}.
 \newblock Accessed January 30, 2026.
 
+\bibitem[{Gartner}(2023)]{gartner2023genai}
+{Gartner}.
+\newblock {Gartner Press Release on Generative AI Adoption (Oct 2023)}, 2023.
+\newblock URL
+  \url{https://www.gartner.com/en/newsroom/press-releases/2023-10-11-gartner-says-more-than-80-percent-of-enterprises-will-have-used-generative-ai-apis-or-deployed-generative-ai-enabled-applications-by-2026}.
+\newblock Accessed February 1, 2026.
+
 \bibitem[Matias et~al.(2017)]{docvqa2017}
 Jon Matias et~al.
 \newblock {DocVQA: A Dataset for Visual Question Answering on Document Images}.
@@ -45,6 +52,20 @@ Jon Matias et~al.
   \url{https://www.mckinsey.com/capabilities/operations/our-insights/predictive-maintenance}.
 \newblock Accessed February 1, 2026. Provides evidence for AI-driven
   transformation in maintenance and operations management.
+
+\bibitem[{McKinsey \& Company}(2024)]{mckinsey2024stateai}
+{McKinsey \& Company}.
+\newblock {The State of AI in 2024}, 2024.
+\newblock URL
+  \url{https://www.mckinsey.com/capabilities/quantumblack/our-insights/the-state-of-ai-2024}.
+\newblock Accessed February 1, 2026.
+
+\bibitem[{McKinsey \& Company}(2025)]{mckinsey2025stateai}
+{McKinsey \& Company}.
+\newblock {The State of AI in 2025}, 2025.
+\newblock URL
+  \url{https://www.mckinsey.com/capabilities/quantumblack/our-insights/the-state-of-ai-how-organizations-are-rewiring-to-capture-value}.
+\newblock Accessed February 1, 2026.
 
 \bibitem[{National Court Reporters Association}(2024)]{ncra_trends_2024}
 {National Court Reporters Association}.
@@ -121,7 +142,7 @@ Jon Matias et~al.
 \bibitem[{OpenAI}(2023)]{openai2023gpt4}
 {OpenAI}.
 \newblock {GPT-4 Technical Report}.
-\newblock Technical report, 2023.
+\newblock Technical report, OpenAI, 2023.
 \newblock URL \url{https://cdn.openai.com/papers/gpt-4.pdf}.
 \newblock Accessed January 30, 2026.
 

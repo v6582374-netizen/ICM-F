@@ -12,10 +12,10 @@
 
 \subsubsection{基于O*NET的职业特征参数客观化}
 
-为避免职业特征参数 $\textit{digit}(x)$、$\textit{physical}(x)$ 和 $\textit{iprisk}(x)$ 的主观赋值，我们采用美国劳工部维护的\textbf{O*NET}职业数据库作为统一数据源。
+为避免职业特征参数 $\textit{digit}(x)$、$\textit{physical}(x)$ 和 $\textit{iprisk}(x)$ 的主观赋值，我们采用美国劳工部维护的\textbf{O*NET}职业数据库\cite{onet2025database}作为统一数据源。
 O*NET基于专家调查和从业者反馈，为每个职业提供大量\emph{数值量表描述符}，大多数指标自然地给出在$0$--$100$之间的实数上，适合直接用于定量建模。
 
-我们不试图为每个维度找到"唯一正确"的指标，对于每个特征轴，我们选择少量语义上直接对应且可下载的O*NET描述符，并将其用作该轴的代理变量。
+我们不试图为每个维度找到"唯一正确"的指标，对于每个特征轴，我们选择少量语义上直接对应且可下载的O*NET描述符\cite{onet2025database}，并将其用作该轴的代理变量。
 对于没有描述（descriptor字段缺失）的职业直接剔除。
 基于问题陈述和数据可用性约束，我们识别出三个主导维度，这些维度控制着AI影响在各职业间的异质性：
 \begin{itemize}
@@ -25,7 +25,7 @@ O*NET基于专家调查和从业者反馈，为每个职业提供大量\emph{数
 \end{itemize}
 
 表~\ref{tab:onet_descriptor_mapping} 列出了每个特征轴所对应的O*NET描述符及其可辩护性说明。
-从O*NET下载所选descriptor的数值（均为0–100量表），再在全职业集合上做min-max归一化到[0,1]，得到digit(x), physical(x), iprisk(x)。
+从O*NET下载所选descriptor的数值（均为0–100量表）\cite{onet2025database}，再在全职业集合上做min-max归一化到[0,1]，得到digit(x), physical(x), iprisk(x)。
 
 \begin{table}[H]
 \centering
@@ -165,7 +165,7 @@ Arts  & 27-3092.00 & \parbox[t]{6.6cm}{Court Reporters and Simultaneous Captione
 \subsubsection{任务权重（Task DNA）与任务净冲击}
 
 \paragraph{任务DNA的定义与数据来源}
-对于职业 $i$，我们选取其\textbf{前20项核心任务}作为其任务DNA（任务索引 $j = 1, \ldots, 20$）。每项任务 $j$ 取自O*NET任务描述 $Task_j$，并从同一数据库中检索两个基于量表的描述符：
+对于职业 $i$，我们选取其\textbf{前20项核心任务}作为其任务DNA（任务索引 $j = 1, \ldots, 20$）。每项任务 $j$ 取自O*NET任务描述 $Task_j$\cite{onet2025database}，并从同一数据库中检索两个基于量表的描述符：
 \begin{itemize}
     \item \textbf{任务重要性} $IM_j$（范围 0--100）；
     \item \textbf{任务频率} $FR_j$（范围 0--100，或同等的频率量表）。
@@ -191,29 +191,7 @@ Arts  & 27-3092.00 & \parbox[t]{6.6cm}{Court Reporters and Simultaneous Captione
     \item \textbf{权威 $s,c$ 档位分布图}（右图）：展示经权威评估重标注后，各任务在替代强度 $s$ 和增强强度 $c$ 离散档位上的分布。该图的作用是\emph{揭示GenAI对该职业的潜在冲击模式}：若多数任务落在高 $s$ 低 $c$ 区域，表明该职业面临较高的自动化替代风险；反之，若多数任务落在低 $s$ 高 $c$ 区域，则GenAI更可能增强而非替代人类工作。
 \end{itemize}
 
-相应图示见图~\ref{fig:task_dna_17_pair}；其余两职业图示移至附录~\ref{fig:task_dna_49_pair}--\ref{fig:task_dna_27_pair}。
-
-\noindent\textbf{职业 17-2199.08：机器人工程师。}
-\begin{figure}[H]
-\centering
-\begin{minipage}{0.62\linewidth}
-    \centering
-    \includegraphics[width=\linewidth]{figures/task_dna_17-2199.08_weights.pdf}
-\end{minipage}\hfill
-\begin{minipage}{0.35\linewidth}
-    \centering
-    \includegraphics[width=\linewidth]{figures/task_dna_17-2199.08_authoritative_sc_distribution.pdf}
-\end{minipage}
-\caption{职业 17-2199.08 的任务DNA与权威 $s,c$ 分布。（a）任务DNA权重分布：IM--FR 散点图，点面积与 $w$ 成正比；（b）权威 $s,c$ 档位分布。}
-\label{fig:task_dna_17_pair}
-\end{figure}
-\noindent\textbf{图示解读（17-2199.08）}：IM--FR 散点图中任务点集中在中高重要性与中等频率区间，且点面积差异不大，表明该职业的核心任务权重分布较为均衡，未出现单一任务强烈主导的结构。权威 $s,c$ 档位分布显示 $s$ 以 0.50 为主、辅以少量 0.30 与极少 0.90，而 $c$ 明显向高档位偏移（0.90 占多数）。这表明该职业的主要任务更可能体现为\emph{增强型冲击}，即GenAI倾向于提升系统集成与控制类任务的效率，而非直接替代。
-
-\noindent\textbf{职业 49-1011.00：一线主管（机械/安装/维修）。}（图见附录~\ref{fig:task_dna_49_pair}）
-\noindent\textbf{图示解读（49-1011.00）}：IM--FR 散点图显示任务分布覆盖较宽频率区间，但整体集中在中高重要性区域，点面积更均匀，说明管理与监督类任务构成了稳定的核心组合，而非由少数高权重任务驱动。权威 $s$ 档位呈现更分散的结构（0.10/0.30/0.50/0.70 同时存在），而 $c$ 以 0.50 与 0.70 为主，少量任务达到 0.90。该模式反映出该职业的任务冲击方向不单一：既包含可被流程化替代的监督环节，也包含可被工具强化的协调与资源管理环节。
-
-\noindent\textbf{职业 27-3092.00：法庭速录与字幕。}（图见附录~\ref{fig:task_dna_27_pair}）
-\noindent\textbf{图示解读（27-3092.00）}：IM--FR 散点图中任务点整体位于高重要性与高频率区域，且最大权重点明显大于其余点，说明该职业对少数高频核心任务（如记录、转写类任务）的依赖更强，任务结构集中度更高。权威 $s,c$ 档位分布显示 $s$ 在 0.90 与 0.30 间呈两端分化，而 $c$ 主要集中在 0.30 与 0.50。该结构意味着该职业中高频核心任务更接近\emph{替代型冲击}（高 $s$、低 $c$），与速记/转写类任务的自动化趋势一致。
+三职业的权威 $s,c$ 档位分布对比见图~\ref{fig:task_dna_sc_triptych}，任务DNA权重分布（IM--FR 散点图）移至附录~\ref{app:task_dna_figures}。
 
 \paragraph{任务影响强度的离散化量表与证据约束}
 为了避免主观的连续评分，对于替代强度 $s_{ij}$ 和增强强度 $c_{ij}$，我们采用一个离散的等级量表：
@@ -228,7 +206,7 @@ Arts  & 27-3092.00 & \parbox[t]{6.6cm}{Court Reporters and Simultaneous Captione
 
 \subsection{基于权威基准的GenAI能力量表与可审计映射}
 
-为将任务层 $(s,c)$ 的来源从“主观估计”改为“可复现规则”，我们将GenAI能力表述为一套\textbf{权威基准$\rightarrow$能力分段$\rightarrow(s,c)$映射}的离散量表。该量表仅依赖公开的基准分数与可审计的分段规则，从而支持逐层追溯。
+为将任务层 $(s,c)$ 的来源从“主观估计”改为“可复现规则”，我们将GenAI能力表述为一套\textbf{权威基准$\rightarrow$能力分段$\rightarrow(s,c)$映射}的离散量表。该量表仅依赖公开的基准分数与可审计的分段规则，从而支持逐层追溯。说白了就是将能力解剖。考虑绘制能力解剖图？
 
 \subsubsection{机制审计与最短修复路径}
 为避免解释力削弱，我们先对现有表格进行机制审计，并给出最短修复路径（表~\ref{tab:genai_audit}）。
@@ -272,7 +250,7 @@ D9 的高分来自特定管线 &
 \begin{itemize}
     \item 高（$\ge 0.85$）、较高（$0.70$--$0.85$）、中等（$0.50$--$0.70$）、低（$0.30$--$0.50$）、极低（$<0.30$）。
 \end{itemize}
-该分段仅依赖公开分数与阈值，避免“伪精确”。
+
 
 \paragraph{方向系数（$\rho_k$）}
 我们用连续方向系数刻画“替代/互补/平衡”的偏向强度：
@@ -282,11 +260,9 @@ D9 的高分来自特定管线 &
     \item $\rho_k=0$：平衡（两边都强，净效应不确定）。
 \end{itemize}
 
-\paragraph{可审计赋值}
-表~\ref{tab:genai_scale} 直接给出每个维度的 $M_k$、$\rho_k$ 及对应的 $(s_k,c_k)$ 取值，用于后续任务层映射与追溯。
-
 \subsubsection{九维能力量表（含原始评分与证据）}
-表~\ref{tab:genai_scale} 给出可直接落地的基线版本：每个维度包含原始评分、分段得到的 $M_k$、方向系数 $\rho_k$，以及对应的 $(s_k,c_k)$。
+表~\ref{tab:genai_scale} 给出可直接落地的基线版本：每个维度包含原始评分、分段得到的 $M_k$、方向系数 $\rho_k$，以及对应的 $(s_k,c_k)$。并且该分段仅依赖公开测试分数与阈值，避免主观评分。\\
+这部分表格可以考虑放到附录，减少解释。
 \begin{table}[H]
 \centering
 \caption[GenAI 九维能力映射总表]{GenAI 九维能力映射总表：指标分段$\rightarrow M_k,\rho_k\rightarrow(s_k,c_k)$}
@@ -345,10 +321,16 @@ DocVQA 99.16\%；Text-to-SQL $>80\%$\citep{docvqa2017,spider2018} &
 高（$\ge 0.85$） & 0.90 & 0.00 & 0.30 & 0.30 \\
 \bottomrule
 \end{tabular}}
+
 \end{table}
 \begin{spacing}{0.9}
 \noindent
 \textbf{注：} 上表中能力等级按照统一阈值划分：\textbf{High} $\geq 0.85$，\textbf{Medium-High} $0.70$--$0.85$，\textbf{Medium} $0.50$--$0.70$，\textbf{Low} $0.30$--$0.50$，\textbf{Minimal} $<0.30$。\ $M_k$ 选取当前顶尖模型在相关指标上的代表性得分（0$\sim$1标准化后）。$\rho_k = c_k - s_k$ 表示GenAI对该维度人力需求的影响方向：正值为互补（提升人效使需求上升），负值为替代（可自动化使需求下降）。$s_k$ 和 $c_k$ 分别为我们根据任务分析估计的可替代率和可协同率。
+\paragraph{必要声明}
+\begin{itemize}
+    \item D9 的 DocVQA 99.16\% 可视为文档问答场景的上界证据，不等价于所有检索情境与数据库规模下的通用能力。
+    \item D4/D5 采用 AutoGPT 端到端完成率与工具使用成功率作为下界证据，用于避免夸大“现场操作/流程调度”的可自动化程度。
+\end{itemize}
 
 总体来看，GenAI 在语言和编码等维度已达到高能力并呈替代效应，而在涉及物理、管理等维度时，仍主要作为辅助工具，与人类技能形成互补。
 \end{spacing}
@@ -359,6 +341,37 @@ DocVQA 99.16\%；Text-to-SQL $>80\%$\citep{docvqa2017,spider2018} &
 \caption{基于GenAI能力$\rightarrow$任务映射数据的职业DNA维度权重分布（D1--D9）。三幅子图分别对应职业 17-2199.08、49-1011.00 与 27-3092.00；柱高表示任务权重在能力维度上的占比，水平线表示维度均值，标注点为主导维度。}
 \label{fig:task_dna_genai_mapping_triptych}
 \end{figure}
+在此简单分析上图。
+
+\paragraph{任务层净冲击}
+我们将任务层净冲击定义为：
+\begin{equation}
+    \mu^{task}_{ij}=c_{ij}-s_{ij}.
+\end{equation}
+$\mu^{task}_{ij}>0$ 表示GenAI更可能增强该任务（提高产出/质量/速度），$\mu^{task}_{ij}<0$ 表示该任务更可能被替代或显著压缩。
+
+\begin{figure}[H]
+\centering
+\begin{minipage}{0.32\linewidth}
+    \centering
+    \includegraphics[width=\linewidth]{figures/task_dna_17-2199.08_authoritative_sc_distribution.pdf}\\
+    \small (a) 17-2199.08 机器人工程师
+\end{minipage}\hfill
+\begin{minipage}{0.32\linewidth}
+    \centering
+    \includegraphics[width=\linewidth]{figures/task_dna_49-1011.00_authoritative_sc_distribution.pdf}\\
+    \small (b) 49-1011.00 一线主管
+\end{minipage}\hfill
+\begin{minipage}{0.32\linewidth}
+    \centering
+    \includegraphics[width=\linewidth]{figures/task_dna_27-3092.00_authoritative_sc_distribution.pdf}\\
+    \small (c) 27-3092.00 法庭速录
+\end{minipage}
+\caption{三职业的权威 $s,c$ 档位分布对比。（a）机器人工程师：$c$ 向高档位偏移，呈增强型冲击；（b）一线主管：$s,c$ 分布分散，冲击方向不单一；（c）法庭速录：$s$ 呈两端分化，高频核心任务接近替代型冲击。}
+\label{fig:task_dna_sc_triptych}
+\end{figure}
+
+此处给出上述三个图片的分析。
 
 \paragraph{三职业任务DNA的 $s,c$ 分布与负净冲击分析}
 基于权威映射表，表~\ref{tab:task_sc_negative_impact} 汇总了三职业中负净冲击任务（$\mu^{task}_{ij}<0$）的权重与典型任务。
@@ -380,41 +393,57 @@ DocVQA 99.16\%；Text-to-SQL $>80\%$\citep{docvqa2017,spider2018} &
 \end{tabular}
 \end{table}
 
+这部分存在不妥，因为三个职业的task dna数量不同。加起来自然不一样，并不能说机器人工程师相对法庭更容易被替代。
+
 \noindent\textbf{解释性结论（基于数据）：}
 \begin{itemize}
-    \item \textbf{17-2199.08}：负净冲击权重总和为 0.400，8 项任务均落在 D3（算法编程与自动化），$\mu=-0.20$。这意味着该职业约 40\% 的核心任务存在可自动化压力，但净冲击幅度相对温和（$s=0.90,c=0.70$），体现为"高替代但仍有较强增强"的编码类任务。
+    \item \textbf{17-2199.08}：负净冲击权重总和为 0.400，8 项任务均落在 D3（算法编程与自动化），$\mu=-0.20$。这意味着该职业约 40\% 的核心任务存在可自动化压力，但净冲击幅度相对温和（$s=0.90,c=0.70$），体现为"高替代但仍有较强增强"的编码类任务。也就是说强强抵消了。
     \item \textbf{49-1011.00}：仅 1 项任务（调度排程，task\_id=2912）呈负净冲击，权重仅 0.059，落在 D5（规划与流程调度），$\mu=-0.20$。该职业的核心任务更多落在监督、培训与协调维度（D6/D7），与人类技能形成互补，整体替代风险最低。
     \item \textbf{27-3092.00}：负净冲击权重总和高达 0.413，5 项任务集中落在 D8（语言理解与文本生成），$\mu=-0.40$，远高于其他两职业。这表明该职业的核心任务（速记、转写、校对）高度集中于语言自动化维度，GenAI 替代效应最强，预期将在后续动态演化中更早出现"任务份额跌破阈值"的时间点。
 \end{itemize}
 
-\paragraph{必要声明}
-\begin{itemize}
-    \item D9 的 DocVQA 99.16\% 可视为文档问答场景的上界证据，不等价于所有检索情境与数据库规模下的通用能力。
-    \item D4/D5 采用 AutoGPT 端到端完成率与工具使用成功率作为下界证据，用于避免夸大“现场操作/流程调度”的可自动化程度。
-\end{itemize}
+\subsubsection{Driver Specification: Adoption as the Core Temporal Mechanism}
+\label{subsec:driver_specification}
 
-\paragraph{任务层净冲击}
-我们将任务层净冲击定义为：
-\begin{equation}
-    \mu^{task}_{ij}=c_{ij}-s_{ij}.
-\end{equation}
-$\mu^{task}_{ij}>0$ 表示GenAI更可能增强该任务（提高产出/质量/速度），$\mu^{task}_{ij}<0$ 表示该任务更可能被替代或显著压缩。
+在任务优先框架中，\emph{driver} 须满足两条硬性条件：(i) 它随时间变化——否则无法驱动动态演化；(ii) 它进入模型方程并改变任务曲线——否则仅为描述性标签而非机制变量。基于这两条约束，我们选取\textbf{采用率}（Adoption rate）$A(t)$ 作为核心且最简洁的 driver。
+
+\paragraph{Driver 定义与机制}
+采用率 $A(t)\in[0,1]$ 刻画 GenAI 技术在劳动力市场中的渗透程度。其上升源于多重因素：模型成本下降、易用性提升、与现有软件及工作流的深度集成等。$A(t)$ 的核心作用在于\emph{调制任务层净冲击的释放速度}：给定任务级参数 $\mu_{\text{task},ij}$，采用率决定了该冲击在时间维度上的兑现节奏——采用缓慢则结构变化渐进，采用迅速则结构重排加速。
+
+\paragraph{三类职业的 Driver 合理性}
+下文为本研究选取的三类代表性职业提供简明的"GenAI → Driver → 任务结构变化"证据链。
+
+\subparagraph{Robotics Engineers (O*NET 17-2199.08)}
+GenAI 与机器人平台、仿真环境及基础模型的集成显著提升了工具链能力，从而加速采用（$A(t)\uparrow$）。在任务层面，文档撰写、常规代码生成及测试等任务更容易被替代（$s_{ij}$ 较高），而系统级设计与现场集成任务的替代速度相对较慢。公开报道显示，主流机器人平台已开始集成生成式 AI 以加速开发与部署~\cite{nvidia_isaac_2024}，为 driver 存在性提供了经验证据。
+
+\subparagraph{First-Line Supervisors of Mechanics (O*NET 49-1011.00)}
+预测性维护、智能诊断与排程优化工具的成熟推动了采用上升（$A(t)\uparrow$）。受此影响，"诊断信息汇总""调度沟通""例行检查"等任务结构被重排：部分文书与记录任务权重下降，而需要现场判断与人员协调的任务相对上升。权威企业研究解读将预测性维护与工业 AI 列为制造与运营领域的关键应用~\cite{mckinsey_maintenance_2023}，支撑了该职业的 driver 机制。
+
+\subparagraph{Court Reporters and Simultaneous Captioners (O*NET 27-3092.00)}
+自动语音识别（ASR）与转写/字幕自动化技术的进步提升了速度与一致性，推动采用上升（$A(t)\uparrow$）。任务结构因此分化："实时转写""初稿校对""格式化""归档"等任务更多由自动化系统承担，而人类从业者转向校验、法律语境判断与质量控制。行业趋势报告明确指出，自动化与 AI 正在显著提升法庭记录流程的速度与准确性~\cite{ncra_trends_2024}。
+
+\medskip
+\noindent 上述证据链表明，$A(t)$ 作为统一的 driver 变量，能够捕捉不同职业中 GenAI 渗透对任务结构的调制作用，且在实证层面具有可追溯的支撑。
+
 
 \subsubsection{将“发展轨迹”与“任务需求”紧密耦合：采纳混合机制}
 
 题目要求“given the current trajectory and expected impacts of Gen-AI”，其中“current trajectory”可操作地对应为\textbf{采纳程度随时间的扩散}。
 我们用外生的采纳路径 $A(t)\in[0,1]$ 表示在时间 $t$ 已采纳GenAI的工作流占比（或强度）。
-直观上：在 $A(t)=0$ 时，任务结构保持基线；在 $A(t)$ 增大时，任务层净冲击 $\mu^{task}_{ij}$ 逐步释放，任务需求结构随之重排。
+直观上：在 $A(t)=0$ 时，任务结构保持基线；也就是说，这里需要假设，假设内生变化平稳。在 $A(t)$ 增大时，任务层净冲击 $\mu^{task}_{ij}$ 逐步释放，任务需求结构随之重排。
 
 为避免凭空设定“绝对任务需求”的总量，我们以任务\textbf{相对需求权重}作为预测对象，并采用“采纳者/未采纳者混合”的最小机制：
 未采纳部分保持基线权重 $w_{ij}$；采纳部分对任务权重施加与 $\mu^{task}_{ij}$ 单调一致的乘性变换（保证权重为正）。
 定义未归一化任务权重
+
+需要思考以下这个公式的来源是什么。为什么这么设置，有无依据，还是原创模型？
+
 \begin{equation}
     q_{ij}(t)=w_{ij}\Big[(1-A(t))+A(t)\exp\big(\eta\,\mu^{task}_{ij}\big)\Big],
 \end{equation}
-其中 $\eta>0$ 为冲击强度缩放（无量纲），用于刻画“单位采纳带来的任务结构重排幅度”，并在敏感性分析中报告其影响。
+其中 $\eta>0$ 为冲击强度缩放（无量纲），用于刻画“单位采纳（ai采用率）带来的任务结构重排幅度”，并在敏感性分析中报告其影响。
 
-将 $q_{ij}(t)$ 归一化得到任务相对需求份额
+将 $q_{ij}(t)$ 归一化得到任务相对需求份额，那么上面的就是绝对需求份额。
 \begin{equation}
     p_{ij}(t)=\frac{q_{ij}(t)}{\sum_{k=1}^{J_i} q_{ik}(t)}.
 \end{equation}
@@ -439,10 +468,10 @@ $\mu^{task}_{ij}>0$ 表示GenAI更可能增强该任务（提高产出/质量/�
 \paragraph{基线参考点的选择}
 结构比较需要明确的参考点。我们定义两种可操作的基线：
 \begin{itemize}
-  \item \textbf{机制基线}：$A=0 \Rightarrow p_{ij}(0)=w_{ij}$（最干净、可解释）；
+  \item \textbf{机制基线}：$A=0 \Rightarrow p_{ij}(0)=w_{ij}$（最干净、可解释）；很简单，如果将外生发展置于0,意味着相对需求份额等于任务的权重。两个都是百分比数值。
   \item \textbf{现实基线}：$t_0=2024$（与锚点一致的当前快照）。
 \end{itemize}
-正文采用机制基线作为主证据，现实基线结果置于稳健性附录。
+正文采用机制基线作为主证据，现实基线结果置于稳健性附录。因为经过尝试，按照真实时间序列，不够证明。
 
 \paragraph{(i) 份额变化}
 对于任意两个时间点 $t_0,t_1$，任务 $j$ 的份额变化定义为
@@ -494,42 +523,12 @@ I_i(t_0,t_1)=\#\{(a,b):\ \mathrm{rank}_i(a,t_0)<\mathrm{rank}_i(b,t_0)\ \wedge\ 
 我们据此构建两类核心可视化：
 \begin{enumerate}
   \item \textbf{排名翻转图}（图~\ref{fig:rank_flip_stem}）：连线两端分别为 $\mathrm{rank}_i(j,t_0)$ 与 $\mathrm{rank}_i(j,t_1)$，翻转幅度越大、线越陡，结构性重排越显著。
-  \item \textbf{贡献分解瀑布图}（图~\ref{fig:waterfall}）：按 $r_{ij}$ 降序展示 Top contributors 对总份额变化的累积贡献。
+  \item \textbf{贡献分解瀑布图}（图~\ref{fig:rank_flip_stem} 右）：按 $r_{ij}$ 降序展示 Top contributors 对总份额变化的累积贡献。
 \end{enumerate}
 
 \begin{figure}[H]
 \centering
 \includegraphics[width=0.95\linewidth]{figures/fig_STEM_rankflip_contribution_v2.pdf}
-\caption{STEM职业（17-2199.08）从基线（$t_0=0$, $A=0$）到末期（$t_1=2040$）的排名翻转。连线两端分别为 $\mathrm{rank}_i(j,t_0)$ 与 $\mathrm{rank}_i(j,t_1)$，翻转幅度越大、线越陡，结构性重排越显著。}
+\caption{STEM职业（17-2199.08）从基线（$t_0=0$, $A=0$）到末期（$t_1=2040$）的排名翻转。连线两端分别为 $\mathrm{rank}_i(j,t_0)$ 与 $\mathrm{rank}_i(j,t_1)$，翻转幅度越大、线越陡，结构性重排越显著。STEM职业（17-2199.08）结构变化的 Top contributors 贡献分解。按 $r_{ij}$ 降序展示各任务对总份额变化的累积贡献，揭示结构重排的主要驱动任务。}
 \label{fig:rank_flip_stem}
 \end{figure}
-
-\begin{figure}[H]
-\centering
-\includegraphics[width=0.95\linewidth]{figures/fig_STEM_waterfall_contribution.pdf}
-\caption{STEM职业（17-2199.08）结构变化的 Top contributors 贡献分解。按 $r_{ij}$ 降序展示各任务对总份额变化的累积贡献，揭示结构重排的主要驱动任务。}
-\label{fig:waterfall}
-\end{figure}
-
-\subsection{Driver Specification: Adoption as the Core Temporal Mechanism}
-\label{subsec:driver_specification}
-
-在任务优先框架中，\emph{driver} 须满足两条硬性条件：(i) 它随时间变化——否则无法驱动动态演化；(ii) 它进入模型方程并改变任务曲线——否则仅为描述性标签而非机制变量。基于这两条约束，我们选取\textbf{采用率}（Adoption rate）$A(t)$ 作为核心且最简洁的 driver。
-
-\paragraph{Driver 定义与机制}
-采用率 $A(t)\in[0,1]$ 刻画 GenAI 技术在劳动力市场中的渗透程度。其上升源于多重因素：模型成本下降、易用性提升、与现有软件及工作流的深度集成等。$A(t)$ 的核心作用在于\emph{调制任务层净冲击的释放速度}：给定任务级参数 $\mu_{\text{task},ij}$，采用率决定了该冲击在时间维度上的兑现节奏——采用缓慢则结构变化渐进，采用迅速则结构重排加速。
-
-\paragraph{三类职业的 Driver 合理性}
-下文为本研究选取的三类代表性职业提供简明的"GenAI → Driver → 任务结构变化"证据链。
-
-\subparagraph{Robotics Engineers (O*NET 17-2199.08)}
-GenAI 与机器人平台、仿真环境及基础模型的集成显著提升了工具链能力，从而加速采用（$A(t)\uparrow$）。在任务层面，文档撰写、常规代码生成及测试等任务更容易被替代（$s_{ij}$ 较高），而系统级设计与现场集成任务的替代速度相对较慢。公开报道显示，主流机器人平台已开始集成生成式 AI 以加速开发与部署~\cite{nvidia_isaac_2024}，为 driver 存在性提供了经验证据。
-
-\subparagraph{First-Line Supervisors of Mechanics (O*NET 49-1011.00)}
-预测性维护、智能诊断与排程优化工具的成熟推动了采用上升（$A(t)\uparrow$）。受此影响，"诊断信息汇总""调度沟通""例行检查"等任务结构被重排：部分文书与记录任务权重下降，而需要现场判断与人员协调的任务相对上升。权威企业研究解读将预测性维护与工业 AI 列为制造与运营领域的关键应用~\cite{mckinsey_maintenance_2023}，支撑了该职业的 driver 机制。
-
-\subparagraph{Court Reporters and Simultaneous Captioners (O*NET 27-3092.00)}
-自动语音识别（ASR）与转写/字幕自动化技术的进步提升了速度与一致性，推动采用上升（$A(t)\uparrow$）。任务结构因此分化："实时转写""初稿校对""格式化""归档"等任务更多由自动化系统承担，而人类从业者转向校验、法律语境判断与质量控制。行业趋势报告明确指出，自动化与 AI 正在显著提升法庭记录流程的速度与准确性~\cite{ncra_trends_2024}。
-
-\medskip
-\noindent 上述证据链表明，$A(t)$ 作为统一的 driver 变量，能够捕捉不同职业中 GenAI 渗透对任务结构的调制作用，且在实证层面具有可追溯的支撑。

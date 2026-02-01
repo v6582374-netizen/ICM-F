@@ -8,49 +8,56 @@
 \@writefile{toc}{\contentsline {subsection}{\numberline {1.1}研究背景与动机}{3}{subsection.1.1}\protected@file@percent }
 \@writefile{toc}{\contentsline {subsection}{\numberline {1.2}文献综述}{3}{subsection.1.2}\protected@file@percent }
 \@writefile{toc}{\contentsline {subsection}{\numberline {1.3}问题重述}{3}{subsection.1.3}\protected@file@percent }
+\@writefile{toc}{\contentsline {section}{\numberline {2}假设与符号}{3}{section.2}\protected@file@percent }
+\@writefile{toc}{\contentsline {subsection}{\numberline {2.1}基本假设}{3}{subsection.2.1}\protected@file@percent }
+\citation{freyosborne2017}
+\citation{openai2023gpt4}
+\citation{openaicodex2021}
 \gdef \LT@i {\LT@entry 
-    {5}{60.60225pt}\LT@entry 
-    {5}{247.7235pt}\LT@entry 
+    {5}{99.49525pt}\LT@entry 
+    {5}{257.42915pt}\LT@entry 
     {5}{81.83723pt}}
-\@writefile{toc}{\contentsline {section}{\numberline {2}假设与符号}{4}{section.2}\protected@file@percent }
-\@writefile{toc}{\contentsline {subsection}{\numberline {2.1}基本假设}{4}{subsection.2.1}\protected@file@percent }
 \@writefile{toc}{\contentsline {subsection}{\numberline {2.2}符号定义}{4}{subsection.2.2}\protected@file@percent }
 \@writefile{lot}{\contentsline {table}{\numberline {1}{\ignorespaces 本文使用的符号定义}}{4}{table.1}\protected@file@percent }
 \newlabel{tab:notation_unified}{{1}{4}{本文使用的符号定义}{table.1}{}}
-\@writefile{toc}{\contentsline {section}{\numberline {3}模型构建与实现}{6}{section.3}\protected@file@percent }
-\@writefile{toc}{\contentsline {subsection}{\numberline {3.1}职业选择作为建模决策}{6}{subsection.3.1}\protected@file@percent }
-\@writefile{toc}{\contentsline {subsubsection}{\numberline {3.1.1}基于O*NET的职业特征参数客观化}{6}{subsubsection.3.1.1}\protected@file@percent }
+\citation{onet2025database}
+\citation{onet2025database}
+\@writefile{toc}{\contentsline {section}{\numberline {3}模型构建与实现}{7}{section.3}\protected@file@percent }
+\@writefile{toc}{\contentsline {subsection}{\numberline {3.1}职业选择作为建模决策}{7}{subsection.3.1}\protected@file@percent }
+\@writefile{toc}{\contentsline {subsubsection}{\numberline {3.1.1}基于O*NET的职业特征参数客观化}{7}{subsubsection.3.1.1}\protected@file@percent }
+\citation{onet2025database}
 \citation{onetWorkingWithComputers}
 \citation{onetEmail}
 \citation{onetUsingHands}
 \citation{onetKneeling}
 \citation{onetOriginality}
 \citation{onetThinkingCreatively}
-\@writefile{lot}{\contentsline {table}{\numberline {2}{\ignorespaces 三维特征轴与O*NET描述符的对应关系}}{7}{table.caption.1}\protected@file@percent }
+\@writefile{lot}{\contentsline {table}{\numberline {2}{\ignorespaces 三维特征轴与O*NET描述符的对应关系}}{8}{table.caption.1}\protected@file@percent }
 \providecommand*\caption@xref[2]{\@setref\relax\@undefined{#1}}
-\newlabel{tab:onet_descriptor_mapping}{{2}{7}{三维特征轴与O*NET描述符的对应关系}{table.caption.1}{}}
-\@writefile{toc}{\contentsline {paragraph}{归一化与可重现性}{7}{section*.2}\protected@file@percent }
-\@writefile{lof}{\contentsline {figure}{\numberline {1}{\ignorespaces 基于O*NET描述符（全局归一化）的全体职业三维异质性点云与最优三角面（strict映射）。}}{8}{figure.caption.3}\protected@file@percent }
-\newlabel{fig:heterogeneity3d}{{1}{8}{基于O*NET描述符（全局归一化）的全体职业三维异质性点云与最优三角面（strict映射）。}{figure.caption.3}{}}
+\newlabel{tab:onet_descriptor_mapping}{{2}{8}{三维特征轴与O*NET描述符的对应关系}{table.caption.1}{}}
+\@writefile{toc}{\contentsline {paragraph}{归一化与可重现性}{8}{section*.2}\protected@file@percent }
+\@writefile{lof}{\contentsline {figure}{\numberline {1}{\ignorespaces 基于O*NET描述符（全局归一化）的全体职业三维异质性点云与最优三角面（strict映射）。}}{10}{figure.caption.3}\protected@file@percent }
+\newlabel{fig:heterogeneity3d}{{1}{10}{基于O*NET描述符（全局归一化）的全体职业三维异质性点云与最优三角面（strict映射）。}{figure.caption.3}{}}
+\@writefile{lof}{\contentsline {figure}{\numberline {2}{\ignorespaces 全体职业异质性空间的二维投影与最优三点标注（strict映射，全局归一化）。}}{10}{figure.caption.4}\protected@file@percent }
+\newlabel{fig:heterogeneity2d}{{2}{10}{全体职业异质性空间的二维投影与最优三点标注（strict映射，全局归一化）。}{figure.caption.4}{}}
 \citation{onet2019structure}
-\@writefile{lof}{\contentsline {figure}{\numberline {2}{\ignorespaces 全体职业异质性空间的二维投影与最优三点标注（strict映射，全局归一化）。}}{9}{figure.caption.4}\protected@file@percent }
-\newlabel{fig:heterogeneity2d}{{2}{9}{全体职业异质性空间的二维投影与最优三点标注（strict映射，全局归一化）。}{figure.caption.4}{}}
-\@writefile{lot}{\contentsline {table}{\numberline {3}{\ignorespaces 最大三角形面积解中三域（STEM、技工、艺术）所选代表职业与 O*NET-SOC 代码。三个点分别代表在三维特征空间选出的异质性最大化顶点，即模型异质性指标的最优解。}}{9}{table.caption.5}\protected@file@percent }
-\newlabel{tab:heterogeneity_tri_vertices}{{3}{9}{最大三角形面积解中三域（STEM、技工、艺术）所选代表职业与 O*NET-SOC 代码。三个点分别代表在三维特征空间选出的异质性最大化顶点，即模型异质性指标的最优解。}{table.caption.5}{}}
-\@writefile{toc}{\contentsline {paragraph}{稳健性证据与数值结果}{9}{section*.6}\protected@file@percent }
-\@writefile{toc}{\contentsline {subsection}{\numberline {3.2}职业演化的模型选择}{9}{subsection.3.2}\protected@file@percent }
-\@writefile{toc}{\contentsline {subsubsection}{\numberline {3.2.1}未来演化的可计算定义}{10}{subsubsection.3.2.1}\protected@file@percent }
-\@writefile{toc}{\contentsline {subsubsection}{\numberline {3.2.2}模型框架选择与理由}{10}{subsubsection.3.2.2}\protected@file@percent }
-\@writefile{toc}{\contentsline {subsection}{\numberline {3.3}任务层动态预测模型（Task-first）}{10}{subsection.3.3}\protected@file@percent }
-\@writefile{toc}{\contentsline {subsubsection}{\numberline {3.3.1}任务权重（Task DNA）与任务净冲击}{10}{subsubsection.3.3.1}\protected@file@percent }
-\@writefile{toc}{\contentsline {paragraph}{任务DNA的定义与数据来源}{10}{section*.7}\protected@file@percent }
-\@writefile{toc}{\contentsline {paragraph}{任务权重的推导}{10}{section*.8}\protected@file@percent }
-\@writefile{toc}{\contentsline {paragraph}{任务DNA与权威s,c分布（三职业）}{11}{section*.9}\protected@file@percent }
-\@writefile{lof}{\contentsline {figure}{\numberline {3}{\ignorespaces 职业 17-2199.08 的任务DNA与权威 $s,c$ 分布。（a）任务DNA权重分布：IM--FR 散点图，点面积与 $w$ 成正比；（b）权威 $s,c$ 档位分布。}}{11}{figure.caption.10}\protected@file@percent }
-\newlabel{fig:task_dna_17_pair}{{3}{11}{职业 17-2199.08 的任务DNA与权威 $s,c$ 分布。（a）任务DNA权重分布：IM--FR 散点图，点面积与 $w$ 成正比；（b）权威 $s,c$ 档位分布。}{figure.caption.10}{}}
-\@writefile{toc}{\contentsline {paragraph}{任务影响强度的离散化量表与证据约束}{12}{section*.11}\protected@file@percent }
-\@writefile{toc}{\contentsline {subsection}{\numberline {3.4}基于权威基准的GenAI能力量表与可审计映射}{12}{subsection.3.4}\protected@file@percent }
-\@writefile{toc}{\contentsline {subsubsection}{\numberline {3.4.1}机制审计与最短修复路径}{12}{subsubsection.3.4.1}\protected@file@percent }
+\@writefile{lot}{\contentsline {table}{\numberline {3}{\ignorespaces 最大三角形面积解中三域（STEM、技工、艺术）所选代表职业与 O*NET-SOC 代码。三个点分别代表在三维特征空间选出的异质性最大化顶点，即模型异质性指标的最优解。}}{11}{table.caption.5}\protected@file@percent }
+\newlabel{tab:heterogeneity_tri_vertices}{{3}{11}{最大三角形面积解中三域（STEM、技工、艺术）所选代表职业与 O*NET-SOC 代码。三个点分别代表在三维特征空间选出的异质性最大化顶点，即模型异质性指标的最优解。}{table.caption.5}{}}
+\@writefile{toc}{\contentsline {paragraph}{稳健性证据与数值结果}{11}{section*.6}\protected@file@percent }
+\@writefile{toc}{\contentsline {subsection}{\numberline {3.2}职业演化的模型选择}{11}{subsection.3.2}\protected@file@percent }
+\@writefile{toc}{\contentsline {subsubsection}{\numberline {3.2.1}未来演化的可计算定义}{11}{subsubsection.3.2.1}\protected@file@percent }
+\citation{onet2025database}
+\@writefile{toc}{\contentsline {subsubsection}{\numberline {3.2.2}模型框架选择与理由}{12}{subsubsection.3.2.2}\protected@file@percent }
+\@writefile{toc}{\contentsline {subsection}{\numberline {3.3}任务层动态预测模型（Task-first）}{12}{subsection.3.3}\protected@file@percent }
+\@writefile{toc}{\contentsline {subsubsection}{\numberline {3.3.1}任务权重（Task DNA）与任务净冲击}{12}{subsubsection.3.3.1}\protected@file@percent }
+\@writefile{toc}{\contentsline {paragraph}{任务DNA的定义与数据来源}{12}{section*.7}\protected@file@percent }
+\@writefile{toc}{\contentsline {paragraph}{任务权重的推导}{12}{section*.8}\protected@file@percent }
+\@writefile{toc}{\contentsline {paragraph}{任务DNA与权威s,c分布（三职业）}{12}{section*.9}\protected@file@percent }
+\@writefile{toc}{\contentsline {paragraph}{任务影响强度的离散化量表与证据约束}{13}{section*.10}\protected@file@percent }
+\@writefile{toc}{\contentsline {subsection}{\numberline {3.4}基于权威基准的GenAI能力量表与可审计映射}{13}{subsection.3.4}\protected@file@percent }
+\@writefile{toc}{\contentsline {subsubsection}{\numberline {3.4.1}机制审计与最短修复路径}{13}{subsubsection.3.4.1}\protected@file@percent }
+\@writefile{lot}{\contentsline {table}{\numberline {4}{\ignorespaces GenAI能力表的机制审计与修复路径}}{13}{table.caption.11}\protected@file@percent }
+\newlabel{tab:genai_audit}{{4}{13}{GenAI能力表的机制审计与修复路径}{table.caption.11}{}}
 \citation{openai2023gpt4}
 \citation{openai2023gpt4}
 \citation{openaicodex2021,swebench2024}
@@ -60,120 +67,137 @@
 \citation{openai2023gpt4}
 \citation{whisper2022,openai2023gpt4}
 \citation{docvqa2017,spider2018}
-\@writefile{lot}{\contentsline {table}{\numberline {4}{\ignorespaces GenAI能力表的机制审计与修复路径}}{13}{table.caption.12}\protected@file@percent }
-\newlabel{tab:genai_audit}{{4}{13}{GenAI能力表的机制审计与修复路径}{table.caption.12}{}}
-\@writefile{toc}{\contentsline {subsubsection}{\numberline {3.4.2}能力量表：$M_k\rightarrow \rho _k\rightarrow (s_k,c_k)$}{13}{subsubsection.3.4.2}\protected@file@percent }
-\@writefile{toc}{\contentsline {paragraph}{能力分段（$M_k$）}{13}{section*.13}\protected@file@percent }
-\@writefile{toc}{\contentsline {paragraph}{方向系数（$\rho _k$）}{13}{section*.14}\protected@file@percent }
-\@writefile{toc}{\contentsline {paragraph}{可审计赋值}{13}{section*.15}\protected@file@percent }
-\@writefile{toc}{\contentsline {subsubsection}{\numberline {3.4.3}九维能力量表（含原始评分与证据）}{13}{subsubsection.3.4.3}\protected@file@percent }
-\@writefile{lot}{\contentsline {table}{\numberline {5}{\ignorespaces GenAI 九维能力映射总表}}{14}{table.caption.16}\protected@file@percent }
-\newlabel{tab:genai_scale}{{5}{14}{GenAI 九维能力映射总表}{table.caption.16}{}}
-\@writefile{lof}{\contentsline {figure}{\numberline {4}{\ignorespaces 基于GenAI能力$\rightarrow $任务映射数据的职业DNA维度权重分布（D1--D9）。三幅子图分别对应职业 17-2199.08、49-1011.00 与 27-3092.00；柱高表示任务权重在能力维度上的占比，水平线表示维度均值，标注点为主导维度。}}{15}{figure.caption.17}\protected@file@percent }
-\newlabel{fig:task_dna_genai_mapping_triptych}{{4}{15}{基于GenAI能力$\rightarrow $任务映射数据的职业DNA维度权重分布（D1--D9）。三幅子图分别对应职业 17-2199.08、49-1011.00 与 27-3092.00；柱高表示任务权重在能力维度上的占比，水平线表示维度均值，标注点为主导维度。}{figure.caption.17}{}}
-\@writefile{toc}{\contentsline {paragraph}{三职业任务DNA的 $s,c$ 分布与负净冲击分析}{15}{section*.18}\protected@file@percent }
-\@writefile{lot}{\contentsline {table}{\numberline {6}{\ignorespaces 三职业负净冲击任务（$\mu ^{task}_{ij}<0$）汇总}}{15}{table.caption.19}\protected@file@percent }
-\newlabel{tab:task_sc_negative_impact}{{6}{15}{三职业负净冲击任务（$\mu ^{task}_{ij}<0$）汇总}{table.caption.19}{}}
-\@writefile{toc}{\contentsline {paragraph}{必要声明}{15}{section*.20}\protected@file@percent }
-\@writefile{toc}{\contentsline {paragraph}{任务层净冲击}{16}{section*.21}\protected@file@percent }
-\@writefile{toc}{\contentsline {subsubsection}{\numberline {3.4.4}将“发展轨迹”与“任务需求”紧密耦合：采纳混合机制}{16}{subsubsection.3.4.4}\protected@file@percent }
-\@writefile{toc}{\contentsline {paragraph}{解释性}{16}{section*.22}\protected@file@percent }
-\@writefile{toc}{\contentsline {paragraph}{未来时间点}{16}{section*.23}\protected@file@percent }
-\@writefile{toc}{\contentsline {subsubsection}{\numberline {3.4.5}结构读出层：职业重新定义的可计算判据}{17}{subsubsection.3.4.5}\protected@file@percent }
-\newlabel{sec:structural_indicators}{{3.4.5}{17}{结构读出层：职业重新定义的可计算判据}{subsubsection.3.4.5}{}}
-\@writefile{toc}{\contentsline {paragraph}{基线参考点的选择}{17}{section*.24}\protected@file@percent }
-\@writefile{toc}{\contentsline {paragraph}{(i) 份额变化}{17}{section*.25}\protected@file@percent }
-\newlabel{eq:delta_p}{{13}{17}{(i) 份额变化}{equation.13}{}}
-\@writefile{toc}{\contentsline {paragraph}{(ii) Top contributor（贡献分解）}{17}{section*.26}\protected@file@percent }
-\newlabel{eq:contributor}{{14}{17}{(ii) Top contributor（贡献分解）}{equation.14}{}}
-\@writefile{toc}{\contentsline {paragraph}{(iii) Top-$m$ 换血率}{17}{section*.27}\protected@file@percent }
-\newlabel{eq:turnover}{{15}{17}{(iii) Top-$m$ 换血率}{equation.15}{}}
-\@writefile{toc}{\contentsline {paragraph}{(iv) 排名翻转与归一化翻转强度}{17}{section*.28}\protected@file@percent }
-\newlabel{eq:inversion_count}{{16}{17}{(iv) 排名翻转与归一化翻转强度}{equation.16}{}}
-\newlabel{eq:normalized_inversion}{{17}{17}{(iv) 排名翻转与归一化翻转强度}{equation.17}{}}
-\@writefile{toc}{\contentsline {paragraph}{职业重新定义的综合判据}{18}{section*.29}\protected@file@percent }
-\newlabel{eq:redefinition_trigger}{{18}{18}{职业重新定义的综合判据}{equation.18}{}}
-\@writefile{toc}{\contentsline {paragraph}{结构指标的可视化}{18}{section*.30}\protected@file@percent }
-\@writefile{lof}{\contentsline {figure}{\numberline {5}{\ignorespaces STEM职业（17-2199.08）从基线（$t_0=0$, $A=0$）到末期（$t_1=2040$）的排名翻转。连线两端分别为 $\mathrm  {rank}_i(j,t_0)$ 与 $\mathrm  {rank}_i(j,t_1)$，翻转幅度越大、线越陡，结构性重排越显著。}}{18}{figure.caption.31}\protected@file@percent }
-\newlabel{fig:rank_flip_stem}{{5}{18}{STEM职业（17-2199.08）从基线（$t_0=0$, $A=0$）到末期（$t_1=2040$）的排名翻转。连线两端分别为 $\mathrm {rank}_i(j,t_0)$ 与 $\mathrm {rank}_i(j,t_1)$，翻转幅度越大、线越陡，结构性重排越显著。}{figure.caption.31}{}}
+\@writefile{toc}{\contentsline {subsubsection}{\numberline {3.4.2}能力量表：$M_k\rightarrow \rho _k\rightarrow (s_k,c_k)$}{14}{subsubsection.3.4.2}\protected@file@percent }
+\@writefile{toc}{\contentsline {paragraph}{能力分段（$M_k$）}{14}{section*.12}\protected@file@percent }
+\@writefile{toc}{\contentsline {paragraph}{方向系数（$\rho _k$）}{14}{section*.13}\protected@file@percent }
+\@writefile{toc}{\contentsline {subsubsection}{\numberline {3.4.3}九维能力量表（含原始评分与证据）}{14}{subsubsection.3.4.3}\protected@file@percent }
+\@writefile{lot}{\contentsline {table}{\numberline {5}{\ignorespaces GenAI 九维能力映射总表}}{14}{table.caption.14}\protected@file@percent }
+\newlabel{tab:genai_scale}{{5}{14}{GenAI 九维能力映射总表}{table.caption.14}{}}
+\@writefile{toc}{\contentsline {paragraph}{必要声明}{15}{section*.15}\protected@file@percent }
+\@writefile{lof}{\contentsline {figure}{\numberline {3}{\ignorespaces 基于GenAI能力$\rightarrow $任务映射数据的职业DNA维度权重分布（D1--D9）。三幅子图分别对应职业 17-2199.08、49-1011.00 与 27-3092.00；柱高表示任务权重在能力维度上的占比，水平线表示维度均值，标注点为主导维度。}}{15}{figure.caption.16}\protected@file@percent }
+\newlabel{fig:task_dna_genai_mapping_triptych}{{3}{15}{基于GenAI能力$\rightarrow $任务映射数据的职业DNA维度权重分布（D1--D9）。三幅子图分别对应职业 17-2199.08、49-1011.00 与 27-3092.00；柱高表示任务权重在能力维度上的占比，水平线表示维度均值，标注点为主导维度。}{figure.caption.16}{}}
+\@writefile{toc}{\contentsline {paragraph}{任务层净冲击}{15}{section*.17}\protected@file@percent }
+\@writefile{lof}{\contentsline {figure}{\numberline {4}{\ignorespaces 三职业的权威 $s,c$ 档位分布对比。（a）机器人工程师：$c$ 向高档位偏移，呈增强型冲击；（b）一线主管：$s,c$ 分布分散，冲击方向不单一；（c）法庭速录：$s$ 呈两端分化，高频核心任务接近替代型冲击。}}{16}{figure.caption.18}\protected@file@percent }
+\newlabel{fig:task_dna_sc_triptych}{{4}{16}{三职业的权威 $s,c$ 档位分布对比。（a）机器人工程师：$c$ 向高档位偏移，呈增强型冲击；（b）一线主管：$s,c$ 分布分散，冲击方向不单一；（c）法庭速录：$s$ 呈两端分化，高频核心任务接近替代型冲击。}{figure.caption.18}{}}
+\@writefile{toc}{\contentsline {paragraph}{三职业任务DNA的 $s,c$ 分布与负净冲击分析}{16}{section*.19}\protected@file@percent }
+\@writefile{lot}{\contentsline {table}{\numberline {6}{\ignorespaces 三职业负净冲击任务（$\mu ^{task}_{ij}<0$）汇总}}{16}{table.caption.20}\protected@file@percent }
+\newlabel{tab:task_sc_negative_impact}{{6}{16}{三职业负净冲击任务（$\mu ^{task}_{ij}<0$）汇总}{table.caption.20}{}}
 \citation{nvidia_isaac_2024}
 \citation{mckinsey_maintenance_2023}
-\@writefile{lof}{\contentsline {figure}{\numberline {6}{\ignorespaces STEM职业（17-2199.08）结构变化的 Top contributors 贡献分解。按 $r_{ij}$ 降序展示各任务对总份额变化的累积贡献，揭示结构重排的主要驱动任务。}}{19}{figure.caption.32}\protected@file@percent }
-\newlabel{fig:waterfall}{{6}{19}{STEM职业（17-2199.08）结构变化的 Top contributors 贡献分解。按 $r_{ij}$ 降序展示各任务对总份额变化的累积贡献，揭示结构重排的主要驱动任务。}{figure.caption.32}{}}
-\@writefile{toc}{\contentsline {subsection}{\numberline {3.5}Driver Specification: Adoption as the Core Temporal Mechanism}{19}{subsection.3.5}\protected@file@percent }
-\newlabel{subsec:driver_specification}{{3.5}{19}{Driver Specification: Adoption as the Core Temporal Mechanism}{subsection.3.5}{}}
-\@writefile{toc}{\contentsline {paragraph}{Driver 定义与机制}{19}{section*.33}\protected@file@percent }
-\@writefile{toc}{\contentsline {paragraph}{三类职业的 Driver 合理性}{19}{section*.34}\protected@file@percent }
-\@writefile{toc}{\contentsline {subparagraph}{Robotics Engineers (O*NET 17-2199.08)}{19}{section*.35}\protected@file@percent }
 \citation{ncra_trends_2024}
-\@writefile{toc}{\contentsline {subparagraph}{First-Line Supervisors of Mechanics (O*NET 49-1011.00)}{20}{section*.36}\protected@file@percent }
-\@writefile{toc}{\contentsline {subparagraph}{Court Reporters and Simultaneous Captioners (O*NET 27-3092.00)}{20}{section*.37}\protected@file@percent }
+\@writefile{toc}{\contentsline {subsubsection}{\numberline {3.4.4}Driver Specification: Adoption as the Core Temporal Mechanism}{17}{subsubsection.3.4.4}\protected@file@percent }
+\newlabel{subsec:driver_specification}{{3.4.4}{17}{Driver Specification: Adoption as the Core Temporal Mechanism}{subsubsection.3.4.4}{}}
+\@writefile{toc}{\contentsline {paragraph}{Driver 定义与机制}{17}{section*.21}\protected@file@percent }
+\@writefile{toc}{\contentsline {paragraph}{三类职业的 Driver 合理性}{17}{section*.22}\protected@file@percent }
+\@writefile{toc}{\contentsline {subparagraph}{Robotics Engineers (O*NET 17-2199.08)}{17}{section*.23}\protected@file@percent }
+\@writefile{toc}{\contentsline {subparagraph}{First-Line Supervisors of Mechanics (O*NET 49-1011.00)}{17}{section*.24}\protected@file@percent }
+\@writefile{toc}{\contentsline {subparagraph}{Court Reporters and Simultaneous Captioners (O*NET 27-3092.00)}{17}{section*.25}\protected@file@percent }
+\@writefile{toc}{\contentsline {subsubsection}{\numberline {3.4.5}将“发展轨迹”与“任务需求”紧密耦合：采纳混合机制}{17}{subsubsection.3.4.5}\protected@file@percent }
+\@writefile{toc}{\contentsline {paragraph}{解释性}{18}{section*.26}\protected@file@percent }
+\@writefile{toc}{\contentsline {paragraph}{未来时间点}{18}{section*.27}\protected@file@percent }
+\@writefile{toc}{\contentsline {subsubsection}{\numberline {3.4.6}结构读出层：职业重新定义的可计算判据}{18}{subsubsection.3.4.6}\protected@file@percent }
+\newlabel{sec:structural_indicators}{{3.4.6}{18}{结构读出层：职业重新定义的可计算判据}{subsubsection.3.4.6}{}}
+\@writefile{toc}{\contentsline {paragraph}{基线参考点的选择}{18}{section*.28}\protected@file@percent }
+\@writefile{toc}{\contentsline {paragraph}{(i) 份额变化}{18}{section*.29}\protected@file@percent }
+\newlabel{eq:delta_p}{{13}{18}{(i) 份额变化}{equation.13}{}}
+\@writefile{toc}{\contentsline {paragraph}{(ii) Top contributor（贡献分解）}{19}{section*.30}\protected@file@percent }
+\newlabel{eq:contributor}{{14}{19}{(ii) Top contributor（贡献分解）}{equation.14}{}}
+\@writefile{toc}{\contentsline {paragraph}{(iii) Top-$m$ 换血率}{19}{section*.31}\protected@file@percent }
+\newlabel{eq:turnover}{{15}{19}{(iii) Top-$m$ 换血率}{equation.15}{}}
+\@writefile{toc}{\contentsline {paragraph}{(iv) 排名翻转与归一化翻转强度}{19}{section*.32}\protected@file@percent }
+\newlabel{eq:inversion_count}{{16}{19}{(iv) 排名翻转与归一化翻转强度}{equation.16}{}}
+\newlabel{eq:normalized_inversion}{{17}{19}{(iv) 排名翻转与归一化翻转强度}{equation.17}{}}
+\@writefile{toc}{\contentsline {paragraph}{职业重新定义的综合判据}{19}{section*.33}\protected@file@percent }
+\newlabel{eq:redefinition_trigger}{{18}{19}{职业重新定义的综合判据}{equation.18}{}}
+\@writefile{toc}{\contentsline {paragraph}{结构指标的可视化}{19}{section*.34}\protected@file@percent }
+\@writefile{lof}{\contentsline {figure}{\numberline {5}{\ignorespaces STEM职业（17-2199.08）从基线（$t_0=0$, $A=0$）到末期（$t_1=2040$）的排名翻转。连线两端分别为 $\mathrm  {rank}_i(j,t_0)$ 与 $\mathrm  {rank}_i(j,t_1)$，翻转幅度越大、线越陡，结构性重排越显著。STEM职业（17-2199.08）结构变化的 Top contributors 贡献分解。按 $r_{ij}$ 降序展示各任务对总份额变化的累积贡献，揭示结构重排的主要驱动任务。}}{20}{figure.caption.35}\protected@file@percent }
+\newlabel{fig:rank_flip_stem}{{5}{20}{STEM职业（17-2199.08）从基线（$t_0=0$, $A=0$）到末期（$t_1=2040$）的排名翻转。连线两端分别为 $\mathrm {rank}_i(j,t_0)$ 与 $\mathrm {rank}_i(j,t_1)$，翻转幅度越大、线越陡，结构性重排越显著。STEM职业（17-2199.08）结构变化的 Top contributors 贡献分解。按 $r_{ij}$ 降序展示各任务对总份额变化的累积贡献，揭示结构重排的主要驱动任务。}{figure.caption.35}{}}
 \@writefile{toc}{\contentsline {section}{\numberline {4}仿真结果与敏感性分析}{20}{section.4}\protected@file@percent }
 \@writefile{toc}{\contentsline {subsection}{\numberline {4.1}职业选择的剪枝敏感性检验}{20}{subsection.4.1}\protected@file@percent }
-\@writefile{toc}{\contentsline {paragraph}{检验方法}{20}{section*.38}\protected@file@percent }
-\@writefile{toc}{\contentsline {paragraph}{检验结果}{20}{section*.39}\protected@file@percent }
-\@writefile{lot}{\contentsline {table}{\numberline {7}{\ignorespaces 候选规模敏感性检验：最优三角形在不同 $M$ 下的求解结果}}{20}{table.caption.40}\protected@file@percent }
-\newlabel{tab:sensitivity_M}{{7}{20}{候选规模敏感性检验：最优三角形在不同 $M$ 下的求解结果}{table.caption.40}{}}
+\@writefile{toc}{\contentsline {paragraph}{检验方法}{20}{section*.36}\protected@file@percent }
+\@writefile{toc}{\contentsline {paragraph}{检验结果}{21}{section*.37}\protected@file@percent }
+\@writefile{lot}{\contentsline {table}{\numberline {7}{\ignorespaces 候选规模敏感性检验：最优三角形在不同 $M$ 下的求解结果}}{21}{table.caption.38}\protected@file@percent }
+\newlabel{tab:sensitivity_M}{{7}{21}{候选规模敏感性检验：最优三角形在不同 $M$ 下的求解结果}{table.caption.38}{}}
+\@writefile{lof}{\contentsline {figure}{\numberline {6}{\ignorespaces 候选规模 $M$ 与最优三角形面积的关系（strict映射）。}}{21}{figure.caption.39}\protected@file@percent }
+\newlabel{fig:sensitivity_candidate_scale}{{6}{21}{候选规模 $M$ 与最优三角形面积的关系（strict映射）。}{figure.caption.39}{}}
+\@writefile{toc}{\contentsline {paragraph}{稳健性判定}{21}{section*.40}\protected@file@percent }
 \bibstyle{plainnat}
 \bibdata{references}
-\@writefile{lof}{\contentsline {figure}{\numberline {7}{\ignorespaces 候选规模 $M$ 与最优三角形面积的关系（strict映射）。}}{21}{figure.caption.41}\protected@file@percent }
-\newlabel{fig:sensitivity_candidate_scale}{{7}{21}{候选规模 $M$ 与最优三角形面积的关系（strict映射）。}{figure.caption.41}{}}
-\@writefile{toc}{\contentsline {paragraph}{稳健性判定}{21}{section*.42}\protected@file@percent }
-\@writefile{toc}{\contentsline {section}{\numberline {5}讨论：优势与不足}{21}{section.5}\protected@file@percent }
-\@writefile{toc}{\contentsline {subsection}{\numberline {5.1}优势}{21}{subsection.5.1}\protected@file@percent }
-\@writefile{toc}{\contentsline {subsection}{\numberline {5.2}不足}{21}{subsection.5.2}\protected@file@percent }
 \bibcite{openaicodex2021}{{1}{2021}{{Chen et~al.}}{{}}}
 \bibcite{imagenet2009}{{2}{2009}{{Deng et~al.}}{{}}}
 \bibcite{freyosborne2017}{{3}{2017}{{Frey and Osborne}}{{}}}
-\bibcite{docvqa2017}{{4}{2017}{{Matias et~al.}}{{}}}
-\bibcite{mckinsey_maintenance_2023}{{5}{2023}{{McKinsey \& Company}}{{}}}
-\bibcite{ncra_trends_2024}{{6}{2024}{{National Court Reporters Association}}{{}}}
-\bibcite{nvidia_isaac_2024}{{7}{2024}{{NVIDIA Corporation}}{{}}}
-\bibcite{onetEmail}{{8}{2025{}}{{O*NET OnLine}}{{}}}
-\bibcite{onetKneeling}{{9}{2025{}}{{O*NET OnLine}}{{}}}
-\bibcite{onetOriginality}{{10}{2025{}}{{O*NET OnLine}}{{}}}
-\bibcite{onetThinkingCreatively}{{11}{2025{}}{{O*NET OnLine}}{{}}}
+\bibcite{gartner2023genai}{{4}{2023}{{Gartner}}{{}}}
+\bibcite{docvqa2017}{{5}{2017}{{Matias et~al.}}{{}}}
+\bibcite{mckinsey_maintenance_2023}{{6}{2023}{{McKinsey \& Company}}{{}}}
+\bibcite{mckinsey2024stateai}{{7}{2024}{{McKinsey \& Company}}{{}}}
+\@writefile{toc}{\contentsline {section}{\numberline {5}讨论：优势与不足}{22}{section.5}\protected@file@percent }
+\@writefile{toc}{\contentsline {subsection}{\numberline {5.1}优势}{22}{subsection.5.1}\protected@file@percent }
+\@writefile{toc}{\contentsline {subsection}{\numberline {5.2}不足}{22}{subsection.5.2}\protected@file@percent }
 \@writefile{toc}{\contentsline {section}{\numberline {6}结论}{22}{section.6}\protected@file@percent }
-\bibcite{onetUsingHands}{{12}{2025{}}{{O*NET OnLine}}{{}}}
-\bibcite{onetWorkingWithComputers}{{13}{2025{}}{{O*NET OnLine}}{{}}}
-\bibcite{onet2019structure}{{14}{2019}{{O*NET Resource Center}}{{}}}
-\bibcite{onet2025database}{{15}{2025}{{O*NET Resource Center}}{{}}}
-\bibcite{openai2023gpt4}{{16}{2023}{{OpenAI}}{{}}}
-\bibcite{whisper2022}{{17}{2022}{{Radford et~al.}}{{}}}
-\bibcite{autogpt2023}{{18}{2023}{{Significant Gravitas}}{{}}}
-\bibcite{swebench2024}{{19}{2024}{{SWE-bench}}{{}}}
-\bibcite{spider2018}{{20}{2018}{{Yu et~al.}}{{}}}
-\@writefile{toc}{\contentsline {section}{Appendices}{23}{section*.44}\protected@file@percent }
-\@writefile{toc}{\contentsline {section}{附录 \numberline {A}数据来源与变量定义}{23}{appendix.1.A}\protected@file@percent }
-\newlabel{app:data_sources}{{A}{23}{数据来源与变量定义}{appendix.1.A}{}}
-\@writefile{toc}{\contentsline {subsection}{\numberline {A.1}O*NET描述符数据来源}{23}{subsection.1.A.1}\protected@file@percent }
-\newlabel{app:onet_descriptors}{{A.1}{23}{O*NET描述符数据来源}{subsection.1.A.1}{}}
+\bibcite{mckinsey2025stateai}{{8}{2025}{{McKinsey \& Company}}{{}}}
+\bibcite{ncra_trends_2024}{{9}{2024}{{National Court Reporters Association}}{{}}}
+\bibcite{nvidia_isaac_2024}{{10}{2024}{{NVIDIA Corporation}}{{}}}
+\bibcite{onetEmail}{{11}{2025{}}{{O*NET OnLine}}{{}}}
+\bibcite{onetKneeling}{{12}{2025{}}{{O*NET OnLine}}{{}}}
+\bibcite{onetOriginality}{{13}{2025{}}{{O*NET OnLine}}{{}}}
+\bibcite{onetThinkingCreatively}{{14}{2025{}}{{O*NET OnLine}}{{}}}
+\bibcite{onetUsingHands}{{15}{2025{}}{{O*NET OnLine}}{{}}}
+\bibcite{onetWorkingWithComputers}{{16}{2025{}}{{O*NET OnLine}}{{}}}
+\bibcite{onet2019structure}{{17}{2019}{{O*NET Resource Center}}{{}}}
+\bibcite{onet2025database}{{18}{2025}{{O*NET Resource Center}}{{}}}
+\bibcite{openai2023gpt4}{{19}{2023}{{OpenAI}}{{}}}
+\bibcite{whisper2022}{{20}{2022}{{Radford et~al.}}{{}}}
+\bibcite{autogpt2023}{{21}{2023}{{Significant Gravitas}}{{}}}
+\bibcite{swebench2024}{{22}{2024}{{SWE-bench}}{{}}}
+\bibcite{spider2018}{{23}{2018}{{Yu et~al.}}{{}}}
+\@writefile{toc}{\contentsline {section}{Appendices}{24}{section*.42}\protected@file@percent }
+\@writefile{toc}{\contentsline {section}{附录 \numberline {A}数据来源与变量定义}{24}{appendix.1.A}\protected@file@percent }
+\newlabel{app:data_sources}{{A}{24}{数据来源与变量定义}{appendix.1.A}{}}
+\@writefile{toc}{\contentsline {subsection}{\numberline {A.1}O*NET描述符数据来源}{24}{subsection.1.A.1}\protected@file@percent }
+\newlabel{app:onet_descriptors}{{A.1}{24}{O*NET描述符数据来源}{subsection.1.A.1}{}}
+\citation{onet2025database}
+\citation{openai2023gpt4,openaicodex2021,swebench2024,autogpt2023,whisper2022,docvqa2017,spider2018,imagenet2009}
+\citation{onet2025database}
+\citation{onet2019structure}
 \citation{onet2025database}
 \citation{onet2025database}
-\citation{onet2025database}
-\citation{onet2025database}
-\@writefile{lot}{\contentsline {table}{\numberline {8}{\ignorespaces O*NET描述符数据来源与访问链接}}{24}{table.caption.45}\protected@file@percent }
-\newlabel{tab:onet_descriptor_sources}{{8}{24}{O*NET描述符数据来源与访问链接}{table.caption.45}{}}
-\@writefile{toc}{\contentsline {subsection}{\numberline {A.2}任务DNA变量}{24}{subsection.1.A.2}\protected@file@percent }
-\newlabel{app:task_dna_sources}{{A.2}{24}{任务DNA变量}{subsection.1.A.2}{}}
-\@writefile{lot}{\contentsline {table}{\numberline {9}{\ignorespaces 任务DNA的数据来源与变量}}{24}{table.caption.46}\protected@file@percent }
-\newlabel{tab:data_sources_task_dna}{{9}{24}{任务DNA的数据来源与变量}{table.caption.46}{}}
-\@writefile{toc}{\contentsline {section}{附录 \numberline {B}补充图示：任务DNA}{24}{appendix.1.B}\protected@file@percent }
-\newlabel{app:task_dna_figures}{{B}{24}{补充图示：任务DNA}{appendix.1.B}{}}
-\@writefile{lof}{\contentsline {figure}{\numberline {8}{\ignorespaces 职业 49-1011.00 的任务DNA与权威 $s,c$ 分布。（a）任务DNA权重分布：IM--FR 散点图，点面积与 $w$ 成正比；（b）权威 $s,c$ 档位分布。}}{25}{figure.caption.47}\protected@file@percent }
-\newlabel{fig:task_dna_49_pair}{{8}{25}{职业 49-1011.00 的任务DNA与权威 $s,c$ 分布。（a）任务DNA权重分布：IM--FR 散点图，点面积与 $w$ 成正比；（b）权威 $s,c$ 档位分布。}{figure.caption.47}{}}
-\@writefile{lof}{\contentsline {figure}{\numberline {9}{\ignorespaces 职业 27-3092.00 的任务DNA与权威 $s,c$ 分布。（a）任务DNA权重分布：IM--FR 散点图，点面积与 $w$ 成正比；（b）权威 $s,c$ 档位分布。}}{25}{figure.caption.48}\protected@file@percent }
-\newlabel{fig:task_dna_27_pair}{{9}{25}{职业 27-3092.00 的任务DNA与权威 $s,c$ 分布。（a）任务DNA权重分布：IM--FR 散点图，点面积与 $w$ 成正比；（b）权威 $s,c$ 档位分布。}{figure.caption.48}{}}
-\@writefile{toc}{\contentsline {section}{附录 \numberline {C}补充图示：任务份额预测}{26}{appendix.1.C}\protected@file@percent }
-\newlabel{app:task_share_figures}{{C}{26}{补充图示：任务份额预测}{appendix.1.C}{}}
-\@writefile{lof}{\contentsline {figure}{\numberline {10}{\ignorespaces STEM职业在基准情景下全部任务份额随时间的演化。}}{26}{figure.caption.49}\protected@file@percent }
-\newlabel{fig:task_share_all_stem}{{10}{26}{STEM职业在基准情景下全部任务份额随时间的演化。}{figure.caption.49}{}}
-\@writefile{lof}{\contentsline {figure}{\numberline {11}{\ignorespaces 技工职业在基准情景下全部任务份额随时间的演化。}}{26}{figure.caption.50}\protected@file@percent }
-\newlabel{fig:task_share_all_trade}{{11}{26}{技工职业在基准情景下全部任务份额随时间的演化。}{figure.caption.50}{}}
-\@writefile{lof}{\contentsline {figure}{\numberline {12}{\ignorespaces 艺术职业在基准情景下全部任务份额随时间的演化。}}{27}{figure.caption.51}\protected@file@percent }
-\newlabel{fig:task_share_all_arts}{{12}{27}{艺术职业在基准情景下全部任务份额随时间的演化。}{figure.caption.51}{}}
-\@writefile{toc}{\contentsline {section}{附录 \numberline {D}Python实现代码}{27}{appendix.1.D}\protected@file@percent }
-\newlabel{LastPage}{{6}{28}{3. 风险验证}{page.28}{}}
-\gdef\lastpage@lastpage{28}
-\gdef\lastpage@lastpageHy{28}
-\gdef \@abspage@last{29}
+\citation{openai2023gpt4}
+\citation{openaicodex2021}
+\citation{swebench2024}
+\citation{autogpt2023}
+\citation{whisper2022}
+\citation{docvqa2017}
+\citation{spider2018}
+\citation{imagenet2009}
+\citation{mckinsey2024stateai,mckinsey2025stateai}
+\citation{gartner2023genai}
+\citation{nvidia_isaac_2024}
+\citation{mckinsey_maintenance_2023}
+\citation{ncra_trends_2024}
+\@writefile{lot}{\contentsline {table}{\numberline {8}{\ignorespaces O*NET描述符数据来源与访问链接}}{25}{table.caption.43}\protected@file@percent }
+\newlabel{tab:onet_descriptor_sources}{{8}{25}{O*NET描述符数据来源与访问链接}{table.caption.43}{}}
+\@writefile{toc}{\contentsline {subsection}{\numberline {A.2}任务DNA与GenAI能力数据}{25}{subsection.1.A.2}\protected@file@percent }
+\newlabel{app:task_dna_sources}{{A.2}{25}{任务DNA与GenAI能力数据}{subsection.1.A.2}{}}
+\@writefile{lot}{\contentsline {table}{\numberline {9}{\ignorespaces 数据来源总览}}{26}{table.caption.44}\protected@file@percent }
+\newlabel{tab:data_sources_comprehensive}{{9}{26}{数据来源总览}{table.caption.44}{}}
+\@writefile{toc}{\contentsline {section}{附录 \numberline {B}补充图示：任务DNA权重分布}{26}{appendix.1.B}\protected@file@percent }
+\newlabel{app:task_dna_figures}{{B}{26}{补充图示：任务DNA权重分布}{appendix.1.B}{}}
+\@writefile{lof}{\contentsline {figure}{\numberline {7}{\ignorespaces 职业 17-2199.08 的任务DNA权重分布：IM--FR 散点图，点面积与 $w$ 成正比。}}{27}{figure.caption.45}\protected@file@percent }
+\newlabel{fig:task_dna_17_weights}{{7}{27}{职业 17-2199.08 的任务DNA权重分布：IM--FR 散点图，点面积与 $w$ 成正比。}{figure.caption.45}{}}
+\@writefile{lof}{\contentsline {figure}{\numberline {8}{\ignorespaces 职业 49-1011.00 的任务DNA权重分布：IM--FR 散点图，点面积与 $w$ 成正比。}}{27}{figure.caption.46}\protected@file@percent }
+\newlabel{fig:task_dna_49_weights}{{8}{27}{职业 49-1011.00 的任务DNA权重分布：IM--FR 散点图，点面积与 $w$ 成正比。}{figure.caption.46}{}}
+\@writefile{lof}{\contentsline {figure}{\numberline {9}{\ignorespaces 职业 27-3092.00 的任务DNA权重分布：IM--FR 散点图，点面积与 $w$ 成正比。}}{28}{figure.caption.47}\protected@file@percent }
+\newlabel{fig:task_dna_27_weights}{{9}{28}{职业 27-3092.00 的任务DNA权重分布：IM--FR 散点图，点面积与 $w$ 成正比。}{figure.caption.47}{}}
+\@writefile{toc}{\contentsline {section}{附录 \numberline {C}补充图示：任务份额预测}{28}{appendix.1.C}\protected@file@percent }
+\newlabel{app:task_share_figures}{{C}{28}{补充图示：任务份额预测}{appendix.1.C}{}}
+\@writefile{lof}{\contentsline {figure}{\numberline {10}{\ignorespaces STEM职业在基准情景下全部任务份额随时间的演化。}}{29}{figure.caption.48}\protected@file@percent }
+\newlabel{fig:task_share_all_stem}{{10}{29}{STEM职业在基准情景下全部任务份额随时间的演化。}{figure.caption.48}{}}
+\@writefile{lof}{\contentsline {figure}{\numberline {11}{\ignorespaces 技工职业在基准情景下全部任务份额随时间的演化。}}{29}{figure.caption.49}\protected@file@percent }
+\newlabel{fig:task_share_all_trade}{{11}{29}{技工职业在基准情景下全部任务份额随时间的演化。}{figure.caption.49}{}}
+\@writefile{lof}{\contentsline {figure}{\numberline {12}{\ignorespaces 艺术职业在基准情景下全部任务份额随时间的演化。}}{30}{figure.caption.50}\protected@file@percent }
+\newlabel{fig:task_share_all_arts}{{12}{30}{艺术职业在基准情景下全部任务份额随时间的演化。}{figure.caption.50}{}}
+\@writefile{toc}{\contentsline {section}{附录 \numberline {D}Python实现代码}{30}{appendix.1.D}\protected@file@percent }
+\newlabel{LastPage}{{6}{31}{3. 风险验证}{page.31}{}}
+\gdef\lastpage@lastpage{31}
+\gdef\lastpage@lastpageHy{31}
+\gdef \@abspage@last{32}

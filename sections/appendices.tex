@@ -28,57 +28,78 @@
 \end{tabular}
 \end{table}
 
-\subsection{任务DNA变量}
+\subsection{任务DNA与GenAI能力数据}
 \label{app:task_dna_sources}
 
-我们从O*NET 30.1文本数据库中提取各职业的任务陈述和任务评分，并根据重要性（IM）和任务频率（FT）评分计算任务权重~\cite{onet2025database}。
+我们从O*NET 30.1文本数据库中提取各职业的任务陈述和任务评分，并根据重要性（IM）和任务频率（FT）评分计算任务权重~\cite{onet2025database}。GenAI能力评估基于权威基准和技术报告~\cite{openai2023gpt4,openaicodex2021,swebench2024,autogpt2023,whisper2022,docvqa2017,spider2018,imagenet2009}。
 
 \begin{table}[H]
 \centering
-\caption{任务DNA的数据来源与变量}
-\label{tab:data_sources_task_dna}
-\begin{tabular}{@{}p{3.4cm} p{7.4cm} p{3.2cm}@{}}
+\caption{数据来源总览}
+\label{tab:data_sources_comprehensive}
+\small
+\begin{tabular}{@{}p{3.2cm} p{7.2cm} p{3.6cm}@{}}
 \toprule
-变量/数据 & 描述 & 来源 \\
+\textbf{数据类别} & \textbf{描述} & \textbf{来源} \\
 \midrule
-O*NET任务陈述 & 各职业的任务文本和标识符 & O*NET 30.1数据库~\cite{onet2025database} \\
-O*NET任务评分（IM, FT） & 用于计算任务权重的重要性和频率评分 & O*NET 30.1数据库~\cite{onet2025database} \\
-任务DNA CSV & 包含IM、FR、权重和基于规则的s/c的处理后任务表 & 基于O*NET 30.1衍生~\cite{onet2025database} \\
+\multicolumn{3}{l}{\textbf{职业特征数据}} \\
+\midrule
+O*NET职业描述符 & 职业在数字化、物理锚定、产权风险等维度的原始评分（0--100） & O*NET 30.1数据库~\cite{onet2025database} \\
+O*NET-SOC职业代码 & 标准职业分类代码与职业名称映射 & O*NET 2019结构~\cite{onet2019structure} \\
+\addlinespace
+\multicolumn{3}{l}{\textbf{任务结构数据}} \\
+\midrule
+O*NET任务陈述 & 各职业的任务文本描述和任务标识符 & O*NET 30.1数据库~\cite{onet2025database} \\
+O*NET任务评分 & 任务重要性（IM）和任务频率（FR）评分（0--100） & O*NET 30.1数据库~\cite{onet2025database} \\
+\addlinespace
+\multicolumn{3}{l}{\textbf{GenAI能力基准}} \\
+\midrule
+GPT-4基准分数 & MMLU 86.4\%、ARC 96.3\%、GSM8K 92.0\%、DROP 80.9、HellaSwag 95.3\%等 & GPT-4技术报告~\cite{openai2023gpt4} \\
+代码生成基准 & HumanEval 67.0\%（代码生成通过率） & Codex论文~\cite{openaicodex2021} \\
+软件工程基准 & SWE-bench修复率约20\%（实际软件问题解决） & SWE-bench基准~\cite{swebench2024} \\
+自主任务完成 & AutoGPT实体环境任务24\%、工具使用成功率$\sim$80\% & AutoGPT项目~\cite{autogpt2023} \\
+语音识别基准 & Whisper WER $\approx$ 0.011（词错误率） & Whisper论文~\cite{whisper2022} \\
+文档问答基准 & DocVQA 99.16\%（文档视觉问答准确率） & DocVQA数据集~\cite{docvqa2017} \\
+结构化查询 & Text-to-SQL Spider基准 $>$80\%（自然语言转SQL） & Spider数据集~\cite{spider2018} \\
+视觉识别基准 & ImageNet视觉识别 $\approx$ 85\%+（图像分类准确率） & ImageNet数据集~\cite{imagenet2009} \\
+\addlinespace
+\multicolumn{3}{l}{\textbf{行业趋势与采纳数据}} \\
+\midrule
+组织AI采纳率 & 2024年组织层面GenAI采纳率、2025年趋势、2026情景上界 & McKinsey AI报告~\cite{mckinsey2024stateai,mckinsey2025stateai}；Gartner预测~\cite{gartner2023genai} \\
+机器人工程AI集成 & 机器人平台与GenAI集成证据、仿真加速案例 & NVIDIA Isaac平台~\cite{nvidia_isaac_2024} \\
+工业维护AI应用 & 预测性维护、智能诊断在制造与运营领域的应用 & McKinsey运营研究~\cite{mckinsey_maintenance_2023} \\
+法庭记录自动化 & ASR/AI在法庭记录与字幕服务中的采纳趋势 & NCRA行业趋势~\cite{ncra_trends_2024} \\
 \bottomrule
 \end{tabular}
 \end{table}
 
-\section{补充图示：任务DNA}
+\section{补充图示：任务DNA权重分布}
 \label{app:task_dna_figures}
+
+三职业的权威 $s,c$ 档位分布已合并至正文图~\ref{fig:task_dna_sc_triptych}。以下为各职业的任务DNA权重分布（IM--FR 散点图）。
+
+\noindent\textbf{职业 17-2199.08：机器人工程师。}
+\begin{figure}[H]
+\centering
+\includegraphics[width=0.7\linewidth]{figures/task_dna_17-2199.08_weights.pdf}
+\caption{职业 17-2199.08 的任务DNA权重分布：IM--FR 散点图，点面积与 $w$ 成正比。}
+\label{fig:task_dna_17_weights}
+\end{figure}
 
 \noindent\textbf{职业 49-1011.00：一线主管（机械/安装/维修）。}
 \begin{figure}[H]
 \centering
-\begin{minipage}{0.62\linewidth}
-    \centering
-    \includegraphics[width=\linewidth]{figures/task_dna_49-1011.00_weights.pdf}
-\end{minipage}\hfill
-\begin{minipage}{0.35\linewidth}
-    \centering
-    \includegraphics[width=\linewidth]{figures/task_dna_49-1011.00_authoritative_sc_distribution.pdf}
-\end{minipage}
-\caption{职业 49-1011.00 的任务DNA与权威 $s,c$ 分布。（a）任务DNA权重分布：IM--FR 散点图，点面积与 $w$ 成正比；（b）权威 $s,c$ 档位分布。}
-\label{fig:task_dna_49_pair}
+\includegraphics[width=0.7\linewidth]{figures/task_dna_49-1011.00_weights.pdf}
+\caption{职业 49-1011.00 的任务DNA权重分布：IM--FR 散点图，点面积与 $w$ 成正比。}
+\label{fig:task_dna_49_weights}
 \end{figure}
 
 \noindent\textbf{职业 27-3092.00：法庭速录与字幕。}
 \begin{figure}[H]
 \centering
-\begin{minipage}{0.62\linewidth}
-    \centering
-    \includegraphics[width=\linewidth]{figures/task_dna_27-3092.00_weights.pdf}
-\end{minipage}\hfill
-\begin{minipage}{0.35\linewidth}
-    \centering
-    \includegraphics[width=\linewidth]{figures/task_dna_27-3092.00_authoritative_sc_distribution.pdf}
-\end{minipage}
-\caption{职业 27-3092.00 的任务DNA与权威 $s,c$ 分布。（a）任务DNA权重分布：IM--FR 散点图，点面积与 $w$ 成正比；（b）权威 $s,c$ 档位分布。}
-\label{fig:task_dna_27_pair}
+\includegraphics[width=0.7\linewidth]{figures/task_dna_27-3092.00_weights.pdf}
+\caption{职业 27-3092.00 的任务DNA权重分布：IM--FR 散点图，点面积与 $w$ 成正比。}
+\label{fig:task_dna_27_weights}
 \end{figure}
 
 \section{补充图示：任务份额预测}

@@ -1,5 +1,24 @@
 \section{假设与符号}
 \subsection{基本假设}
 
+为确保模型的可复现性与可审计性，我们对建模过程中的核心前提进行如下形式化：
+
+\begin{enumerate}[label=\textbf{A\arabic*.}, leftmargin=2em, itemsep=0.8em]
+\item \textbf{职业任务可分解性假设} \\
+    职业 $i$ 由有限任务集合 $\{j=1,\ldots,N_i\}$ 组成，任务权重 $w_{ij}$ 满足 $\sum_j w_{ij}=1$，且可从O*NET任务重要性(IM)与频率(FR)的乘积归一化得到。该假设使职业结构可以通过任务层面的数据进行定量表征，避免对职业整体进行不可验证的主观评估。
+
+\item \textbf{GenAI影响的任务层分解假设} \\
+    GenAI对职业的冲击可分解为任务级替代强度 $s_{ij}$ 和增强强度 $c_{ij}$，职业级净冲击 $\mu_i = \beta_i - \alpha_i$ 通过加权聚合得到。其中 $\alpha_i = \sum_j w_{ij}s_{ij}$ 和 $\beta_i = \sum_j w_{ij}c_{ij}$。该假设反映了技术变革在任务层面的异质性影响，符合任务导向的劳动经济学框架\cite{freyosborne2017}。
+
+\item \textbf{GenAI采纳轨迹外生性假设} \\
+    GenAI采纳率 $A(t)\in[0,1]$ 作为外生输入驱动任务结构演化，不受单个职业内部任务份额变化的反馈影响。该假设简化了模型的动态复杂性，使我们能够在给定采纳情景下预测职业演化，而不需要建模整个劳动力市场的均衡调整过程。
+
+\item \textbf{权威基准映射假设} \\
+    任务 $j$ 到GenAI能力维度 $k$ 的替代/增强强度 $(s_k,c_k)$ 基于公开的权威基准（如GPT-4技术报告\cite{openai2023gpt4}、HumanEval\cite{openaicodex2021}等）和语义相似度映射确定。该假设保证了任务层参数的可追溯性和可复现性，避免了基于主观判断的"黑箱"赋值。
+
+\item \textbf{任务结构演化连续性假设} \\
+    任务相对需求份额 $p_{ij}(t)$ 随时间连续演化，由采纳混合机制 $q_{ij}(t) = w_{ij}[(1-A(t)) + A(t)\exp(\eta\mu^{task}_{ij})]$ 的归一化确定。该假设排除了职业任务结构的突变式重组，使演化轨迹可微分且便于分析结构指标（如排名翻转强度 $\widetilde I_i$ 和换血率 $J_i$）。
+\end{enumerate}
+
 \subsection{符号定义}
 \input{sections/notations}

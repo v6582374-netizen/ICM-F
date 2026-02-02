@@ -1,0 +1,15 @@
+<o_variants_sensitivity_summary>
+  <timestamp_utc>2026-02-02T17:37:15Z</timestamp_utc>
+  <o_variants_config>/Users/shiwen/Downloads/ICM-FORMAL/data/processed/o_variants_related_occupations.json</o_variants_config>
+  <programs>
+    <program id="mrsd_cmu">
+      <robustness>/Users/shiwen/Downloads/ICM-FORMAL/data/processed/robustness_summary_mrsd_cmu_O_variants_final.json</robustness>
+    </program>
+    <program id="uti_diesel">
+      <robustness>/Users/shiwen/Downloads/ICM-FORMAL/data/processed/robustness_summary_uti_diesel_O_variants_final.json</robustness>
+    </program>
+    <program id="generations_court_reporting">
+      <robustness>/Users/shiwen/Downloads/ICM-FORMAL/data/processed/robustness_summary_generations_court_reporting_O_variants_final.json</robustness>
+    </program>
+  </programs>
+</o_variants_sensitivity_summary>

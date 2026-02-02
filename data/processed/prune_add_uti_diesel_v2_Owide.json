@@ -1,0 +1,104 @@
+{
+  "program_id": "uti_diesel",
+  "variant": "O_wide",
+  "o_variant": [
+    "49-1011.00",
+    "51-1011.00",
+    "47-1011.00",
+    "43-1011.00",
+    "37-1011.00",
+    "39-1014.00",
+    "45-1011.00"
+  ],
+  "thresholds": {
+    "e_low": 0.011384521485962251,
+    "h_low": 0.0,
+    "a_high": 0.3336971127198762,
+    "a_strict_high": 0.06737343296725855,
+    "weighting_rule": "credit_weighted_empirical_quantile"
+  },
+  "courses": [
+    {
+      "course_code": "DT13-161",
+      "title": "Hydraulics",
+      "delta_e": 0.04730020456312323,
+      "h_m": 0.0,
+      "a_m": 0.2460349545428864,
+      "a_strict_m": 0.06737343296725855,
+      "label_keep_transform_prune": "KEEP"
+    },
+    {
+      "course_code": "DT13-162",
+      "title": "Steering and Suspension Systems",
+      "delta_e": 0.008117116805245739,
+      "h_m": 0.0,
+      "a_m": 0.3362386414972813,
+      "a_strict_m": 0.05838233156733358,
+      "label_keep_transform_prune": "TRANSFORM"
+    },
+    {
+      "course_code": "DT13-163",
+      "title": "Drivetrain",
+      "delta_e": 0.011384521485962251,
+      "h_m": 0.0,
+      "a_m": 0.31908964386856814,
+      "a_strict_m": 0.04442398708742748,
+      "label_keep_transform_prune": "KEEP"
+    },
+    {
+      "course_code": "DT13-164",
+      "title": "Brakes",
+      "delta_e": 0.024472757059421868,
+      "h_m": 0.0,
+      "a_m": 0.19398072520768309,
+      "a_strict_m": 0.01273181229210277,
+      "label_keep_transform_prune": "KEEP"
+    },
+    {
+      "course_code": "DT13-211",
+      "title": "Diesel Engines",
+      "delta_e": 0.00028000521739635076,
+      "h_m": 0.0,
+      "a_m": 0.37952815980626964,
+      "a_strict_m": 0.054675401455066115,
+      "label_keep_transform_prune": "TRANSFORM"
+    },
+    {
+      "course_code": "DT13-212",
+      "title": "Diesel Engine Fuel Systems and Accessories",
+      "delta_e": 0.013795215668531702,
+      "h_m": 1.0,
+      "a_m": 0.2952912364893704,
+      "a_strict_m": 0.02650694654890117,
+      "label_keep_transform_prune": "KEEP"
+    },
+    {
+      "course_code": "DT13-213",
+      "title": "Preventative Maintenance",
+      "delta_e": 0.04087143266380455,
+      "h_m": 0.0,
+      "a_m": 0.3336971127198762,
+      "a_strict_m": 0.025740035112191462,
+      "label_keep_transform_prune": "KEEP"
+    },
+    {
+      "course_code": "DT13-214",
+      "title": "Transport Refrigeration",
+      "delta_e": 0.03773759386399311,
+      "h_m": 0.0,
+      "a_m": 0.32135078546282037,
+      "a_strict_m": 0.06279163678693814,
+      "label_keep_transform_prune": "KEEP"
+    }
+  ],
+  "prune_add": {
+    "DT13-161": "KEEP",
+    "DT13-162": "TRANSFORM",
+    "DT13-163": "KEEP",
+    "DT13-164": "KEEP",
+    "DT13-211": "TRANSFORM",
+    "DT13-212": "KEEP",
+    "DT13-213": "KEEP",
+    "DT13-214": "KEEP"
+  }
+}

@@ -1,0 +1,90 @@
+{
+  "program_id": "generations_court_reporting",
+  "variant": "O_medium",
+  "o_variant": [
+    "27-3092.00",
+    "43-6012.00",
+    "43-4031.00"
+  ],
+  "thresholds": {
+    "e_low": 0.012201987441148976,
+    "h_low": 0.0,
+    "a_high": 0.5726271332275372,
+    "a_strict_high": 0.4527030233466031,
+    "weighting_rule": "uniform_empirical_quantile"
+  },
+  "courses": [
+    {
+      "course_code": "CR-CAT-1",
+      "title": "Machine Shorthand Theory",
+      "delta_e": 0.02096711037201282,
+      "h_m": 0.0,
+      "a_m": 0.5840796170173205,
+      "a_strict_m": 0.4527030233466031,
+      "label_keep_transform_prune": "TRANSFORM"
+    },
+    {
+      "course_code": "CR-CAT-2",
+      "title": "Judicial Court Reporting",
+      "delta_e": 0.01729658181894833,
+      "h_m": 0.5,
+      "a_m": 0.35454731742660056,
+      "a_strict_m": 0.03939456143883179,
+      "label_keep_transform_prune": "KEEP"
+    },
+    {
+      "course_code": "CR-CAT-3",
+      "title": "Speedbuilding",
+      "delta_e": 0.019779739359628623,
+      "h_m": 1.0,
+      "a_m": 0.40676322641371265,
+      "a_strict_m": 0.1649732486583363,
+      "label_keep_transform_prune": "KEEP"
+    },
+    {
+      "course_code": "CR-CAT-4",
+      "title": "Legal & Medical Terminology",
+      "delta_e": 0.012201987441148976,
+      "h_m": 0.0,
+      "a_m": 0.5483526774362297,
+      "a_strict_m": 0.3862125521507787,
+      "label_keep_transform_prune": "KEEP"
+    },
+    {
+      "course_code": "CR-CAT-5",
+      "title": "English, Grammar & Vocabulary",
+      "delta_e": 0.020588968952755637,
+      "h_m": 0.0,
+      "a_m": 0.5726271332275372,
+      "a_strict_m": 0.291054295892607,
+      "label_keep_transform_prune": "KEEP"
+    },
+    {
+      "course_code": "CR-CAT-6",
+      "title": "General Education",
+      "delta_e": 0.08683787838588519,
+      "h_m": 1.0,
+      "a_m": 0.40334242307575874,
+      "a_strict_m": 0.16452795864034686,
+      "label_keep_transform_prune": "KEEP"
+    },
+    {
+      "course_code": "CR-CAT-7",
+      "title": "Supervised Internship",
+      "delta_e": 0.010844159740321047,
+      "h_m": 0.0,
+      "a_m": 0.37606184084564276,
+      "a_strict_m": 0.12913855276856973,
+      "label_keep_transform_prune": "KEEP"
+    }
+  ],
+  "prune_add": {
+    "CR-CAT-1": "TRANSFORM",
+    "CR-CAT-2": "KEEP",
+    "CR-CAT-3": "KEEP",
+    "CR-CAT-4": "KEEP",
+    "CR-CAT-5": "KEEP",
+    "CR-CAT-6": "KEEP",
+    "CR-CAT-7": "KEEP"
+  }
+}

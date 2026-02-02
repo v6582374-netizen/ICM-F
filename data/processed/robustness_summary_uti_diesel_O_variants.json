@@ -1,0 +1,72 @@
+{
+  "program_id": "uti_diesel",
+  "o_variants": {
+    "O_narrow": [
+      "49-1011.00"
+    ],
+    "O_medium": [
+      "49-1011.00",
+      "51-1011.00",
+      "47-1011.00"
+    ],
+    "O_wide": [
+      "49-1011.00",
+      "51-1011.00",
+      "47-1011.00",
+      "43-1011.00",
+      "37-1011.00",
+      "39-1014.00",
+      "45-1011.00"
+    ]
+  },
+  "per_course_stability": {
+    "DT13-161": {
+      "stability": 1.0,
+      "mode_label": "KEEP"
+    },
+    "DT13-162": {
+      "stability": 1.0,
+      "mode_label": "TRANSFORM"
+    },
+    "DT13-163": {
+      "stability": 1.0,
+      "mode_label": "KEEP"
+    },
+    "DT13-164": {
+      "stability": 1.0,
+      "mode_label": "KEEP"
+    },
+    "DT13-211": {
+      "stability": 1.0,
+      "mode_label": "TRANSFORM"
+    },
+    "DT13-212": {
+      "stability": 1.0,
+      "mode_label": "KEEP"
+    },
+    "DT13-213": {
+      "stability": 1.0,
+      "mode_label": "TRANSFORM"
+    },
+    "DT13-214": {
+      "stability": 1.0,
+      "mode_label": "KEEP"
+    }
+  },
+  "transform_jaccard": {
+    "O_narrow__O_narrow": 1.0,
+    "O_narrow__O_medium": 1.0,
+    "O_narrow__O_wide": 1.0,
+    "O_medium__O_medium": 1.0,
+    "O_medium__O_wide": 1.0,
+    "O_wide__O_wide": 1.0
+  },
+  "employability_rank_stability": {
+    "O_narrow__O_narrow": 1.0,
+    "O_narrow__O_medium": 0.21428571428571427,
+    "O_narrow__O_wide": 0.2857142857142857,
+    "O_medium__O_medium": 1.0,
+    "O_medium__O_wide": 0.7857142857142857,
+    "O_wide__O_wide": 1.0
+  }
+}

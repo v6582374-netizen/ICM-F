@@ -1,20 +1,19 @@
-\subsection{教育项目推荐与Gen-AI整合策略}
+\subsection{教育项目与Gen-AI整合策略}
 
 \label{subsec:task3_programs}
 
-基于前述职业选择及其任务层面的 Gen-AI 影响分析，我们为三个代表性职业各推荐一个具有代表性的教育项目。推荐遵循三重准则：\textbf{（1）机构层面的行业领导力}、\textbf{（2）课程与产业需求的对齐度}、以及\textbf{（3）Gen-AI 资源整合的制度化路径}。具体推荐项目及其选择依据见附录表~\ref{tab:programs_genai_rationale}。
+基于前述职业选择及其任务层面的 Gen-AI 影响分析，我们为三个职业各推荐一个具有代表性的教育项目。遵循以下三个准则：\textbf{在相关行业中是否具有较强的行业领导力}、\textbf{课程项目需要与产业需求是否具有较高的匹配度}、以及\textbf{当前针对Gen-AI是否已经具备一定的资源}。具体选择及其选择依据见附录表~\ref{tab:programs_genai_rationale}。
 
-针对\textbf{机器人工程师}，我们推荐卡内基梅隆大学机器人研究院的 MRSD 项目，该项目具备行业领导力且已建立 Gen-AI 课程资源接口。
+针对\textbf{机器人工程师}，我们推荐卡内基梅隆大学机器人研究院的 MRSD 项目，该项目具备行业领导力且已建立 Gen-AI 相关的课程资源。
 针对\textbf{机械维修一线主管}，Universal Technical Institute（UTI）展现出快速响应产业技术迁移的能力，并已将 AI 诊断纳入教学叙事。
-针对\textbf{法庭速录师}，Generations College 作为美国首创法庭速录项目的历史传承者，其 Realtime 训练体系可与 Gen-AI 后编辑工具形成互补。
+针对\textbf{法庭速录师}，Generations College 作为美国首创法庭速录项目的历史传承者，其 Realtime 训练体系与 Gen-AI 时代的编辑工具形成互补。
 
-\subsubsection{课程层面的三轴元模型：就业--人文--AI 重叠（v2）}
+\subsubsection{元模型：就业--人文--AI 重叠}
 \label{subsubsec:three_axis_metamodel}
 
-在确定推荐项目后，我们构建一个\textbf{课程层面的评估框架}，用于指导项目内部的课程改革建议。框架的核心思想是：每门课程在三个正交维度上接受评估——\emph{就业匹配度}、\emph{人文价值}与\emph{AI 重叠度}——从而生成可操作的 ``KEEP / TRANSFORM / PRUNE'' 决策。其中，就业轴强调与\emph{当前劳动力市场需求}的对齐（可更严谨）；人文轴允许规范性选择（可更简洁）；AI 重叠轴仅关注课程内容与 Gen-AI 能力维度的\emph{可替代压力}（不引入课程间冗余）。
+在确定推荐项目后，我们构建一个\textbf{课程层面的评估框架}，用于指导项目内部的课程改革建议。模型的核心思想是：每门课程在三个正交维度上接受评估——\emph{就业匹配度}、\emph{人文价值}与\emph{AI 重叠度}——从而得出三种方向的选择： ``KEEP / TRANSFORM / PRUNE'' 。其中，就业轴更关注劳动力市场的需求；人文轴主要由主观进行界定；AI 重叠轴仅关注课程内容与 Gen-AI 能力维度的联系。
 
-\paragraph{符号定义}
-设教育项目包含 $M$ 门课程，课程索引 $m=1,\ldots,M$，课程文本描述为 $t_m$（课程名称与简介拼接）。目标职业集合记为 $O$，职业 $o\in O$ 对应 O*NET 任务索引集 $J(o)$。定义：
+设教育项目包含 $M$ 门课程，课程索引 $m=1,\ldots,M$，课程文本描述为 $t_m$（课程名称与简介）。目标职业集合记为 $O$，职业 $o\in O$ 对应 O*NET 任务数据库。定义：
 \begin{itemize}
     \item $w_o$：职业 $o$ 的劳动力市场需求权重（若不可获取则设为均匀分布）；
     \item $v_{o,j}$：任务 $j$ 在职业 $o$ 中的显著性权重，由 O*NET 重要性$\times$频率归一化得到；也就是第二问已经跑通的方法。
@@ -54,7 +53,7 @@ $\Delta E_m$ 的可解释含义是：若课程 $m$ 被移除，项目与当前�
 其中 $b_k$ 为预定义的人文锚文本（如公民责任、自主判断、身心健康、终身学习）。该轴用于识别那些虽不直接提升短期就业匹配，但对学生长期发展与社会公共价值具有贡献的课程。\\
 此处需要预先主观给定一个文本集，这部分后续有空间就放在附录，没有就引用。
 
-\paragraph{轴三：AI 重叠度（AI-Overlap Axis, v2）}
+\paragraph{轴三：AI 重叠度（AI-Overlap Axis）}
 AI 重叠轴衡量课程内容与 Gen-AI 能力维度之间的\emph{可替代压力}。不同于基于关键词或不透明词典的方法，我们将 AI-Overlap 指标定义为 ``课程九维能力足迹'' 与 ``Gen-AI 在各维度的独立交付强度'' 的加权重合，完全复用前述九维能力量表参数 $(M_k,s_k,c_k,\rho_k)$，从而避免主观权重。
 
 首先定义维度门控（两种口径）：\\
@@ -94,105 +93,79 @@ $A_m$ 反映课程与 Gen-AI 能力维度的总体重合压力，$A_m^{\mathrm{s
     \mathrm{KEEP}(m) &= 1-\mathrm{PRUNE}(m)-\mathrm{TRANSFORM}(m).
 \end{align}
 
-\paragraph{模型的可移植性}
-该三轴框架遵循\textbf{最小外部依赖}原则：
+
+我们将上述三轴决策规则应用于三个代表性教育项目，结果汇总于表~\ref{tab:transform_all_programs}。
+
+\begin{table}[H]
+\centering
+\footnotesize
+\begin{tabularx}{\textwidth}{>{\raggedright\arraybackslash}p{1.6cm} >{\raggedright\arraybackslash}X c c c c >{\raggedright\arraybackslash}p{2.2cm}}
+\toprule
+\textbf{Program} & \textbf{Course (Code)} & $\boldsymbol{\Delta E}$ & $\boldsymbol{H}$ & $\boldsymbol{A}$ & $\boldsymbol{A^{s}}$ & \textbf{Top-2 Dims} \\
+\midrule
+\multicolumn{7}{l}{\textit{Generations Court Reporting} (1 course flagged for transformation)} \\
+\cmidrule(l){1-7}
+& \href{https://www.generations.edu/academics/associates-degree-programs/court-reporting-major/court-reporting-courses-overview/}{CR-CAT-1} Machine Shorthand Theory & 1.000 & 0.0 & 0.584 & 0.453 & D8=0.53, D9=0.42 \\
+\midrule
+\multicolumn{7}{l}{\textit{MRSD, Carnegie Mellon University} (3 courses flagged for transformation)} \\
+\cmidrule(l){1-7}
+& \href{https://mrsd.ri.cmu.edu/curriculum/}{16-642} Manipulation, Estimation \& Control & 0.000 & 0.0 & 0.330 & 0.330 & D3=0.53, D4=0.45 \\
+& \href{https://mrsd.ri.cmu.edu/curriculum/}{16-697} Intro to Robotics Business & 0.000 & 0.5 & 0.371 & 0.371 & D3=0.51, D4=0.33 \\
+& \href{https://mrsd.ri.cmu.edu/curriculum/}{16-698} Adv Topics in Robotics Business & 0.000 & 0.0 & 0.404 & 0.404 & D3=0.64, D4=0.31 \\
+\midrule
+\multicolumn{7}{l}{\textit{UTI Diesel Technology} (2 courses flagged for transformation)} \\
+\cmidrule(l){1-7}
+& \href{https://catalogs.uti.edu/diesel-programs}{DT13-162} Steering \& Suspension Systems & 0.000 & 0.0 & 0.336 & 0.058 & D7=0.48, D2=0.18 \\
+& \href{https://catalogs.uti.edu/diesel-programs}{DT13-211} Diesel Engines & 0.000 & 0.0 & 0.380 & 0.055 & D7=0.60, D2=0.12 \\
+\bottomrule
+\end{tabularx}
+\caption{Course-Level Transformation Recommendations Across Three Programs. All flagged courses receive \textsc{Transform} labels; no courses qualify for \textsc{Prune}, reflecting the model's conservative stance toward course elimination. $A^s$ denotes $A^{\mathrm{strict}}$.}
+\label{tab:transform_all_programs}
+\end{table}
+
+\subsubsection{机构级战略建议}
+\label{subsubsec:institutional_recommendations}
+
+基于上述元模型得到的结果，值得注意的是，三个项目的 \texttt{prune\_list} 全为空，所有建议均落在 \textsc{Transform} 而非 \textsc{Prune}。这一结果非常符合现实：教育改革循序渐进，而非不切实际的一刀切。进一步，我们再为三所机构的领导者提供针对性的 Gen-AI 整合策略建议。
+
+\paragraph{Generations College: Court Reporting Program}
+
+\textbf{背景诊断：}该项目仅一门课程 \textit{Machine Shorthand Theory} (CR-CAT-1) 触发 \textsc{Transform} 标签。该课程就业边际贡献极高（$\Delta E=1.0$，为项目内最高），但 AI-Overlap 同样显著（$A=0.584$, $A^s=0.453$）。主导能力维度为 D8（文本生成与编辑，权重0.53）与 D9（实时语言处理，权重0.42）——这两个维度恰是 Gen-AI 语音转写与文本编辑能力最强的领域。
+
 \begin{enumerate}
-    \item 目标职业集合 $O$ 可通过项目描述与 CIP-SOC 映射获取，无需机构内部数据；
-    \item 职业需求权重 $w_o$ 若不可获取，设为均匀分布，就业轴定义仍保持良好；
-    \item 课程指标仅依赖课程标题与简介；AI-Overlap(v2) 完全复用九维能力量表参数，不需要额外机构数据；
-    \item 门槛采用项目内分位数（可学分加权或均匀），对学分缺失天然鲁棒。
+    \item \textbf{重新定义核心能力：从"速度"到"判断"}。传统法庭速录强调每分钟225词以上的实时转写速度，而 Gen-AI 语音识别已能达到95\%以上的准确率。我们建议将课程重心从"机械性速度训练"转向"实时校验与语义判断"——即培养学生在 AI 初稿基础上进行法律术语校正、说话人辨识、以及庭审语境理解的能力。
+    \item \textbf{引入人机协作工作流}。课程应设计 AI-辅助速录实验模块，让学生在 AI 实时转写输出上进行人工干预、标注不确定段落、并对 AI 错误进行归因分析。这不仅提升学生对 AI 局限性的认知，也为其未来职业中的人机协作奠定基础。
+    \item \textbf{强化法律伦理与责任性评估}。法庭记录具有法律效力，AI 生成内容的准确性责任最终由人类承担。课程应增设"AI 输出审计"单元，培养学生对 AI 幻觉（hallucination）、偏见（bias）与隐私泄露风险的识别能力。
 \end{enumerate}
-因此，该模型可在不接触机构敏感数据的前提下，为任意教育项目提供课程层面的 Gen-AI 适应性诊断与改革方向。
 
-\paragraph{潜在局限与稳健性建议}
-本框架的主要风险在于目标职业集合 $O$ 的选取偏差：若 $O$ 未能准确反映项目的实际就业方向，则就业轴分数 $E$ 与边际贡献 $\Delta E_m$ 将产生系统性偏误。为缓解该风险，我们建议在应用中报告多个合理 $O$ 变体（窄/中/宽）下的结果并检验 ``TRANSFORM'' 清单的稳定性。此外，AI-Overlap 的 strict/non-strict 门控差异（$\rho_k<0$ vs $\rho_k\le 0$）可作为内生敏感性检验，用于区分 ``已证实替代'' 与 ``不确定替代'' 对课程改革压力的贡献来源。
-```
+\paragraph{Carnegie Mellon University: MRSD Program}
 
+\textbf{背景诊断：}该项目有三门课程触发 \textsc{Transform} 标签，主导能力维度集中于 D3（数据分析与模式识别）与 D4（复杂推理与规划）。值得注意的是，16-697 \textit{Introduction to Robotics Business} 具有一定人文价值（$H=0.5$），但仍因 AI-Overlap 较高而需转型。三门课程的 $A^{\mathrm{strict}}$ 均等于 $A$，表明其能力足迹完全落在 Gen-AI "已证实替代"的维度区间内。
 
-\textbf{解释：}
+\textbf{战略建议：}
+\begin{enumerate}
+    \item \textbf{从"算法实现"转向"系统集成与边界条件"}。Gen-AI 已能生成高质量的控制算法代码与优化求解器。我们建议 16-642 \textit{Manipulation, Estimation \& Control} 压缩传统算法推导与编码训练，转向强调：(a) 真实物理系统中的传感器噪声、执行器延迟与环境不确定性；(b) AI 生成代码的安全性审计与边界条件测试；(c) 人机协作场景下的故障恢复与伦理决策。
+    \item \textbf{商业课程聚焦"不可自动化"的战略判断}。16-697 与 16-698 两门商业课程应减少对市场分析报告、财务模型等可被 Gen-AI 快速生成内容的依赖，转向强调：(a) 技术路线的战略选择与时机判断；(b) 跨文化团队管理与利益相关者谈判；(c) 技术伦理与社会责任的案例研讨。
+    \item \textbf{建立"AI 素养"横向模块}。鉴于 MRSD 学生未来将领导机器人研发团队，我们建议在项目层面引入 AI 素养必修模块，内容涵盖：大语言模型的能力边界、提示工程（prompt engineering）最佳实践、以及 AI 系统的可解释性与审计方法。
+\end{enumerate}
 
-PRUNE规则仅在“已证实AI高度可替代（strict高）+就业边际低+人文价值低”三者叠加时触发，以防止误删如UTI等“AI overlap不确定性高但实践刚需”的课程。
+\paragraph{Universal Technical Institute: Diesel Technology Program}
 
-TRANSFORM覆盖“内容与AI高度重叠但至少在人文或就业一端仍有保留价值”的课程——需通过课程设计转型，将可被GenAI交付的成分压缩，强化人类主导的评价、实践与伦理环节，以实现教育内涵升级而非单纯删减。\\
-由于是调整，所以无须使用strict值，就是无须那么保守。
+\textbf{背景诊断：}该项目有两门课程触发 \textsc{Transform} 标签：\textit{Steering \& Suspension Systems} (DT13-162) 与 \textit{Diesel Engines} (DT13-211)。主导能力维度为 D7（设备操作与监控，权重0.48--0.60）与 D2（技术文档理解，权重0.12--0.18）。值得注意的是，$A^{\mathrm{strict}}$ 远低于 $A$（分别为0.058与0.055 vs. 0.336与0.380），表明这两门课程虽与 Gen-AI 能力有重叠，但主要落在"不确定/平衡"维度而非"已证实替代"维度——这与柴油技术高度依赖物理操作的特性一致。
 
-KEEP即维持现状，适用于其它所有情况。
+\textbf{战略建议：}
+\begin{enumerate}
+    \item \textbf{将 AI 诊断工具纳入实训环节}。现代柴油车辆已配备 OBD-II 诊断接口与 AI 故障预测系统。我们建议课程增设"AI 诊断工具实操"模块，让学生学习如何解读 AI 生成的故障代码、评估 AI 建议的可靠性、并在 AI 提示基础上进行物理检测与维修决策。
+    \item \textbf{强化"AI 无法替代"的物理技能}。尽管 AI 可辅助诊断，实际的拆装、调校与维修仍需人类技师完成。课程应明确区分"AI 可辅助"与"AI 不可替代"的技能边界，并在评估中增加现场实操权重，减少对理论知识记忆的依赖。
+    \item \textbf{引入电动化与混合动力转型内容}。随着运输行业向电动化转型，传统柴油技术的市场需求将逐步收缩。我们建议课程增设电动与混合动力系统模块，帮助学生建立跨技术平台的适应能力，降低单一技术路径的职业风险。
+\end{enumerate}
 
-\subsubsection{课程级闭环结论与阈值审计（v2）}
-我们将“课程级AI重叠度（v2）—就业—人文”三轴规则应用于三个代表性项目，数据闭环已满足继续推进的必要条件：每门课均具备 $A_m/A_m^{strict}$ 与 $w_{m,k}$，每个项目具备 $e_{low},h_{low},a_{high},a_{strict\_high}$，且最终标签与下游清单一致。
+\paragraph{跨机构共性建议}
 
-\begin{table}[H]
-\centering
-\small
-\begin{tabular}{l r r r r l p{6cm}}
-\toprule
-program & $e_{low}$ & $h_{low}$ & $a_{high}$ & $a_{strict\_high}$ & weighting\_rule & 直接含义 \\
-\midrule
-generations\_court\_reporting & 0.3246 & 0.0 & 0.5726 & 0.4527 & uniform\_empirical\_quantile & 人文底线为0（数据稀疏），AI-overlap 顶部 25\% 才触发 TRANSFORM \\
-mrsd\_cmu & 0.0 & 0.0 & 0.2923 & 0.4042 & credit\_weighted\_empirical\_quantile & 就业/人文低分位落在0，模型更偏向“转型而非删除”，避免误删核心课 \\
-uti\_diesel & 0.0 & 0.0 & 0.3337 & 0.06737 & credit\_weighted\_empirical\_quantile & strict 门槛很低但仍为 top 10\%，分布极靠近0，保持保守 PRUNE \\
-\bottomrule
-\end{tabular}
-\caption{三项目阈值审计与含义（v2）}
-\label{tab:threshold_audit_v2}
-\end{table}
-
-\textbf{关键审计结论：}三个项目的 \textbf{prune\_list 全为空}，所有建议均落在 \textbf{TRANSFORM（课程转型）} 而非删课。这与“教育改革优先转型、删课极保守”的策略叙事一致。
-
-\subsubsection{课程级输出：转型清单与依据}
-\paragraph{Generations Court Reporting（1门课转型）}
-\begin{table}[H]
-\centering
-\small
-\begin{tabular}{l l r r r r l}
-\toprule
-label & course\_code（链接） & $E$ & $H$ & $A$ & $A^{strict}$ & 主导维度（$w_{m,k}$ Top-2） \\
-\midrule
-TRANSFORM & \href{https://www.generations.edu/academics/associates-degree-programs/court-reporting-major/court-reporting-courses-overview/}{CR-CAT-1} Machine Shorthand Theory & 1.0000 & 0.0 & 0.5841 & 0.4527 & D8=0.529, D9=0.416 \\
-\bottomrule
-\end{tabular}
-\caption{Generations Court Reporting 课程级转型清单（v2）}
-\label{tab:transform_generations_v2}
-\end{table}
-我们观察到该课程就业贡献高但 AI-overlap 也高，因此不应删除；我们建议压缩可被 GenAI 覆盖的产出成分，将评价改为人类主导的真实性与责任性环节，以提升课程内涵而非缩减供给。
-
-\paragraph{MRSD CMU（3门课转型，删课为0）}
-\begin{table}[H]
-\centering
-\small
-\begin{tabular}{l l r r r r l}
-\toprule
-label & course\_code（链接） & $E$ & $H$ & $A$ & $A^{strict}$ & 主导维度（$w_{m,k}$ Top-2） \\
-\midrule
-TRANSFORM & \href{https://mrsd.ri.cmu.edu/curriculum/}{16-642} Manipulation, Estimation, \& Control & 0.0000 & 0.0 & 0.3298 & 0.3298 & D3=0.533, D4=0.445 \\
-TRANSFORM & \href{https://mrsd.ri.cmu.edu/curriculum/}{16-697} Introduction to Robotics Business & 0.0000 & 0.5 & 0.3707 & 0.3707 & D3=0.514, D4=0.330 \\
-TRANSFORM & \href{https://mrsd.ri.cmu.edu/curriculum/}{16-698} Advanced Topics in Robotics Business & 0.0000 & 0.0 & 0.4042 & 0.4042 & D3=0.636, D4=0.311 \\
-\bottomrule
-\end{tabular}
-\caption{MRSD CMU 课程级转型清单（v2）}
-\label{tab:transform_mrsd_v2}
-\end{table}
-需要强调：MRSD 的 $e_{low}=0$ 表明就业边际在该数据中大量为0，模型在就业轴上更保守，从而更偏向“转型而非删除”。我们将其解释为数据稀疏导致的保守性，而非计算错误。
-
-\paragraph{UTI Diesel（2门课转型，删课为0）}
-\begin{table}[H]
-\centering
-\small
-\begin{tabular}{l l r r r r l}
-\toprule
-label & course\_code（链接） & $E$ & $H$ & $A$ & $A^{strict}$ & 主导维度（$w_{m,k}$ Top-2） \\
-\midrule
-TRANSFORM & \href{https://catalogs.uti.edu/diesel-programs}{DT13-162} Steering and Suspension Systems & 0.0000 & 0.0 & 0.3362 & 0.05838 & D7=0.476, D2=0.178 \\
-TRANSFORM & \href{https://catalogs.uti.edu/diesel-programs}{DT13-211} Diesel Engines & 0.0000 & 0.0 & 0.3795 & 0.05468 & D7=0.597, D2=0.124 \\
-\bottomrule
-\end{tabular}
-\caption{UTI Diesel 课程级转型清单（v2）}
-\label{tab:transform_uti_v2}
-\end{table}
-在 UTI 项目中，$A^{strict}$ 分布整体偏低，模型更倾向“转型”而非“删减”。这与项目层面 strict\_mean 较低的统计特征一致，体现出保守的删课策略。
-就业边际在部分项目大量为 0 => PRUNE 很保守（这反而符合“教育不可轻删”的价值立场）
-
-然后就是分析分析分析析分析分析析分析分析析分析分析析分析分析析分析分析析分析分析析分析分析析分析分析析分析分析析分析分析析分析分析析分析分析析分析分析析分析分析析分析分析析分析分析析分析分析析分析分析析分析分析。
-
-那么没有课程删除的可能是选取的三个院校都是具有行业的领导者，如果是表现差的院校，可能就。。。。
+除上述机构特定建议外，我们提出三项跨机构的共性原则：
+\begin{itemize}
+    \item \textbf{评估体系转型：从"产出"到"过程"}。传统评估侧重学生提交的最终作品（论文、代码、报告），而 Gen-AI 使得这些产出的"自动生成"成为可能。我们建议将评估重心转向过程证据——如现场口头答辩、实时问题解决、以及协作过程记录——以确保评估的有效性与公平性。
+    \item \textbf{教师发展优先}。课程转型的前提是教师具备 Gen-AI 素养。机构应优先投资教师培训，使其理解 Gen-AI 的能力边界、掌握人机协作教学设计方法、并能在课堂中示范负责任的 AI 使用。
+    \item \textbf{持续监测与迭代}。Gen-AI 能力处于快速演进之中，当前的"不可替代"维度未来可能被突破。我们建议机构建立年度课程审计机制，定期重新评估三轴指标，并根据 Gen-AI 能力演进动态调整课程设计。
+\end{itemize}
 

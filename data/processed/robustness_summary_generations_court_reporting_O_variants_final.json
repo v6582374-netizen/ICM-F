@@ -1,0 +1,98 @@
+{
+  "program_id": "generations_court_reporting",
+  "o_variants": {
+    "O_narrow": [
+      "27-3092.00"
+    ],
+    "O_medium": [
+      "27-3092.00",
+      "43-6012.00",
+      "43-4031.00"
+    ],
+    "O_wide": [
+      "27-3092.00",
+      "43-6012.00",
+      "43-4031.00",
+      "43-4021.00",
+      "31-9094.00",
+      "43-9061.00",
+      "43-9021.00"
+    ]
+  },
+  "labels_variant": {
+    "O_narrow": {
+      "CR-CAT-1": "TRANSFORM",
+      "CR-CAT-2": "KEEP",
+      "CR-CAT-3": "KEEP",
+      "CR-CAT-4": "KEEP",
+      "CR-CAT-5": "KEEP",
+      "CR-CAT-6": "KEEP",
+      "CR-CAT-7": "KEEP"
+    },
+    "O_medium": {
+      "CR-CAT-1": "TRANSFORM",
+      "CR-CAT-2": "KEEP",
+      "CR-CAT-3": "KEEP",
+      "CR-CAT-4": "KEEP",
+      "CR-CAT-5": "KEEP",
+      "CR-CAT-6": "KEEP",
+      "CR-CAT-7": "KEEP"
+    },
+    "O_wide": {
+      "CR-CAT-1": "TRANSFORM",
+      "CR-CAT-2": "KEEP",
+      "CR-CAT-3": "KEEP",
+      "CR-CAT-4": "KEEP",
+      "CR-CAT-5": "KEEP",
+      "CR-CAT-6": "KEEP",
+      "CR-CAT-7": "KEEP"
+    }
+  },
+  "per_course_stability": {
+    "CR-CAT-1": {
+      "stability": 1.0,
+      "mode_label": "TRANSFORM"
+    },
+    "CR-CAT-2": {
+      "stability": 1.0,
+      "mode_label": "KEEP"
+    },
+    "CR-CAT-3": {
+      "stability": 1.0,
+      "mode_label": "KEEP"
+    },
+    "CR-CAT-4": {
+      "stability": 1.0,
+      "mode_label": "KEEP"
+    },
+    "CR-CAT-5": {
+      "stability": 1.0,
+      "mode_label": "KEEP"
+    },
+    "CR-CAT-6": {
+      "stability": 1.0,
+      "mode_label": "KEEP"
+    },
+    "CR-CAT-7": {
+      "stability": 1.0,
+      "mode_label": "KEEP"
+    }
+  },
+  "transform_jaccard": {
+    "O_narrow__O_narrow": 1.0,
+    "O_narrow__O_medium": 1.0,
+    "O_narrow__O_wide": 1.0,
+    "O_medium__O_medium": 1.0,
+    "O_medium__O_wide": 1.0,
+    "O_wide__O_wide": 1.0
+  },
+  "employability_rank_stability": {
+    "O_narrow__O_narrow": 1.0,
+    "O_narrow__O_medium": 0.42857142857142855,
+    "O_narrow__O_wide": 0.14285714285714285,
+    "O_medium__O_medium": 1.0,
+    "O_medium__O_wide": 0.3333333333333333,
+    "O_wide__O_wide": 1.0
+  },
+  "boundary_courses": []
+}

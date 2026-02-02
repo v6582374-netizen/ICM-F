@@ -390,21 +390,40 @@ def plot_dumbbell_delta_p(
     plt.close()
 
 
-def plot_waterfall_contribution(
+def plot_rankflip_and_contribution(
+    rankflip: pd.DataFrame,
     contributors: pd.DataFrame,
     labels: Dict[str, str],
     output_path: Path,
 ) -> None:
     apply_plot_style()
-    df = contributors.sort_values("rank_flip", ascending=False).reset_index(drop=True)
-    y = np.arange(len(df))
-    plt.figure(figsize=(7.2, 4.6), dpi=300)
-    for i, row in df.iterrows():
+    fig, axes = plt.subplots(1, 2, figsize=(10.8, 4.6), dpi=300, gridspec_kw={"width_ratios": [1.05, 1.1]})
+
+    left = rankflip.sort_values("rank_flip", ascending=False).reset_index(drop=True)
+    y = np.arange(len(left))
+    ax = axes[0]
+    rank_min = float(left["rank_flip"].min()) if not left.empty else 0.0
+    rank_max = float(left["rank_flip"].max()) if not left.empty else 1.0
+    band_edges = np.linspace(rank_min, rank_max + 1e-9, 4)
+    band_colors = ["#f4f6f8", "#eef2f5", "#e9eef2"]
+    for i, row in left.iterrows():
+        band_idx = int(np.digitize(row["rank_flip"], band_edges) - 1)
+        band_idx = max(0, min(band_idx, len(band_colors) - 1))
+        ax.axhspan(y[i] - 0.45, y[i] + 0.45, color=band_colors[band_idx], zorder=0)
         color = "#7b9b8a" if row["Delta_p"] >= 0 else "#9d8f7a"
-        plt.plot([row["rank_w"], row["rank_p_end"]], [y[i], y[i]], color=color, linewidth=1.6)
-        plt.scatter(row["rank_w"], y[i], color="#4f555c", s=24, zorder=3)
-        plt.scatter(row["rank_p_end"], y[i], color=color, s=28, zorder=3)
-        plt.annotate(
+        ax.plot([row["rank_w"], row["rank_p_end"]], [y[i], y[i]], color=color, linewidth=1.6)
+        ax.scatter(row["rank_w"], y[i], color="#4f555c", s=24, zorder=3)
+        ax.scatter(row["rank_p_end"], y[i], color=color, s=28, zorder=3)
+        ax.annotate(
+            f"{row['Delta_p']:+.3f}",
+            (max(row["rank_w"], row["rank_p_end"]), y[i]),
+            textcoords="offset points",
+            xytext=(8, 0),
+            va="center",
+            fontsize=8,
+            color="#6f7a86",
+        )
+        ax.annotate(
             f"{int(row['rank_w'])}",
             (row["rank_w"], y[i]),
             textcoords="offset points",
@@ -413,7 +432,7 @@ def plot_waterfall_contribution(
             color="#2b2f33",
             bbox=dict(boxstyle="round,pad=0.2", facecolor="white", edgecolor="#b0b8c2", linewidth=0.5),
         )
-        plt.annotate(
+        ax.annotate(
             f"{int(row['rank_p_end'])}",
             (row["rank_p_end"], y[i]),
             textcoords="offset points",
@@ -422,11 +441,121 @@ def plot_waterfall_contribution(
             color="#2b2f33",
             bbox=dict(boxstyle="round,pad=0.2", facecolor="white", edgecolor="#b0b8c2", linewidth=0.5),
         )
-    plt.yticks(y, [labels[tid] for tid in df["task_id"]])
-    plt.xlabel("Rank (1 = highest share)")
-    plt.title("STEM: rank reversals from w to p(t_end)")
-    plt.grid(True, axis="x", alpha=0.3)
-    plt.gca().invert_xaxis()
+    ax.set_yticks(y)
+    ax.set_yticklabels([labels[tid] for tid in left["task_id"]])
+    ax.set_xlabel("Rank (1 = highest share)")
+    ax.set_title("Rank reversals from w to p(t_end)")
+    ax.grid(True, axis="x", alpha=0.3)
+    ax.invert_xaxis()
+    ax.axvline(np.median(left["rank_w"]), color="#9aa3ad", linewidth=0.8, linestyle="--", zorder=0)
+
+    right = contributors.sort_values("r", ascending=False).reset_index(drop=True)
+    x = np.arange(len(right))
+    r_vals = right["r"].values
+    total_r = float(r_vals.sum())
+    cumulative = np.cumsum(r_vals) / total_r if total_r > 0 else np.zeros_like(r_vals)
+    ax2 = axes[1]
+    bar_color = "#7b9b8a"
+    ax2.bar(x, r_vals, color=bar_color, alpha=0.75, edgecolor="#6f7a86", linewidth=0.6, zorder=2)
+    for xi, rv in zip(x, r_vals):
+        ax2.annotate(
+            f"{rv:.3f}",
+            (xi, rv),
+            textcoords="offset points",
+            xytext=(0, 4),
+            ha="center",
+            fontsize=7,
+            color="#5f6b75",
+        )
+    ax2.set_xticks(x)
+    xlabels = [labels[tid] for tid in right["task_id"]]
+    ax2.set_xticklabels(xlabels, rotation=30, ha="right")
+    for idx, tick in enumerate(ax2.get_xticklabels()):
+        if idx < 3:
+            tick.set_fontweight("bold")
+    ax2.set_ylabel("Contribution r_ij")
+    ax2.set_xlabel("Top contributors (sorted by r_ij)")
+    ax2.set_title("Cumulative contribution to total change")
+    ax2.grid(True, axis="y", alpha=0.3, zorder=1)
+
+    ax2b = ax2.twinx()
+    ax2b.plot(x, cumulative, color="#5f7fa1", linewidth=1.8, marker="o", markersize=4, zorder=3)
+    for xi, cv in zip(x, cumulative):
+        ax2b.annotate(
+            f"{cv*100:.1f}%",
+            (xi, cv),
+            textcoords="offset points",
+            xytext=(3, -10),
+            fontsize=7,
+            color="#5f7fa1",
+        )
+    ax2b.fill_between(x, 0, cumulative, color="#5f7fa1", alpha=0.10, zorder=0)
+    ax2b.set_ylabel("Cumulative share of total change")
+    ax2b.set_ylim(0.0, 1.05)
+    ax2b.grid(False)
+
+    thresholds = [0.5, 0.8]
+    threshold_indices = {}
+    for th in thresholds:
+        if len(cumulative) == 0:
+            threshold_indices[th] = None
+            continue
+        idx = int(np.argmax(cumulative >= th))
+        if cumulative[idx] >= th:
+            threshold_indices[th] = idx
+            ax2b.axhline(th, color="#9aa3ad", linewidth=0.8, linestyle="--")
+            ax2b.annotate(
+                f"{int(th*100)}%",
+                (x[idx], th),
+                textcoords="offset points",
+                xytext=(6, 3),
+                fontsize=8,
+                color="#6f7a86",
+            )
+        else:
+            threshold_indices[th] = None
+
+    if len(r_vals) > 0:
+        max_idx = int(np.argmax(r_vals))
+        ax2.annotate(
+            f"{r_vals[max_idx]:.3f}",
+            (x[max_idx], r_vals[max_idx]),
+            textcoords="offset points",
+            xytext=(0, 6),
+            ha="center",
+            fontsize=8,
+            color="#2b2f33",
+        )
+        elbow_idx = int(np.argmax(np.diff(cumulative, prepend=0.0)))
+        ax2b.annotate(
+            f"{cumulative[elbow_idx]*100:.1f}%",
+            (x[elbow_idx], cumulative[elbow_idx]),
+            textcoords="offset points",
+            xytext=(6, -10),
+            fontsize=8,
+            color="#2b2f33",
+        )
+        ax2b.annotate(
+            f"{cumulative[-1] * 100:.1f}%",
+            (x[-1], cumulative[-1]),
+            textcoords="offset points",
+            xytext=(6, -2),
+            fontsize=8,
+            color="#2b2f33",
+        )
+        for idx in range(min(3, len(x))):
+            ax2.patches[idx].set_linewidth(1.2)
+            ax2.patches[idx].set_edgecolor("#2b2f33")
+
+    keypoints = {
+        "total_r": total_r,
+        "top_r": float(r_vals[0]) if len(r_vals) > 0 else 0.0,
+        "cumulative_share": [float(v) for v in cumulative.tolist()],
+        "threshold_indices": {str(k): v for k, v in threshold_indices.items()},
+        "task_order": [str(tid) for tid in right["task_id"]],
+    }
+    print(json.dumps(keypoints, ensure_ascii=False))
+
     plt.tight_layout()
     plt.savefig(output_path, format="pdf")
     plt.close()
@@ -523,8 +652,10 @@ def main() -> None:
                 output_dir / "fig_STEM_dumbbell_delta_p.pdf",
                 top_n=10,
             )
-            contrib = compute_top_rank_reversals(p_share_base, task_dna, top_n=10)
-            plot_waterfall_contribution(
+            rankflip = compute_top_rank_reversals(p_share_base, task_dna, top_n=10)
+            contrib = compute_top_contributors(p_share_base, task_dna, top_n=10)
+            plot_rankflip_and_contribution(
+                rankflip,
                 contrib,
                 labels,
                 output_dir / "fig_STEM_rankflip_contribution_v2.pdf",

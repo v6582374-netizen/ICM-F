@@ -223,7 +223,7 @@ $\rho_k<0$：则偏替代（AI可独立完成可交付物）；
 \renewcommand{\arraystretch}{1.15}
 \setlength{\extrarowheight}{2pt}
 \resizebox{\textwidth}{!}{%
-\begin{tabular}{p{2.6cm} p{3.6cm} p{4.6cm} | p{1.0cm} p{2.2cm} p{1.0cm} p{0.9cm} p{0.9cm}}
+\begin{tabular}{p{2.6cm} p{3.6cm} p{4.6cm} p{1.0cm} p{2.2cm} p{1.0cm} p{0.9cm} p{0.9cm}}
 \toprule
 \textbf{维度（编号）} & \textbf{定义} & \textbf{代表性指标（来源 \& 分数）} & \textbf{$M_k$} & \textbf{能力等级（阈值规则）} & \textbf{$\rho_k$} & \textbf{$s_k$} & \textbf{$c_k$} \\
 \midrule
@@ -272,7 +272,7 @@ DocVQA 99.16\%；Text-to-SQL $>80\%$\citep{docvqa2017,spider2018} &
 \textbf{注：}D9 的 DocVQA 99.16\% 可视为文档问答场景的上界证据，不等价于所有检索情境与数据库规模下的通用能力。D4/D5 采用 AutoGPT 端到端完成率与工具使用成功率作为下界证据，用于避免夸大“现场操作/流程调度”的可自动化程度。
 
 上表只展示了Gen-AI的九个维度，而
-图~\ref{fig:genai_taskdna_chord_robotics}为映射关系的更直观展示。
+图~\ref{fig:genai_taskdna_chord_robotics}为映射到职业任务构成的更直观展示。
 \begin{figure}[H]
 \centering
 \includegraphics[width=0.86\textwidth]{figures/fig_genai_taskdna_chord_17-2199.08.pdf}
@@ -295,7 +295,7 @@ DocVQA 99.16\%；Text-to-SQL $>80\%$\citep{docvqa2017,spider2018} &
 % \end{figure}
 % 在此简单分析上图：分析分析分析分析分析分析分析分析分析分析分析分析分析分析分析分析分析分析分析分析分析分析分析分析分析分析分析分析分析分析分析分析分析分析分析分析分析分析分析分析分析分析分析分析分析分析分析分析分析分析分析分析分析分析分析分析分析分析分析分析分析分析分析分析分析分析\\
 
-基于上表得到的$s,c$数据，绘制\textbf{权威 $s,c$ 档位分布图}。该图的作用是\emph{揭示GenAI对该职业的潜在冲击模式}：若多数任务落在高 $s$ 低 $c$ 区域，表明该职业面临较高的自动化替代风险；反之，若多数任务落在低 $s$ 高 $c$ 区域，则GenAI更可能增强而非替代人类工作。
+同时基于上表得到的$s,c$数据，绘制\textbf{权威 $s,c$ 档位分布图}。该图的作用是\emph{揭示GenAI对该职业的潜在冲击模式}：若多数任务落在高 $s$ 低 $c$ 区域，表明该职业面临较高的自动化替代风险；反之，若多数任务落在低 $s$ 高 $c$ 区域，则GenAI更可能增强而非替代人类工作。
 
 \begin{figure}[H]
 \centering
@@ -349,17 +349,31 @@ $\mu^{task}_{ij}>0$ 表示GenAI更可能增强该任务（提高产出/质量/�
     \item \textbf{法庭速录与字幕}：负净冲击权重总和高达 0.413，5 项任务集中落在 D8（语言理解与文本生成），$\mu=-0.40$，远高于其他两职业。这表明该职业的核心任务（速记、转写、校对）高度集中于语言自动化维度，GenAI 替代效应最强，预期将在后续动态演化中更早出现"任务份额跌破阈值"的时间点。
 \end{itemize}
 
-基于以上对职业核心组成任务（Top Task DNAN）、Gen-AI能力维度匹配以及正负冲击强度的分析，我们可以回答题目的问题：在Gen-AI时代，哪些驱动因素会造成职业的变化？
-这部分交给你们。
+基于以上对职业核心组成任务（Top Task DNA）、GenAI能力维度匹配以及正负冲击强度的分析，我们现在回答题目的核心问题：\textbf{受Gen-AI的影响，哪些驱动因素会造成职业的变化？}
 
-\subparagraph{Robotics Engineers (O*NET 17-2199.08)}
-GenAI 与机器人平台、仿真环境及基础模型的集成显著提升了工具链能力，从而加速采用（$A(t)\uparrow$）。在任务层面，文档撰写、常规代码生成及测试等任务更容易被替代（$s_{ij}$ 较高），而系统级设计与现场集成任务的替代速度相对较慢。公开报道显示，主流机器人平台已开始集成生成式 AI 以加速开发与部署~\cite{nvidia_isaac_2024}，为 driver 存在性提供了经验证据。
+\paragraph{Robotics Engineers的驱动因素}
 
-\subparagraph{First-Line Supervisors of Mechanics (O*NET 49-1011.00)}
-预测性维护、智能诊断与排程优化工具的成熟推动了采用上升（$A(t)\uparrow$）。受此影响，"诊断信息汇总""调度沟通""例行检查"等任务结构被重排：部分文书与记录任务权重下降，而需要现场判断与人员协调的任务相对上升。权威企业研究解读将预测性维护与工业 AI 列为制造与运营领域的关键应用~\cite{mckinsey_maintenance_2023}，支撑了该职业的 driver 机制。
+\begin{itemize}[leftmargin=2.5em]
+    \item \textbf{AI辅助代码生成与调试工具}（如GitHub Copilot、AI编程助手）。这类工具直接作用于D3（算法编程与自动化）维度，提升了"编写控制算法""调试软件模块"等任务的替代强度 $s_{ij}$，是该职业40\%任务权重面临负净冲击的主要来源。
+    \item \textbf{GenAI驱动的机器人仿真平台}（如NVIDIA Isaac~\cite{nvidia_isaac_2024}）。仿真环境与生成式AI的集成显著加速了"测试与验证""场景模拟"等任务的自动化程度，同时增强了"系统级设计"任务的效率（$c_{ij}\uparrow$）。
+    \item \textbf{大语言模型与机器人控制的融合}。这类技术提升了"人机交互设计""自然语言指令解析"等任务的自动化潜力，但同时为"跨模态系统集成"等高层任务创造了新的增强空间。
+\end{itemize}
 
-\subparagraph{Court Reporters and Simultaneous Captioners (O*NET 27-3092.00)}
-自动语音识别（ASR）与转写/字幕自动化技术的进步提升了速度与一致性，推动采用上升（$A(t)\uparrow$）。任务结构因此分化："实时转写""初稿校对""格式化""归档"等任务更多由自动化系统承担，而人类从业者转向校验、法律语境判断与质量控制。行业趋势报告明确指出，自动化与 AI 正在显著提升法庭记录流程的速度与准确性~\cite{ncra_trends_2024}。
+\paragraph{First-Line Supervisors of Mechanics的驱动因素}
+
+\begin{itemize}[leftmargin=2.5em]
+    \item \textbf{预测性维护AI系统}。基于机器学习的设备健康监测与故障预警工具（如IBM Maximo、SAP Predictive Maintenance）作用于D5（规划与流程调度）和D7（监督管理与质量控制）维度，部分替代了"例行检查排程""故障模式识别"等任务~\cite{mckinsey_maintenance_2023}。
+    \item \textbf{智能诊断与远程支持平台}。AR/AI辅助的现场诊断工具增强了"技术问题定位""维修指导"等任务的效率（$c_{ij}\uparrow$），但由于核心价值仍依赖现场判断（D4）和人员协调（D6），整体呈现互补效应。
+    \item \textbf{AI驱动的工单与资源优化系统}。自动化排程工具提升了"任务分配""进度协调"等文书类任务的效率，这也是该职业唯一呈现负净冲击的任务类别（task\_id=2912，$\mu=-0.20$）。
+\end{itemize}
+
+\paragraph{Court Reporters and Simultaneous Captioners的驱动因素}
+
+\begin{itemize}[leftmargin=2.5em]
+    \item \textbf{高精度自动语音识别（ASR）系统}（如OpenAI Whisper、Google Speech-to-Text）。ASR技术在受控声学环境下的词错误率（WER）已降至1\%以下~\cite{whisper2022}，直接冲击"实时听写转录""语音-文本转换"等核心任务，是该职业面临高替代压力的首要驱动因素。
+    \item \textbf{AI驱动的实时字幕与翻译服务}。流媒体平台与会议软件集成的自动字幕功能（如Zoom Live Transcription、YouTube Auto-Caption）降低了"同步字幕生成"任务的市场需求，进一步压缩该职业的传统价值空间。
+    \item \textbf{智能文本校对与格式化工具}。GenAI驱动的法律文书处理系统（如Harvey AI、CoCounsel）提升了"初稿校对""格式标准化""归档管理"等辅助任务的自动化程度~\cite{ncra_trends_2024}。
+\end{itemize}
 
 \subsubsection{将“发展轨迹”与“任务需求”紧密耦合：开始对未来的任务权重进行预测}
 
@@ -430,18 +444,37 @@ I_i(t_0,t_1)=\#\{(a,b):\ \mathrm{rank}_i(a,t_0)<\mathrm{rank}_i(b,t_0)\ \wedge\ 
 阈值 $\theta_{I}$、$\theta_{J}$ 不作为固定常数，我们在多个阈值设置下计算结果，展示结论的稳健性区间。\\
 这部分也要做敏感性分析，给出鲁棒区间。\\这部分也要做敏感性分析，给出鲁棒区间。
 
-\paragraph{结构指标的可视化}
-我们据此构建两类核心可视化：
-\begin{enumerate}
-  \item \textbf{排名翻转图}（图~\ref{fig:rank_flip_stem}）：连线两端分别为 $\mathrm{rank}_i(j,t_0)$ 与 $\mathrm{rank}_i(j,t_1)$，翻转幅度越大、线越陡，结构性重排越显著。
-  \item \textbf{贡献分解瀑布图}（图~\ref{fig:rank_flip_stem} 右）：按 $r_{ij}$ 降序展示 Top contributors 对总份额变化的累积贡献。
-\end{enumerate}
+基于以上定义的三个指标，我们据此构建\textbf{排名翻转图}（图~\ref{fig:rank_flip_stem}）、\textbf{贡献分解条形图}（图~\ref{fig:rank_flip_stem} 右）两个核心可视化图标：
 
 \begin{figure}[H]
 \centering
 \includegraphics[width=0.95\linewidth]{figures/fig_STEM_rankflip_contribution_v2.pdf}
-\caption{STEM职业（17-2199.08）从基线（$t_0=0$, $A=0$）到末期（$t_1=2040$）的排名翻转。连线两端分别为 $\mathrm{rank}_i(j,t_0)$ 与 $\mathrm{rank}_i(j,t_1)$，翻转幅度越大、线越陡，结构性重排越显著。STEM职业（17-2199.08）结构变化的 Top contributors 贡献分解。按 $r_{ij}$ 降序展示各任务对总份额变化的累积贡献，揭示结构重排的主要驱动任务。}
+\caption{STEM职业从基线（$t_0=0$, $A=0$）到末期（$t_1=2040$）的排名翻转。连线两端分别为 $\mathrm{rank}_i(j,t_0)$ 与 $\mathrm{rank}_i(j,t_1)$，翻转幅度越大、线越陡，结构性重排越显著。STEM职业结构变化的 Top contributors 贡献分解。按 $r_{ij}$ 降序展示各任务对总份额变化的累积贡献，揭示结构重排的主要驱动任务。}
 \label{fig:rank_flip_stem}
 \end{figure}
 
-\input{sections/task3_program_recommendations}
+\subsubsection{探索所选三个职业的未来}
+
+基于以上任务预测模型、GenAI能力映射（表~\ref{tab:genai_scale}）以及上文定义的结构性变化指标，我们现在综合分析结果，探讨各职业在GenAI采用路径下的未来轨迹。
+
+我们的分析表明，机器人工程师呈现出平衡但偏向增强的影响特征。图~\ref{fig:task_dna_sc_triptych}a显示，互补性得分 $c$ 集中在中高档次，而约 40\% 的任务权重处于负净影响区域，主要集中在维度 D3（算法编程与自动化），其中 $\mu = -0.20$。然而，这一部分的替代压力被工程问题解决（D1）和数据分析（D2）的强增强作用所抵消。
+
+在基准情景下 $\eta = 1.0$ 时，重配置质量从 $R(t_0) = 0.086$ 增长至 $R(t_{\text{end}}) = 0.121$，表明当采用率饱和至 $A = 0.95$ 时，累积结构性转变约为 12\%。Top-5 周转率稳定在 $J_5 = 0.40$，意味着五项最重要任务中有两项被先前次要任务所取代。如图~\ref{fig:rank_flip_stem} 所示，排名逆转模式表明，常规编码和文档任务的相对份额下降，而系统级集成、软硬件协同设计和跨职能协作任务上升。
+
+我们的结论是，未来的机器人工程师从以代码为中心的角色演变为系统架构师，负责编排 AI 辅助的开发流程、验证机器生成的解决方案，并专注于需要物理世界判断和创造性问题解决的任务——这些是当前 GenAI 无法复制的。
+
+\paragraph{机械、安装与维修一线主管（49-1011.00）：通过任务多样性实现韧性}
+
+该职业在三个职业中表现出最低的替代风险。$(s,c)$ 分布（图~\ref{fig:task_dna_sc_triptych}b）显著分散，没有单一维度主导影响特征。仅有一项任务（调度与派工，task\_id = 2912）具有负净影响，仅贡献 $\sum_{j:\mu_{ij}<0} w_{ij} = 0.059$ 的总体任务权重。主导维度——D4（现场感知与物理操作）、D6（协作与培训）以及 D7（监督与质量控制）——均表现出正值或中性的 $\rho_k$ 值，表明 GenAI 的互补效应而非替代效应。
+
+在基准情景（$\eta = 1.0$）下，重配置质量从 $R(t_0) = 0.061$ 适度增长至 $R(t_{\text{end}}) = 0.086$，是三个职业中结构性变化最小的。然而，Top-5 周转率达到 $J_5 = 0.80$，乍看之下似乎矛盾。这一高周转率反映了监督角色特有的扁平权重分布：许多重要性相近的任务竞争 Top-5 位置，即使总重配置量有限，排名也对微小扰动敏感。
+
+未来的一线主管将保持结构稳定但在操作上得到增强。GenAI 工具将增强诊断能力、简化调度流程并改进培训交付，但核心价值主张——在不可预测的物理环境中进行实时判断、人际协调和动手排障——仍牢固地以人为锚点。该职业体现了「AI 作为副驾驶」范式，而非转型或替代。
+
+\paragraph{法庭记录员与同声字幕员（27-3092.00）：替代主导型颠覆}
+
+法庭记录员面临三个职业中最严重的替代压力。$(s,c)$ 分布（图~\ref{fig:task_dna_sc_triptych}c）显示，高权重任务明显集中在维度 D8（语言理解与文本生成），其中 $s = 0.90$ 和 $c = 0.50$ 产生强负净影响 $\mu = -0.40$。负面影响任务的累积权重达到 $\sum_{j:\mu_{ij}<0} w_{ij} = 0.413$，是三个职业中最高的。
+
+在基准情景（$\eta = 1.0$）下，重配置质量从 $R(t_0) = 0.060$ 增长至 $R(t_{\text{end}}) = 0.092$。虽然绝对幅度看似适度，但变化方向毫不含糊：核心转录和起草任务的份额快速下降，而质量验证、法律语境解释和认证任务的相对重要性上升。$J_5 = 0.60$ 的 Top-5 周转率确认了任务层级的实质性重组。
+
+未来的法庭记录员将经历根本性的角色重新定义。随着 ASR 和 GenAI 转录工具在受控声学环境中达到接近人类的准确度，该职业从速记生产转向质量保证和法律认证。从业者将越来越多地充当专家验证者，确保对抗性法律环境中的转录准确性、解释特定领域术语，并维护官方记录的监管链。那些未能获得法律技术、质量管理或专业领域互补技能的从业者将面临显著的替代风险。

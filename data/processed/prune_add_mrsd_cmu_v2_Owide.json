@@ -1,0 +1,194 @@
+{
+  "program_id": "mrsd_cmu",
+  "variant": "O_wide",
+  "o_variant": [
+    "17-2199.08",
+    "17-2199.05",
+    "17-2072.00",
+    "17-2112.03",
+    "17-2141.02",
+    "17-2011.00",
+    "17-2071.00"
+  ],
+  "thresholds": {
+    "e_low": 0.0,
+    "h_low": 0.0,
+    "a_high": 0.29225923143332555,
+    "a_strict_high": 0.4041662930881952,
+    "weighting_rule": "credit_weighted_empirical_quantile"
+  },
+  "courses": [
+    {
+      "course_code": "16-642",
+      "title": "Manipulation, Estimation, & Control",
+      "delta_e": 0.009208748523139354,
+      "h_m": 0.0,
+      "a_m": 0.32975137038348246,
+      "a_strict_m": 0.32975137038348246,
+      "label_keep_transform_prune": "TRANSFORM"
+    },
+    {
+      "course_code": "16-650",
+      "title": "Systems Engineering and Management for Robotics",
+      "delta_e": 0.007622786146470939,
+      "h_m": 1.5,
+      "a_m": 0.24732524081955568,
+      "a_strict_m": 0.24732524081955568,
+      "label_keep_transform_prune": "KEEP"
+    },
+    {
+      "course_code": "16-665",
+      "title": "Robot Mobility on Air, Land, & Sea",
+      "delta_e": 0.009760851524312608,
+      "h_m": 0.0,
+      "a_m": 0.4682879434298265,
+      "a_strict_m": 0.4682879434298265,
+      "label_keep_transform_prune": "KEEP"
+    },
+    {
+      "course_code": "16-720",
+      "title": "Computer Vision (or Technical Elective)",
+      "delta_e": 0.007125425330997248,
+      "h_m": 0.0,
+      "a_m": 0.26790053017599097,
+      "a_strict_m": 0.248336658207918,
+      "label_keep_transform_prune": "KEEP"
+    },
+    {
+      "course_code": "16-662",
+      "title": "Robot Autonomy",
+      "delta_e": 0.024781966806400435,
+      "h_m": 1.0,
+      "a_m": 0.28118851658252186,
+      "a_strict_m": 0.28118851658252186,
+      "label_keep_transform_prune": "KEEP"
+    },
+    {
+      "course_code": "16-681",
+      "title": "MRSD Project I",
+      "delta_e": 0.0,
+      "h_m": 0.0,
+      "a_m": 0.29225923143332555,
+      "a_strict_m": 0.29225923143332555,
+      "label_keep_transform_prune": "KEEP"
+    },
+    {
+      "course_code": "16-697",
+      "title": "Introduction to Robotics Business",
+      "delta_e": 0.02515551366051716,
+      "h_m": 0.5,
+      "a_m": 0.37068205260095993,
+      "a_strict_m": 0.37068205260095993,
+      "label_keep_transform_prune": "TRANSFORM"
+    },
+    {
+      "course_code": "16-991",
+      "title": "Internship",
+      "delta_e": 0.020755846258578625,
+      "h_m": 0.0,
+      "a_m": 0.24350480996875784,
+      "a_strict_m": 0.2072429961107487,
+      "label_keep_transform_prune": "KEEP"
+    },
+    {
+      "course_code": "16-682",
+      "title": "MRSD Project II",
+      "delta_e": 0.0,
+      "h_m": 0.0,
+      "a_m": 0.29225923143332555,
+      "a_strict_m": 0.29225923143332555,
+      "label_keep_transform_prune": "KEEP"
+    },
+    {
+      "course_code": "16-698",
+      "title": "Advanced Topics in Robotics Business",
+      "delta_e": 0.012394956449495176,
+      "h_m": 0.0,
+      "a_m": 0.4041662930881952,
+      "a_strict_m": 0.4041662930881952,
+      "label_keep_transform_prune": "TRANSFORM"
+    },
+    {
+      "course_code": "TE-1",
+      "title": "Technical Elective A (12 units)",
+      "delta_e": 0.0,
+      "h_m": 1.0,
+      "a_m": 0.14087559769121216,
+      "a_strict_m": 0.14087559769121216,
+      "label_keep_transform_prune": "KEEP"
+    },
+    {
+      "course_code": "TE-2",
+      "title": "Technical Elective B (12 units)",
+      "delta_e": 0.0,
+      "h_m": 1.0,
+      "a_m": 0.14087559769121213,
+      "a_strict_m": 0.14087559769121213,
+      "label_keep_transform_prune": "KEEP"
+    },
+    {
+      "course_code": "TE-3",
+      "title": "Technical Elective C (12 units)",
+      "delta_e": 0.0,
+      "h_m": 1.0,
+      "a_m": 0.14087559769121216,
+      "a_strict_m": 0.14087559769121216,
+      "label_keep_transform_prune": "KEEP"
+    },
+    {
+      "course_code": "TE-4",
+      "title": "Technical Elective D (12 units)",
+      "delta_e": 0.0,
+      "h_m": 1.0,
+      "a_m": 0.14087559769121216,
+      "a_strict_m": 0.14087559769121216,
+      "label_keep_transform_prune": "KEEP"
+    },
+    {
+      "course_code": "TE-5",
+      "title": "Technical Elective E (12 units)",
+      "delta_e": 0.0,
+      "h_m": 1.0,
+      "a_m": 0.14087559769121216,
+      "a_strict_m": 0.14087559769121216,
+      "label_keep_transform_prune": "KEEP"
+    },
+    {
+      "course_code": "BE-1",
+      "title": "Business Elective A (6 units)",
+      "delta_e": 0.0,
+      "h_m": 0.5,
+      "a_m": 0.2621746029005572,
+      "a_strict_m": 0.21378441208862853,
+      "label_keep_transform_prune": "KEEP"
+    },
+    {
+      "course_code": "BE-2",
+      "title": "Business Elective B (6 units)",
+      "delta_e": 0.0,
+      "h_m": 0.5,
+      "a_m": 0.2621746029005572,
+      "a_strict_m": 0.21378441208862853,
+      "label_keep_transform_prune": "KEEP"
+    }
+  ],
+  "prune_add": {
+    "16-642": "TRANSFORM",
+    "16-650": "KEEP",
+    "16-665": "KEEP",
+    "16-720": "KEEP",
+    "16-662": "KEEP",
+    "16-681": "KEEP",
+    "16-697": "TRANSFORM",
+    "16-991": "KEEP",
+    "16-682": "KEEP",
+    "16-698": "TRANSFORM",
+    "TE-1": "KEEP",
+    "TE-2": "KEEP",
+    "TE-3": "KEEP",
+    "TE-4": "KEEP",
+    "TE-5": "KEEP",
+    "BE-1": "KEEP",
+    "BE-2": "KEEP"
+  }
+}

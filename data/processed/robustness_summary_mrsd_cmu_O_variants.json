@@ -1,0 +1,108 @@
+{
+  "program_id": "mrsd_cmu",
+  "o_variants": {
+    "O_narrow": [
+      "17-2199.08"
+    ],
+    "O_medium": [
+      "17-2199.08",
+      "17-2199.05",
+      "17-2072.00"
+    ],
+    "O_wide": [
+      "17-2199.08",
+      "17-2199.05",
+      "17-2072.00",
+      "17-2112.03",
+      "17-2141.02",
+      "17-2011.00",
+      "17-2071.00"
+    ]
+  },
+  "per_course_stability": {
+    "16-642": {
+      "stability": 1.0,
+      "mode_label": "TRANSFORM"
+    },
+    "16-650": {
+      "stability": 1.0,
+      "mode_label": "KEEP"
+    },
+    "16-665": {
+      "stability": 1.0,
+      "mode_label": "TRANSFORM"
+    },
+    "16-720": {
+      "stability": 1.0,
+      "mode_label": "KEEP"
+    },
+    "16-662": {
+      "stability": 1.0,
+      "mode_label": "KEEP"
+    },
+    "16-681": {
+      "stability": 1.0,
+      "mode_label": "TRANSFORM"
+    },
+    "16-697": {
+      "stability": 1.0,
+      "mode_label": "TRANSFORM"
+    },
+    "16-991": {
+      "stability": 1.0,
+      "mode_label": "KEEP"
+    },
+    "16-682": {
+      "stability": 1.0,
+      "mode_label": "TRANSFORM"
+    },
+    "16-698": {
+      "stability": 0.6666666666666666,
+      "mode_label": "PRUNE"
+    },
+    "TE-1": {
+      "stability": 1.0,
+      "mode_label": "KEEP"
+    },
+    "TE-2": {
+      "stability": 1.0,
+      "mode_label": "KEEP"
+    },
+    "TE-3": {
+      "stability": 1.0,
+      "mode_label": "KEEP"
+    },
+    "TE-4": {
+      "stability": 1.0,
+      "mode_label": "KEEP"
+    },
+    "TE-5": {
+      "stability": 1.0,
+      "mode_label": "KEEP"
+    },
+    "BE-1": {
+      "stability": 1.0,
+      "mode_label": "KEEP"
+    },
+    "BE-2": {
+      "stability": 1.0,
+      "mode_label": "KEEP"
+    }
+  },
+  "transform_jaccard": {
+    "O_narrow__O_narrow": 1.0,
+    "O_narrow__O_medium": 1.0,
+    "O_narrow__O_wide": 0.8333333333333334,
+    "O_medium__O_medium": 1.0,
+    "O_medium__O_wide": 0.8333333333333334,
+    "O_wide__O_wide": 1.0
+  },
+  "employability_rank_stability": {
+    "O_narrow__O_narrow": 1.0,
+    "O_narrow__O_medium": 0.9012345679012346,
+    "O_narrow__O_wide": 0.8271604938271605,
+    "O_medium__O_medium": 1.0,
+    "O_medium__O_wide": 0.8765432098765432,
+    "O_wide__O_wide": 1.0
+  }
+}

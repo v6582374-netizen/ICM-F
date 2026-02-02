@@ -24,7 +24,7 @@
     \item $(M_k,s_k,c_k,\rho_k)$：九维能力量表参数，其中 $\rho_k=c_k-s_k$。
 \end{itemize}
 
-\paragraph{轴一：就业匹配度（Employability Axis）}
+\paragraph{（轴一）就业匹配度（Employability Axis）}
 就业轴的核心问题是：课程对学生进入目标职业集合 $O$ 的\emph{边际贡献}有多大？我们采用 ``职业需求加权的任务覆盖率'' 来刻画项目与劳动力市场的匹配。
 
 首先定义项目对任务 $(o,j)$ 的覆盖度为所有课程中的最大相似度：
@@ -45,7 +45,7 @@
 \end{equation}
 $\Delta E_m$ 的可解释含义是：若课程 $m$ 被移除，项目与当前劳动力市场的对齐度将下降多少；$\Delta E_m$ 越大，表明该课程在就业轴上越\emph{不可替代}。
 
-\paragraph{轴二：人文价值（Humanistic Axis）}
+\paragraph{（轴二）人文价值（Humanistic Axis）}
 人文轴关注课程对学生\emph{非职业性能力}的培养。我们采用锚文本相似度作为简洁且可复现的度量：
 \begin{equation}
     H_m=\sum_{k\in\{\mathrm{civic,agency,wellbeing,lifelong}\}} \mathrm{sim}(t_m, b_k).
@@ -53,7 +53,7 @@ $\Delta E_m$ 的可解释含义是：若课程 $m$ 被移除，项目与当前�
 其中 $b_k$ 为预定义的人文锚文本（如公民责任、自主判断、身心健康、终身学习）。该轴用于识别那些虽不直接提升短期就业匹配，但对学生长期发展与社会公共价值具有贡献的课程。\\
 此处需要预先主观给定一个文本集，这部分后续有空间就放在附录，没有就引用。
 
-\paragraph{轴三：AI 重叠度（AI-Overlap Axis）}
+\paragraph{（轴三）AI 重叠度（AI-Overlap Axis）}
 AI 重叠轴衡量课程内容与 Gen-AI 能力维度之间的\emph{可替代压力}。不同于基于关键词或不透明词典的方法，我们将 AI-Overlap 指标定义为 ``课程九维能力足迹'' 与 ``Gen-AI 在各维度的独立交付强度'' 的加权重合，完全复用前述九维能力量表参数 $(M_k,s_k,c_k,\rho_k)$，从而避免主观权重。
 
 首先定义维度门控（两种口径）：\\
@@ -130,30 +130,29 @@ $A_m$ 反映课程与 Gen-AI 能力维度的总体重合压力，$A_m^{\mathrm{s
 
 \paragraph{Generations College: Court Reporting Program}
 
-\textbf{背景诊断：}该项目仅一门课程 \textit{Machine Shorthand Theory} (CR-CAT-1) 触发 \textsc{Transform} 标签。该课程就业边际贡献极高（$\Delta E=1.0$，为项目内最高），但 AI-Overlap 同样显著（$A=0.584$, $A^s=0.453$）。主导能力维度为 D8（文本生成与编辑，权重0.53）与 D9（实时语言处理，权重0.42）——这两个维度恰是 Gen-AI 语音转写与文本编辑能力最强的领域。
+% \textbf{背景诊断：}该项目仅一门课程 \textit{Machine Shorthand Theory} (CR-CAT-1) 触发 \textsc{Transform} 标签。该课程就业边际贡献极高（$\Delta E=1.0$，为项目内最高），但 AI-Overlap 同样显著（$A=0.584$, $A^s=0.453$）。主导能力维度为 D8（文本生成与编辑，权重0.53）与 D9（实时语言处理，权重0.42）——这两个维度恰是 Gen-AI 语音转写与文本编辑能力最强的领域。
 
 \begin{enumerate}
-    \item \textbf{重新定义核心能力：从"速度"到"判断"}。传统法庭速录强调每分钟225词以上的实时转写速度，而 Gen-AI 语音识别已能达到95\%以上的准确率。我们建议将课程重心从"机械性速度训练"转向"实时校验与语义判断"——即培养学生在 AI 初稿基础上进行法律术语校正、说话人辨识、以及庭审语境理解的能力。
+    \item \textbf{重新定义核心能力：从"速度"到"判断"}。传统法庭速录强调每分钟225词以上的实时转写速度，而 Gen-AI 语音识别能力的提升正在改变学生需要训练的“可迁移能力”边界。我们建议将课程重心从"机械性速度训练"转向"实时校验与语义判断"——即培养学生在 AI 初稿基础上进行法律术语校正、说话人辨识、以及庭审语境理解的能力~\citep{mughal2025beyondautomationho}。
     \item \textbf{引入人机协作工作流}。课程应设计 AI-辅助速录实验模块，让学生在 AI 实时转写输出上进行人工干预、标注不确定段落、并对 AI 错误进行归因分析。这不仅提升学生对 AI 局限性的认知，也为其未来职业中的人机协作奠定基础。
     \item \textbf{强化法律伦理与责任性评估}。法庭记录具有法律效力，AI 生成内容的准确性责任最终由人类承担。课程应增设"AI 输出审计"单元，培养学生对 AI 幻觉（hallucination）、偏见（bias）与隐私泄露风险的识别能力。
 \end{enumerate}
 
 \paragraph{Carnegie Mellon University: MRSD Program}
 
-\textbf{背景诊断：}该项目有三门课程触发 \textsc{Transform} 标签，主导能力维度集中于 D3（数据分析与模式识别）与 D4（复杂推理与规划）。值得注意的是，16-697 \textit{Introduction to Robotics Business} 具有一定人文价值（$H=0.5$），但仍因 AI-Overlap 较高而需转型。三门课程的 $A^{\mathrm{strict}}$ 均等于 $A$，表明其能力足迹完全落在 Gen-AI "已证实替代"的维度区间内。
+% \textbf{背景诊断：}该项目有三门课程触发 \textsc{Transform} 标签，主导能力维度集中于 D3（数据分析与模式识别）与 D4（复杂推理与规划）。值得注意的是，16-697 \textit{Introduction to Robotics Business} 具有一定人文价值（$H=0.5$），但仍因 AI-Overlap 较高而需转型。三门课程的 $A^{\mathrm{strict}}$ 均等于 $A$，表明其能力足迹完全落在 Gen-AI "已证实替代"的维度区间内。
 
-\textbf{战略建议：}
 \begin{enumerate}
     \item \textbf{从"算法实现"转向"系统集成与边界条件"}。Gen-AI 已能生成高质量的控制算法代码与优化求解器。我们建议 16-642 \textit{Manipulation, Estimation \& Control} 压缩传统算法推导与编码训练，转向强调：(a) 真实物理系统中的传感器噪声、执行器延迟与环境不确定性；(b) AI 生成代码的安全性审计与边界条件测试；(c) 人机协作场景下的故障恢复与伦理决策。
     \item \textbf{商业课程聚焦"不可自动化"的战略判断}。16-697 与 16-698 两门商业课程应减少对市场分析报告、财务模型等可被 Gen-AI 快速生成内容的依赖，转向强调：(a) 技术路线的战略选择与时机判断；(b) 跨文化团队管理与利益相关者谈判；(c) 技术伦理与社会责任的案例研讨。
-    \item \textbf{建立"AI 素养"横向模块}。鉴于 MRSD 学生未来将领导机器人研发团队，我们建议在项目层面引入 AI 素养必修模块，内容涵盖：大语言模型的能力边界、提示工程（prompt engineering）最佳实践、以及 AI 系统的可解释性与审计方法。
+    \item \textbf{建立"AI 素养"横向模块}。鉴于 MRSD 学生未来将领导机器人研发团队，我们建议在项目层面引入 AI 素养必修模块，内容涵盖：大语言模型的能力边界、提示工程（prompt engineering）最佳实践、以及 AI 系统的可解释性与审计方法；这与“将 AI 能力从个体试用提升为制度化课程设计与政策框架”的高教证据一致~\citep{jogezai2025generativeartifici,wong2025thefutureoflearnin}。
 \end{enumerate}
 
 \paragraph{Universal Technical Institute: Diesel Technology Program}
 
-\textbf{背景诊断：}该项目有两门课程触发 \textsc{Transform} 标签：\textit{Steering \& Suspension Systems} (DT13-162) 与 \textit{Diesel Engines} (DT13-211)。主导能力维度为 D7（设备操作与监控，权重0.48--0.60）与 D2（技术文档理解，权重0.12--0.18）。值得注意的是，$A^{\mathrm{strict}}$ 远低于 $A$（分别为0.058与0.055 vs. 0.336与0.380），表明这两门课程虽与 Gen-AI 能力有重叠，但主要落在"不确定/平衡"维度而非"已证实替代"维度——这与柴油技术高度依赖物理操作的特性一致。
+% \textbf{背景诊断：}该项目有两门课程触发 \textsc{Transform} 标签：\textit{Steering \& Suspension Systems} (DT13-162) 与 \textit{Diesel Engines} (DT13-211)。主导能力维度为 D7（设备操作与监控，权重0.48--0.60）与 D2（技术文档理解，权重0.12--0.18）。值得注意的是，$A^{\mathrm{strict}}$ 远低于 $A$（分别为0.058与0.055 vs. 0.336与0.380），表明这两门课程虽与 Gen-AI 能力有重叠，但主要落在"不确定/平衡"维度而非"已证实替代"维度——这与柴油技术高度依赖物理操作的特性一致。
 
-\textbf{战略建议：}
+% \textbf{战略建议：}
 \begin{enumerate}
     \item \textbf{将 AI 诊断工具纳入实训环节}。现代柴油车辆已配备 OBD-II 诊断接口与 AI 故障预测系统。我们建议课程增设"AI 诊断工具实操"模块，让学生学习如何解读 AI 生成的故障代码、评估 AI 建议的可靠性、并在 AI 提示基础上进行物理检测与维修决策。
     \item \textbf{强化"AI 无法替代"的物理技能}。尽管 AI 可辅助诊断，实际的拆装、调校与维修仍需人类技师完成。课程应明确区分"AI 可辅助"与"AI 不可替代"的技能边界，并在评估中增加现场实操权重，减少对理论知识记忆的依赖。
@@ -164,8 +163,8 @@ $A_m$ 反映课程与 Gen-AI 能力维度的总体重合压力，$A_m^{\mathrm{s
 
 除上述机构特定建议外，我们提出三项跨机构的共性原则：
 \begin{itemize}
-    \item \textbf{评估体系转型：从"产出"到"过程"}。传统评估侧重学生提交的最终作品（论文、代码、报告），而 Gen-AI 使得这些产出的"自动生成"成为可能。我们建议将评估重心转向过程证据——如现场口头答辩、实时问题解决、以及协作过程记录——以确保评估的有效性与公平性。
-    \item \textbf{教师发展优先}。课程转型的前提是教师具备 Gen-AI 素养。机构应优先投资教师培训，使其理解 Gen-AI 的能力边界、掌握人机协作教学设计方法、并能在课堂中示范负责任的 AI 使用。
-    \item \textbf{持续监测与迭代}。Gen-AI 能力处于快速演进之中，当前的"不可替代"维度未来可能被突破。我们建议机构建立年度课程审计机制，定期重新评估三轴指标，并根据 Gen-AI 能力演进动态调整课程设计。
+    \item \textbf{评估体系转型：从"产出"到"过程"}。传统评估侧重学生提交的最终作品（论文、代码、报告），而 Gen-AI 使得这些产出的"自动生成"成为可能。我们建议将评估重心转向过程证据——如现场口头答辩、实时问题解决、以及协作过程记录——以确保评估的有效性与公平性~\citep{harris2024processoverproduct}。
+    \item \textbf{教师发展优先}。课程转型的前提是教师具备 Gen-AI 素养。机构应优先投资教师培训，使其理解 Gen-AI 的能力边界、掌握人机协作教学设计方法、并能在课堂中示范负责任的 AI 使用~\citep{jogezai2025generativeartifici}。
+    \item \textbf{持续监测与迭代}。Gen-AI 能力处于快速演进之中，当前的"不可替代"维度未来可能被突破。我们建议机构建立年度课程审计机制，定期重新评估三轴指标，并根据 Gen-AI 能力演进动态调整课程设计；同时需要明确“允许使用但设定边界”的制度化政策，以降低灰区带来的学习与诚信张力~\citep{hamerman2024aninvestigationofg,hashemi2025navigatingthedoubl}。
 \end{itemize}
 

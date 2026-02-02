@@ -1,35 +1,5 @@
 \begin{appendices}
-
-\section{补充材料}
-\label{app:supplementary}
-
-\subsection{数据来源与变量定义}
-\label{app:data_sources}
-
-\subsubsection{O*NET描述符数据来源}
-\label{app:onet_descriptors}
-
-\begin{table}[H]
-\centering
-\caption{O*NET描述符数据来源与访问链接}
-\label{tab:onet_descriptor_sources}
-\begin{tabular}{@{}>{\raggedright\arraybackslash}p{2.8cm} >{\raggedright\arraybackslash}p{3.2cm} >{\raggedright\arraybackslash}p{5.5cm} >{\raggedright\arraybackslash}p{2.5cm}@{}}
-\toprule
-\textbf{特征轴} & \textbf{描述符名称} & \textbf{URL} & \textbf{描述符ID} \\
-\midrule
-\multirow{2}{*}{$digit(x)$} & Working with Computers & \url{https://www.onetonline.org/find/descriptor/result/4.A.3.b.1} & 4.A.3.b.1 \\
- & Electronic Mail & \url{https://www.onetonline.org/find/descriptor/result/4.C.1.a.2.h} & 4.C.1.a.2.h \\
-\addlinespace
-\multirow{2}{*}{$physical(x)$} & Using Hands to Handle Objects & \url{https://www.onetonline.org/find/descriptor/result/4.C.2.d.1.g} & 4.C.2.d.1.g \\
-& \shortstack{Kneeling/Crouching/\\Stooping} & \url{https://www.onetonline.org/find/descriptor/result/4.C.2.d.1.e} & 4.C.2.d.1.e \\
-\addlinespace
-\multirow{2}{*}{$iprisk(x)$} & Originality & \url{https://www.onetonline.org/find/descriptor/result/1.A.1.b.2} & 1.A.1.b.2 \\
- & Thinking Creatively & \url{https://www.onetonline.org/find/descriptor/result/4.A.2.b.2} & 4.A.2.b.2 \\
-\bottomrule
-\end{tabular}
-\end{table}
-
-\subsubsection{二维投影面积公式}
+\subsection{二维投影面积公式}
 \label{appendix:area2d_formula}
 
 为保证二维投影下的异质性度量与三维定义一致，我们对任意投影 $\pi$（例如 $(digit, physical)$、$(digit, iprisk)$ 或 $(physical, iprisk)$）定义三点的二维三角形面积为
@@ -38,45 +8,17 @@
 \]
 其中 $\times$ 表示二维向量的叉积（标量）运算，$\pi(\cdot)$ 为三维特征到二维坐标的投影映射。
 
-\subsubsection{任务DNA与GenAI能力数据}
-\label{app:task_dna_sources}
+\subsection{补充说明：任务DNA文本图例}
+\label{app:task_dna_figures}
 
-我们从O*NET 30.1文本数据库中提取各职业的任务陈述和任务评分，并根据重要性（IM）和任务频率（FT）评分计算任务权重~\cite{onet2025database}。GenAI能力评估基于权威基准和技术报告~\cite{openai2023gpt4,openaicodex2021,swebench2024,autogpt2023,whisper2022,docvqa2017,spider2018,imagenet2009}。
+由于版面限制，我们未在正文中逐条列出三职业的全部任务文本。我们在生成图~\ref{fig:task_dna_imfr_triptych} 时同步导出了按权重排序的任务文本图例，用于复现与审计。
 
-\begin{table}[H]
-\centering
-\caption{数据来源总览}
-\label{tab:data_sources_comprehensive}
-\small
-\begin{tabular}{@{}p{3.2cm} p{7.2cm} p{3.6cm}@{}}
-\toprule
-\textbf{数据类别} & \textbf{描述} & \textbf{来源} \\
-\midrule
-\multicolumn{3}{l}{\textbf{职业特征数据}} \\
-\midrule
-O*NET职业描述符 & 职业在数字化、物理锚定、产权风险等维度的原始评分（0--100） & O*NET 30.1数据库~\cite{onet2025database} \\
-O*NET-SOC职业代码 & 标准职业分类代码与职业名称映射 & O*NET 2019结构~\cite{onet2019structure} \\
-\addlinespace
-\multicolumn{3}{l}{\textbf{任务结构数据}} \\
-\midrule
-O*NET任务陈述 & 各职业的任务文本描述和任务标识符 & O*NET 30.1数据库~\cite{onet2025database} \\
-O*NET任务评分 & 任务重要性（IM）和任务频率（FR）评分（0--100） & O*NET 30.1数据库~\cite{onet2025database} \\
+% % \subsection{补充图示：任务DNA权重分布}
+% % \label{app:task_dna_figures}
 
-\addlinespace
-\multicolumn{3}{l}{\textbf{行业趋势与采纳数据}} \\
-\midrule
-组织AI采纳率 & 2024年组织层面GenAI采纳率、2025年趋势、2026情景上界 & McKinsey AI报告~\cite{mckinsey2024stateai,mckinsey2025stateai}；Gartner预测~\cite{gartner2023genai} \\
-机器人工程AI集成 & 机器人平台与GenAI集成证据、仿真加速案例 & NVIDIA Isaac平台~\cite{nvidia_isaac_2024} \\
-工业维护AI应用 & 预测性维护、智能诊断在制造与运营领域的应用 & McKinsey运营研究~\cite{mckinsey_maintenance_2023} \\
-法庭记录自动化 & ASR/AI在法庭记录与字幕服务中的采纳趋势 & NCRA行业趋势~\cite{ncra_trends_2024} \\
-\bottomrule
-\end{tabular}
-\end{table}
+% 三职业的任务DNA权重分布及任务文本图例见正文图~\ref{fig:task_dna_imfr_triptych}。
 
-% \subsection{补充图示：任务DNA权重分布}
-% \label{app:task_dna_figures}
-
-% 三职业的任务DNA权重分布已在正文中展示，以下为各职业的任务文本图例（按权重 $w$ 排序）。
+% 以下为各职业的详细任务文本图例（按权重 $w$ 排序），可选展示。
 
 % \noindent\textbf{职业 17-2199.08：机器人工程师。}
 % \begin{figure}[H]
@@ -101,33 +43,6 @@ O*NET任务评分 & 任务重要性（IM）和任务频率（FR）评分（0--10
 % \caption{职业 27-3092.00 的任务文本图例（按权重 $w$ 排序）。}
 % \label{fig:task_dna_27_legend}
 % \end{figure}
-
-\subsection{补充图示：任务份额预测}
-\label{app:task_share_figures}
-
-\noindent\textbf{职业 17-2199.08：全部任务份额轨迹（基准情景）。}
-\begin{figure}[H]
-\centering
-\includegraphics[width=0.92\textwidth]{figures/fig_STEM_task_share_all_tasks_appendix.pdf}
-\caption{STEM职业在基准情景下全部任务份额随时间的演化。}
-\label{fig:task_share_all_stem}
-\end{figure}
-
-\noindent\textbf{职业 49-1011.00：全部任务份额轨迹（基准情景）。}
-\begin{figure}[H]
-\centering
-\includegraphics[width=0.92\textwidth]{figures/fig_task_share_all_49-1011.00.pdf}
-\caption{技工职业在基准情景下全部任务份额随时间的演化。}
-\label{fig:task_share_all_trade}
-\end{figure}
-
-\noindent\textbf{职业 27-3092.00：全部任务份额轨迹（基准情景）。}
-\begin{figure}[H]
-\centering
-\includegraphics[width=0.92\textwidth]{figures/fig_task_share_all_27-3092.00.pdf}
-\caption{艺术职业在基准情景下全部任务份额随时间的演化。}
-\label{fig:task_share_all_arts}
-\end{figure}
 
 \subsection{教育项目推荐详表}
 \label{app:program_recommendations}
@@ -157,8 +72,7 @@ O*NET任务评分 & 任务重要性（IM）和任务频率（FR）评分（0--10
 Universal Technical Institute（UTI）\newline
 汽车与柴油技术等相关项目 &
 \textbf{（1）行业对齐与课程迭代能力强：}UTI通过与Bosch合作开发电动车（BEV）新课件，作为其电动车训练策略的一部分，体现其能快速响应产业技术迁移~\cite{uti_bosch_2022}。\newline
-\textbf{（2）将"AI化诊断/估损"纳入技能语境具备现实基础：}UTI公开内容已直接讨论"AI支持的诊断"用于识别隐性损伤并辅助估算维修所需零件与工时，说明其在教学叙事与训练模块上具备纳入AI工具链的入口~\cite{uti_collision_ai_2026}。\newline
-\textbf{（3）对主管岗位的Gen-AI建议落点：}应将Gen-AI从"技术员工具"上移到"班组/车间管理工具"，围绕工单生成、诊断知识库、预测性维护、培训内容自动化与合规安全（SOP）等模块设计课程与实训。 \\
+\textbf{（2）将"AI化诊断/估损"纳入技能语境具备现实基础：}UTI公开内容已直接讨论"AI支持的诊断"用于识别隐性损伤并辅助估算维修所需零件与工时，说明其在教学叙事与训练模块上具备纳入AI工具链的入口~\cite{uti_collision_ai_2026}。 \\
 \addlinespace
 
 法庭速录师与同声字幕员 \newline（艺术/专门院校） &
@@ -166,8 +80,7 @@ Generations College（原MacCormac School）\newline
 Court Reporting 副学士（A.A.S.） &
 \textbf{（1）项目历史与行业代表性强：}学校明确宣称其在1912年建立了美国同类项目中的"首创"法庭速录项目，且在招生页面强调其行业声誉~\cite{generations_court_2026}。\newline
 \textbf{（2）实时（Realtime）训练在项目目标中被明确要求：}在线项目页面明确写入"核心课程中获得Realtime reporting经验"~\cite{generations_online_2026}。\newline
-\textbf{（3）与行业质量标准存在对接抓手：}NCRA公布的"批准项目"列表中包含Generations College（并标注批准有效期），可作为项目质量与realtime教育承诺的外部背书线索~\cite{ncra_approved_2026}。\newline
-\textbf{（4）Gen-AI建议落点：}将Gen-AI定位为"转写与后编辑（post-editing）/术语库构建/质量控制"的增效工具，同时强化伦理与可审计性（chain of custody）训练，确保学生在AI辅助环境中仍能提供可置信的官方记录。 \\
+\textbf{（3）与行业质量标准存在对接抓手：}NCRA公布的"批准项目"列表中包含Generations College（并标注批准有效期），可作为项目质量与realtime教育承诺的外部背书线索~\cite{ncra_approved_2026}。 \\
 \bottomrule
 \end{tabular}
 \end{table}

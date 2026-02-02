@@ -485,6 +485,8 @@ INPUT sections/task3_program_recommendations.tex
 INPUT /usr/local/texlive/2025/texmf-dist/fonts/tfm/public/newtx/ntx-Bold-tlf-ot1.tfm
 INPUT /usr/local/texlive/2025/texmf-dist/fonts/tfm/public/newtx/ntx-Bold-tlf-ot1.tfm
 INPUT /usr/local/texlive/2025/texmf-dist/fonts/tfm/public/newtx/ntx-Bold-tlf-ot1.tfm
+INPUT /usr/local/texlive/2025/texmf-dist/fonts/tfm/public/newtx/ntx-Bold-tlf-ot1.tfm
+INPUT /usr/local/texlive/2025/texmf-dist/fonts/tfm/public/newtx/ntx-Bold-tlf-ot1.tfm
 INPUT ./sections/results_sensitivity.tex
 INPUT ./sections/results_sensitivity.tex
 INPUT ./sections/results_sensitivity.tex
@@ -511,8 +513,6 @@ INPUT ./sections/appendices.tex
 INPUT ./sections/appendices.tex
 INPUT ./sections/appendices.tex
 INPUT sections/appendices.tex
-INPUT /usr/local/texlive/2025/texmf-dist/fonts/tfm/public/newtx/ntx-Bold-tlf-ot1.tfm
-INPUT /usr/local/texlive/2025/texmf-dist/fonts/tfm/public/newtx/ntx-Bold-tlf-ot1.tfm
 INPUT ./figures/task_dna_17-2199.08_weights.pdf
 INPUT ./figures/task_dna_17-2199.08_weights.pdf
 INPUT ./figures/task_dna_17-2199.08_weights.pdf

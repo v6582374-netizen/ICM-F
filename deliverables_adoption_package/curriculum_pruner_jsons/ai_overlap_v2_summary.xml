@@ -1,0 +1,23 @@
+<ai_overlap_v2_summary>
+  <timestamp_utc>2026-02-02T02:18:49Z</timestamp_utc>
+  <programs>
+    <program id="mrsd_cmu">
+      <course_count>17</course_count>
+      <ai_overlap_v2_mean>0.257945</ai_overlap_v2_mean>
+      <ai_overlap_v2_strict_mean>0.252895</ai_overlap_v2_strict_mean>
+      <weighting>credit</weighting>
+    </program>
+    <program id="uti_diesel">
+      <course_count>8</course_count>
+      <ai_overlap_v2_mean>0.304586</ai_overlap_v2_mean>
+      <ai_overlap_v2_strict_mean>0.043082</ai_overlap_v2_strict_mean>
+      <weighting>credit</weighting>
+    </program>
+    <program id="generations_court_reporting">
+      <course_count>7</course_count>
+      <ai_overlap_v2_mean>0.463682</ai_overlap_v2_mean>
+      <ai_overlap_v2_strict_mean>0.232572</ai_overlap_v2_strict_mean>
+      <weighting>uniform</weighting>
+    </program>
+  </programs>
+</ai_overlap_v2_summary>

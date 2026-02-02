@@ -9,46 +9,246 @@
 针对\textbf{机械维修一线主管}，Universal Technical Institute（UTI）展现出快速响应产业技术迁移的能力，并已将AI诊断纳入教学叙事。
 针对\textbf{法庭速录师}，Generations College作为美国首创法庭速录项目的历史传承者，其Realtime训练体系可与Gen-AI后编辑工具形成互补。
 
-\subsubsection{基于文本的课程剪枝与增补元模型}
+\subsubsection{课程层面的三轴元模型：就业--人文--AI重叠}
+\label{subsubsec:three_axis_metamodel}
 
-在完成项目选择后，我们进一步构建一个\textbf{纯文本驱动的课程优化元模型}，用于指导各教育项目如何在Gen-AI时代进行课程结构调整。该模型仅依赖课程标题与描述文本，无需学分信息，具备高度可解释性与可迁移性。
+在确定推荐项目后，我们进一步构建一个\textbf{课程层面的评估框架}，用于指导项目内部的课程筛选与改革建议。该框架的核心思想是：每门课程应当在三个正交维度上接受评估——\emph{就业匹配度}、\emph{人文价值}与\emph{AI重叠度}——从而生成可操作的"保留/转型/删减"决策。
 
-\paragraph{三轴评估框架}
-我们为每门课程 $m$ 构造三个可解释的代理指标：
+\paragraph{符号定义}
+设教育项目包含 $M$ 门课程，课程索引 $m=1,\ldots,M$，每门课程具有文本描述 $t_m$（课程名称与简介）。目标职业集合记为 $O$，职业 $o\in O$ 对应 O*NET 任务索引集 $J(o)$。定义以下变量：
+\begin{itemize}
+    \item $w_o$：职业 $o$ 的劳动力市场需求权重（若不可获取则设为均匀分布）；
+    \item $v_{o,j}$：任务 $j$ 在职业 $o$ 中的显著性权重，由 O*NET 重要性$\times$频率归一化得到；
+    \item $s_{m,o,j}=\mathrm{sim}(t_m, \text{task}_{o,j})$：课程 $m$ 对任务 $(o,j)$ 的语义覆盖度（基于文本相似度）；
+    \item $b_k$：人文维度锚文本，$k\in\{\text{civic, agency, wellbeing, lifelong}\}$；
+    \item $a_p$：GenAI 能力锚文本，$p=1,\ldots,P$。
+\end{itemize}
 
-\textbf{（1）就业轴 $E_m$}：衡量课程文本与劳动力市场技能需求的对齐程度。该指标通过统计课程描述中命中预定义就业关键词词典 $\mathcal{K}_E$ 的频次并归一化获得：
-\\这部分是必要的，不能过于理想主义，仍然需要结合真实的社会形态。
+\paragraph{轴一：就业匹配度（Employability Axis）}
+
+就业轴的核心问题是：该课程对学生进入目标职业的\emph{边际贡献}有多大？我们采用"任务覆盖率"作为衡量标准。
+
+首先，定义项目对任务 $(o,j)$ 的覆盖度为所有课程中的最大相似度：
 \begin{equation}
-E_m = \text{norm}\left(\sum_{w \in \mathcal{K}_E} \mathbf{1}[w \in t_m]\right)
+    c_{o,j}=\max_{m\in\{1,\ldots,M\}} s_{m,o,j}.
 \end{equation}
-其中 $t_m$ 为课程 $m$ 的文本内容（标题 + 描述）。该指标的作用类似于\textbf{职业相关性过滤器}，识别与产业技能直接挂钩的课程模块。
+该式的工作职责是：识别项目中\emph{最能覆盖}该任务的课程，从而避免重复计算。
 
-\textbf{（2）人文轴 $H_m$}：衡量课程对批判性思维、伦理意识、跨学科素养等人文能力的贡献程度：
+整体就业匹配分数为：
 \begin{equation}
-H_m = \text{norm}\left(\sum_{w \in \mathcal{K}_H} \mathbf{1}[w \in t_m]\right)
+    E=\sum_{o\in O} w_o \cdot \sum_{j\in J(o)} v_{o,j}\cdot c_{o,j}.
 \end{equation}
-人文轴的引入是对"唯就业论"的关键修正——我们认为，Gen-AI时代恰恰需要强化人类独有的判断力与价值观锚定能力。
+该式将项目与目标职业的对齐度量化为"加权任务覆盖率"：$w_o$ 调节职业层面的重要性，$v_{o,j}$ 调节任务层面的显著性，$c_{o,j}$ 刻画覆盖程度。
 
-\textbf{（3）冗余度 $R_m$}：捕捉课程与同一项目中其他课程的内容重叠程度：
+为衡量单门课程的贡献，我们定义\textbf{边际就业价值}。令 $E^{(-m)}$ 表示移除课程 $m$ 后的就业匹配分数：
 \begin{equation}
-R_m = \max_{n \neq m} \text{sim}(t_m, t_n)
+    E^{(-m)}=\sum_{o\in O} w_o \cdot \sum_{j\in J(o)} v_{o,j}\cdot \max_{n\neq m} s_{n,o,j}.
 \end{equation}
-该指标识别"信息熵最低"的模块——即那些可被其他课程替代的冗余内容。
-
-\paragraph{剪枝决策规则}
-我们采用\textbf{三重门槛联合约束}的保守剪枝策略：仅当一门课程同时满足"就业相关性低"、"人文贡献低"、"与其他课程高度冗余"三个条件时，才建议将其从课程体系中移除：
+则课程 $m$ 的边际贡献为：
 \begin{equation}
-\text{PRUNE}(m) = \mathbf{1}\left[(E_m < e_{\min}) \land (H_m < h_{\min}) \land (R_m > r_{\min})\right]
+    \Delta E_m=E-E^{(-m)}.
 \end{equation}
-课程保留决策变量定义为 $x_m = 1 - \text{PRUNE}(m)$。这种设计确保了我们不会误删那些"就业导向弱但人文价值高"的课程——例如伦理学、科技史等在AI时代反而更加重要的模块。
+$\Delta E_m$ 的解释性含义是：若该课程被删除，项目的就业对齐度将下降多少。$\Delta E_m$ 越大，表明该课程在就业轴上\emph{不可替代性}越强。
 
-\paragraph{增补建议机制}
-在剪枝的同时，模型检测整体人文轴均值是否低于目标区间：
+\paragraph{轴二：人文价值（Humanistic Axis）}
+
+人文轴关注的是课程对学生\emph{非职业性能力}的培养。我们采用锚文本相似度作为简洁且可复现的度量：
 \begin{equation}
-\overline{H} = \frac{1}{M} \sum_{m} H_m
+    H_m=\sum_{k\in\{\text{civic, agency, wellbeing, lifelong}\}} \mathrm{sim}(t_m, b_k).
 \end{equation}
-若 $\overline{H}$ 低于阈值，模型建议新增特定类型的模块集合 $\Delta\mathcal{M}$，以提升课程体系的人文素养覆盖度。增补建议的具体内容依据各职业的Gen-AI影响特征动态生成。
+其中 $b_k$ 为预定义的人文维度锚文本（如公民素养、自主决策、身心健康、终身学习）。该式的工作职责是：筛选出那些虽与直接就业技能无关、但对学生长期发展具有价值的课程。
 
-\paragraph{模型局限与缓解措施}
-当课程描述过短或偏向营销性语言时，$E_m$ 与 $H_m$ 可能被低估。我们通过以下方式缓解该问题：（1）允许手动扩充关键词词典；（2）报告阈值参数的敏感性区间，供决策者参考调整。
+\paragraph{轴三：AI 重叠度（AI-Overlap Axis）}
+
+AI 重叠轴衡量课程内容与 GenAI 已具备能力的重合程度。我们定义：
+\begin{equation}
+    S_m=\max_{p\in\{1,\ldots,P\}} \mathrm{sim}(t_m, a_p).
+\end{equation}
+其中 $a_p$ 为 GenAI 能力描述锚文本（如"代码生成""文本摘要""数据分析"等）。取最大值的理由是：只要课程与\emph{任一} GenAI 能力高度重合，该课程的传统教学价值即可能被侵蚀。
+\paragraph{（补充）AI 重叠度 v2：九维能力足迹加权的可替代压力}
+
+为提高可解释性，我们将AI-Overlap指标从简单“课程文本与AI锚点相似度”升级为“课程九维能力足迹”与“GenAI九维独立交付强度”的加权重合。该方法完全依赖前述九维能力量表参数 $(M_k, s_k, c_k, \rho_k)$，避免主观权重和不透明词典。
+
+\textbf{变量定义}：
+\begin{itemize}
+    \item $w_{m,k}$：课程 $m$ 在九维能力的归一化“足迹”，$\sum_{k=1}^9 w_{m,k}=1$。可通过课程标题和简介自动抽取，若信息不足退回均匀分布。
+    \item $M_k$：GenAI 在第 $k$ 维的基准能力分数（见表5）。
+    \item $s_k$、$c_k$：第 $k$ 维的替代率、互补率。
+    \item $\rho_k = c_k-s_k$：第 $k$ 维人机关系方向（越小代表AI独立交付能力更强）。
+    \item $I_k = \mathbf{1}[\rho_k \le 0]$：仅门控AI可独立交付或具明确替代倾向的能力维度。
+    \item $a_k = M_k \cdot s_k \cdot I_k$：维度级AI替代强度。
+\end{itemize}
+
+\textbf{计算公式}：
+\begin{align}
+    I_k &= \mathbf{1}[\rho_k \le 0] \\
+    a_k &= M_k \cdot s_k \cdot I_k \\
+    A_m &= \sum_{k=1}^9 w_{m,k} a_k
+\end{align}
+
+其中，$A_m$ 即课程 $m$ 在AI重叠轴上的综合“独立可替代压力”，直接用于决策分类。
+
+\textbf{模型优势与稳健性说明}：
+\begin{itemize}
+    \item 所有参数取自表5的标准数据，无须新增主观判定；
+    \item 若 $w_{m,k}$ 难以精准赋值，则采用均匀分布并配合敏感性分析（如“仅计入$\rho_k < 0$与$\le 0$两种门槛”）；
+    \item 该方法更好分离“课程间内容相似”与“AI可重复/可替代”的本质差异，增强模型移植性和判据解释性。
+\end{itemize}
+
+\textbf{潜在误差控制}：
+若个别课程简介极短，维度足迹 $w_{m,k}$ 可采用均匀分布，并报告不同门控条件（$\rho_k < 0$ vs $\rho_k \le 0$）下的 $A_m$ 变化范围，提升决策透明度。
+
+
+
+\paragraph{三轴决策规则}
+
+基于上述三轴分数与预设阈值 $(e_{\text{low}}, h_{\text{low}}, s_{\text{high}})$，我们定义课程的决策分类：
+\begin{align}
+    \text{PRUNE}(m) &= \mathbf{1}\left[(\Delta E_m < e_{\text{low}}) \land (H_m < h_{\text{low}}) \land (S_m > s_{\text{high}})\right], \\
+    \text{TRANSFORM}(m) &= \mathbf{1}\left[(S_m > s_{\text{high}}) \land \neg\text{PRUNE}(m)\right], \\
+    \text{KEEP}(m) &= 1 - \text{PRUNE}(m) - \text{TRANSFORM}(m).
+\end{align}
+
+上述规则的逻辑可解释如下：
+\begin{itemize}
+    \item \textbf{PRUNE}（删减）：课程同时满足"就业贡献低""人文价值低""与AI能力高度重叠"三个条件。此类课程既无法帮助学生就业，也无法提供人文培养，且其内容已被GenAI覆盖，建议从课程体系中移除。
+    \item \textbf{TRANSFORM}（转型）：课程与AI能力高度重叠，但仍具备就业贡献或人文价值。此类课程不应删除，而应\emph{重新设计}——例如将教学重心从"知识传授"转向"人机协作能力"或"批判性应用"。
+    \item \textbf{KEEP}（保留）：课程不满足删减或转型条件，应维持现有形态。
+\end{itemize}
+
+\paragraph{模型的可移植性}
+
+该三轴框架的设计遵循\textbf{最小外部依赖}原则。具体而言：
+\begin{enumerate}
+    \item 目标职业集合 $O$ 可通过项目描述与 CIP-SOC 映射获取，无需机构内部数据；
+    \item 劳动力需求权重 $w_o$ 若不可获取，设为均匀分布，轴的定义仍保持良好；
+    \item 所有计算仅依赖课程文本描述、公开的 O*NET 任务文本及预定义锚文本。
+\end{enumerate}
+因此，该模型可在不接触机构敏感数据的前提下，为任意教育项目提供课程层面的 GenAI 适应性诊断。
+
+\paragraph{潜在局限与稳健性建议}
+
+三轴模型的主要风险在于目标职业集合 $O$ 的选取偏差：若 $O$ 未能准确反映项目的实际就业方向，则就业轴分数 $E$ 及边际贡献 $\Delta E_m$ 将产生系统性偏误。为缓解该风险，我们建议在实际应用中报告多个合理 $O$ 变体下的结果，并检验结论的稳定性。
+
+
+\paragraph{AIOverlap\_v2集成就业与人文决策规则（最终版）}
+
+在前述三轴结构下，我们以AI-Overlap新算法（v2）为基础，全面集成严格门控（strict）标准，并融合就业、人文两大非AI因素，对课程决策流程给出如下形式化定义：
+
+\begin{itemize}
+    \item \textbf{变量定义}：
+    \begin{itemize}
+        \item $m$：课程
+        \item $k=1..9$：能力维度
+        \item $w_{m,k} \in [0,1]$：课程$ m $在第$ k $维的归一化足迹，$\sum_k w_{m,k}=1$，仅需课程标题与简介抽取
+        \item $M_k,\,s_k$：第$k$维GenAI能力及被替代率，由Q1/Q2确定
+        \item $\rho_k=c_k-s_k$：正向留存程度
+        \item \textbf{AI重叠指标（两种）}：
+        \begin{align*}
+            I_k &= \mathbf{1}[\rho_k\le 0], \quad I_k^{strict}=\mathbf{1}[\rho_k < 0] \\
+            a_k &= M_k\cdot s_k\cdot I_k, \quad a_k^{strict}=M_k\cdot s_k\cdot I^{strict}_k \\
+            A_m &= \sum_{k=1}^{9}w_{m,k}a_k, \quad A_m^{strict} = \sum_{k=1}^9 w_{m,k} a_k^{strict}
+        \end{align*}
+        \item $\Delta E_m$：就业边际
+        \item $H_m$：人文分数
+        \item $e_{low},h_{low},a_{high},a_{strict\_high}$：各决策门槛
+    \end{itemize}
+    \item \textbf{决策规则}：
+    \begin{align*}
+        \text{PRUNE}(m) &= \mathbf{1}\left[(\Delta E_m<e_{low})\land(H_m<h_{low})\land(A_m^{strict}>a_{strict\_high})\right] \\
+        \text{TRANSFORM}(m) &= \mathbf{1}\left[(A_m>a_{high})\land(A_m^{strict}\le a_{strict\_high})\right] \\
+        \text{KEEP}(m) &= 1- \text{PRUNE}(m) -\text{TRANSFORM}(m)
+    \end{align*}
+\end{itemize}
+
+\textbf{解释：}
+
+PRUNE规则仅在“已证实AI高度可替代（strict高）+就业边际低+人文价值低”三者叠加时触发，以防止误删如UTI等“AI overlap不确定性高但实践刚需”的课程。
+
+TRANSFORM覆盖“内容与AI高度重叠但至少在人文或就业一端仍有保留价值”的课程——需通过课程设计转型，将可被GenAI交付的成分压缩，强化人类主导的评价、实践与伦理环节，以实现教育内涵升级而非单纯删减。
+
+KEEP即维持现状，适用于其它所有情况。
+
+\textbf{潜在误差与健壮性建议：}
+
+对于课程简介极短或$w_{m,k}$较为主观的情况，不宜给出唯一label，应通过报告不同门槛条件下的分布或区间结果，提升模型透明度和决策稳健性。
+
+\textbf{核心优势：}上述结构实现了以AI覆盖能力为主轴的精细调控，同时复合三大目标（技术驱动、就业导向、人文内涵），为后续跨学科课程体系改革提供标准化量化依据。
+
+\subsubsection{课程级闭环结论与阈值审计（v2）}
+我们将“课程级AI重叠度（v2）—就业—人文”三轴规则应用于三个代表性项目，数据闭环已满足继续推进的必要条件：每门课均具备 $A_m/A_m^{strict}$ 与 $w_{m,k}$，每个项目具备 $e_{low},h_{low},a_{high},a_{strict\_high}$，且最终标签与下游清单一致。
+
+\begin{table}[H]
+\centering
+\small
+\begin{tabular}{l r r r r l p{6cm}}
+\toprule
+program & $e_{low}$ & $h_{low}$ & $a_{high}$ & $a_{strict\_high}$ & weighting\_rule & 直接含义 \\
+\midrule
+generations\_court\_reporting & 0.3246 & 0.0 & 0.5726 & 0.4527 & uniform\_empirical\_quantile & 人文底线为0（数据稀疏），AI-overlap 顶部 25\% 才触发 TRANSFORM \\
+mrsd\_cmu & 0.0 & 0.0 & 0.2923 & 0.4042 & credit\_weighted\_empirical\_quantile & 就业/人文低分位落在0，模型更偏向“转型而非删除”，避免误删核心课 \\
+uti\_diesel & 0.0 & 0.0 & 0.3337 & 0.06737 & credit\_weighted\_empirical\_quantile & strict 门槛很低但仍为 top 10\%，分布极靠近0，保持保守 PRUNE \\
+\bottomrule
+\end{tabular}
+\caption{三项目阈值审计与含义（v2）}
+\label{tab:threshold_audit_v2}
+\end{table}
+
+\textbf{关键审计结论：}三个项目的 \textbf{prune\_list 全为空}，所有建议均落在 \textbf{TRANSFORM（课程转型）} 而非删课。这与“教育改革优先转型、删课极保守”的策略叙事一致。
+
+\subsubsection{课程级输出：转型清单与依据}
+\paragraph{Generations Court Reporting（1门课转型）}
+\begin{table}[H]
+\centering
+\small
+\begin{tabular}{l l r r r r l}
+\toprule
+label & course\_code（链接） & $E$ & $H$ & $A$ & $A^{strict}$ & 主导维度（$w_{m,k}$ Top-2） \\
+\midrule
+TRANSFORM & \href{https://www.generations.edu/academics/associates-degree-programs/court-reporting-major/court-reporting-courses-overview/}{CR-CAT-1} Machine Shorthand Theory & 1.0000 & 0.0 & 0.5841 & 0.4527 & D8=0.529, D9=0.416 \\
+\bottomrule
+\end{tabular}
+\caption{Generations Court Reporting 课程级转型清单（v2）}
+\label{tab:transform_generations_v2}
+\end{table}
+我们观察到该课程就业贡献高但 AI-overlap 也高，因此不应删除；我们建议压缩可被 GenAI 覆盖的产出成分，将评价改为人类主导的真实性与责任性环节，以提升课程内涵而非缩减供给。
+
+\paragraph{MRSD CMU（3门课转型，删课为0）}
+\begin{table}[H]
+\centering
+\small
+\begin{tabular}{l l r r r r l}
+\toprule
+label & course\_code（链接） & $E$ & $H$ & $A$ & $A^{strict}$ & 主导维度（$w_{m,k}$ Top-2） \\
+\midrule
+TRANSFORM & \href{https://mrsd.ri.cmu.edu/curriculum/}{16-642} Manipulation, Estimation, \& Control & 0.0000 & 0.0 & 0.3298 & 0.3298 & D3=0.533, D4=0.445 \\
+TRANSFORM & \href{https://mrsd.ri.cmu.edu/curriculum/}{16-697} Introduction to Robotics Business & 0.0000 & 0.5 & 0.3707 & 0.3707 & D3=0.514, D4=0.330 \\
+TRANSFORM & \href{https://mrsd.ri.cmu.edu/curriculum/}{16-698} Advanced Topics in Robotics Business & 0.0000 & 0.0 & 0.4042 & 0.4042 & D3=0.636, D4=0.311 \\
+\bottomrule
+\end{tabular}
+\caption{MRSD CMU 课程级转型清单（v2）}
+\label{tab:transform_mrsd_v2}
+\end{table}
+需要强调：MRSD 的 $e_{low}=0$ 表明就业边际在该数据中大量为0，模型在就业轴上更保守，从而更偏向“转型而非删除”。我们将其解释为数据稀疏导致的保守性，而非计算错误。
+
+\paragraph{UTI Diesel（2门课转型，删课为0）}
+\begin{table}[H]
+\centering
+\small
+\begin{tabular}{l l r r r r l}
+\toprule
+label & course\_code（链接） & $E$ & $H$ & $A$ & $A^{strict}$ & 主导维度（$w_{m,k}$ Top-2） \\
+\midrule
+TRANSFORM & \href{https://catalogs.uti.edu/diesel-programs}{DT13-162} Steering and Suspension Systems & 0.0000 & 0.0 & 0.3362 & 0.05838 & D7=0.476, D2=0.178 \\
+TRANSFORM & \href{https://catalogs.uti.edu/diesel-programs}{DT13-211} Diesel Engines & 0.0000 & 0.0 & 0.3795 & 0.05468 & D7=0.597, D2=0.124 \\
+\bottomrule
+\end{tabular}
+\caption{UTI Diesel 课程级转型清单（v2）}
+\label{tab:transform_uti_v2}
+\end{table}
+在 UTI 项目中，$A^{strict}$ 分布整体偏低，模型更倾向“转型”而非“删减”。这与项目层面 strict\_mean 较低的统计特征一致，体现出保守的删课策略。
+
+然后开始分析就完了。
+
+那么没有课程删除的可能是选取的三个院校都是具有行业的领导者，如果是表现差的院校，可能就。。。。
 

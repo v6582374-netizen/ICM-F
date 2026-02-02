@@ -13,6 +13,19 @@ RAW_DIR = os.path.join(DATA_DIR, "raw", "curricula")
 PROCESSED_DIR = os.path.join(DATA_DIR, "processed")
 FIGURES_DIR = os.path.abspath(os.path.join(os.path.dirname(__file__), "..", "figures"))
 
+DIMENSION_PARAMS = {
+    "D1": {"Mk": 0.90, "sk": 0.50, "ck": 0.85, "rho": 0.35},
+    "D2": {"Mk": 0.80, "sk": 0.30, "ck": 0.50, "rho": 0.20},
+    "D3": {"Mk": 0.67, "sk": 0.90, "ck": 0.70, "rho": -0.20},
+    "D4": {"Mk": 0.25, "sk": 0.10, "ck": 0.50, "rho": 0.40},
+    "D5": {"Mk": 0.65, "sk": 0.60, "ck": 0.50, "rho": -0.10},
+    "D6": {"Mk": 0.70, "sk": 0.30, "ck": 0.75, "rho": 0.45},
+    "D7": {"Mk": 0.80, "sk": 0.68, "ck": 0.68, "rho": 0.00},
+    "D8": {"Mk": 0.95, "sk": 0.90, "ck": 0.50, "rho": -0.40},
+    "D9": {"Mk": 0.90, "sk": 0.30, "ck": 0.30, "rho": 0.00}
+}
+DIMENSION_IDS = tuple(DIMENSION_PARAMS.keys())
+
 
 def read_json(path: str) -> dict:
     with open(path, "r", encoding="utf-8") as f:
@@ -41,6 +54,51 @@ def tokenize(text: str) -> List[str]:
     text = normalize_text(text)
     tokens = [t for t in text.split(" ") if t]
     return tokens
+
+
+def parse_dims(raw: str) -> List[str]:
+    if not raw:
+        return []
+    parts = [p.strip() for p in str(raw).split(",") if p.strip()]
+    return [p for p in parts if p in DIMENSION_PARAMS]
+
+
+def compute_dimension_weights(
+    tasks: List[dict],
+    d_vec: List[float],
+    coverage_row: List[float]
+) -> Dict[str, float]:
+    assert len(tasks) == len(d_vec) == len(coverage_row)
+    dim_mass = {dim: 0.0 for dim in DIMENSION_IDS}
+    uniform_share = 1.0 / len(DIMENSION_IDS)
+    for idx, task in enumerate(tasks):
+        task_weight = coverage_row[idx] * d_vec[idx]
+        if task_weight == 0.0:
+            continue
+        dims = parse_dims(task.get("dims", ""))
+        if dims:
+            share = 1.0 / len(dims)
+            for dim in dims:
+                dim_mass[dim] += task_weight * share
+        else:
+            for dim in dim_mass:
+                dim_mass[dim] += task_weight * uniform_share
+    total = sum(dim_mass.values())
+    if total > 0.0:
+        return {dim: dim_mass[dim] / total for dim in dim_mass}
+    return {dim: uniform_share for dim in DIMENSION_IDS}
+
+
+def compute_ai_overlap_v2(dim_weights: Dict[str, float], strict_gate: bool) -> float:
+    total = 0.0
+    for dim, params in DIMENSION_PARAMS.items():
+        rho = params["rho"]
+        gate = rho < 0.0 if strict_gate else rho <= 0.0
+        if not gate:
+            continue
+        a_k = params["Mk"] * params["sk"]
+        total += dim_weights.get(dim, 0.0) * a_k
+    return total
 
 
 def build_tfidf_vectors(texts: List[str]) -> Tuple[List[Dict[str, float]], Dict[str, float]]:
@@ -222,6 +280,9 @@ def compute_course_metrics(
             employability_without += d_vec[j] * min(1.0, total)
         employability_contrib = employability_all - employability_without
 
+        dim_weights = compute_dimension_weights(tasks, d_vec, coverage[i])
+        ai_overlap_v2 = compute_ai_overlap_v2(dim_weights, strict_gate=False)
+        ai_overlap_v2_strict = compute_ai_overlap_v2(dim_weights, strict_gate=True)
         human_scores = compute_humanistic_scores(course, lexicons)
         metrics.append({
             "course_code": course.get("course_code"),
@@ -230,6 +291,9 @@ def compute_course_metrics(
             "replaceability": replaceability,
             "redundancy": redundancy,
             "employability_contrib": employability_contrib,
+            "ai_overlap_v2": ai_overlap_v2,
+            "ai_overlap_v2_strict": ai_overlap_v2_strict,
+            "w_mk": dim_weights,
             "civic": human_scores["civic"],
             "agency": human_scores["agency"],
             "wellbeing": human_scores["wellbeing"],

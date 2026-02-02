@@ -26,14 +26,20 @@ class CurriculumPrunerTests(unittest.TestCase):
             {"course_code": "C2", "title": "Diagnostics", "description": "diagnostic testing", "credits": 3}
         ]
         tasks = [
-            {"task_id": "T1", "task_text": "robotic control", "s": "0.3", "c": "0.7"},
-            {"task_id": "T2", "task_text": "diagnose systems", "s": "0.6", "c": "0.4"}
+            {"task_id": "T1", "task_text": "robotic control", "s": "0.3", "c": "0.7", "dims": "D3"},
+            {"task_id": "T2", "task_text": "diagnose systems", "s": "0.6", "c": "0.4", "dims": "D1"}
         ]
         d_j = {"T1": 0.6, "T2": 0.4}
         sim = build_similarity_matrix(courses, tasks)
         metrics, coverage = compute_course_metrics(courses, tasks, d_j, sim)
         self.assertEqual(len(metrics), 2)
         self.assertEqual(len(coverage), 2)
+        for metric in metrics:
+            self.assertIn("ai_overlap_v2", metric)
+            self.assertIn("ai_overlap_v2_strict", metric)
+            self.assertIn("w_mk", metric)
+            self.assertGreaterEqual(metric["ai_overlap_v2"], 0.0)
+            self.assertLessEqual(metric["ai_overlap_v2"], 1.0)
 
 
 if __name__ == "__main__":

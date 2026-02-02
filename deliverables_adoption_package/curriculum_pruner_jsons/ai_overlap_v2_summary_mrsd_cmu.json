@@ -1,0 +1,10 @@
+{
+  "program_id": "mrsd_cmu",
+  "horizon_year": 2027.75,
+  "scenario": "Baseline",
+  "eta": 1.0,
+  "course_count": 17,
+  "ai_overlap_v2_mean": 0.257945,
+  "ai_overlap_v2_strict_mean": 0.252895,
+  "weighting": "credit"
+}

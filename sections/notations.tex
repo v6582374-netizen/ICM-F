@@ -1,6 +1,9 @@
 本文使用的所有符号定义如下表所示。
 
-\begin{longtable}{clc}
+{\small
+\setlength{\tabcolsep}{4pt}
+\renewcommand{\arraystretch}{1.15}
+\begin{longtable}{>{\raggedright\arraybackslash}p{0.12\textwidth} >{\raggedright\arraybackslash}p{0.60\textwidth} >{\raggedright\arraybackslash}p{0.23\textwidth}}
 \caption{本文使用的符号定义} \label{tab:notation_unified} \\
 \toprule
 \textbf{符号} & \textbf{描述} & \textbf{定义域/单位} \\
@@ -22,129 +25,49 @@
 \midrule
 $i$ & 职业索引 & $\mathbb{Z}^+$ \\
 $j$ & 任务索引 & $\mathbb{Z}^+$ \\
-$t$ & 时间 & 年 \\
-$N$ & 可用任务数量 & $\mathbb{Z}^+$ \\
+$t,\ t_0,\ t_1$ & 时间与比较时间点 & 年 \\
 \midrule
 
-% === 职业选择与特征空间 ===
-\multicolumn{3}{l}{\textbf{职业选择与特征空间}} \\
+% === 职业特征与选择 ===
+\multicolumn{3}{l}{\textbf{职业特征与选择}} \\
 \midrule
 $x$ & 候选职业 & --- \\
-$f(x)$ & 职业特征向量 $\big(\textit{digit}(x),\,\textit{physical}(x),\,\textit{iprisk}(x)\big)$ & $[0,1]^3$ \\
-$\textit{digit}(x)$ & 数字化程度 & $[0,1]$ \\
-$\textit{physical}(x)$ & 物理锚定程度 & $[0,1]$ \\
-$\textit{iprisk}(x)$ & 知识产权/署名风险 & $[0,1]$ \\
-$D(x)$ & 数据可用性得分 & $[0,1]$ \\
-$\Delta(x_i,x_j)$ & 机制对比距离：$\lVert f(x_i)-f(x_j)\rVert_2$ & $\mathbb{R}_{\ge 0}$ \\
-$\lambda$ & 职业选择中的权衡系数 & 无量纲 \\
-$v_m(x)$ & 职业 $x$ 在O*NET描述符 $m$ 下的原始评分 & $[0,100]$ \\
-$z_m(x)$ & 最小-最大归一化评分 & $[0,1]$ \\
-$\textit{feature}_k(x)$ & 特征轴 $k$ 的特征值（多个描述符的平均） & $[0,1]$ \\
-$M_k$ & 特征轴 $k$ 对应的O*NET描述符集合 & 集合 \\
+$f(x)$ & 职业特征向量 $(digit(x),physical(x),iprisk(x))$ & $[0,1]^3$ \\
+$digit(x),\ physical(x),\ iprisk(x)$ & 数字化程度/物理锚定/署名风险 & $[0,1]$ \\
 $\mathrm{Area3D}(x_S,x_T,x_A)$ & 三职业在三维特征空间形成的三角形面积 & $\mathbb{R}_{\ge 0}$ \\
-$\mathrm{Area2D}_{\pi}(x_S,x_T,x_A)$ & 三职业在二维投影空间的三角形面积 & $\mathbb{R}_{\ge 0}$ \\
-$\pi(\cdot)$ & 三维特征向量到二维空间的投影映射 & $\mathbb{R}^3 \to \mathbb{R}^2$ \\
+$\mathrm{Area2D}_{\pi}(x_S,x_T,x_A),\ \pi(\cdot)$ & 二维投影三角形面积与投影映射 & $\mathbb{R}_{\ge 0};\ \mathbb{R}^3 \to \mathbb{R}^2$ \\
 \midrule
 
-% === 任务权重与影响参数 ===
-\multicolumn{3}{l}{\textbf{任务权重与影响参数}} \\
+% === 任务DNA与GenAI冲击 ===
+\multicolumn{3}{l}{\textbf{任务DNA与GenAI冲击}} \\
 \midrule
-$w_{ij}$ & 任务 $j$ 在职业 $i$ 中的权重；$\sum_j w_{ij}=1$ & $[0,1]$ \\
-$w_{ij}(0)$ & 基线任务权重（初始时刻） & $[0,1]$ \\
-$w_{ij}(t)$ & 时变任务劳动份额（任务结构） & $[0,1]$ \\
-$s_{ij}$ & 任务 $j$ 的替代分数（GenAI减少人力努力的程度） & $\{0.25,0.5,0.75\}$ \\
-$c_{ij}$ & 任务 $j$ 的增强分数（GenAI扩展功能需求的程度） & $\{0.25,0.5,0.75\}$ \\
-$\alpha_i$ & 职业级替代效应：$\sum_j w_{ij}s_{ij}$ & $[0,1]$ \\
-$\beta_i$ & 职业级增强效应：$\sum_j w_{ij}c_{ij}$ & $[0,1]$ \\
-$\mu_i$ & 职业净冲击：$\beta_i-\alpha_i$ & $[-1,1]$ \\
-$\bar c_i$ & 职业增强潜力：$\sum_j w_{ij}(0) c_{ij}$ & $[0,1]$ \\
-\midrule
-
-% === 职业演化动力学 ===
-\multicolumn{3}{l}{\textbf{职业演化动力学}} \\
-\midrule
-$E_i(t)$ & 职业 $i$ 在时刻 $t$ 的就业需求 & 岗位数 \\
-$A(t)$ & GenAI采纳轨迹（情景族：快速/中速/慢速） & $[0,1]$ \\
-$g_i$ & 职业 $i$ 的非AI基线增长率 & $\text{年}^{-1}$ \\
-$k$ & 采纳曲线陡峭程度参数 & $>0$ \\
-$t_0$ & 采纳曲线拐点时间（50\%采纳） & 年 \\
+$w_{ij}$ & 任务权重（由IM--FR数据归一化得到） & $[0,1]$ \\
+$s_{ij},\ c_{ij}$ & 任务替代/增强强度 & $\{0.10,0.30,0.50,0.70,0.90\}$ \\
+$\alpha_i,\ \beta_i,\ \mu_i$ & 职业级替代效应/增强效应/净冲击 & $[0,1];\ [-1,1]$ \\
+$\mu^{task}_{ij}$ & 任务净冲击：$c_{ij}-s_{ij}$ & $[-1,1]$ \\
+$A(t)$ & GenAI采纳率轨迹 & $[0,1]$ \\
+$q_{ij}(t),\ p_{ij}(t)$ & 未归一化/归一化任务需求份额 & $\mathbb{R}_{>0};\ [0,1]$ \\
+$\eta$ & 冲击强度缩放系数 & $\mathbb{R}_{>0}$ \\
+$\epsilon,\ \tau_{ij}(\epsilon)$ & 可忽略阈值与任务有效归零时间 & $(0,1);\ \text{年}$ \\
 \midrule
 
-% === 任务级功能需求模型 ===
-\multicolumn{3}{l}{\textbf{任务级功能需求模型}} \\
+% === 结构指标与重定义 ===
+\multicolumn{3}{l}{\textbf{结构指标与重定义}} \\
 \midrule
-$Q_i(t)$ & 职业 $i$ 的整体功能输出需求指数 & 无量纲 \\
-$\ell_{ij}(t)$ & 任务 $j$ 的劳动强度（单位输出的人力努力） & 无量纲 \\
-$D_{ij}(t)$ & 任务 $j$ 的人力劳动需求指数 & 无量纲 \\
-$\kappa_s$ & 替代速度系数 & $>0$ \\
-$\kappa_c$ & 增强对需求的放大因子 & $\ge 0$ \\
-$q_{ij}(t)$ & 未归一化任务权重：$w_{ij}[(1-A(t))+A(t)\exp(\eta\mu^{task}_{ij})]$ & $\mathbb{R}_{>0}$ \\
-$p_{ij}(t)$ & 任务 $j$ 的相对需求份额：$q_{ij}(t)/\sum_k q_{ik}(t)$ & $[0,1]$ \\
-$\eta$ & 冲击强度缩放系数（控制任务结构重排幅度） & $\mathbb{R}_{>0}$ \\
-$\tau_{ij}(\epsilon)$ & 任务 $j$ 的有效归零时间：$\min\{t: p_{ij}(t)\le\epsilon\}$ & 年 \\
+$\Delta p_{ij}(t_0,t_1)$ & 任务份额在区间 $[t_0,t_1]$ 的变化 & $[-1,1]$ \\
+$r_{ij}(t_0,t_1)$ & 结构变化贡献度 & $[0,1]$ \\
+$\mathrm{Top}_m(p_i(t)),\ m$ & 按份额排序的前 $m$ 个任务及其规模 & 集合；$\mathbb{Z}^+$ \\
+$\mathrm{rank}_i(j,t),\ I_i(t_0,t_1),\ \widetilde I_i(t_0,t_1)$ & 排名/翻转对数/归一化翻转强度 & $\mathbb{Z}^+;\ \mathbb{Z}_{\ge 0};\ [0,1]$ \\
+$J_i(t_0,t_1;m)$ & Top-$m$ 换血率 & $[0,1]$ \\
+$N_i$ & 职业 $i$ 的任务总数 & $\mathbb{Z}^+$ \\
+$\theta_I,\ \theta_J$ & 翻转强度阈值与换血率阈值 & $(0,1)$ \\
 \midrule
 
-% === 职业重新定义触发器 ===
-\multicolumn{3}{l}{\textbf{职业重新定义触发器}} \\
+% === GenAI能力量表 ===
+\multicolumn{3}{l}{\textbf{GenAI能力量表}} \\
 \midrule
-$M_{\text{drop}}(t)$ & 消亡质量（需求降至可忽略的任务的基线权重总和） & $[0,1]$ \\
-$\varepsilon$ & "可忽略任务"阈值（如 $0.05$ 表示基线的5\%） & $(0,1)$ \\
-$\theta$ & 触发职业重新定义的消亡质量阈值 & $(0,1)$ \\
-$\theta_I$ & 排名翻转强度阈值 & $(0,1)$ \\
-$\theta_J$ & 换血率阈值 & $(0,1)$ \\
-$\delta$ & 任务份额漂移阈值（Jensen--Shannon散度） & $>0$ \\
-$t^*$ & 职业重新定义触发时间 & 年 \\
-$\mathrm{JS}(\cdot\|\cdot)$ & Jensen--Shannon散度 & $[0,1]$ \\
-$\Delta p_{ij}(t_0,t_1)$ & 任务 $j$ 在时间段 $[t_0,t_1]$ 的份额变化 & $[-1,1]$ \\
-$r_{ij}(t_0,t_1)$ & 任务 $j$ 对结构变化的贡献度：$\frac{1}{2}|\Delta p_{ij}|$ & $[0,1]$ \\
-$\mathrm{rank}_i(j,t)$ & 任务 $j$ 在职业 $i$ 中按 $p_{ij}(t)$ 降序的排名 & $\mathbb{Z}^+$ \\
-$\mathrm{Top}_m(p_i(t))$ & 职业 $i$ 按 $p_{ij}(t)$ 降序的前 $m$ 个任务集合 & 集合 \\
-$I_i(t_0,t_1)$ & 排名翻转对数（Kendall逆序对数） & $\mathbb{Z}_{\ge 0}$ \\
-$\widetilde I_i(t_0,t_1)$ & 归一化排名翻转强度：$2I_i/(N_i(N_i-1))$ & $[0,1]$ \\
-$J_i(t_0,t_1;m)$ & Top-$m$ 换血率：$1-|\mathrm{Top}_m(t_0)\cap\mathrm{Top}_m(t_1)|/m$ & $[0,1]$ \\
-\midrule
-
-% === GenAI能力量表参数 ===
-\multicolumn{3}{l}{\textbf{GenAI能力量表参数}} \\
-\midrule
-$k$ & GenAI能力维度索引（D1--D9） & $\{1,\ldots,9\}$ \\
-$M_k$ & 维度 $k$ 的能力等级代表值（0--1标准化后） & $[0,1]$ \\
-$\rho_k$ & 维度 $k$ 的方向系数：$c_k - s_k$ & $[-1,1]$ \\
-$s_k$ & 维度 $k$ 的任务替代强度 & $[0,1]$ \\
-$c_k$ & 维度 $k$ 的任务增强强度 & $[0,1]$ \\
-\midrule
-
-% === 机制力量诊断 ===
-\multicolumn{3}{l}{\textbf{机制力量诊断}} \\
-\midrule
-$\mathrm{Var}_w(s)$ & 替代分数的加权方差：$\sum_j w_j(s_j-\alpha)^2$ & $\mathbb{R}_{\ge 0}$ \\
-$\mathrm{Var}_w(c)$ & 增强分数的加权方差：$\sum_j w_j(c_j-\beta)^2$ & $\mathbb{R}_{\ge 0}$ \\
-$h_s(g)$ & 替代分数层级 $g$ 的权重质量 & $[0,1]$ \\
-$h_c(g)$ & 增强分数层级 $g$ 的权重质量 & $[0,1]$ \\
-$m(d)$ & 能力维度 $d$ 的权重质量 & $[0,1]$ \\
-$\varepsilon_s,\varepsilon_c$ & 最小方差阈值（默认 $0.005$） & $\mathbb{R}_{>0}$ \\
-$\eta_s,\eta_d$ & 最大集中度阈值（默认 $0.70$, $0.60$） & $(0,1)$ \\
-\midrule
-
-% === 权威重标记流程 ===
-\multicolumn{3}{l}{\textbf{权威重标记流程}} \\
-\midrule
-$\textit{dim}_j$ & 映射到任务 $j$ 的能力维度集 & 集合 \\
-$d$ & 能力维度索引（如代码生成、调试、测试等） & --- \\
-$S_d$ & 维度 $d$ 的替代层级 & $\{0.25,0.5,0.75\}$ \\
-$C_d$ & 维度 $d$ 的增强层级 & $\{0.25,0.5,0.75\}$ \\
-$\mathrm{sim}(j,d)$ & 任务 $j$ 与维度 $d$ 之间的语义相似度 & $[0,1]$ \\
-$\tau$ & 语义匹配阈值 & $[0,1]$ \\
-$\pi_{jd}$ & 任务 $j$ 到维度 $d$ 的分配权重 & $[0,1]$ \\
-\midrule
-
-% === 任务DNA字段 ===
-\multicolumn{3}{l}{\textbf{任务DNA字段（O*NET数据）}} \\
-\midrule
-$\text{Task}_j$ & 任务陈述文本 & 文本 \\
-$\text{IM}_j$ & 任务重要性评分 & $[0,100]$ \\
-$\text{FR}_j$ & 任务频率评分 & $[0,100]$ \\
-$\tilde{w}_j$ & 未归一化权重：$\text{IM}_j \cdot \text{FR}_j$ & $\mathbb{R}_{\ge 0}$ \\
-SOC & O*NET-SOC职业代码 & 代码 \\
+$k$ & 能力维度索引（D1--D9） & $\{1,\ldots,9\}$ \\
+$M_k,\ s_k,\ c_k,\ \rho_k$ & 维度代表值/替代强度/增强强度/方向系数（$\rho_k=c_k-s_k$） & $[0,1];\ [-1,1]$ \\
 
 \end{longtable}
+}

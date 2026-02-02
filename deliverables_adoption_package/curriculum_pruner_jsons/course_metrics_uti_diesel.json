@@ -1,0 +1,105 @@
+{
+  "program_id": "uti_diesel",
+  "credits_unit": "semester_credits",
+  "horizon_year": 2027.5,
+  "scenario": "Baseline",
+  "eta": 1.0,
+  "courses": [
+    {
+      "course_code": "DT13-161",
+      "title": "Hydraulics",
+      "credits": 3.5,
+      "replaceability": 0.852061351684687,
+      "redundancy": 0.9047084687730779,
+      "employability_contrib": 0.5930859822917598,
+      "civic": 0.0,
+      "agency": 0.0,
+      "wellbeing": 0.0,
+      "lifelong": 0.0
+    },
+    {
+      "course_code": "DT13-162",
+      "title": "Steering and Suspension Systems",
+      "credits": 3.0,
+      "replaceability": 0.9019463428204104,
+      "redundancy": 1.0,
+      "employability_contrib": 0.0,
+      "civic": 0.0,
+      "agency": 0.0,
+      "wellbeing": 0.0,
+      "lifelong": 0.0
+    },
+    {
+      "course_code": "DT13-163",
+      "title": "Drivetrain",
+      "credits": 4.0,
+      "replaceability": 0.8594059867884438,
+      "redundancy": 0.9238493405533645,
+      "employability_contrib": 1.0,
+      "civic": 0.0,
+      "agency": 0.0,
+      "wellbeing": 0.0,
+      "lifelong": 0.0
+    },
+    {
+      "course_code": "DT13-164",
+      "title": "Brakes",
+      "credits": 4.0,
+      "replaceability": 0.7695995872379642,
+      "redundancy": 0.7131256442719467,
+      "employability_contrib": 0.0,
+      "civic": 0.0,
+      "agency": 0.0,
+      "wellbeing": 0.0,
+      "lifelong": 0.0
+    },
+    {
+      "course_code": "DT13-211",
+      "title": "Diesel Engines",
+      "credits": 4.5,
+      "replaceability": 1.0,
+      "redundancy": 0.9566760841156896,
+      "employability_contrib": 0.0,
+      "civic": 0.0,
+      "agency": 0.0,
+      "wellbeing": 0.0,
+      "lifelong": 0.0
+    },
+    {
+      "course_code": "DT13-212",
+      "title": "Diesel Engine Fuel Systems and Accessories",
+      "credits": 3.5,
+      "replaceability": 0.7726805000651135,
+      "redundancy": 0.7534306109369856,
+      "employability_contrib": 0.0,
+      "civic": 0.0,
+      "agency": 1.0,
+      "wellbeing": 0.0,
+      "lifelong": 0.0
+    },
+    {
+      "course_code": "DT13-213",
+      "title": "Preventative Maintenance",
+      "credits": 4.5,
+      "replaceability": 0.9923981835489077,
+      "redundancy": 0.81007327080505,
+      "employability_contrib": 0.0,
+      "civic": 0.0,
+      "agency": 0.0,
+      "wellbeing": 0.0,
+      "lifelong": 0.0
+    },
+    {
+      "course_code": "DT13-214",
+      "title": "Transport Refrigeration",
+      "credits": 3.5,
+      "replaceability": 0.9410328127256541,
+      "redundancy": 0.8761675390478062,
+      "employability_contrib": 0.0,
+      "civic": 0.0,
+      "agency": 0.0,
+      "wellbeing": 0.0,
+      "lifelong": 0.0
+    }
+  ]
+}

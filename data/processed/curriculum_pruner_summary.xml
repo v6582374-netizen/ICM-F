@@ -1,0 +1,23 @@
+<curriculum_pruner_summary>
+  <timestamp_utc>2026-02-01T14:03:42Z</timestamp_utc>
+  <programs>
+    <program id="mrsd_cmu">
+      <courses>17</courses>
+      <pruned>8</pruned>
+      <add_budget_credits>93.0</add_budget_credits>
+      <outputs>/Users/shiwen/Downloads/ICM-FORMAL/data/processed/course_metrics_mrsd_cmu.json, /Users/shiwen/Downloads/ICM-FORMAL/data/processed/prune_add_mrsd_cmu.json, /Users/shiwen/Downloads/ICM-FORMAL/figures/fig_curriculum_pruner_mrsd_cmu.png</outputs>
+    </program>
+    <program id="uti_diesel">
+      <courses>8</courses>
+      <pruned>6</pruned>
+      <add_budget_credits>23.0</add_budget_credits>
+      <outputs>/Users/shiwen/Downloads/ICM-FORMAL/data/processed/course_metrics_uti_diesel.json, /Users/shiwen/Downloads/ICM-FORMAL/data/processed/prune_add_uti_diesel.json, /Users/shiwen/Downloads/ICM-FORMAL/figures/fig_curriculum_pruner_uti_diesel.png</outputs>
+    </program>
+    <program id="generations_court_reporting">
+      <courses>7</courses>
+      <pruned>0</pruned>
+      <add_budget_credits>0.0</add_budget_credits>
+      <outputs>/Users/shiwen/Downloads/ICM-FORMAL/data/processed/course_metrics_generations_court_reporting.json, /Users/shiwen/Downloads/ICM-FORMAL/data/processed/prune_add_generations_court_reporting.json, /Users/shiwen/Downloads/ICM-FORMAL/figures/fig_curriculum_pruner_generations_court_reporting.png</outputs>
+    </program>
+  </programs>
+</curriculum_pruner_summary>

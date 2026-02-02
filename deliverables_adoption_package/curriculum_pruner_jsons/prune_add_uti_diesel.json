@@ -1,0 +1,71 @@
+{
+  "program_id": "uti_diesel",
+  "horizon_year": 2027.5,
+  "scenario": "Baseline",
+  "eta": 1.0,
+  "thresholds": {
+    "employability_floor": 0.08,
+    "redundancy_floor": 0.65,
+    "merge_similarity": 0.85
+  },
+  "prune_add": {
+    "prune_list": [
+      "DT13-162",
+      "DT13-164",
+      "DT13-211",
+      "DT13-212",
+      "DT13-213",
+      "DT13-214"
+    ],
+    "merge_suggestions": [
+      {
+        "course_a": "DT13-162",
+        "course_b": "DT13-211",
+        "coverage_similarity": 0.8696619406252469
+      },
+      {
+        "course_a": "DT13-163",
+        "course_b": "DT13-211",
+        "coverage_similarity": 0.8737332231592398
+      }
+    ],
+    "add_budget_credits": 23.0
+  },
+  "stability": {
+    "grid_size": 9,
+    "stable_prune": [
+      "DT13-162",
+      "DT13-164",
+      "DT13-211",
+      "DT13-212",
+      "DT13-213",
+      "DT13-214"
+    ],
+    "stability": {
+      "DT13-161": {
+        "prune_frequency": 0.0
+      },
+      "DT13-162": {
+        "prune_frequency": 1.0
+      },
+      "DT13-163": {
+        "prune_frequency": 0.0
+      },
+      "DT13-164": {
+        "prune_frequency": 1.0
+      },
+      "DT13-211": {
+        "prune_frequency": 1.0
+      },
+      "DT13-212": {
+        "prune_frequency": 1.0
+      },
+      "DT13-213": {
+        "prune_frequency": 1.0
+      },
+      "DT13-214": {
+        "prune_frequency": 1.0
+      }
+    }
+  }
+}

@@ -1,13 +1,13 @@
 # Fdb version 4
-["bibtex build/main"] 1769953489.11022 "build/main.aux" "build/main.bbl" "build/main" 1769953768.50132 0
-  "./references.bib" 1769943644.37964 15659 354fa1e633bd5300321e16d179ad8860 ""
+["bibtex build/main"] 1769957570.51619 "build/main.aux" "build/main.bbl" "build/main" 1769957993.74691 0
+  "./references.bib" 1769954590.78041 16617 07aa42f735255268c7f747361f59f2b7 ""
   "/usr/local/texlive/2025/texmf-dist/bibtex/bst/natbib/plainnat.bst" 1233624470 26816 ffe5423d2019860bad9f54bc402fac15 ""
-  "build/main.aux" 1769953768.12558 24579 73ffcff48a0d07996ad2cc4a7956c517 "pdflatex"
+  "build/main.aux" 1769957993.483 24129 afdfd2fbd29be8a9213ea1960e69f61b "pdflatex"
   (generated)
   "build/main.bbl"
   "build/main.blg"
   (rewritten before read)
-["pdflatex"] 1769953765.77446 "/Users/shiwen/Downloads/ICM-FORMAL/main.tex" "build/main.pdf" "main" 1769953768.50149 0
+["pdflatex"] 1769957992.22636 "/Users/shiwen/Downloads/ICM-FORMAL/main.tex" "build/main.pdf" "main" 1769957993.74705 0
   "/Users/shiwen/Downloads/ICM-FORMAL/main.tex" 1769943724.79584 2252 f4cf292e0b3f98d3b9852fe43ee11d7c ""
   "/usr/local/texlive/2025/texmf-dist/fonts/map/fontname/texfonts.map" 1577235249 3524 cb3e574dea2d1052e39280babc910dc8 ""
   "/usr/local/texlive/2025/texmf-dist/fonts/tfm/adobe/symbol/psyr.tfm" 1136768653 1408 5937f58aa508ea2cea4901c07d10f5fe ""
@@ -203,10 +203,10 @@
   "/usr/local/texlive/2025/texmf-dist/web2c/texmf.cnf" 1739380943 42148 61becc7c670cd061bb319c643c27fdd4 ""
   "/usr/local/texlive/2025/texmf-var/web2c/xetex/xelatex.fmt" 1764787184 5639809 56121d7525456f8b31558434d881d50c ""
   "/usr/local/texlive/2025/texmf.cnf" 1741450484 577 418a7058ec8e006d8704f60ecd22c938 ""
-  "build/main.aux" 1769953768.12558 24579 73ffcff48a0d07996ad2cc4a7956c517 "pdflatex"
-  "build/main.bbl" 1769953489.19622 10207 aac97e168f4dd1d18bd263254df22568 "bibtex build/main"
-  "build/main.out" 1769953768.12681 5651 ba2b5be46a8a10d31e08733b31622b92 "pdflatex"
-  "build/main.toc" 1769953768.12696 6089 27adcb429220746a9abd8222b5e09777 "pdflatex"
+  "build/main.aux" 1769957993.483 24129 afdfd2fbd29be8a9213ea1960e69f61b "pdflatex"
+  "build/main.bbl" 1769957570.59249 10281 c312bb4d47f18e888abdac345c5fb20d "bibtex build/main"
+  "build/main.out" 1769957993.48464 5630 77149de3aac4cdebafc8d71ebf80e225 "pdflatex"
+  "build/main.toc" 1769957993.48494 6070 5b8f6c1127cff9d9b7d14f9a3d350d29 "pdflatex"
   "figures/fig_STEM_rankflip_contribution_v2.pdf" 1769923903.04386 22070 6cd509ced95c4c2f6c53c2fde1b2a64a ""
   "figures/fig_STEM_task_share_all_tasks_appendix.pdf" 1769920118.17029 22151 8f12ad9f019a73f12e2c76517a07964e ""
   "figures/fig_genai_taskdna_chord_17-2199.08.pdf" 1769953750.59367 42478 d4323c6fec5af807f027842024bc9cb7 ""
@@ -226,15 +226,15 @@
   "main.tex" 1769943724.79584 2252 f4cf292e0b3f98d3b9852fe43ee11d7c ""
   "sections/abstract.tex" 1769931725.67425 1865 bc914444172ea6b1555e28a3a24f0c16 ""
   "sections/ai_tools_report.tex" 1769870791.77386 1299 6690c6c9d236de8c2ad49181832060f0 ""
-  "sections/appendices.tex" 1769943933.32707 10803 02a6137649c597fbbcc4cce85b452975 ""
+  "sections/appendices.tex" 1769954750.36294 10803 02a6137649c597fbbcc4cce85b452975 ""
   "sections/assumptions.tex" 1769929400.54537 2285 a8112d0bd48d56d0fbfa39ba0480eacc ""
   "sections/conclusion.tex" 1769870803.59605 68 c5568011a7b27624e05cd090cbfb4c6a ""
   "sections/discussion.tex" 1769923450.57037 357 43d52ee4ec8819f099bf47b5a0ee5478 ""
   "sections/introduction.tex" 1769870844.79325 3321 4c5f8f4f44b3d04245c2941453aa8532 ""
-  "sections/model_construction.tex" 1769953765.62267 36324 8d9aff9f46472eecffc07e570623a66a ""
+  "sections/model_construction.tex" 1769953853.35418 36324 8d9aff9f46472eecffc07e570623a66a ""
   "sections/notations.tex" 1769929375.34916 7586 328be580903d47d3e504f7d27f41d42d ""
   "sections/results_sensitivity.tex" 1769870962.3911 2680 3af78f9cfaf1fc40f9af91841d9fed81 ""
-  "sections/task3_program_recommendations.tex" 1769953245.34961 5321 9f93b931af45ac7117e6e01d34957620 ""
+  "sections/task3_program_recommendations.tex" 1769957992.0971 4083 d3b13452fac5a5146f60dbe726454c4f ""
   (generated)
   "build/main.aux"
   "build/main.log"

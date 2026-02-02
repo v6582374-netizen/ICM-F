@@ -1,0 +1,64 @@
+{
+  "schema_version": "1.0",
+  "program_id": "generations_court_reporting",
+  "source_url": "https://www.generations.edu/academics/associates-degree-programs/court-reporting-major/court-reporting-courses-overview/",
+  "retrieved_date": "2026-02-01",
+  "courses": [
+    {
+      "course_code": "CR-CAT-1",
+      "title": "Machine Shorthand Theory",
+      "description": "Instruction in shorthand theory, listening, and accurate stenographic writing.",
+      "credits": null,
+      "prerequisites": [],
+      "credits_note": "Credits not listed on the course overview page."
+    },
+    {
+      "course_code": "CR-CAT-2",
+      "title": "Judicial Court Reporting",
+      "description": "Court reporting procedures, ethics, and real-time reporting experience.",
+      "credits": null,
+      "prerequisites": [],
+      "credits_note": "Credits not listed on the course overview page."
+    },
+    {
+      "course_code": "CR-CAT-3",
+      "title": "Speedbuilding",
+      "description": "Speed and accuracy development for testimony, jury charge, and literary material.",
+      "credits": null,
+      "prerequisites": [],
+      "credits_note": "Credits not listed on the course overview page."
+    },
+    {
+      "course_code": "CR-CAT-4",
+      "title": "Legal & Medical Terminology",
+      "description": "Terminology and vocabulary used in legal and medical transcription contexts.",
+      "credits": null,
+      "prerequisites": [],
+      "credits_note": "Credits not listed on the course overview page."
+    },
+    {
+      "course_code": "CR-CAT-5",
+      "title": "English, Grammar & Vocabulary",
+      "description": "English language skills, grammar rules, and vocabulary for accurate transcription.",
+      "credits": null,
+      "prerequisites": [],
+      "credits_note": "Credits not listed on the course overview page."
+    },
+    {
+      "course_code": "CR-CAT-6",
+      "title": "General Education",
+      "description": "General education requirements supporting communication, ethics, and civic awareness.",
+      "credits": null,
+      "prerequisites": [],
+      "credits_note": "Credits not listed on the course overview page."
+    },
+    {
+      "course_code": "CR-CAT-7",
+      "title": "Supervised Internship",
+      "description": "Supervised internship with practical court reporting experience.",
+      "credits": null,
+      "prerequisites": [],
+      "credits_note": "Credits not listed on the course overview page."
+    }
+  ]
+}

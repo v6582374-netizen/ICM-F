@@ -1,0 +1,36 @@
+{
+  "schema_version": "1.0",
+  "base_year": 2026,
+  "programs": [
+    {
+      "program_id": "mrsd_cmu",
+      "institution": "Carnegie Mellon University",
+      "program_name": "MRSD (Master of Science in Robotic Systems Development)",
+      "soc": "17-2199.08",
+      "duration_years": 1.75,
+      "credits_unit": "units",
+      "curriculum_url": "https://mrsd.ri.cmu.edu/curriculum/",
+      "notes": "Units are reported as listed on the MRSD curriculum page."
+    },
+    {
+      "program_id": "uti_diesel",
+      "institution": "Universal Technical Institute",
+      "program_name": "Diesel Technology (Diesel Technology II)",
+      "soc": "49-1011.00",
+      "duration_years": 1.5,
+      "credits_unit": "semester_credits",
+      "curriculum_url": "https://catalogs.uti.edu/diesel-programs",
+      "notes": "Credits are TWC semester credits listed in the UTI catalog."
+    },
+    {
+      "program_id": "generations_court_reporting",
+      "institution": "Generations College",
+      "program_name": "Court Reporting (A.A.S.)",
+      "soc": "27-3092.00",
+      "duration_years": 2.0,
+      "credits_unit": "semester_credits",
+      "curriculum_url": "https://www.generations.edu/academics/associates-degree-programs/court-reporting-major/court-reporting-courses-overview/",
+      "notes": "Course categories and descriptions are taken from the course overview page; course-level credits are not listed on the page."
+    }
+  ]
+}

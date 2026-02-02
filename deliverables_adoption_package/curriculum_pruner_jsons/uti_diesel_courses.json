@@ -1,0 +1,64 @@
+{
+  "schema_version": "1.0",
+  "program_id": "uti_diesel",
+  "source_url": "https://catalogs.uti.edu/diesel-programs",
+  "retrieved_date": "2026-02-01",
+  "courses": [
+    {
+      "course_code": "DT13-161",
+      "title": "Hydraulics",
+      "description": "Diagnosis of hydraulic and hydrostatic system operation and related pump and control systems; tasks performed on test simulators with focus on safe repair practices.",
+      "credits": 3.5,
+      "prerequisites": []
+    },
+    {
+      "course_code": "DT13-162",
+      "title": "Steering and Suspension Systems",
+      "description": "Diagnosis and service of wheels, tires, hubs, steering linkage, gear boxes, steering column, power steering pumps, rear suspension systems, and alignment.",
+      "credits": 3.0,
+      "prerequisites": []
+    },
+    {
+      "course_code": "DT13-163",
+      "title": "Drivetrain",
+      "description": "Overview and diagnostics for clutch systems, driveline, drive axle, manual and automated transmissions, PTO, 4x4 configurations, and transfer cases.",
+      "credits": 4.0,
+      "prerequisites": []
+    },
+    {
+      "course_code": "DT13-164",
+      "title": "Brakes",
+      "description": "Brake theory, air supply systems, diagnostic tools, hydraulic brakes, ABS, traction control, power assist units, and high-pressure brake diagnostics.",
+      "credits": 4.0,
+      "prerequisites": []
+    },
+    {
+      "course_code": "DT13-211",
+      "title": "Diesel Engines",
+      "description": "Engine fundamentals, cylinder head service, piston and liner assembly, and diagnostics for lubrication, cooling, air induction/exhaust, turbochargers, EGR, and aftertreatment.",
+      "credits": 4.5,
+      "prerequisites": []
+    },
+    {
+      "course_code": "DT13-212",
+      "title": "Diesel Engine Fuel Systems and Accessories",
+      "description": "Diesel fuel systems and diagnostics including low/high pressure common rail, HEUI, electronic management, and engine retarder systems.",
+      "credits": 3.5,
+      "prerequisites": []
+    },
+    {
+      "course_code": "DT13-213",
+      "title": "Preventative Maintenance",
+      "description": "DOT inspections, FMCSA guidelines, manufacturer specifications, and maintenance documentation for full-vehicle inspection.",
+      "credits": 4.5,
+      "prerequisites": []
+    },
+    {
+      "course_code": "DT13-214",
+      "title": "Transport Refrigeration",
+      "description": "Refrigeration theory, EPA 608 requirements, diagnostic procedures, brazing, and servicing of auxiliary power units.",
+      "credits": 3.5,
+      "prerequisites": []
+    }
+  ]
+}

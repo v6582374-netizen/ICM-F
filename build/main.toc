@@ -46,19 +46,19 @@
 \contentsline {paragraph}{职业重新定义的综合判据}{20}{section*.35}%
 \contentsline {paragraph}{结构指标的可视化}{21}{section*.36}%
 \contentsline {subsection}{\numberline {3.5}教育项目推荐与Gen-AI整合策略}{21}{subsection.3.5}%
-\contentsline {subsubsection}{\numberline {3.5.1}课程优化元模型：剪枝-增补两阶段框架}{22}{subsubsection.3.5.1}%
-\contentsline {paragraph}{变量定义与符号约定}{22}{section*.38}%
-\contentsline {paragraph}{双轴目标函数}{22}{section*.39}%
-\contentsline {paragraph}{两阶段优化策略}{23}{section*.40}%
-\contentsline {paragraph}{模型特性与适用边界}{23}{section*.41}%
+\contentsline {subsubsection}{\numberline {3.5.1}基于文本的课程剪枝与增补元模型}{22}{subsubsection.3.5.1}%
+\contentsline {paragraph}{三轴评估框架}{22}{section*.38}%
+\contentsline {paragraph}{剪枝决策规则}{22}{section*.39}%
+\contentsline {paragraph}{增补建议机制}{23}{section*.40}%
+\contentsline {paragraph}{模型局限与缓解措施}{23}{section*.41}%
 \contentsline {section}{\numberline {4}仿真结果与敏感性分析}{23}{section.4}%
 \contentsline {subsection}{\numberline {4.1}职业选择的剪枝敏感性检验}{23}{subsection.4.1}%
 \contentsline {paragraph}{检验方法}{23}{section*.42}%
 \contentsline {paragraph}{检验结果}{23}{section*.43}%
 \contentsline {paragraph}{稳健性判定}{24}{section*.46}%
-\contentsline {section}{\numberline {5}讨论：优势与不足}{25}{section.5}%
-\contentsline {subsection}{\numberline {5.1}优势}{25}{subsection.5.1}%
-\contentsline {subsection}{\numberline {5.2}不足}{25}{subsection.5.2}%
+\contentsline {section}{\numberline {5}讨论：优势与不足}{24}{section.5}%
+\contentsline {subsection}{\numberline {5.1}优势}{24}{subsection.5.1}%
+\contentsline {subsection}{\numberline {5.2}不足}{24}{subsection.5.2}%
 \contentsline {section}{\numberline {6}结论}{25}{section.6}%
 \contentsline {section}{Appendices}{28}{section*.48}%
 \contentsline {section}{附录 \numberline {A}数据来源与变量定义}{28}{appendix.1.A}%

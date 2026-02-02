@@ -1,0 +1,93 @@
+{
+  "program_id": "generations_court_reporting",
+  "credits_unit": "semester_credits",
+  "horizon_year": 2028.0,
+  "scenario": "Baseline",
+  "eta": 1.0,
+  "courses": [
+    {
+      "course_code": "CR-CAT-1",
+      "title": "Machine Shorthand Theory",
+      "credits": null,
+      "replaceability": 0.9435487510492055,
+      "redundancy": 0.5654801612570491,
+      "employability_contrib": 1.0,
+      "civic": 0.0,
+      "agency": 0.0,
+      "wellbeing": 0.0,
+      "lifelong": 0.0
+    },
+    {
+      "course_code": "CR-CAT-2",
+      "title": "Judicial Court Reporting",
+      "credits": null,
+      "replaceability": 0.6281339040716991,
+      "redundancy": 0.8943289588602729,
+      "employability_contrib": 0.45914856336760496,
+      "civic": 0.5,
+      "agency": 0.0,
+      "wellbeing": 0.0,
+      "lifelong": 0.0
+    },
+    {
+      "course_code": "CR-CAT-3",
+      "title": "Speedbuilding",
+      "credits": null,
+      "replaceability": 0.8057578614195692,
+      "redundancy": 0.9317640844424527,
+      "employability_contrib": 0.5160881045115849,
+      "civic": 0.0,
+      "agency": 0.0,
+      "wellbeing": 0.0,
+      "lifelong": 1.0
+    },
+    {
+      "course_code": "CR-CAT-4",
+      "title": "Legal & Medical Terminology",
+      "credits": null,
+      "replaceability": 0.9209627725142717,
+      "redundancy": 0.9704320375339519,
+      "employability_contrib": 0.11283394133605551,
+      "civic": 0.0,
+      "agency": 0.0,
+      "wellbeing": 0.0,
+      "lifelong": 0.0
+    },
+    {
+      "course_code": "CR-CAT-5",
+      "title": "English, Grammar & Vocabulary",
+      "credits": null,
+      "replaceability": 1.0,
+      "redundancy": 0.8769922000776577,
+      "employability_contrib": 0.7234483784779898,
+      "civic": 0.0,
+      "agency": 0.0,
+      "wellbeing": 0.0,
+      "lifelong": 0.0
+    },
+    {
+      "course_code": "CR-CAT-6",
+      "title": "General Education",
+      "credits": null,
+      "replaceability": 0.720758139263013,
+      "redundancy": 1.0,
+      "employability_contrib": 0.3245687063145931,
+      "civic": 1.0,
+      "agency": 0.0,
+      "wellbeing": 0.0,
+      "lifelong": 0.0
+    },
+    {
+      "course_code": "CR-CAT-7",
+      "title": "Supervised Internship",
+      "credits": null,
+      "replaceability": 0.6814155457069219,
+      "redundancy": 0.6961095351573384,
+      "employability_contrib": 0.6115023939765761,
+      "civic": 0.0,
+      "agency": 0.0,
+      "wellbeing": 0.0,
+      "lifelong": 0.0
+    }
+  ]
+}

@@ -1,0 +1,127 @@
+{
+  "schema_version": "1.0",
+  "program_id": "mrsd_cmu",
+  "source_url": "https://mrsd.ri.cmu.edu/curriculum/",
+  "retrieved_date": "2026-02-01",
+  "courses": [
+    {
+      "course_code": "16-642",
+      "title": "Manipulation, Estimation, & Control",
+      "description": "Core robotics course focused on manipulation, estimation, and control for robotic systems.",
+      "credits": 12,
+      "prerequisites": []
+    },
+    {
+      "course_code": "16-650",
+      "title": "Systems Engineering and Management for Robotics",
+      "description": "Systems engineering methods and project management for robotics development.",
+      "credits": 12,
+      "prerequisites": []
+    },
+    {
+      "course_code": "16-665",
+      "title": "Robot Mobility on Air, Land, & Sea",
+      "description": "Robot mobility across aerial, terrestrial, and marine platforms with emphasis on dynamics and navigation.",
+      "credits": 12,
+      "prerequisites": []
+    },
+    {
+      "course_code": "16-720",
+      "title": "Computer Vision (or Technical Elective)",
+      "description": "Computer vision fundamentals for perception in robotics, with option to substitute a technical elective.",
+      "credits": 12,
+      "prerequisites": []
+    },
+    {
+      "course_code": "16-662",
+      "title": "Robot Autonomy",
+      "description": "Autonomy for robots including perception, planning, and decision-making.",
+      "credits": 12,
+      "prerequisites": []
+    },
+    {
+      "course_code": "16-681",
+      "title": "MRSD Project I",
+      "description": "Team project course focusing on robotics system design and integration (phase I).",
+      "credits": 15,
+      "prerequisites": []
+    },
+    {
+      "course_code": "16-697",
+      "title": "Introduction to Robotics Business",
+      "description": "Business fundamentals for robotics commercialization and product strategy.",
+      "credits": 9,
+      "prerequisites": []
+    },
+    {
+      "course_code": "16-991",
+      "title": "Internship",
+      "description": "12-week summer internship in robotics industry or research with final report.",
+      "credits": 3,
+      "prerequisites": []
+    },
+    {
+      "course_code": "16-682",
+      "title": "MRSD Project II",
+      "description": "Team project course focusing on robotics system design and integration (phase II).",
+      "credits": 15,
+      "prerequisites": []
+    },
+    {
+      "course_code": "16-698",
+      "title": "Advanced Topics in Robotics Business",
+      "description": "Advanced business topics for robotics ventures and operations.",
+      "credits": 9,
+      "prerequisites": []
+    },
+    {
+      "course_code": "TE-1",
+      "title": "Technical Elective A (12 units)",
+      "description": "Approved technical elective from SCS/RI/Engineering aligned with robotics development.",
+      "credits": 12,
+      "prerequisites": []
+    },
+    {
+      "course_code": "TE-2",
+      "title": "Technical Elective B (12 units)",
+      "description": "Approved technical elective from SCS/RI/Engineering aligned with robotics development.",
+      "credits": 12,
+      "prerequisites": []
+    },
+    {
+      "course_code": "TE-3",
+      "title": "Technical Elective C (12 units)",
+      "description": "Approved technical elective from SCS/RI/Engineering aligned with robotics development.",
+      "credits": 12,
+      "prerequisites": []
+    },
+    {
+      "course_code": "TE-4",
+      "title": "Technical Elective D (12 units)",
+      "description": "Approved technical elective from SCS/RI/Engineering aligned with robotics development.",
+      "credits": 12,
+      "prerequisites": []
+    },
+    {
+      "course_code": "TE-5",
+      "title": "Technical Elective E (12 units)",
+      "description": "Approved technical elective from SCS/RI/Engineering aligned with robotics development.",
+      "credits": 12,
+      "prerequisites": []
+    },
+    {
+      "course_code": "BE-1",
+      "title": "Business Elective A (6 units)",
+      "description": "Business elective from Heinz or Tepper focusing on management and decision-making.",
+      "credits": 6,
+      "prerequisites": []
+    },
+    {
+      "course_code": "BE-2",
+      "title": "Business Elective B (6 units)",
+      "description": "Business elective from Heinz or Tepper focusing on management and decision-making.",
+      "credits": 6,
+      "prerequisites": []
+    }
+  ]
+}

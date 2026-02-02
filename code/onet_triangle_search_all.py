@@ -1,6 +1,7 @@
 import argparse
 import json
 import time
+import textwrap
 from dataclasses import dataclass
 from pathlib import Path
 from typing import Dict, List, Tuple
@@ -327,6 +328,21 @@ def apply_plot_style() -> None:
     )
 
 
+def apply_axis_trim(ax, coords: np.ndarray, pad_ratio: float = 0.03) -> None:
+    mins = coords.min(axis=0)
+    maxs = coords.max(axis=0)
+    ranges = maxs - mins
+    pad = np.where(ranges > 0, ranges * pad_ratio, 0.02)
+    ax.set_xlim(mins[0] - pad[0], maxs[0] + pad[0])
+    ax.set_ylim(mins[1] - pad[1], maxs[1] + pad[1])
+    ax.set_zlim(mins[2] - pad[2], maxs[2] + pad[2])
+
+
+def wrap_annotation_text(text: str, width: int = 26) -> str:
+    cleaned = " ".join(str(text).split())
+    return textwrap.fill(cleaned, width=width, break_long_words=False, break_on_hyphens=False)
+
+
 def plot_trendline(ax, x: np.ndarray, y: np.ndarray, color: str, label: str) -> None:
     if len(x) < 2:
         return
@@ -370,13 +386,19 @@ def plot_3d_all_points(
             edgecolor="#4f4f4f",
             label=f"Triangle {row['domain']}",
         )
+        label_text = f"{row['title']} ({row['onet_soc_code']})"
+        z_offset = 0.01
+        if str(row["title"]).startswith("First-Line Supervisors of Mechanics"):
+            z_offset = -0.1
         ax.text(
-            row["digit"] + 0.015,
-            row["physical"] + 0.015,
-            row["iprisk"] + 0.015,
-            row["title"],
+            row["digit"] + 0.01,
+            row["physical"] + 0.01,
+            row["iprisk"] + z_offset,
+            wrap_annotation_text(label_text, width=28),
             fontsize=9,
-            color="#3f3f3f",
+            color="#2f2f2f",
+            linespacing=1.05,
+            clip_on=True,
         )
 
     triangle = Poly3DCollection([points], alpha=0.2, facecolor="#A7B3BD", edgecolor="#7A8C99")
@@ -405,6 +427,7 @@ def plot_3d_all_points(
     ax.set_zlabel("IP Risk (normalized)")
     ax.set_title("All Occupations: 3D Heterogeneity Cloud")
     ax.grid(True)
+    apply_axis_trim(ax, coords)
 
     ax.legend(loc="upper left", bbox_to_anchor=(0.0, 1.02), ncol=2)
     output_path.parent.mkdir(parents=True, exist_ok=True)
@@ -455,7 +478,20 @@ def plot_2d_projections_all_points(
             label="Triangle points",
         )
         for _, row in triangle_df.iterrows():
-            ax.text(row[x_col] + 0.012, row[y_col] + 0.012, row["title"], fontsize=8, color="#3f3f3f")
+            label_with_code = f"{row['title']} ({row['onet_soc_code']})"
+            x_pos = float(row[x_col]) + 0.01
+            y_pos = float(row[y_col]) + 0.01
+            x_pos = min(max(x_pos, -0.02), 1.02)
+            y_pos = min(max(y_pos, -0.02), 1.02)
+            ax.text(
+                x_pos,
+                y_pos,
+                wrap_annotation_text(label_with_code, width=30),
+                fontsize=8,
+                color="#2f2f2f",
+                linespacing=1.05,
+                clip_on=True,
+            )
 
         plot_trendline(ax, all_df[x_col].to_numpy(), all_df[y_col].to_numpy(), "#7A7A7A", "Trendline")
         ax.set_xlabel(f"{x_col.capitalize()} (normalized)")
@@ -705,7 +741,7 @@ def main() -> None:
     output_triangle_sensitivity = Path(f"data/processed/max_area_triangle_{suffix}_sensitivity.json")
     output_report = Path(f"data/processed/max_area_triangle_{suffix}_search_report.md")
     output_mapping_used = Path("data/processed/domain_mapping_used.md")
-    fig_3d = Path(f"figures/fig_heterogeneity_3d_all_points_{suffix}.pdf")
+    fig_3d = Path(f"figures/fig_heterogeneity_3d_all_points_{suffix}_tight.pdf")
     fig_2d = Path(f"figures/fig_heterogeneity_2d_projections_all_points_{suffix}.pdf")
     fig_sensitivity = Path(f"figures/fig_sensitivity_candidate_scale_{suffix}.pdf")
 

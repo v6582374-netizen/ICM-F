@@ -1,32 +1,24 @@
 
 \section{模型构建与实现}
 
-\subsection{职业选择作为建模决策}
+\subsection{三个领域的职业选择}
+对于职业的选择，我们并没有直接将此视为一种假设，而是将其视为一个优化问题。
+三个职业之间的差异性作为目标函数，目的是确保模型具有尽可能大的解释效度。
+而“完备的数据支撑”与“政策相关性“作为约束条件，最终确保后续的模型均建立在基于数据的可复现的框架之上。
 
-问题的前提要求从STEM、技工和艺术领域各选择一个职业。
-我们没有将这一步骤视为临时假设（主观选择），而是明确地将职业选择建模为一个优化问题。
-这确保了后续关于AI驱动影响和教育建议的分析建立在可重现且数据驱动的框架之上。
-职业选择的核心目标不是所有职业的代表性，而是\emph{解释性对比}。
-具体而言，三个职业的任务结构应当在与GenAI的交互方式上存在显著差异。
-除了机制对比外，问题还明确强调数据驱动的推理以及后文的政策建议。因此，所选职业同时需要有完备的数据支撑以及政策相关性。考虑到这两点，按照和题目所给的三个领域的相关度。
+\subsubsection{基于O*NET的职业特征参数}
+首先，我们需要将三个职业划定在三种特征维度上，拉开三者的机制对比度，正好题目本身确定的三个领域具备这样的条件，于是我们参考得出三个职业的特征参数为 $\textit{digit}(x)$、$\textit{physical}(x)$ 和 $\textit{iprisk}(x)$ ，然后我们需要针对美国所有的职业在这三个维度上进行打分，为了避免主观赋值，我们采用美国劳工部维护的\textbf{O*NET}职业数据库\cite{onet2025database}作为统一数据源。
+O*NET基于专家调查和从业者反馈，为每个职业提供大量\emph{数值量表descriptor}，大多数指标自然地给出在$0$--$100$之间的实数上，适合直接用于定量建模。
 
-\subsubsection{基于O*NET的职业特征参数客观化}
-
-为避免职业特征参数 $\textit{digit}(x)$、$\textit{physical}(x)$ 和 $\textit{iprisk}(x)$ 的主观赋值，我们采用美国劳工部维护的\textbf{O*NET}职业数据库\cite{onet2025database}作为统一数据源。
-O*NET基于专家调查和从业者反馈，为每个职业提供大量\emph{数值量表描述符}，大多数指标自然地给出在$0$--$100$之间的实数上，适合直接用于定量建模。
-
-我们不试图为每个维度找到"唯一正确"的指标，对于每个特征轴，我们选择少量语义上直接对应且可下载的O*NET描述符\cite{onet2025database}，并将其用作该轴的代理变量。
-对于没有描述（descriptor字段缺失）的职业直接剔除。
-基于问题陈述和数据可用性约束，我们识别出三个主导维度，这些维度控制着AI影响在各职业间的异质性：
+我们不试图为每个维度找到"唯一正确"的指标，针对每个特征轴，我们选择语义能将O*NET描述符与三个维度直接对应起来的，且可下载的O*NET描述符\cite{onet2025database}，并将其用作该轴的代理变量，我们对于没有描述（descriptor字段缺失）的职业直接剔除。
+基于以上约束，我们识别出三个主导维度
 \begin{itemize}
     \item \textbf{数字化程度$digit(x)$}：核心任务可以以数字方式表示、自动化或增强的程度；
     \item \textbf{物理锚定$physical(x)$}：任务执行对现场物理存在或与环境的手动交互的依赖程度；
     \item \textbf{知识产权和署名风险$iprisk(x)$}：价值创造对作者身份、原创性和所有权的敏感程度。
 \end{itemize}
 
-表~\ref{tab:onet_descriptor_mapping} 列出了每个特征轴所对应的O*NET描述符及其可辩护性说明。
-从O*NET下载所选descriptor的数值（均为0–100量表）\cite{onet2025database}，再在全职业集合上做min-max归一化到[0,1]，得到digit(x), physical(x), iprisk(x)。
-
+表~\ref{tab:onet_descriptor_mapping} 列出了每个特征轴所对应的O*NET描述符及说明。
 \begin{figure}[H]
 \centering
 \includegraphics[width=0.86\textwidth]{figures/fig_genai_taskdna_chord_17-2199.08.pdf}
@@ -40,7 +32,7 @@ O*NET基于专家调查和从业者反馈，为每个职业提供大量\emph{数
 \label{tab:onet_descriptor_mapping}
 \begin{tabular}{@{}>{\raggedright\arraybackslash}p{2.2cm} >{\raggedright\arraybackslash}p{4.0cm} >{\raggedright\arraybackslash}p{4.8cm} >{\raggedright\arraybackslash}p{3.0cm}@{}}
 \toprule
-\textbf{特征轴} & \textbf{客观取值方式} & \textbf{O*NET描述符} & \textbf{可辩护性} \\
+\textbf{特征轴} & \textbf{客观取值方式} & \textbf{O*NET描述符} & \textbf{合理性说明} \\
 \midrule
 $digit(x)$\newline 数字化程度 & 工作行为中对计算机/电子媒介的依赖 & Working with Computers~\cite{onetWorkingWithComputers}；\newline E-Mail~\cite{onetEmail} & 直接刻画工作是否以计算机与电子信息流为主 \\
 \addlinespace
@@ -51,117 +43,106 @@ $iprisk(x)$\newline 产权/归因风险 & 产出是否以原创表达/创意贡�
 \end{tabular}
 \end{table}
 
-\paragraph{归一化与可重现性}
-对于每个职业 $x$，令 $v_m(x)$ 表示其在O*NET描述符 $m$ 下的原始评分（$0$--$100$）。
+对于每个职业 $x$，其均有对应的描述符的评分，那么令 $v_m(x)$ 表示其在O*NET描述符 $m$ 下的原始评分（$0$--$100$）。
 我们在整个职业集上应用最小-最大归一化：
 \begin{equation}
     z_m(x)=\frac{v_m(x)-\min_{y}v_m(y)}{\max_{y}v_m(y)-\min_{y}v_m(y)} \in [0,1],
 \end{equation}
-其中 $y$ 遍历所有职业。设特征轴 $k \in \{digit, physical, iprisk\}$ 对应的描述符集合为 $M_k$（见表~\ref{tab:onet_descriptor_mapping}，每个特征轴对应2个O*NET描述符），则对同一特征轴下的多个描述符取等权平均：
+其中 $y$ 遍历所有职业。设特征轴 $k \in \{digit, physical, iprisk\}$ 对应的描述符集合为 $M_k$（见表~\ref{tab:onet_descriptor_mapping}，每个特征轴对应2个O*NET描述符，总共有6个），则对同一特征轴下的多个描述符取等权平均：
 \begin{equation}
     \textit{feature}_k(x) = \frac{1}{|M_k|} \sum_{m \in M_k} z_m(x).
 \end{equation}
-由此得到 $\textit{digit}(x)$、$\textit{physical}(x)$ 和 $\textit{iprisk}(x)$。
-该过程完全基于公开可用数据和明确规则，确保参数值的可重现性和可审计性。
-
+由此得到 $\textit{digit}(x)$、$\textit{physical}(x)$ 和 $\textit{iprisk}(x)$的数值。
 
 每个候选职业$x$由一个归一化的三维特征向量表示，可以作为3Dscatter中的一个数据点。
 \begin{equation}
     f(x)=\big(digit(x),\,physical(x),\,iprisk(x)\big)\in[0,1]^3,
 \end{equation}
-其中较高的值表示相应特征的存在更强。
+其中较高的值表示相应特征更强。
 
 \[
 Area3D(x_S, x_T, x_A) = \frac{1}{2} \left\lVert \big(f(x_T) - f(x_S)\big) \times \big(f(x_A) - f(x_S)\big) \right\rVert_2,
 \]
 其中 $x_S \in \text{STEM}$ ，$x_T \in \text{Trade}$ ，$x_A \in \text{Arts}$ 。\\
-为衡量三种职业在特征空间中的异质性，我们用三点在三维空间中所形成三角形的面积作为衡量标准，定义为
-
-我们以最大化该三角形面积为目标，形式化为
+为衡量三种职业特征的异质性（差异性），我们用三个点在三维空间中所形成三角形的面积作为标准，并以最大化该三角形面积为目标，定义为
 \[
 \max_{x_S \in S,\; x_T \in T,\; x_A \in A} \; Area3D(x_S, x_T, x_A).
 \]
-此外，为便于后续可视化表达，定义其在二维投影下的面积为
-\[
-Area2D_{\pi}(x_S, x_T, x_A) = \frac{1}{2} \left| \det \left([\pi(f(x_T)) - \pi(f(x_S)),\ \pi(f(x_A)) - \pi(f(x_S))] \right) \right|,
-\]
-其中 $\pi(\cdot)$ 表示三维特征到二维空间的投影映射。
+%（公式已移至附录，详见附录~\ref{appendix:area2d_formula}。此处不再赘述。）
 
-我们可视化了三维异质性及其二维投影，以验证所选职业在特征空间中占据不同区域（图~\ref{fig:heterogeneity3d} 和图~\ref{fig:heterogeneity2d}）。
+基于以上公式，我们通过编程可视化了三维异质性及其二维投影（图~\ref{fig:heterogeneity3d} 和图~\ref{fig:heterogeneity2d}）。
 
 \begin{figure}[H]
 \centering
-\includegraphics[width=0.78\textwidth]{figures/fig_heterogeneity_3d_all_points_strict.pdf}
-\caption{基于O*NET描述符（全局归一化）的全体职业三维异质性点云与最优三角面（strict映射）。}
+\includegraphics[width=0.78\textwidth]{figures/fig_heterogeneity_3d_all_points_strict_tight.pdf}
+\caption{全体职业三维异质性点云与最优三角面（基于归一化后的O*NET描述符）}
 \label{fig:heterogeneity3d}
 \end{figure}
 
-我们先在全点云上求解无约束的最大面积三角形，随后根据赛题要求加入“STEM/技工/艺术三域各取一职”的约束，在可行域内重新最优化，得到约束后的最优三点：STEM（Robotics Engineers）、技工/Trades（First-Line Supervisors of Mechanics, Installers, and Repairers）与艺术/媒体（Court Reporters and Simultaneous Captioners）。其三角形面积为 $0.262221$，最短边长为 $0.751378$，该约束最优结果刻画三域职业在三维特征空间上的最大异质性跨度。
+我们先在全点云上求解无约束的最大面积三角形，但是发现得到的其中一个职业并不包含O*NET对于三个领域的定义，因此我们参考O*NET维护的三个领域的职业数据集，在可行域内加入必须包含于此数据集的约束，得到约束后的最优三点：STEM（Robotics Engineers）、技工/Trades（First-Line Supervisors of Mechanics, Installers, and Repairers）与艺术/媒体（Court Reporters and Simultaneous Captioners）。其三角形面积为 $0.262221$。
 
 \vspace{0.6\baselineskip}
 
 \begin{figure}[H]
 \centering
 \includegraphics[width=0.92\textwidth]{figures/fig_heterogeneity_2d_projections_all_points_strict.pdf}
-\caption{全体职业异质性空间的二维投影与最优三点标注（strict映射，全局归一化）。}
+\caption{全体职业异质性空间的二维投影与最优三点标注（二维面积公式见附录~\ref{appendix:area2d_formula}）}
 \label{fig:heterogeneity2d}
 \end{figure}
 
-\begin{table}[H]
+针对二维投影进行分析：Robotics Engineers的数字化略低于Court Reporters and Simultaneous Captioners，并且位于高物理性、高知识产权风险区域。First-Line Supervisors of Mechanics, Installers, and Repairers位于低物理性、中等知识产权风险区域；而Court Reporters and Simultaneous Captioners则位于中等物理性、低知识产权风险区域。可见三种职业在任意两维组合下均保持较大的异质性，将其作为三个领域代表具有合理性。\\
+三者的O*NET-SOC 代码分别为：STEM：17-2199.08；Trade：49-1011.00；Arts：27-3092.00。
+
+\subsection{职业演化的模型构建}
+
+问题的第二个核心要求是为所选的三个职业构建一个\emph{数据驱动}的未来演化模型，并强调了结合“当前轨迹（current trajectory）”以及会因GenAI而发生变化的驱动因素。
+首先，从第一性原理出发，职业是由其任务组成所定义的，因此在Gen-AI的影响下，其未来的Task DNA必定会发生结构上的“变异”，因此，预测未来的该职业的岗位需求本身逻辑上就存在问题，因为彼时职业已经非此时职业了。\\
+所以，本研究模型并不直接预测未来职业的岗位需求，而是从更本质的角度出发，研究在当前Gen-AI发展轨迹下，未来职业的Task DNA的结构变化。\\
+
+\begin{figure}[htbp]
 \centering
-\caption{最大三角形面积解中三域（STEM、技工、艺术）所选代表职业与 O*NET-SOC 代码。三个点分别代表在三维特征空间选出的异质性最大化顶点，即模型异质性指标的最优解。}
-\label{tab:heterogeneity_tri_vertices}
-\begin{tabular}{c c p{6.6cm} p{4.2cm}}
-\toprule
-\textbf{领域} & \textbf{O*NET-SOC代码} & \textbf{职业名称} & \textbf{3D最大面积解中的角色} \\
-\midrule
-STEM  & 17-2199.08 & \parbox[t]{6.6cm}{Robotics Engineers} & \parbox[t]{4.2cm}{最优三角形顶点（S）} \\
-Trade & 49-1011.00 & \parbox[t]{6.6cm}{First-Line Supervisors of Mechanics, Installers, and Repairers} & \parbox[t]{4.2cm}{最优三角形顶点（T）} \\
-Arts  & 27-3092.00 & \parbox[t]{6.6cm}{Court Reporters and Simultaneous Captioners} & \parbox[t]{4.2cm}{最优三角形顶点（A）} \\
-\bottomrule
-\end{tabular}
-\end{table}
-三种职业均包含于官方对三个领域的定义\cite{onet2019structure}。
+\begin{tikzpicture}[
+  node distance=2.4cm,
+  box/.style={draw=gray!70, rounded corners=2pt, minimum width=3.2cm, minimum height=1.0cm, align=center},
+  mid/.style={draw=gray!70, rounded corners=2pt, minimum width=3.2cm, minimum height=1.0cm, align=center, fill=gray!5},
+  arrow/.style={-Latex, line width=0.8pt, color=gray!80}
+]
+  \node[box] (jobA) {职业A\\(原有结构)};
+  \node[mid, right=of jobA] (mutation) {结构变异};
+  \node[box, right=of mutation] (jobB) {职业B\\(重定义后)};
 
-\paragraph{稳健性证据与数值结果}
-为验证最大异质性三角形选取结果的稳健性，我们在不同参数设置与采样条件下均重复求解，并发现核心指标高度一致。具体地，基于严格映射与全局归一化方法，三维最大面积三角形的面积为
-\begin{equation*}
-    \mathrm{Area3D} = 0.262221
-\end{equation*}
-最短边长为
-\begin{equation*}
-    \mathrm{min\_edge\_length} = 0.751378
-\end{equation*}
-进一步，在不同采样规模 $M\in\{200, 400, 800\}$ 下，最优三角形面积的相对差异均为 $0.0\%$，表明所建模型和结论具备高度的鲁棒性与可重复性。
+  \draw[arrow] (jobA) -- node[above, align=center, font=\small, text=gray!80] {Gen-AI影响} (mutation);
+  \draw[arrow] (mutation) -- node[above, align=center, font=\small, text=gray!80] {职业重定义} (jobB);
 
+  \coordinate (progressLeft) at ($(jobA.south west)+(0,-0.6)$);
+  \coordinate (progressRight) at ($(jobB.south east)+(0,-0.6)$);
+  \coordinate (progressMid) at ($(progressLeft)!0.5!(progressRight)$);
+  \draw[arrow] (progressLeft) -- ($(progressMid)+(-0.6,0)$);
+  \draw[arrow] ($(progressMid)+(0.6,0)$) -- (progressRight);
+  \node[font=\small, text=gray!80] at (progressMid) {发展趋势};
+\end{tikzpicture}
+\caption{任务结构重排导致职业重定义的演绎路径}
+\label{fig:task_redefinition}
+\end{figure}
 
 
-\subsection{职业演化的模型选择}
 
-问题的第二个核心要求是构建一个\emph{数据驱动}的未来演化模型，并明确说明“当前轨迹（current trajectory）”以及会因GenAI而发生变化的驱动因素。
-在我们框架中，预测对象不直接设为“职业岗位数”，而是设为\textbf{职业内部的任务需求结构}：即在给定GenAI采纳轨迹下，各任务在职业内的重要性（或相对需求）如何随时间变化。
-因此，我们首先构建 Task DNA 的任务权重 $w_{ij}$，并以权威来源重标注任务级替代/增强强度 $(s_{ij},c_{ij})$，进而得到任务级净冲击
+
+我们首先构建 Task DNA 的任务权重 $w_{ij}$，结合权威数据来源，在任务级层面，计算其替代/增强强度 $(s_{ij},c_{ij})$，进而得到该职业的任务级净冲击为
 \begin{equation}
     \mu_{ij}^{task}=c_{ij}-s_{ij},
 \end{equation}
-并将“当前轨迹”形式化为外生采纳路径 $A(t)\in[0,1]$（快速/中速/慢速情景），用于驱动任务需求随时间的演化。
+并将“当前轨迹”定义为外生采纳路径 $A(t)\in[0,1]$（快速/中速/慢速三种情景），用于驱动任务需求随时间的演化。
 
 \vspace{0.5\baselineskip}
 
 \subsubsection{未来演化的可计算定义}
-为消除题目中“future”的时间模糊性，我们将未来定义为\textbf{任务层面的可计算事件}：当某个关键任务在职业内的相对需求（份额）下降至一个足够小的阈值 $\epsilon$ 以下时，即认为该任务在可操作意义上“趋近于消失”。
+为消除题目中“future”的时间模糊性，我们基于“没有人能准确预测未来某个具体时间节点的变化”原则，转而采用更广义的时间跨度。我们将未来定义为\textbf{任务层面的可计算事件}：当某个关键任务在职业内的相对需求（份额）下降至一个足够小的阈值 $\epsilon$ 以下时，即认为该任务在可操作意义上“趋近于消失”。
 具体地，若 $p_{ij}(t)$ 表示职业 $i$ 中任务 $j$ 在时刻 $t$ 的相对需求份额（定义见后文），则定义任务 $j$ 的“有效归零时间”为
 \begin{equation}
     \tau_{ij}(\epsilon)=\min\{t:\ p_{ij}(t)\le \epsilon\}.
 \end{equation}
 该定义可直接用于回答“未来何时发生显著变化”的问题，并允许通过不同 $\epsilon$ 取值进行敏感性分析。
-
-\subsubsection{模型框架选择与理由}
-我们采用一个以任务为核心的最小化框架：
-(1) 职业由任务集合组成，任务具有可从O*NET复现的权重；
-(2) GenAI的影响在任务级体现为替代/增强（互补）强度；
-(3) “当前轨迹”由采纳路径 $A(t)$ 表示，采纳越深，任务级冲击释放越充分。
-该框架直接对应任务分解视角下的技术冲击机制（技术以任务为单位改变工作内容），并避免对“职业岗位数”做强外推。
 
 \subsection{任务层动态预测模型（Task-first）}
 
@@ -172,43 +153,60 @@ Arts  & 27-3092.00 & \parbox[t]{6.6cm}{Court Reporters and Simultaneous Captione
 \subsubsection{任务权重（Task DNA）与任务净冲击}
 
 \paragraph{任务DNA的定义与数据来源}
-对于职业 $i$，我们选取其\textbf{前20项核心任务}作为其任务DNA（任务索引 $j = 1, \ldots, 20$）。每项任务 $j$ 取自O*NET任务描述 $Task_j$\cite{onet2025database}，并从同一数据库中检索两个基于量表的描述符：
+对于职业 $i$，我们需要选取其\textbf{前20项核心任务}作为其任务DNA（任务索引 $j = 1, \ldots, 20$）。每项任务 $j$ 取自O*NET对于此职业的任务描述 $Task_j$\cite{onet2025database}，该数据库对于每个职业的任务构成都有相应的重要性和频率评分数据，因此我们定义两个基于该数据的描述符：
 \begin{itemize}
     \item \textbf{任务重要性} $IM_j$（范围 0--100）；
     \item \textbf{任务频率} $FR_j$（范围 0--100，或同等的频率量表）。
 \end{itemize}
-由于这些值可以直接从O*NET数据库下载，因此任务列表和基础度量是完全\textbf{可复现}的。
 
-\paragraph{任务权重的推导}
 我们将任务权重定义为重要性 $IM_j$ 与频率 $FR_j$ 乘积的归一化值。令未归一化的权重为：
 \begin{equation}
     \tilde{w}_j = IM_j \cdot FR_j,
 \end{equation}
 然后通过下式进行归一化：
 \begin{equation}
-    w_{ij} = w_j = \frac{\tilde{w}_j}{\sum_{k=1}^{20} \tilde{w}_k}, \quad \sum_{j=1}^{20} w_j = 1.
+    w_{ij} = \frac{\tilde{w}_j}{\sum_{k=1}^{20} \tilde{w}_k}, \quad \sum_{j=1}^{20} w_j = 1.
 \end{equation}
-如果所选SOC（标准职业分类）代码缺少频率量表 $FR_j$，则应用降级规则，仅使用重要性值（即设 $\tilde{w}_j = IM_j$），并随后通过敏感性分析测试其稳健性。
+如果所选SOC（标准职业分类）代码缺少频率量表 $FR_j$，则仅使用重要性值（即设 $\tilde{w}_j = IM_j$）。
+进一步的，通过Python编程，我们在两个方向上分别展示三个职业的可视化图标：
 
-\paragraph{任务DNA与权威s,c分布（三职业）}
-为确保任务级建模输入可追溯，我们为三职业分别展示两类可视化图表：
 
 \begin{itemize}
-    \item \textbf{IM--FR 散点图}（左图）：横轴为任务重要性 $IM_j$，纵轴为任务频率 $FR_j$，每个点代表一项任务，点的面积与任务权重 $w_j$ 成正比。该图的作用是\emph{直观呈现职业内部的任务结构}：点越大、位置越靠右上角，表明该任务在职业中占据越核心的地位。通过观察点的分布形态，可以快速判断职业的任务集中度（少数任务主导 vs. 多任务均衡）以及任务的重要性--频率相关性。
-    \item \textbf{权威 $s,c$ 档位分布图}（右图）：展示经权威评估重标注后，各任务在替代强度 $s$ 和增强强度 $c$ 离散档位上的分布。该图的作用是\emph{揭示GenAI对该职业的潜在冲击模式}：若多数任务落在高 $s$ 低 $c$ 区域，表明该职业面临较高的自动化替代风险；反之，若多数任务落在低 $s$ 高 $c$ 区域，则GenAI更可能增强而非替代人类工作。
+    \item \textbf{IM--FR 散点图}：横轴为任务重要性 $IM_j$，纵轴为任务频率 $FR_j$，每个点代表一项任务，点的面积与任务权重 $w_j$ 成正比。该图的作用是\emph{直观呈现职业内部的任务结构}：点越大、位置越靠右上角，表明该任务在职业中占据越核心的地位。通过观察点的分布形态，可以快速判断职业的任务集中度（少数任务主导 vs. 多任务均衡）以及任务的重要性--频率相关性。
+    \item \textbf{权威 $s,c$ 档位分布图}：展示经权威评估重标注后，各任务在替代强度 $s$ 和增强强度 $c$ 离散档位上的分布。该图的作用是\emph{揭示GenAI对该职业的潜在冲击模式}：若多数任务落在高 $s$ 低 $c$ 区域，表明该职业面临较高的自动化替代风险；反之，若多数任务落在低 $s$ 高 $c$ 区域，则GenAI更可能增强而非替代人类工作。
 \end{itemize}
 
-三职业的权威 $s,c$ 档位分布对比见图~\ref{fig:task_dna_sc_triptych}，任务DNA权重分布（IM--FR 散点图）移至附录~\ref{app:task_dna_figures}。
+三职业的任务DNA权重分布见图~\ref{fig:task_dna_imfr_triptych}，任务文本图例见附录~\ref{app:task_dna_figures}。三职业的权威 $s,c$ 档位分布对比见图~\ref{fig:task_dna_sc_triptych}。
 
-\paragraph{任务影响强度的离散化量表与证据约束}
+\begin{figure}[H]
+\centering
+\begin{minipage}{0.32\linewidth}
+    \centering
+    \includegraphics[width=\linewidth]{figures/task_dna_17-2199.08_weights.pdf}\\
+    \small (a) 17-2199.08 机器人工程师
+\end{minipage}\hfill
+\begin{minipage}{0.32\linewidth}
+    \centering
+    \includegraphics[width=\linewidth]{figures/task_dna_49-1011.00_weights.pdf}\\
+    \small (b) 49-1011.00 一线主管
+\end{minipage}\hfill
+\begin{minipage}{0.32\linewidth}
+    \centering
+    \includegraphics[width=\linewidth]{figures/task_dna_27-3092.00_weights.pdf}\\
+    \small (c) 27-3092.00 法庭速录
+\end{minipage}
+\caption{三职业任务DNA权重分布（IM--FR 散点图），点面积与 $w_j$ 成正比。任务文本图例见附录~\ref{app:task_dna_figures}。}
+\label{fig:task_dna_imfr_triptych}
+\end{figure}
+
 为了避免主观的连续评分，对于替代强度 $s_{ij}$ 和增强强度 $c_{ij}$，我们采用一个离散的等级量表：
 \begin{equation}
     s_{ij},\ c_{ij} \in \{0.10,\ 0.30,\ 0.50,\ 0.70,\ 0.90\}.
 \end{equation}
 其中：
 \begin{itemize}
-    \item $s_{ij}$ 衡量任务 $j$ 被生成式人工智能（GenAI）驱动自动化/压缩的可行性。
-    \item $c_{ij}$ 衡量通过工具增强所获得的效率、质量或工作流程上的提升。
+    \item $s_{ij}$ 衡量任务 $j$ 被生成式人工智能（GenAI）压缩的可能性。
+    \item $c_{ij}$ 衡量任务 $j$ 通过Gen-AI增强所获得的效率、质量或工作流程上的提升。
 \end{itemize}
 
 \subsection{基于权威基准的GenAI能力量表与可审计映射}

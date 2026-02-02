@@ -28,6 +28,15 @@
 \end{tabular}
 \end{table}
 
+\subsection{二维投影面积公式}
+\label{appendix:area2d_formula}
+
+为保证二维投影下的异质性度量与三维定义一致，我们对任意投影 $\pi$（例如 $(digit, physical)$、$(digit, iprisk)$ 或 $(physical, iprisk)$）定义三点的二维三角形面积为
+\[
+\mathrm{Area2D}_{\pi}(x_S,x_T,x_A)=\frac{1}{2}\left|\left(\pi(f(x_T))-\pi(f(x_S))\right)\times\left(\pi(f(x_A))-\pi(f(x_S))\right)\right|,
+\]
+其中 $\times$ 表示二维向量的叉积（标量）运算，$\pi(\cdot)$ 为三维特征到二维坐标的投影映射。
+
 \subsection{任务DNA与GenAI能力数据}
 \label{app:task_dna_sources}
 
@@ -76,30 +85,30 @@ GPT-4基准分数 & MMLU 86.4\%、ARC 96.3\%、GSM8K 92.0\%、DROP 80.9、HellaS
 \section{补充图示：任务DNA权重分布}
 \label{app:task_dna_figures}
 
-三职业的权威 $s,c$ 档位分布已合并至正文图~\ref{fig:task_dna_sc_triptych}。以下为各职业的任务DNA权重分布（IM--FR 散点图）。
+三职业的任务DNA权重分布已移至正文图~\ref{fig:task_dna_imfr_triptych}。以下为各职业的任务文本图例（按权重 $w$ 排序）。
 
 \noindent\textbf{职业 17-2199.08：机器人工程师。}
 \begin{figure}[H]
 \centering
-\includegraphics[width=0.7\linewidth]{figures/task_dna_17-2199.08_weights.pdf}
-\caption{职业 17-2199.08 的任务DNA权重分布：IM--FR 散点图，点面积与 $w$ 成正比。}
-\label{fig:task_dna_17_weights}
+\includegraphics[width=0.95\linewidth]{figures/task_dna_17-2199.08_weights_legend.pdf}
+\caption{职业 17-2199.08 的任务文本图例（按权重 $w$ 排序）。}
+\label{fig:task_dna_17_legend}
 \end{figure}
 
 \noindent\textbf{职业 49-1011.00：一线主管（机械/安装/维修）。}
 \begin{figure}[H]
 \centering
-\includegraphics[width=0.7\linewidth]{figures/task_dna_49-1011.00_weights.pdf}
-\caption{职业 49-1011.00 的任务DNA权重分布：IM--FR 散点图，点面积与 $w$ 成正比。}
-\label{fig:task_dna_49_weights}
+\includegraphics[width=0.95\linewidth]{figures/task_dna_49-1011.00_weights_legend.pdf}
+\caption{职业 49-1011.00 的任务文本图例（按权重 $w$ 排序）。}
+\label{fig:task_dna_49_legend}
 \end{figure}
 
 \noindent\textbf{职业 27-3092.00：法庭速录与字幕。}
 \begin{figure}[H]
 \centering
-\includegraphics[width=0.7\linewidth]{figures/task_dna_27-3092.00_weights.pdf}
-\caption{职业 27-3092.00 的任务DNA权重分布：IM--FR 散点图，点面积与 $w$ 成正比。}
-\label{fig:task_dna_27_weights}
+\includegraphics[width=0.95\linewidth]{figures/task_dna_27-3092.00_weights_legend.pdf}
+\caption{职业 27-3092.00 的任务文本图例（按权重 $w$ 排序）。}
+\label{fig:task_dna_27_legend}
 \end{figure}
 
 \section{补充图示：任务份额预测}

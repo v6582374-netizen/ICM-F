@@ -1,6 +1,6 @@
 # Max-Area Triangle Search Report (All Occupations)
 
-- Timestamp: 2026-01-31 16:52:30
+- Timestamp: 2026-02-02 13:05:10
 - Mapping mode: strict
 - Total occupations (raw): 1016
 - After descriptor completeness filter: 392

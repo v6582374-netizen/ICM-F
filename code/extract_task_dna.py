@@ -7,6 +7,7 @@ Outputs:
 - data/processed/task_dna_{soc}_summary.xml
 - data/processed/task_dna_{soc}_anomaly_report.md
 - figures/task_dna_{soc}_weights.pdf
+- figures/task_dna_{soc}_weights_legend.pdf
 """
 from __future__ import annotations
 
@@ -231,11 +232,8 @@ def plot_weights_if_available(rows: List[Dict[str, str]], output_path: Path) -> 
     letters = list(string.ascii_uppercase)
     tag_list = [letters[i % len(letters)] for i in range(len(labels))]
 
-    fig = plt.figure(figsize=(8.6, 5.4), dpi=300)
-    fig.set_constrained_layout(True)
-    gs = fig.add_gridspec(1, 2, width_ratios=[1.55, 1.0], wspace=0.06)
-    ax = fig.add_subplot(gs[0, 0])
-    ax_text = fig.add_subplot(gs[0, 1])
+    fig = plt.figure(figsize=(7.8, 5.2), dpi=300)
+    ax = fig.add_subplot(1, 1, 1)
 
     scatter = ax.scatter(
         im_vals,
@@ -285,36 +283,43 @@ def plot_weights_if_available(rows: List[Dict[str, str]], output_path: Path) -> 
     ax.legend(loc="lower right", frameon=False, fontsize=8.5)
     ax.tick_params(axis="both", labelsize=10)
 
-    ax_text.set_facecolor("#FBFBFB")
-    ax_text.axis("off")
-    ax_text.set_title(
+    entries = []
+    for tag, label, im_v, fr_v, w_v in zip(tag_list, labels, im_vals, fr_vals, w_vals):
+        entries.append(
+            f"{tag}. {label} (IM={im_v:.2f}, FR={fr_v:.2f}, w={w_v:.3f})"
+        )
+
+    output_path.parent.mkdir(parents=True, exist_ok=True)
+    fig.savefig(output_path, dpi=300)
+
+    legend_path = output_path.with_name(f"{output_path.stem}_legend{output_path.suffix}")
+    legend_fig = plt.figure(figsize=(8.2, 6.0), dpi=300)
+    legend_ax = legend_fig.add_subplot(1, 1, 1)
+    legend_ax.set_facecolor("#FBFBFB")
+    legend_ax.axis("off")
+    legend_ax.set_title(
         "Task Text Legend (sorted by weight w)",
         fontsize=10.2,
         color="#111827",
         loc="left",
         pad=6,
     )
-    entries = []
-    for tag, label, im_v, fr_v, w_v in zip(tag_list, labels, im_vals, fr_vals, w_vals):
-        entries.append(
-            f"{tag}. {label} (IM={im_v:.2f}, FR={fr_v:.2f}, w={w_v:.3f})"
-        )
+
     mid = (len(entries) + 1) // 2
     left_entries = entries[:mid]
     right_entries = entries[mid:]
-
-    wrap_width = 42
+    wrap_width = 48
 
     def _column_line_count(items: List[str]) -> int:
         return sum(max(1, len(textwrap.wrap(item, width=wrap_width))) for item in items)
 
     def _draw_column(items: List[str], x_pos: float) -> None:
         total_lines = _column_line_count(items)
-        line_step = min(0.078, 0.90 / max(total_lines, 1))
+        line_step = min(0.072, 0.92 / max(total_lines, 1))
         y = 0.98
         for item in items:
             wrapped = textwrap.fill(item, width=wrap_width)
-            ax_text.text(
+            legend_ax.text(
                 x_pos,
                 y,
                 wrapped,
@@ -328,8 +333,7 @@ def plot_weights_if_available(rows: List[Dict[str, str]], output_path: Path) -> 
     _draw_column(left_entries, 0.02)
     _draw_column(right_entries, 0.52)
 
-    output_path.parent.mkdir(parents=True, exist_ok=True)
-    fig.savefig(output_path, dpi=300)
+    legend_fig.savefig(legend_path, dpi=300)
     max_idx = int(w_vals.index(max(w_vals))) if w_vals else None
     min_idx = int(w_vals.index(min(w_vals))) if w_vals else None
     key_points = {

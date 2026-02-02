@@ -1,13 +1,13 @@
 # Fdb version 4
-["bibtex build/main"] 1770012865.6805 "build/main.aux" "build/main.bbl" "build/main" 1770012868.34878 0
+["bibtex build/main"] 1770020671.87015 "build/main.aux" "build/main.bbl" "build/main" 1770020675.0406 0
   "./references.bib" 1769954590.78041 16617 07aa42f735255268c7f747361f59f2b7 ""
   "/usr/local/texlive/2025/texmf-dist/bibtex/bst/natbib/plainnat.bst" 1233624470 26816 ffe5423d2019860bad9f54bc402fac15 ""
-  "build/main.aux" 1770012868.0576 26196 9706c8fdbc6870584b0a7edbc4efcf64 "pdflatex"
+  "build/main.aux" 1770020674.65899 24616 c1b49e1abcf56fce8a1cb8ffe28aac28 "pdflatex"
   (generated)
   "build/main.bbl"
   "build/main.blg"
   (rewritten before read)
-["pdflatex"] 1770012865.83721 "/Users/shiwen/Downloads/ICM-FORMAL/main.tex" "build/main.pdf" "main" 1770012868.34894 0
+["pdflatex"] 1770020672.03172 "/Users/shiwen/Downloads/ICM-FORMAL/main.tex" "build/main.pdf" "main" 1770020675.04075 0
   "/Users/shiwen/Downloads/ICM-FORMAL/main.tex" 1770010131.71909 2318 d9e1afea68d332246928235f64ba3215 ""
   "/usr/local/texlive/2025/texmf-dist/fonts/map/fontname/texfonts.map" 1577235249 3524 cb3e574dea2d1052e39280babc910dc8 ""
   "/usr/local/texlive/2025/texmf-dist/fonts/tfm/adobe/symbol/psyr.tfm" 1136768653 1408 5937f58aa508ea2cea4901c07d10f5fe ""
@@ -269,10 +269,10 @@
   "/usr/local/texlive/2025/texmf-dist/web2c/texmf.cnf" 1739380943 42148 61becc7c670cd061bb319c643c27fdd4 ""
   "/usr/local/texlive/2025/texmf-var/web2c/xetex/xelatex.fmt" 1764787184 5639809 56121d7525456f8b31558434d881d50c ""
   "/usr/local/texlive/2025/texmf.cnf" 1741450484 577 418a7058ec8e006d8704f60ecd22c938 ""
-  "build/main.aux" 1770012868.0576 26196 9706c8fdbc6870584b0a7edbc4efcf64 "pdflatex"
-  "build/main.bbl" 1770012865.8316 10207 aac97e168f4dd1d18bd263254df22568 "bibtex build/main"
-  "build/main.out" 1770012868.05925 5989 b3317291fdca257f6b0a0233d80def25 "pdflatex"
-  "build/main.toc" 1770012868.05944 6677 647e2f44a909d64ae98a8374969a3c61 "pdflatex"
+  "build/main.aux" 1770020674.65899 24616 c1b49e1abcf56fce8a1cb8ffe28aac28 "pdflatex"
+  "build/main.bbl" 1770020672.02549 10207 aac97e168f4dd1d18bd263254df22568 "bibtex build/main"
+  "build/main.out" 1770020674.66066 5508 7e37fa929e8d8fc6c610e79dad0a1fef "pdflatex"
+  "build/main.toc" 1770020674.66085 5837 f7a5218d1dcc6d2dd4fd59b54c192dc9 "pdflatex"
   "figures/fig_STEM_rankflip_contribution_v2.pdf" 1769923903.04386 22070 6cd509ced95c4c2f6c53c2fde1b2a64a ""
   "figures/fig_STEM_task_share_all_tasks_appendix.pdf" 1769920118.17029 22151 8f12ad9f019a73f12e2c76517a07964e ""
   "figures/fig_genai_taskdna_chord_17-2199.08.pdf" 1769953750.59367 42478 d4323c6fec5af807f027842024bc9cb7 ""
@@ -300,10 +300,10 @@
   "sections/conclusion.tex" 1769870803.59605 68 c5568011a7b27624e05cd090cbfb4c6a ""
   "sections/discussion.tex" 1769923450.57037 357 43d52ee4ec8819f099bf47b5a0ee5478 ""
   "sections/introduction.tex" 1770002590.81851 3438 8080e4e917282e9adc6d3bfeaf693e7c ""
-  "sections/model_construction.tex" 1770012862.84074 36450 0d30fb1b768dee407343ab13e19817dd ""
+  "sections/model_construction.tex" 1770018571.75801 35915 68d95c9f8867590eb001cde0808ee770 ""
   "sections/notations.tex" 1769929375.34916 7586 328be580903d47d3e504f7d27f41d42d ""
   "sections/results_sensitivity.tex" 1769870962.3911 2680 3af78f9cfaf1fc40f9af91841d9fed81 ""
-  "sections/task3_program_recommendations.tex" 1770001573.32057 16199 9e145aefe3d75095ce0b9bc320537dde ""
+  "sections/task3_program_recommendations.tex" 1770020668.40732 14624 80ad5bf258b5573f097544d287e17dad ""
   (generated)
   "build/main.aux"
   "build/main.log"

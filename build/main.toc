@@ -14,62 +14,52 @@
 \contentsline {subsubsection}{\numberline {3.3.1}任务权重（Task DNA）与任务净冲击}{12}{subsubsection.3.3.1}%
 \contentsline {paragraph}{任务DNA的定义与数据来源}{12}{section*.6}%
 \contentsline {subsection}{\numberline {3.4}基于权威基准的GenAI能力量表与可审计映射}{13}{subsection.3.4}%
-\contentsline {subsubsection}{\numberline {3.4.1}机制审计与最短修复路径}{13}{subsubsection.3.4.1}%
-\contentsline {subsubsection}{\numberline {3.4.2}能力量表：$M_k\rightarrow \rho _k\rightarrow (s_k,c_k)$}{13}{subsubsection.3.4.2}%
-\contentsline {paragraph}{能力分段（$M_k$）}{13}{section*.9}%
-\contentsline {paragraph}{方向系数（$\rho _k$）}{13}{section*.10}%
-\contentsline {subsubsection}{\numberline {3.4.3}九维能力量表（含原始评分与证据）}{14}{subsubsection.3.4.3}%
-\contentsline {paragraph}{必要声明}{14}{section*.12}%
-\contentsline {paragraph}{任务层净冲击}{15}{section*.14}%
-\contentsline {paragraph}{三职业任务DNA的 $s,c$ 分布与负净冲击分析}{15}{section*.16}%
-\contentsline {subsubsection}{\numberline {3.4.4}Driver Specification: Adoption as the Core Temporal Mechanism}{16}{subsubsection.3.4.4}%
-\contentsline {paragraph}{Driver 定义与机制}{16}{section*.18}%
-\contentsline {paragraph}{三类职业的 Driver 合理性}{16}{section*.19}%
-\contentsline {subparagraph}{Robotics Engineers (O*NET 17-2199.08)}{16}{section*.20}%
-\contentsline {subparagraph}{First-Line Supervisors of Mechanics (O*NET 49-1011.00)}{17}{section*.21}%
-\contentsline {subparagraph}{Court Reporters and Simultaneous Captioners (O*NET 27-3092.00)}{17}{section*.22}%
-\contentsline {subsubsection}{\numberline {3.4.5}将“发展轨迹”与“任务需求”紧密耦合：采纳混合机制}{17}{subsubsection.3.4.5}%
-\contentsline {paragraph}{解释性}{17}{section*.23}%
-\contentsline {paragraph}{未来时间点}{18}{section*.24}%
-\contentsline {subsubsection}{\numberline {3.4.6}结构读出层：职业重新定义的可计算判据}{18}{subsubsection.3.4.6}%
-\contentsline {paragraph}{基线参考点的选择}{18}{section*.25}%
-\contentsline {paragraph}{(i) 份额变化}{18}{section*.26}%
-\contentsline {paragraph}{(ii) Top contributor（贡献分解）}{18}{section*.27}%
-\contentsline {paragraph}{(iii) Top-$m$ 换血率}{19}{figure.caption.29}%
-\contentsline {paragraph}{(iv) 排名翻转与归一化翻转强度}{19}{section*.30}%
-\contentsline {paragraph}{职业重新定义的综合判据}{19}{section*.31}%
-\contentsline {paragraph}{结构指标的可视化}{20}{section*.32}%
+\contentsline {paragraph}{方向系数（$\rho _k$）}{13}{section*.8}%
+\contentsline {paragraph}{三职业任务DNA的 $s,c$ 分布与负净冲击分析}{16}{section*.12}%
+\contentsline {subsubsection}{\numberline {3.4.1}Driver Specification: Adoption as the Core Temporal Mechanism}{16}{subsubsection.3.4.1}%
+\contentsline {paragraph}{Driver 定义与机制}{16}{section*.14}%
+\contentsline {paragraph}{三类职业的 Driver 合理性}{16}{section*.15}%
+\contentsline {subparagraph}{Robotics Engineers (O*NET 17-2199.08)}{17}{section*.16}%
+\contentsline {subparagraph}{First-Line Supervisors of Mechanics (O*NET 49-1011.00)}{17}{section*.17}%
+\contentsline {subparagraph}{Court Reporters and Simultaneous Captioners (O*NET 27-3092.00)}{17}{section*.18}%
+\contentsline {subsubsection}{\numberline {3.4.2}将“发展轨迹”与“任务需求”紧密耦合：开始对未来的任务权重进行预测}{17}{subsubsection.3.4.2}%
+\contentsline {subsubsection}{\numberline {3.4.3}结构读出层：职业重新定义的可计算判据}{18}{subsubsection.3.4.3}%
+\contentsline {paragraph}{基线参考点的选择}{18}{section*.19}%
+\contentsline {paragraph}{(i) 份额变化}{18}{section*.20}%
+\contentsline {paragraph}{(ii) Top contributor（贡献分解）}{18}{section*.21}%
+\contentsline {paragraph}{(iii) Top-$m$ 换血率}{19}{figure.caption.23}%
+\contentsline {paragraph}{(iv) 排名翻转与归一化翻转强度}{19}{section*.24}%
+\contentsline {paragraph}{职业重新定义的综合判据}{19}{section*.25}%
+\contentsline {paragraph}{结构指标的可视化}{20}{section*.26}%
 \contentsline {subsection}{\numberline {3.5}教育项目推荐与Gen-AI整合策略}{20}{subsection.3.5}%
-\contentsline {subsubsection}{\numberline {3.5.1}课程层面的三轴元模型：就业--人文--AI重叠}{21}{subsubsection.3.5.1}%
-\contentsline {paragraph}{符号定义}{21}{section*.34}%
-\contentsline {paragraph}{轴一：就业匹配度（Employability Axis）}{21}{section*.35}%
-\contentsline {paragraph}{轴二：人文价值（Humanistic Axis）}{22}{section*.36}%
-\contentsline {paragraph}{轴三：AI 重叠度（AI-Overlap Axis）}{22}{section*.37}%
-\contentsline {paragraph}{（补充）AI 重叠度 v2：九维能力足迹加权的可替代压力}{22}{section*.38}%
-\contentsline {paragraph}{三轴决策规则}{23}{section*.39}%
-\contentsline {paragraph}{模型的可移植性}{23}{section*.40}%
-\contentsline {paragraph}{潜在局限与稳健性建议}{24}{section*.41}%
-\contentsline {paragraph}{AIOverlap\_v2集成就业与人文决策规则（最终版）}{24}{section*.42}%
-\contentsline {subsubsection}{\numberline {3.5.2}课程级闭环结论与阈值审计（v2）}{25}{subsubsection.3.5.2}%
-\contentsline {subsubsection}{\numberline {3.5.3}课程级输出：转型清单与依据}{25}{subsubsection.3.5.3}%
-\contentsline {paragraph}{Generations Court Reporting（1门课转型）}{25}{table.caption.45}%
-\contentsline {paragraph}{MRSD CMU（3门课转型，删课为0）}{26}{table.caption.47}%
-\contentsline {paragraph}{UTI Diesel（2门课转型，删课为0）}{26}{table.caption.49}%
-\contentsline {section}{\numberline {4}仿真结果与敏感性分析}{26}{section.4}%
-\contentsline {subsection}{\numberline {4.1}职业选择的剪枝敏感性检验}{26}{subsection.4.1}%
-\contentsline {paragraph}{检验方法}{26}{section*.50}%
-\contentsline {paragraph}{检验结果}{26}{section*.51}%
-\contentsline {paragraph}{稳健性判定}{27}{section*.54}%
+\contentsline {subsubsection}{\numberline {3.5.1}课程层面的三轴元模型：就业--人文--AI 重叠（v2）}{21}{subsubsection.3.5.1}%
+\contentsline {paragraph}{符号定义}{21}{section*.28}%
+\contentsline {paragraph}{轴一：就业匹配度（Employability Axis）}{21}{section*.29}%
+\contentsline {paragraph}{轴二：人文价值（Humanistic Axis）}{22}{section*.30}%
+\contentsline {paragraph}{轴三：AI 重叠度（AI-Overlap Axis, v2）}{22}{section*.31}%
+\contentsline {paragraph}{三轴决策规则：KEEP / TRANSFORM / PRUNE}{23}{section*.32}%
+\contentsline {paragraph}{模型的可移植性}{23}{section*.33}%
+\contentsline {paragraph}{潜在局限与稳健性建议}{23}{section*.34}%
+\contentsline {subsubsection}{\numberline {3.5.2}课程级闭环结论与阈值审计（v2）}{24}{subsubsection.3.5.2}%
+\contentsline {subsubsection}{\numberline {3.5.3}课程级输出：转型清单与依据}{24}{subsubsection.3.5.3}%
+\contentsline {paragraph}{Generations Court Reporting（1门课转型）}{24}{table.caption.37}%
+\contentsline {paragraph}{MRSD CMU（3门课转型，删课为0）}{25}{table.caption.39}%
+\contentsline {paragraph}{UTI Diesel（2门课转型，删课为0）}{25}{table.caption.41}%
+\contentsline {section}{\numberline {4}仿真结果与敏感性分析}{25}{section.4}%
+\contentsline {subsection}{\numberline {4.1}职业选择的剪枝敏感性检验}{25}{subsection.4.1}%
+\contentsline {paragraph}{检验方法}{25}{section*.42}%
+\contentsline {paragraph}{检验结果}{26}{section*.43}%
+\contentsline {paragraph}{稳健性判定}{26}{section*.46}%
 \contentsline {section}{\numberline {5}讨论：优势与不足}{27}{section.5}%
 \contentsline {subsection}{\numberline {5.1}优势}{27}{subsection.5.1}%
 \contentsline {subsection}{\numberline {5.2}不足}{27}{subsection.5.2}%
-\contentsline {section}{\numberline {6}结论}{28}{section.6}%
-\contentsline {section}{Appendices}{31}{section*.56}%
-\contentsline {section}{附录 \numberline {A}数据来源与变量定义}{31}{appendix.1.A}%
-\contentsline {subsection}{\numberline {A.1}O*NET描述符数据来源}{31}{subsection.1.A.1}%
+\contentsline {section}{\numberline {6}结论}{27}{section.6}%
+\contentsline {section}{Appendices}{30}{section*.48}%
+\contentsline {section}{附录 \numberline {A}数据来源与变量定义}{30}{appendix.1.A}%
+\contentsline {subsection}{\numberline {A.1}O*NET描述符数据来源}{30}{subsection.1.A.1}%
 \contentsline {subsection}{\numberline {A.2}二维投影面积公式}{31}{subsection.1.A.2}%
 \contentsline {subsection}{\numberline {A.3}任务DNA与GenAI能力数据}{31}{subsection.1.A.3}%
-\contentsline {section}{附录 \numberline {B}补充图示：任务DNA权重分布}{32}{appendix.1.B}%
-\contentsline {section}{附录 \numberline {C}补充图示：任务份额预测}{35}{appendix.1.C}%
-\contentsline {section}{附录 \numberline {D}教育项目推荐详表}{37}{appendix.1.D}%
-\contentsline {section}{附录 \numberline {E}Python实现代码}{38}{appendix.1.E}%
+\contentsline {section}{附录 \numberline {B}补充图示：任务DNA权重分布}{31}{appendix.1.B}%
+\contentsline {section}{附录 \numberline {C}补充图示：任务份额预测}{34}{appendix.1.C}%
+\contentsline {section}{附录 \numberline {D}教育项目推荐详表}{36}{appendix.1.D}%
+\contentsline {section}{附录 \numberline {E}Python实现代码}{37}{appendix.1.E}%

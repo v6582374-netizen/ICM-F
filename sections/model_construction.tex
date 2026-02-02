@@ -176,7 +176,7 @@ Area3D(x_S, x_T, x_A) = \frac{1}{2} \left\lVert \big(f(x_T) - f(x_S)\big) \times
     \item \textbf{权威 $s,c$ 档位分布图}：展示经权威评估重标注后，各任务在替代强度 $s$ 和增强强度 $c$ 离散档位上的分布。该图的作用是\emph{揭示GenAI对该职业的潜在冲击模式}：若多数任务落在高 $s$ 低 $c$ 区域，表明该职业面临较高的自动化替代风险；反之，若多数任务落在低 $s$ 高 $c$ 区域，则GenAI更可能增强而非替代人类工作。
 \end{itemize}
 
-三职业的任务DNA权重分布见图~\ref{fig:task_dna_imfr_triptych}，任务文本图例见附录~\ref{app:task_dna_figures}。三职业的权威 $s,c$ 档位分布对比见图~\ref{fig:task_dna_sc_triptych}。
+经过计算，便得到了三个职业的Top Task（20个以内），将其可视化，分布见图~\ref{fig:task_dna_imfr_triptych}，任务文本图例见附录~\ref{app:task_dna_figures}。三职业的权威 $s,c$ 档位分布对比见图~\ref{fig:task_dna_sc_triptych}。
 
 \begin{figure}[H]
 \centering
@@ -211,47 +211,8 @@ Area3D(x_S, x_T, x_A) = \frac{1}{2} \left\lVert \big(f(x_T) - f(x_S)\big) \times
 
 \subsection{基于权威基准的GenAI能力量表与可审计映射}
 
-为将任务层 $(s,c)$ 的来源从“主观估计”改为“可复现规则”，我们将GenAI能力表述为一套\textbf{权威基准$\rightarrow$能力分段$\rightarrow(s,c)$映射}的离散量表。该量表仅依赖公开的基准分数与可审计的分段规则，从而支持逐层追溯。说白了就是将能力解剖。考虑绘制能力解剖图？
-
-\subsubsection{机制审计与最短修复路径}
-为避免解释力削弱，我们先对现有表格进行机制审计，并给出最短修复路径（表~\ref{tab:genai_audit}）。
-\begin{table}[H]
-\centering
-\caption{GenAI能力表的机制审计与修复路径}
-\label{tab:genai_audit}
-\small
-\setlength{\tabcolsep}{3pt}
-\renewcommand{\arraystretch}{1.15}
-\begin{tabular}{p{2.5cm} p{3.8cm} p{4.0cm} p{3.9cm}}
-\toprule
-\textbf{问题点} & \textbf{具体表现} & \textbf{可解释性风险} & \textbf{最短修复路径} \\
-\midrule
-$s_k,c_k$仍是“任务分析估计” &
-例如 D3 给出 $s=0.9,c=0.7$；D1 给出 $s=0.5,c=0.85$ &
-缺乏“为何不是相邻值”的可审计依据 &
-用统一分段规则：先由权威基准得到 $M_k$，再由方向系数 $\rho_k$ 约束 $(s_k,c_k)$ \\
-\addlinespace
-证据混入不稳定/非权威来源 &
-例如博客或二手表述的成功率 &
-证据链薄弱，易被质疑“挑数据” &
-仅保留论文/官方技术报告/官方基准页；其他仅作补充说明 \\
-\addlinespace
-指标口径不统一 &
-accuracy、WER、success rate 并存 &
-横向比较缺乏共同尺度 &
-用能力分段把异质指标统一到 $M_k$ 的离散档位 \\
-\addlinespace
-D9 的高分来自特定管线 &
-并非通用VLM的标准成绩 &
-可能被质疑偷换概念 &
-明确标注为“上界/可达性证据”，并允许敏感性下调 \\
-\bottomrule
-\end{tabular}
-\end{table}
-
-\subsubsection{\texorpdfstring{能力量表：$M_k\rightarrow\rho_k\rightarrow(s_k,c_k)$}{能力量表：Mk→rho k→(s k, c k)}}
-\paragraph{能力分段（$M_k$）}
-我们不做连续拟合，而采用阈值区间确定能力等级，并在区间内取代表值 $M_k$（见表~\ref{tab:genai_scale}）：
+为将任务层 $(s,c)$ 的来源从“主观估计”改为“可复现规则”，我们将GenAI能力表述为一套\textbf{权威基准$\rightarrow$能力分段$\rightarrow(s,c)$映射}的离散量表。该量表仅依赖公开的基准分数与可审计的分段规则，从而支持逐层追溯。说白了就是将能力解剖。\\
+针对能力分段（$M_k$），我们不做连续拟合，而采用阈值区间确定能力等级，并在区间内取代表值 $M_k$（见表~\ref{tab:genai_scale}）：
 \begin{itemize}
     \item 高（$\ge 0.85$）、较高（$0.70$--$0.85$）、中等（$0.50$--$0.70$）、低（$0.30$--$0.50$）、极低（$<0.30$）。
 \end{itemize}
@@ -265,9 +226,15 @@ D9 的高分来自特定管线 &
     \item $\rho_k=0$：平衡（两边都强，净效应不确定）。
 \end{itemize}
 
-\subsubsection{九维能力量表（含原始评分与证据）}
-表~\ref{tab:genai_scale} 给出可直接落地的基线版本：每个维度包含原始评分、分段得到的 $M_k$、方向系数 $\rho_k$，以及对应的 $(s_k,c_k)$。并且该分段仅依赖公开测试分数与阈值，避免主观评分。\\
-这部分表格可以考虑放到附录，减少解释。
+表3九个维度的来源：
+虽然名字是Gen-AI的九个维度，但实际上是链接当前职业的task和Gen-AI能力的映射。
+选定的标准是，\\
+\begin{itemize}
+    \item 覆盖主要工作活动类型：从技术问题解决到语言处理，涵盖职业任务的主要类别
+    \item 可量化可审计：每个维度都有对应的权威基准测试，避免主观评估
+    \item 与 GenAI 能力对应：每个维度都能通过公开的 AI 测试分数来衡量
+\end{itemize}
+
 
 \begin{table}[H]
 \centering
@@ -331,30 +298,21 @@ DocVQA 99.16\%；Text-to-SQL $>80\%$\citep{docvqa2017,spider2018} &
 \end{table}
 \begin{spacing}{0.9}
 \noindent
-\textbf{注：} 上表中能力等级按照统一阈值划分：\textbf{High} $\geq 0.85$，\textbf{Medium-High} $0.70$--$0.85$，\textbf{Medium} $0.50$--$0.70$，\textbf{Low} $0.30$--$0.50$，\textbf{Minimal} $<0.30$。\ $M_k$ 选取当前顶尖模型在相关指标上的代表性得分（0$\sim$1标准化后）。$\rho_k = c_k - s_k$ 表示GenAI对该维度人力需求的影响方向：正值为互补（提升人效使需求上升），负值为替代（可自动化使需求下降）。$s_k$ 和 $c_k$ 分别为我们根据任务分析估计的可替代率和可协同率。
-\paragraph{必要声明}
-\begin{itemize}
-    \item D9 的 DocVQA 99.16\% 可视为文档问答场景的上界证据，不等价于所有检索情境与数据库规模下的通用能力。
-    \item D4/D5 采用 AutoGPT 端到端完成率与工具使用成功率作为下界证据，用于避免夸大“现场操作/流程调度”的可自动化程度。
-\end{itemize}
+\textbf{注：}\ $M_k$ 选取当前顶尖模型在相关指标上的代表性得分（0$\sim$1标准化后）。$\rho_k = c_k - s_k$ 表示GenAI对该维度的影响方向：正值为互补（提升人效使需求上升），负值为替代（可自动化使需求下降）。D9 的 DocVQA 99.16\% 可视为文档问答场景的上界证据，不等价于所有检索情境与数据库规模下的通用能力。D4/D5 采用 AutoGPT 端到端完成率与工具使用成功率作为下界证据，用于避免夸大“现场操作/流程调度”的可自动化程度。
 
 总体来看，GenAI 在语言和编码等维度已达到高能力并呈替代效应，而在涉及物理、管理等维度时，仍主要作为辅助工具，与人类技能形成互补。
 \end{spacing}
 
+为了更直观的显示Gen-AI能力对三个职业的task的映射，我们绘制了图~\ref{fig:task_dna_genai_mapping_triptych}。
 \begin{figure}[H]
 \centering
 \includegraphics[width=0.98\textwidth]{figures/task_dna_genai_mapping_triptych.pdf}
 \caption{基于GenAI能力$\rightarrow$任务映射数据的职业DNA维度权重分布（D1--D9）。三幅子图分别对应职业 17-2199.08、49-1011.00 与 27-3092.00；柱高表示任务权重在能力维度上的占比，水平线表示维度均值，标注点为主导维度。}
 \label{fig:task_dna_genai_mapping_triptych}
 \end{figure}
-在此简单分析上图。
+在此简单分析上图：分析分析分析分析分析分析分析分析分析分析分析分析分析分析分析分析分析分析分析分析分析分析分析分析分析分析分析分析分析分析分析分析分析分析分析分析分析分析分析分析分析分析分析分析分析分析分析分析分析分析分析分析分析分析分析分析分析分析分析分析分析分析分析分析分析分析\\
 
-\paragraph{任务层净冲击}
-我们将任务层净冲击定义为：
-\begin{equation}
-    \mu^{task}_{ij}=c_{ij}-s_{ij}.
-\end{equation}
-$\mu^{task}_{ij}>0$ 表示GenAI更可能增强该任务（提高产出/质量/速度），$\mu^{task}_{ij}<0$ 表示该任务更可能被替代或显著压缩。
+再根据上表得到的sc值，可以绘制以下图片：
 
 \begin{figure}[H]
 \centering
@@ -377,7 +335,9 @@ $\mu^{task}_{ij}>0$ 表示GenAI更可能增强该任务（提高产出/质量/�
 \label{fig:task_dna_sc_triptych}
 \end{figure}
 
-此处给出上述三个图片的分析。
+此处给出上述三个图片的分析：分析分析分析分析分析分析分析分析分析分析分析分析分析分析分析分析分析分析分析分析分析分析分析分析分析分析分析分析分析分析分析分析分析分析分析分析分析分析分析分析分析分析分析分析分析分析分析分析分析分析分析分析分析分析分析分析分析分析分析分析分析分析分析分析分析分析\\
+
+$\mu^{task}_{ij}>0$ 表示GenAI更可能增强该任务（提高产出/质量/速度），$\mu^{task}_{ij}<0$ 表示该任务更可能被替代或显著压缩。
 
 \paragraph{三职业任务DNA的 $s,c$ 分布与负净冲击分析}
 基于权威映射表，表~\ref{tab:task_sc_negative_impact} 汇总了三职业中负净冲击任务（$\mu^{task}_{ij}<0$）的权重与典型任务。
@@ -399,8 +359,6 @@ $\mu^{task}_{ij}>0$ 表示GenAI更可能增强该任务（提高产出/质量/�
 \end{tabular}
 \end{table}
 
-这部分存在不妥，因为三个职业的task dna数量不同。加起来自然不一样，并不能说机器人工程师相对法庭更容易被替代。
-
 \noindent\textbf{解释性结论（基于数据）：}
 \begin{itemize}
     \item \textbf{17-2199.08}：负净冲击权重总和为 0.400，8 项任务均落在 D3（算法编程与自动化），$\mu=-0.20$。这意味着该职业约 40\% 的核心任务存在可自动化压力，但净冲击幅度相对温和（$s=0.90,c=0.70$），体现为"高替代但仍有较强增强"的编码类任务。也就是说强强抵消了。
@@ -408,14 +366,15 @@ $\mu^{task}_{ij}>0$ 表示GenAI更可能增强该任务（提高产出/质量/�
     \item \textbf{27-3092.00}：负净冲击权重总和高达 0.413，5 项任务集中落在 D8（语言理解与文本生成），$\mu=-0.40$，远高于其他两职业。这表明该职业的核心任务（速记、转写、校对）高度集中于语言自动化维度，GenAI 替代效应最强，预期将在后续动态演化中更早出现"任务份额跌破阈值"的时间点。
 \end{itemize}
 
+这部分存在不妥，因为三个职业的task dna数量不同。加起来自然不一样，并不能说机器人工程师相对法庭更容易被替代。
 \subsubsection{Driver Specification: Adoption as the Core Temporal Mechanism}
 \label{subsec:driver_specification}
 
 在任务优先框架中，\emph{driver} 须满足两条硬性条件：(i) 它随时间变化——否则无法驱动动态演化；(ii) 它进入模型方程并改变任务曲线——否则仅为描述性标签而非机制变量。基于这两条约束，我们选取\textbf{采用率}（Adoption rate）$A(t)$ 作为核心且最简洁的 driver。
 
 \paragraph{Driver 定义与机制}
-采用率 $A(t)\in[0,1]$ 刻画 GenAI 技术在劳动力市场中的渗透程度。其上升源于多重因素：模型成本下降、易用性提升、与现有软件及工作流的深度集成等。$A(t)$ 的核心作用在于\emph{调制任务层净冲击的释放速度}：给定任务级参数 $\mu_{\text{task},ij}$，采用率决定了该冲击在时间维度上的兑现节奏——采用缓慢则结构变化渐进，采用迅速则结构重排加速。
-
+采用率 $A(t)\in[0,1]$ 刻画 GenAI 技术在劳动力市场中的渗透程度。其上升源于多重因素：模型成本下降、易用性提升、与现有软件及工作流的深度集成等。$A(t)$ 的核心作用在于\emph{调制任务层净冲击的释放速度}：给定任务级参数 $\mu_{\text{task},ij}$，采用率决定了该冲击在时间维度上的兑现节奏——采用缓慢则结构变化渐进，采用迅速则结构重排加速。\\
+所以我将其比作阀门，多给比喻，可以大大降低AI味。
 \paragraph{三类职业的 Driver 合理性}
 下文为本研究选取的三类代表性职业提供简明的"GenAI → Driver → 任务结构变化"证据链。
 
@@ -432,13 +391,14 @@ GenAI 与机器人平台、仿真环境及基础模型的集成显著提升了�
 \noindent 上述证据链表明，$A(t)$ 作为统一的 driver 变量，能够捕捉不同职业中 GenAI 渗透对任务结构的调制作用，且在实证层面具有可追溯的支撑。
 
 
-\subsubsection{将“发展轨迹”与“任务需求”紧密耦合：采纳混合机制}
+\subsubsection{将“发展轨迹”与“任务需求”紧密耦合：开始对未来的任务权重进行预测}
 
 题目要求“given the current trajectory and expected impacts of Gen-AI”，其中“current trajectory”可操作地对应为\textbf{采纳程度随时间的扩散}。
 我们用外生的采纳路径 $A(t)\in[0,1]$ 表示在时间 $t$ 已采纳GenAI的工作流占比（或强度）。
-直观上：在 $A(t)=0$ 时，任务结构保持基线；也就是说，这里需要假设，假设内生变化平稳。在 $A(t)$ 增大时，任务层净冲击 $\mu^{task}_{ij}$ 逐步释放，任务需求结构随之重排。
+直观上：在 $A(t)=0$ 时，任务结构保持基线；也就是说，这里需要假设，假设内生变化平稳。在 $A(t)$ 增大时，任务层净冲击 $\mu^{task}_{ij}$ 逐步释放，任务需求结构随之重排。\\
+注意：A（t）具体是零点几，根本不重要。
 
-为避免凭空设定“绝对任务需求”的总量，我们以任务\textbf{相对需求权重}作为预测对象，并采用“采纳者/未采纳者混合”的最小机制：
+为避免凭空设定“绝对任务需求”的总量，也就是说符合们我“不对未来进行定量预测的原则”，我们以任务\textbf{相对需求权重}作为预测对象，并采用“采纳者/未采纳者混合”的最小机制：
 未采纳部分保持基线权重 $w_{ij}$；采纳部分对任务权重施加与 $\mu^{task}_{ij}$ 单调一致的乘性变换（保证权重为正）。
 定义未归一化任务权重
 
@@ -455,16 +415,15 @@ GenAI 与机器人平台、仿真环境及基础模型的集成显著提升了�
 \end{equation}
 该定义保证 $\sum_j p_{ij}(t)=1$，从而直接刻画职业内部任务结构如何随采纳轨迹而演化。
 
-\paragraph{解释性}
 当 $A(t)$ 上升（GenAI扩散加深）时，若 $\mu^{task}_{ij}<0$，则 $q_{ij}(t)$ 相对缩小，$p_{ij}(t)$ 下降；反之若 $\mu^{task}_{ij}>0$，则该任务份额上升。
 因此，$A(t)$ 将“发展轨迹”以严格数学方式映射为任务层需求结构的时间变化，从而满足题面关于“当前轨迹+预期影响”的建模要求。
 
-\paragraph{未来时间点}
-结合前述定义，任务的有效归零时间仍为
-\begin{equation}
-    \tau_{ij}(\epsilon)=\min\{t:\ p_{ij}(t)\le \epsilon\}.
-\end{equation}
-通过对Top任务的 $\tau_{ij}(\epsilon)$ 进行比较，我们可以直接回答：在不同采纳情景下，哪些任务会最先"消失"，哪些任务会长期保留，从而给出对该职业"未来"形态变化的可解释预测。
+% \paragraph{未来时间点}
+% 结合前述定义，任务的有效归零时间仍为
+% \begin{equation}
+%     \tau_{ij}(\epsilon)=\min\{t:\ p_{ij}(t)\le \epsilon\}.
+% \end{equation}
+% 通过对Top任务的 $\tau_{ij}(\epsilon)$ 进行比较，我们可以直接回答：在不同采纳情景下，哪些任务会最先"消失"，哪些任务会长期保留，从而给出对该职业"未来"形态变化的可解释预测。
 
 \subsubsection{结构读出层：职业重新定义的可计算判据}
 \label{sec:structural_indicators}
@@ -474,10 +433,10 @@ GenAI 与机器人平台、仿真环境及基础模型的集成显著提升了�
 \paragraph{基线参考点的选择}
 结构比较需要明确的参考点。我们定义两种可操作的基线：
 \begin{itemize}
-  \item \textbf{机制基线}：$A=0 \Rightarrow p_{ij}(0)=w_{ij}$（最干净、可解释）；很简单，如果将外生发展置于0,意味着相对需求份额等于任务的权重。两个都是百分比数值。
+  \item \textbf{机制基线}：$A=0 \Rightarrow p_{ij}(0)=w_{ij}$，很好理解，如果将外生发展置于0,意味着相对需求份额等于任务的原始权重。两个都是百分比数值。
   \item \textbf{现实基线}：$t_0=2024$（与锚点一致的当前快照）。
 \end{itemize}
-正文采用机制基线作为主证据，现实基线结果置于稳健性附录。因为经过尝试，按照真实时间序列，不够证明。
+正文采用机制基线作为主证据，现实基线结果置于稳健性附录。因为经过尝试，由于Gen-AI反战年限较短，缺乏足够的时间序列数据以展示非常直观的结构变异。
 
 \paragraph{(i) 份额变化}
 对于任意两个时间点 $t_0,t_1$，任务 $j$ 的份额变化定义为
@@ -493,12 +452,13 @@ GenAI 与机器人平台、仿真环境及基础模型的集成显著提升了�
 r_{ij}(t_0,t_1)=\frac{1}{2}\left|\Delta p_{ij}(t_0,t_1)\right|.
 \end{equation}
 按 $r_{ij}$ 降序排列，可识别出对结构变化贡献最大的任务（Top contributors）。该指标取代原先"按均值选取 TopK"的方式，避免挑到稳定大头而掩盖结构重排。
+\\这部分二分之一的使用依据有待考量。
 
 \paragraph{(iii) Top-$m$ 换血率}
 \begin{figure}[H]
 \centering
 \includegraphics[width=0.82\textwidth]{figures/fig_robotics_task_dna_wordcloud.pdf}
-\caption{Robotics 工程师 Task DNA 词云：颜色使用低饱和柔和色调，Top 任务以更高权重与更深色调突出。}
+\caption{Robotics 工程师 Task DNA 词云，Top 任务以更高权重与更深色调突出。}
 \label{fig:robotics_task_dna_wordcloud}
 \end{figure}
 定义职业的核心任务集为按 $p_{ij}(t)$ 降序的前 $m$ 个任务，记为 $\mathrm{Top}_m(p_i(t))$。换血率衡量核心任务集合的更替程度：
@@ -529,7 +489,8 @@ I_i(t_0,t_1)=\#\{(a,b):\ \mathrm{rank}_i(a,t_0)<\mathrm{rank}_i(b,t_0)\ \wedge\ 
 \end{equation}
 其中 $\theta_{I}\in(0,1)$ 为翻转强度阈值（例如 $\theta_{I}=0.15$），$\theta_{J}\in(0,1)$ 为换血率阈值（例如 $\theta_{J}=0.40$），$m$ 为核心任务数（例如 $m=5$）。
 
-\noindent\textbf{阈值选择说明。} 阈值 $\theta_{I}$、$\theta_{J}$ 不作为固定常数，而是作为\emph{情景参数}报告：我们在多个阈值设置下计算结果，展示结论的稳健性区间，而非给出单一"触发/未触发"的二元判断。
+\noindent\textbf{阈值选择说明。} 阈值 $\theta_{I}$、$\theta_{J}$ 不作为固定常数，而是作为\emph{情景参数}报告：我们在多个阈值设置下计算结果，展示结论的稳健性区间，而非给出单一"触发/未触发"的二元判断。\\
+这部分也要做敏感性分析，给出鲁棒区间。\\这部分也要做敏感性分析，给出鲁棒区间。
 
 \paragraph{结构指标的可视化}
 我们据此构建两类核心可视化：

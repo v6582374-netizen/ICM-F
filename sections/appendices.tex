@@ -1,9 +1,12 @@
 \begin{appendices}
 
-\section{数据来源与变量定义}
+\section{补充材料}
+\label{app:supplementary}
+
+\subsection{数据来源与变量定义}
 \label{app:data_sources}
 
-\subsection{O*NET描述符数据来源}
+\subsubsection{O*NET描述符数据来源}
 \label{app:onet_descriptors}
 
 本研究使用的三维职业特征参数 $digit(x)$、$physical(x)$ 和 $iprisk(x)$ 均来源于O*NET OnLine公开数据库，具体描述符及其访问链接如表~\ref{tab:onet_descriptor_sources} 所示。
@@ -28,7 +31,7 @@
 \end{tabular}
 \end{table}
 
-\subsection{二维投影面积公式}
+\subsubsection{二维投影面积公式}
 \label{appendix:area2d_formula}
 
 为保证二维投影下的异质性度量与三维定义一致，我们对任意投影 $\pi$（例如 $(digit, physical)$、$(digit, iprisk)$ 或 $(physical, iprisk)$）定义三点的二维三角形面积为
@@ -37,7 +40,7 @@
 \]
 其中 $\times$ 表示二维向量的叉积（标量）运算，$\pi(\cdot)$ 为三维特征到二维坐标的投影映射。
 
-\subsection{任务DNA与GenAI能力数据}
+\subsubsection{任务DNA与GenAI能力数据}
 \label{app:task_dna_sources}
 
 我们从O*NET 30.1文本数据库中提取各职业的任务陈述和任务评分，并根据重要性（IM）和任务频率（FT）评分计算任务权重~\cite{onet2025database}。GenAI能力评估基于权威基准和技术报告~\cite{openai2023gpt4,openaicodex2021,swebench2024,autogpt2023,whisper2022,docvqa2017,spider2018,imagenet2009}。
@@ -82,7 +85,7 @@ GPT-4基准分数 & MMLU 86.4\%、ARC 96.3\%、GSM8K 92.0\%、DROP 80.9、HellaS
 \end{tabular}
 \end{table}
 
-\section{补充图示：任务DNA权重分布}
+\subsection{补充图示：任务DNA权重分布}
 \label{app:task_dna_figures}
 
 三职业的任务DNA权重分布已移至正文图~\ref{fig:task_dna_imfr_triptych}。以下为各职业的任务文本图例（按权重 $w$ 排序）。
@@ -111,7 +114,7 @@ GPT-4基准分数 & MMLU 86.4\%、ARC 96.3\%、GSM8K 92.0\%、DROP 80.9、HellaS
 \label{fig:task_dna_27_legend}
 \end{figure}
 
-\section{补充图示：任务份额预测}
+\subsection{补充图示：任务份额预测}
 \label{app:task_share_figures}
 
 \noindent\textbf{职业 17-2199.08：全部任务份额轨迹（基准情景）。}
@@ -138,7 +141,7 @@ GPT-4基准分数 & MMLU 86.4\%、ARC 96.3\%、GSM8K 92.0\%、DROP 80.9、HellaS
 \label{fig:task_share_all_arts}
 \end{figure}
 
-\section{教育项目推荐详表}
+\subsection{教育项目推荐详表}
 \label{app:program_recommendations}
 
 表~\ref{tab:programs_genai_rationale}汇总了三个代表性职业的推荐教育项目及其选择理由。
@@ -180,12 +183,5 @@ Court Reporting 副学士（A.A.S.） &
 \bottomrule
 \end{tabular}
 \end{table}
-
-\section{Python实现代码}
-\begin{lstlisting}[language=Python]
-def model_solver(data):
-    # 核心数学逻辑
-    return results
-\end{lstlisting}
 
 \end{appendices}

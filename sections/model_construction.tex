@@ -85,14 +85,13 @@ Area3D(x_S, x_T, x_A) = \frac{1}{2} \left\lVert \big(f(x_T) - f(x_S)\big) \times
 \label{fig:heterogeneity2d}
 \end{figure}
 
-针对二维投影进行分析：Robotics Engineers的数字化略低于Court Reporters and Simultaneous Captioners，并且位于高物理性、高知识产权风险区域。First-Line Supervisors of Mechanics, Installers, and Repairers位于低物理性、中等知识产权风险区域；而Court Reporters and Simultaneous Captioners则位于中等物理性、低知识产权风险区域。可见三种职业在任意两维组合下均保持较大的异质性，将其作为三个领域代表具有合理性。\\
-三者的O*NET-SOC 代码分别为：STEM：17-2199.08；Trade：49-1011.00；Arts：27-3092.00。
+针对二维投影进行分析：Robotics Engineers的数字化略低于Court Reporters and Simultaneous Captioners，并且位于高物理性、高知识产权风险区域；First-Line Supervisors of Mechanics, Installers, and Repairers位于低物理性、中等知识产权风险区域；而Court Reporters and Simultaneous Captioners则位于中等物理性、低知识产权风险区域。可见三种职业在任意两维组合下均保持较大的差异性，将其作为三个领域代表具有合理性。（三者的O*NET-SOC 代码分别为：STEM：17-2199.08；Trade：49-1011.00；Arts：27-3092.00）。
 
 \subsection{职业演化的模型构建}
 
-问题的第二个核心要求是为所选的三个职业构建一个\emph{数据驱动}的未来演化模型，并强调了结合“当前轨迹（current trajectory）”以及会因GenAI而发生变化的驱动因素。
-首先，从第一性原理出发，职业是由其任务组成所定义的，因此在Gen-AI的影响下，其未来的Task DNA必定会发生结构上的“变异”，因此，预测未来的该职业的岗位需求本身逻辑上就存在问题，因为彼时职业已经非此时职业了。\\
-所以，本研究模型并不直接预测未来职业的岗位需求，而是从更本质的角度出发，研究在当前Gen-AI发展轨迹下，未来职业的Task DNA的结构变化。\\
+问题的第二个核心要求是为所选的三个职业构建一个\emph{数据驱动}的未来演化模型，并强调了结合“当前轨迹（current trajectory）”以及相关的驱动因素。
+首先，从第一性原理出发，职业是由其任务组成（DNA）所定义的，因此在Gen-AI的影响下，其未来的Task DNA必定会发生结构上的“变异”，因此，试图预测未来的该职业的岗位需求本身逻辑上就存在问题，因为彼时的职业已经非此时的职业了。\\
+所以，我们并不会直接预测未来职业的岗位需求，而是从更本质的角度出发，研究在当前Gen-AI发展轨迹下，未来职业的Task DNA的结构变化。为了便于理解，我们绘制图~\ref{fig:task_redefinition} 来展示职业的演化流程。
 
 \begin{figure}[htbp]
 \centering
@@ -122,8 +121,7 @@ Area3D(x_S, x_T, x_A) = \frac{1}{2} \left\lVert \big(f(x_T) - f(x_S)\big) \times
 
 
 
-
-我们首先构建 Task DNA 的任务权重 $w_{ij}$，结合权威数据来源，在任务级层面，计算其替代/增强强度 $(s_{ij},c_{ij})$，进而得到该职业的任务级净冲击为
+由于官方给出的职业的原始任务描述字段太多，因此构建 Task DNA 的任务权重 $w_{ij}$，结合权威数据来源，在任务（而非职业）层面，计算其替代/增强强度 $(s_{ij},c_{ij})$，进而得到该职业的任务级净冲击为
 \begin{equation}
     \mu_{ij}^{task}=c_{ij}-s_{ij},
 \end{equation}
@@ -131,28 +129,28 @@ Area3D(x_S, x_T, x_A) = \frac{1}{2} \left\lVert \big(f(x_T) - f(x_S)\big) \times
 
 \vspace{0.5\baselineskip}
 
-\subsubsection{未来演化的可计算定义}
-为消除题目中“future”的时间模糊性，我们基于“没有人能准确预测未来某个具体时间节点的变化”原则，转而采用更广义的时间跨度。我们将未来定义为\textbf{任务层面的可计算事件}：当某个关键任务在职业内的相对需求（份额）下降至一个足够小的阈值 $\epsilon$ 以下时，即认为该任务在可操作意义上“趋近于消失”。
-具体地，若 $p_{ij}(t)$ 表示职业 $i$ 中任务 $j$ 在时刻 $t$ 的相对需求份额（定义见后文），则定义任务 $j$ 的“有效归零时间”为
-\begin{equation}
-    \tau_{ij}(\epsilon)=\min\{t:\ p_{ij}(t)\le \epsilon\}.
-\end{equation}
-该定义可直接用于回答“未来何时发生显著变化”的问题，并允许通过不同 $\epsilon$ 取值进行敏感性分析。
+% \subsubsection{未来演化的可计算定义}
+% 我们基于“没有人能准确预测未来某个具体时间节点的定量变化”原则，转而采用更广义的时间跨度来预测定性的变化。\\
+% 对此，我们定义当某个关键任务在职业内的相对需求（份额）下降至一个足够小的阈值 $\epsilon$ 以下时，即认为该任务在可操作意义上“趋近于消失”。
+% 具体地，若 $p_{ij}(t)$ 表示职业 $i$ 中任务 $j$ 在时刻 $t$ 的相对需求份额（定义见后文），则定义任务 $j$ 的“有效归零时间”为
+% \begin{equation}
+%     \tau_{ij}(\epsilon)=\min\{t:\ p_{ij}(t)\le \epsilon\}.
+% \end{equation}
+% 该定义可直接用于回答“未来何时发生显著变化”的问题，并允许通过不同 $\epsilon$ 取值进行敏感性分析。
 
-\subsection{任务层动态预测模型（Task-first）}
+\subsubsection{任务层动态预测模型}
 
 在上述论证之后，我们给出任务层预测的数学公式。
 模型包含两类输入：\textbf{任务结构}（来自O*NET任务数据）与\textbf{发展轨迹}（GenAI采纳路径 $A(t)$）。
 预测输出为：每个职业内部任务的相对需求演化 $p_{ij}(t)$，以及“有效归零时间” $\tau_{ij}(\epsilon)$。
 
-\subsubsection{任务权重（Task DNA）与任务净冲击}
+\paragraph{任务结构（Task DNA）与任务净冲击}
 
 \paragraph{任务DNA的定义与数据来源}
-对于职业 $i$，我们需要选取其\textbf{前20项核心任务}作为其任务DNA（任务索引 $j = 1, \ldots, 20$）。每项任务 $j$ 取自O*NET对于此职业的任务描述 $Task_j$\cite{onet2025database}，该数据库对于每个职业的任务构成都有相应的重要性和频率评分数据，因此我们定义两个基于该数据的描述符：
-\begin{itemize}
-    \item \textbf{任务重要性} $IM_j$（范围 0--100）；
-    \item \textbf{任务频率} $FR_j$（范围 0--100，或同等的频率量表）。
-\end{itemize}
+对于职业 $i$，我们需要选取其\textbf{前N项核心任务}作为其任务DNA（任务索引 $j = 1, \ldots, 20$）。每项任务 $j$ 取自O*NET对于此职业的任务描述 $Task_j$\cite{onet2025database}，该数据库对于每个职业的任务构成都有相应的重要性和频率评分数据，因此我们定义两个基于该数据的描述符：
+\textbf{任务重要性} $IM_j$（范围 0--100）；
+\textbf{任务频率} $FR_j$（范围 0--100，或同等的频率量表）。\\
+
 
 我们将任务权重定义为重要性 $IM_j$ 与频率 $FR_j$ 乘积的归一化值。令未归一化的权重为：
 \begin{equation}
@@ -162,16 +160,8 @@ Area3D(x_S, x_T, x_A) = \frac{1}{2} \left\lVert \big(f(x_T) - f(x_S)\big) \times
 \begin{equation}
     w_{ij} = \frac{\tilde{w}_j}{\sum_{k=1}^{20} \tilde{w}_k}, \quad \sum_{j=1}^{20} w_j = 1.
 \end{equation}
-如果所选SOC（标准职业分类）代码缺少频率量表 $FR_j$，则仅使用重要性值（即设 $\tilde{w}_j = IM_j$）。
-进一步的，通过Python编程，我们在两个方向上分别展示三个职业的可视化图标：
 
-
-\begin{itemize}
-    \item \textbf{IM--FR 散点图}：横轴为任务重要性 $IM_j$，纵轴为任务频率 $FR_j$，每个点代表一项任务，点的面积与任务权重 $w_j$ 成正比。该图的作用是\emph{直观呈现职业内部的任务结构}：点越大、位置越靠右上角，表明该任务在职业中占据越核心的地位。通过观察点的分布形态，可以快速判断职业的任务集中度（少数任务主导 vs. 多任务均衡）以及任务的重要性--频率相关性。
-    \item \textbf{权威 $s,c$ 档位分布图}：展示经权威评估重标注后，各任务在替代强度 $s$ 和增强强度 $c$ 离散档位上的分布。该图的作用是\emph{揭示GenAI对该职业的潜在冲击模式}：若多数任务落在高 $s$ 低 $c$ 区域，表明该职业面临较高的自动化替代风险；反之，若多数任务落在低 $s$ 高 $c$ 区域，则GenAI更可能增强而非替代人类工作。
-\end{itemize}
-
-经过计算，便得到了三个职业的Top Task（20个以内），将其可视化，分布见图~\ref{fig:task_dna_imfr_triptych}，任务文本图例见附录~\ref{app:task_dna_figures}。三职业的权威 $s,c$ 档位分布对比见图~\ref{fig:task_dna_sc_triptych}。
+进一步的，通过Python编程（如果所选SOC（标准职业分类）代码缺少任务频率量表 $FR_j$，则仅使用重要性值（即设 $\tilde{w}_j = IM_j$））。得到三个职业的Top Task（20个以内），将其可视化，分布见图~\ref{fig:task_dna_imfr_triptych}，任务文本图例见附录~\ref{app:task_dna_figures}。
 
 \begin{figure}[H]
 \centering
@@ -190,46 +180,99 @@ Area3D(x_S, x_T, x_A) = \frac{1}{2} \left\lVert \big(f(x_T) - f(x_S)\big) \times
     \includegraphics[width=\linewidth]{figures/task_dna_27-3092.00_weights.pdf}\\
     \small (c) 27-3092.00 法庭速录
 \end{minipage}
-\caption{三职业任务DNA权重分布（IM--FR 散点图），点面积与 $w_j$ 成正比。任务文本图例见附录~\ref{app:task_dna_figures}。}
+\caption{三个职业任务DNA权重分布（IM--FR 散点图），点面积与 $w_j$ 成正比。字母对应的文本图例见附录~\ref{app:task_dna_figures}。}
 \label{fig:task_dna_imfr_triptych}
 \end{figure}
 
-为了避免主观的连续评分，对于替代强度 $s_{ij}$ 和增强强度 $c_{ij}$，我们采用一个离散的等级量表：
-\begin{equation}
-    s_{ij},\ c_{ij} \in \{0.10,\ 0.30,\ 0.50,\ 0.70,\ 0.90\}.
-\end{equation}
-其中：
-\begin{itemize}
-    \item $s_{ij}$ 衡量任务 $j$ 被生成式人工智能（GenAI）压缩的可能性。
-    \item $c_{ij}$ 衡量任务 $j$ 通过Gen-AI增强所获得的效率、质量或工作流程上的提升。
-\end{itemize}
 
-\subsection{基于权威基准的GenAI能力量表与可审计映射}
+结合三类职业的Task DNA，进一步给出针对性的解释：对于\textbf{机器人工程师}，其职业价值主要由少数高权重技术任务驱动；对于\textbf{一线主管（机械/安装/维修）}，点更分散且中等权重任务占比更高，反映管理、协调、现场判断等任务的多元并存，模型上对应更平缓的权重梯度，结构变化由多项任务共同贡献；而\textbf{法庭速录与字幕}高度依赖少数语言处理核心任务。
 
-为将任务层 $(s,c)$ 的来源从“主观估计”改为“可复现规则”，我们将GenAI能力表述为一套\textbf{权威基准$\rightarrow$能力分段$\rightarrow(s,c)$映射}的离散量表。该量表仅依赖公开的基准分数与可审计的分段规则，从而支持逐层追溯。说白了就是将能力解剖。\\
-针对能力分段（$M_k$），我们不做连续拟合，而采用阈值区间确定能力等级，并在区间内取代表值 $M_k$（见表~\ref{tab:genai_scale}）：
-\begin{itemize}
-    \item 高（$\ge 0.85$）、较高（$0.70$--$0.85$）、中等（$0.50$--$0.70$）、低（$0.30$--$0.50$）、极低（$<0.30$）。
-\end{itemize}
+得到三个职业的Top Task后，我们将其与当前Gen-AI能力进行映射，进而研究每一个Task受到的影响强度。\\
+首先我们同样需要对当今Gen-AI的能力进行解剖，划分出多个能力维度。以下的三点为主要的划分依据：
 
-
-\paragraph{方向系数（$\rho_k$）}
-我们用连续方向系数刻画“替代/互补/平衡”的偏向强度：
-\begin{itemize}
-    \item $\rho_k<0$：偏替代（AI可独立完成可交付物）。
-    \item $\rho_k>0$：偏互补（AI提供建议/辅助，人必须在环）。
-    \item $\rho_k=0$：平衡（两边都强，净效应不确定）。
-\end{itemize}
-
-表3九个维度的来源：
-虽然名字是Gen-AI的九个维度，但实际上是链接当前职业的task和Gen-AI能力的映射。
-选定的标准是，\\
 \begin{itemize}
     \item 覆盖主要工作活动类型：从技术问题解决到语言处理，涵盖职业任务的主要类别
     \item 可量化可审计：每个维度都有对应的权威基准测试，避免主观评估
-    \item 与 GenAI 能力对应：每个维度都能通过公开的 AI 测试分数来衡量
+    \item 与当前三个职业的任务构成相匹配：每个Task DNA都能通过公开的 AI 测试分数来衡量。
 \end{itemize}
 
+为避免主观的连续评分，我们针对能力分段（$M_k$）构建一个横向的离散能力等级：
+\begin{itemize}[label={},leftmargin=*]
+    \item[] 高（$\ge 0.85$）\quad
+    较高（$0.70$--$0.85$）\quad
+    中等（$0.50$--$0.70$）\quad
+    低（$0.30$--$0.50$）\quad
+    极低（$<0.30$）
+\end{itemize}
+并在每个区间内取代表值 $M_k$（具体映射见表~\ref{tab:genai_scale}）。
+
+同时引入{方向系数（$\rho_k$）}刻画“替代/互补/平衡”的偏向强度，若
+$\rho_k<0$：则偏替代（AI可独立完成可交付物）；
+若$\rho_k>0$：则偏互补（AI提供建议/辅助，人必须在环）；
+若$\rho_k=0$：则平衡（两边都强，净效应不确定）。
+\\
+\ $M_k$ 选取当前顶尖模型在相关指标上的代表性得分（0$\sim$1标准化后）。$\rho_k = c_k - s_k$ 表示GenAI对该维度的影响方向：正值为互补（提升人效使需求上升），负值为替代（可自动化使需求下降）。
+
+最终将结果汇总至表~\ref{tab:genai_scale}。
+\begin{table}[H]
+\centering
+\caption[GenAI 九维能力映射总表]{GenAI 九维能力映射总表}
+\label{tab:genai_scale}
+\small
+\setlength{\tabcolsep}{2pt}
+\renewcommand{\arraystretch}{1.15}
+\setlength{\extrarowheight}{2pt}
+\resizebox{\textwidth}{!}{%
+\begin{tabular}{p{2.6cm} p{3.6cm} p{4.6cm} | p{1.0cm} p{2.2cm} p{1.0cm} p{0.9cm} p{0.9cm}}
+\toprule
+\textbf{维度（编号）} & \textbf{定义} & \textbf{代表性指标（来源 \& 分数）} & \textbf{$M_k$} & \textbf{能力等级（阈值规则）} & \textbf{$\rho_k$} & \textbf{$s_k$} & \textbf{$c_k$} \\
+\midrule
+D1 工程技术问题解决 &
+运用工程知识分析解决技术问题（调试维护、技术支持） &
+MMLU 86.4\%；ARC 96.3\%（GPT-4 报告\citep{openai2023gpt4}） &
+0.90 & 高（$\ge 0.85$） & $+0.35$ & 0.50 & 0.85 \\
+D2 数据分析与评估 &
+分析传感器/数值数据并据标准评估（质检、数据监控） &
+GSM8K 92.0\%；DROP 80.9（GPT-4 报告\citep{openai2023gpt4}） &
+0.80 & 较高（$0.70$--$0.85$） & $+0.20$ & 0.30 & 0.50 \\
+D3 算法编程与自动化 &
+编写和修正代码脚本实现需求（软件算法开发、自动化流程） &
+HumanEval 67.0\%；SWE-bench 修复 20\%\citep{openaicodex2021,swebench2024} &
+0.67 & 中等（$0.50$--$0.70$） & $-0.20$ & 0.90 & 0.70 \\
+D4 现场感知与物理操作 &
+感知物理环境及动手操作设备（现场检查、安全监督、设备调校） &
+AutoGPT 实体环境任务 24\%；视觉识别 $\approx 85\%+$\citep{autogpt2023,imagenet2009} &
+0.25 & 低（$0.30$--$0.50$） & $+0.40$ & 0.10 & 0.50 \\
+D5 规划与流程调度 &
+制定任务计划、优化流程顺序和资源分配（调度排程、进度管理） &
+AutoGPT 自主任务完成率 $\sim 65\%$；工具使用成功率 $\sim 80\%$\citep{autogpt2023} &
+0.65 & 中等（$0.50$--$0.70$） & $-0.10$ & 0.60 & 0.50 \\
+D6 协作沟通与培训 &
+沟通协作、传授知识并协调团队（培训、跨部门协作） &
+人类偏好：GPT-4 胜率 70.2\%\citep{openai2023gpt4} &
+0.70 & 较高（$0.70$--$0.85$） & $+0.45$ & 0.30 & 0.75 \\
+D7 监督管理与质量控制 &
+监督工作表现并确保质量达标（绩效管理、质检） &
+HellaSwag 95.3\%\citep{openai2023gpt4} &
+0.80 & 较高（$0.70$--$0.85$） & 0.00 & 0.68 & 0.68 \\
+D8 语言理解与文本生成 &
+理解口语/文本并生成书面内容（转录、写作、翻译） &
+Whisper WER $\approx 0.011$；GPT-4 文本偏好胜率 70\%\citep{whisper2022,openai2023gpt4} &
+0.95 & 高（$\ge 0.85$） & $-0.40$ & 0.90 & 0.50 \\
+D9 信息管理与检索 &
+有序存储组织信息并按需高速检索核验（档案管理、查询答复） &
+DocVQA 99.16\%；Text-to-SQL $>80\%$\citep{docvqa2017,spider2018} &
+0.90 & 高（$\ge 0.85$） & 0.00 & 0.30 & 0.30 \\
+\bottomrule
+\end{tabular}}
+
+\end{table}
+\begin{spacing}{0.9}
+\noindent
+\textbf{注：}D9 的 DocVQA 99.16\% 可视为文档问答场景的上界证据，不等价于所有检索情境与数据库规模下的通用能力。D4/D5 采用 AutoGPT 端到端完成率与工具使用成功率作为下界证据，用于避免夸大“现场操作/流程调度”的可自动化程度。
+
+上表只展示了Gen-AI的九个维度，而
+图~\ref{fig:genai_taskdna_chord_robotics}为映射关系的更直观展示。
 \begin{figure}[H]
 \centering
 \includegraphics[width=0.86\textwidth]{figures/fig_genai_taskdna_chord_17-2199.08.pdf}
@@ -237,83 +280,22 @@ Area3D(x_S, x_T, x_A) = \frac{1}{2} \left\lVert \big(f(x_T) - f(x_S)\big) \times
 \label{fig:genai_taskdna_chord_robotics}
 \end{figure}
 
-\begin{table}[H]
-\centering
-\caption[GenAI 九维能力映射总表]{GenAI 九维能力映射总表：指标分段$\rightarrow M_k,\rho_k\rightarrow(s_k,c_k)$}
-\label{tab:genai_scale}
-\small
-\setlength{\tabcolsep}{2pt}
-\renewcommand{\arraystretch}{1.15}
-\resizebox{\textwidth}{!}{%
-\begin{tabular}{p{2.6cm} p{3.6cm} p{4.6cm} p{2.2cm} p{1.0cm} p{1.0cm} p{0.9cm} p{0.9cm}}
-\toprule
-\textbf{维度（编号）} & \textbf{定义} & \textbf{代表性指标（来源 \& 分数）} & \textbf{能力等级（阈值规则）} & \textbf{$M_k$} & \textbf{$\rho_k$} & \textbf{$s_k$} & \textbf{$c_k$} \\
-\midrule
-D1 工程技术问题解决 &
-运用工程知识分析解决技术问题（调试维护、技术支持） &
-MMLU 86.4\%；ARC 96.3\%（GPT-4 报告\citep{openai2023gpt4}） &
-高（$\ge 0.85$） & 0.90 & $+0.35$ & 0.50 & 0.85 \\
-\addlinespace
-D2 数据分析与评估 &
-分析传感器/数值数据并据标准评估（质检、数据监控） &
-GSM8K 92.0\%；DROP 80.9（GPT-4 报告\citep{openai2023gpt4}） &
-较高（$0.70$--$0.85$） & 0.80 & $+0.20$ & 0.30 & 0.50 \\
-\addlinespace
-D3 算法编程与自动化 &
-编写和修正代码脚本实现需求（软件算法开发、自动化流程） &
-HumanEval 67.0\%；SWE-bench 修复 20\%\citep{openaicodex2021,swebench2024} &
-中等（$0.50$--$0.70$） & 0.67 & $-0.20$ & 0.90 & 0.70 \\
-\addlinespace
-D4 现场感知与物理操作 &
-感知物理环境及动手操作设备（现场检查、安全监督、设备调校） &
-AutoGPT 实体环境任务 24\%；视觉识别 $\approx 85\%+$\citep{autogpt2023,imagenet2009} &
-低（$0.30$--$0.50$） & 0.25 & $+0.40$ & 0.10 & 0.50 \\
-\addlinespace
-D5 规划与流程调度 &
-制定任务计划、优化流程顺序和资源分配（调度排程、进度管理） &
-AutoGPT 自主任务完成率 $\sim 65\%$；工具使用成功率 $\sim 80\%$\citep{autogpt2023} &
-中等（$0.50$--$0.70$） & 0.65 & $-0.10$ & 0.60 & 0.50 \\
-\addlinespace
-D6 协作沟通与培训 &
-沟通协作、传授知识并协调团队（培训、跨部门协作） &
-人类偏好：GPT-4 胜率 70.2\%\citep{openai2023gpt4} &
-较高（$0.70$--$0.85$） & 0.70 & $+0.45$ & 0.30 & 0.75 \\
-\addlinespace
-D7 监督管理与质量控制 &
-监督工作表现并确保质量达标（绩效管理、质检） &
-HellaSwag 95.3\%\citep{openai2023gpt4} &
-较高（$0.70$--$0.85$） & 0.80 & 0.00 & 0.68 & 0.68 \\
-\addlinespace
-D8 语言理解与文本生成 &
-理解口语/文本并生成书面内容（转录、写作、翻译） &
-Whisper WER $\approx 0.011$；GPT-4 文本偏好胜率 70\%\citep{whisper2022,openai2023gpt4} &
-高（$\ge 0.85$） & 0.95 & $-0.40$ & 0.90 & 0.50 \\
-\addlinespace
-D9 信息管理与检索 &
-有序存储组织信息并按需高速检索核验（档案管理、查询答复） &
-DocVQA 99.16\%；Text-to-SQL $>80\%$\citep{docvqa2017,spider2018} &
-高（$\ge 0.85$） & 0.90 & 0.00 & 0.30 & 0.30 \\
-\bottomrule
-\end{tabular}}
 
-\end{table}
-\begin{spacing}{0.9}
-\noindent
-\textbf{注：}\ $M_k$ 选取当前顶尖模型在相关指标上的代表性得分（0$\sim$1标准化后）。$\rho_k = c_k - s_k$ 表示GenAI对该维度的影响方向：正值为互补（提升人效使需求上升），负值为替代（可自动化使需求下降）。D9 的 DocVQA 99.16\% 可视为文档问答场景的上界证据，不等价于所有检索情境与数据库规模下的通用能力。D4/D5 采用 AutoGPT 端到端完成率与工具使用成功率作为下界证据，用于避免夸大“现场操作/流程调度”的可自动化程度。
-
-总体来看，GenAI 在语言和编码等维度已达到高能力并呈替代效应，而在涉及物理、管理等维度时，仍主要作为辅助工具，与人类技能形成互补。
+总的来看，GenAI 在语言和编码等维度能力较高，呈现替代趋势，而在涉及物理、管理等维度时，仍主要作为辅助工具，与人类技能形成互补。
 \end{spacing}
 
-为了更直观的显示Gen-AI能力对三个职业的task的映射，我们绘制了图~\ref{fig:task_dna_genai_mapping_triptych}。
-\begin{figure}[H]
-\centering
-\includegraphics[width=0.98\textwidth]{figures/task_dna_genai_mapping_triptych.pdf}
-\caption{基于GenAI能力$\rightarrow$任务映射数据的职业DNA维度权重分布（D1--D9）。三幅子图分别对应职业 17-2199.08、49-1011.00 与 27-3092.00；柱高表示任务权重在能力维度上的占比，水平线表示维度均值，标注点为主导维度。}
-\label{fig:task_dna_genai_mapping_triptych}
-\end{figure}
-在此简单分析上图：分析分析分析分析分析分析分析分析分析分析分析分析分析分析分析分析分析分析分析分析分析分析分析分析分析分析分析分析分析分析分析分析分析分析分析分析分析分析分析分析分析分析分析分析分析分析分析分析分析分析分析分析分析分析分析分析分析分析分析分析分析分析分析分析分析分析\\
+% 为了更直观的显示Gen-AI能力对三个职业的task的映射，我们绘制了图~\ref{fig:task_dna_genai_mapping_triptych}。
 
-再根据上表得到的sc值，可以绘制以下图片：
+
+% \begin{figure}[H]
+% \centering
+% \includegraphics[width=0.98\textwidth]{figures/task_dna_genai_mapping_triptych.pdf}
+% \caption{基于GenAI能力$\rightarrow$任务映射数据的职业DNA维度权重分布（D1--D9）。三幅子图分别对应职业 17-2199.08、49-1011.00 与 27-3092.00；柱高表示任务权重在能力维度上的占比，水平线表示维度均值，标注点为主导维度。}
+% \label{fig:task_dna_genai_mapping_triptych}
+% \end{figure}
+% 在此简单分析上图：分析分析分析分析分析分析分析分析分析分析分析分析分析分析分析分析分析分析分析分析分析分析分析分析分析分析分析分析分析分析分析分析分析分析分析分析分析分析分析分析分析分析分析分析分析分析分析分析分析分析分析分析分析分析分析分析分析分析分析分析分析分析分析分析分析分析\\
+
+基于上表得到的$s,c$数据，绘制\textbf{权威 $s,c$ 档位分布图}。该图的作用是\emph{揭示GenAI对该职业的潜在冲击模式}：若多数任务落在高 $s$ 低 $c$ 区域，表明该职业面临较高的自动化替代风险；反之，若多数任务落在低 $s$ 高 $c$ 区域，则GenAI更可能增强而非替代人类工作。
 
 \begin{figure}[H]
 \centering
@@ -336,12 +318,13 @@ DocVQA 99.16\%；Text-to-SQL $>80\%$\citep{docvqa2017,spider2018} &
 \label{fig:task_dna_sc_triptych}
 \end{figure}
 
-此处给出上述三个图片的分析：分析分析分析分析分析分析分析分析分析分析分析分析分析分析分析分析分析分析分析分析分析分析分析分析分析分析分析分析分析分析分析分析分析分析分析分析分析分析分析分析分析分析分析分析分析分析分析分析分析分析分析分析分析分析分析分析分析分析分析分析分析分析分析分析分析分析\\
+结合图~\ref{fig:task_dna_sc_triptych}，我们从 $(s_{ij},c_{ij})$ 的结构分布解释三类职业的冲击机制。目的是为了和预测之后的结果进行呼应。对\textbf{机器人工程师}，$c$ 的质量明显集中在中高档位，说明 GenAI 更偏向以增强的方式赋能工作流。
+
+对\textbf{一线主管（机械/安装/维修）}，$s$ 与 $c$ 的分布更分散且无单一高峰，这与其任务 DNA 的多元性一致，意味着 GenAI 在不同子任务上呈“局部替代+局部增强”的混合效应，结构变化更依赖多任务的累积贡献。对\textbf{法庭速录与字幕}，$s$ 在高档位的集中度更高且与高频任务耦合更紧，显示其核心任务更接近可自动化文本处理范畴，模型上表现为负 $\mu^{task}_{ij}$ 任务权重占比更高，结构重排更快、更早触发任务份额下沉。
 
 $\mu^{task}_{ij}>0$ 表示GenAI更可能增强该任务（提高产出/质量/速度），$\mu^{task}_{ij}<0$ 表示该任务更可能被替代或显著压缩。
 
-\paragraph{三职业任务DNA的 $s,c$ 分布与负净冲击分析}
-基于权威映射表，表~\ref{tab:task_sc_negative_impact} 汇总了三职业中负净冲击任务（$\mu^{task}_{ij}<0$）的权重与典型任务。
+得到$(s_{ij},c_{ij})$ 数据之后，变可以进一步汇总了三职业中负净冲击任务（$\mu^{task}_{ij}<0$）的权重与典型任务，结果见表~\ref{tab:task_sc_negative_impact} 
 负净冲击（被替代倾向）
 
 \begin{table}[H]
@@ -360,24 +343,14 @@ $\mu^{task}_{ij}>0$ 表示GenAI更可能增强该任务（提高产出/质量/�
 \end{tabular}
 \end{table}
 
-\noindent\textbf{解释性结论（基于数据）：}
 \begin{itemize}
-    \item \textbf{17-2199.08}：负净冲击权重总和为 0.400，8 项任务均落在 D3（算法编程与自动化），$\mu=-0.20$。这意味着该职业约 40\% 的核心任务存在可自动化压力，但净冲击幅度相对温和（$s=0.90,c=0.70$），体现为"高替代但仍有较强增强"的编码类任务。也就是说强强抵消了。
-    \item \textbf{49-1011.00}：仅 1 项任务（调度排程，task\_id=2912）呈负净冲击，权重仅 0.059，落在 D5（规划与流程调度），$\mu=-0.20$。该职业的核心任务更多落在监督、培训与协调维度（D6/D7），与人类技能形成互补，整体替代风险最低。
-    \item \textbf{27-3092.00}：负净冲击权重总和高达 0.413，5 项任务集中落在 D8（语言理解与文本生成），$\mu=-0.40$，远高于其他两职业。这表明该职业的核心任务（速记、转写、校对）高度集中于语言自动化维度，GenAI 替代效应最强，预期将在后续动态演化中更早出现"任务份额跌破阈值"的时间点。
+    \item \textbf{机器人工程师}：负净冲击权重总和为 0.400，8 项任务均落在 D3（算法编程与自动化），$\mu=-0.20$。这意味着该职业约 40\% 的核心任务存在可自动化压力，但净冲击幅度相对温和（$s=0.90,c=0.70$），体现为"高替代但仍有较强增强"的编码类任务。也就是说强强抵消了。
+    \item \textbf{一线主管}：仅 1 项任务（调度排程，task\_id=2912）呈负净冲击，权重仅 0.059，落在 D5（规划与流程调度），$\mu=-0.20$。该职业的核心任务更多落在监督、培训与协调维度（D6/D7），与人类技能形成互补，整体替代风险最低。
+    \item \textbf{法庭速录与字幕}：负净冲击权重总和高达 0.413，5 项任务集中落在 D8（语言理解与文本生成），$\mu=-0.40$，远高于其他两职业。这表明该职业的核心任务（速记、转写、校对）高度集中于语言自动化维度，GenAI 替代效应最强，预期将在后续动态演化中更早出现"任务份额跌破阈值"的时间点。
 \end{itemize}
 
-这部分存在不妥，因为三个职业的task dna数量不同。加起来自然不一样，并不能说机器人工程师相对法庭更容易被替代。
-\subsubsection{Driver Specification: Adoption as the Core Temporal Mechanism}
-\label{subsec:driver_specification}
-
-在任务优先框架中，\emph{driver} 须满足两条硬性条件：(i) 它随时间变化——否则无法驱动动态演化；(ii) 它进入模型方程并改变任务曲线——否则仅为描述性标签而非机制变量。基于这两条约束，我们选取\textbf{采用率}（Adoption rate）$A(t)$ 作为核心且最简洁的 driver。
-
-\paragraph{Driver 定义与机制}
-采用率 $A(t)\in[0,1]$ 刻画 GenAI 技术在劳动力市场中的渗透程度。其上升源于多重因素：模型成本下降、易用性提升、与现有软件及工作流的深度集成等。$A(t)$ 的核心作用在于\emph{调制任务层净冲击的释放速度}：给定任务级参数 $\mu_{\text{task},ij}$，采用率决定了该冲击在时间维度上的兑现节奏——采用缓慢则结构变化渐进，采用迅速则结构重排加速。\\
-所以我将其比作阀门，多给比喻，可以大大降低AI味。
-\paragraph{三类职业的 Driver 合理性}
-下文为本研究选取的三类代表性职业提供简明的"GenAI → Driver → 任务结构变化"证据链。
+基于以上对职业核心组成任务（Top Task DNAN）、Gen-AI能力维度匹配以及正负冲击强度的分析，我们可以回答题目的问题：在Gen-AI时代，哪些驱动因素会造成职业的变化？
+这部分交给你们。
 
 \subparagraph{Robotics Engineers (O*NET 17-2199.08)}
 GenAI 与机器人平台、仿真环境及基础模型的集成显著提升了工具链能力，从而加速采用（$A(t)\uparrow$）。在任务层面，文档撰写、常规代码生成及测试等任务更容易被替代（$s_{ij}$ 较高），而系统级设计与现场集成任务的替代速度相对较慢。公开报道显示，主流机器人平台已开始集成生成式 AI 以加速开发与部署~\cite{nvidia_isaac_2024}，为 driver 存在性提供了经验证据。
@@ -388,36 +361,26 @@ GenAI 与机器人平台、仿真环境及基础模型的集成显著提升了�
 \subparagraph{Court Reporters and Simultaneous Captioners (O*NET 27-3092.00)}
 自动语音识别（ASR）与转写/字幕自动化技术的进步提升了速度与一致性，推动采用上升（$A(t)\uparrow$）。任务结构因此分化："实时转写""初稿校对""格式化""归档"等任务更多由自动化系统承担，而人类从业者转向校验、法律语境判断与质量控制。行业趋势报告明确指出，自动化与 AI 正在显著提升法庭记录流程的速度与准确性~\cite{ncra_trends_2024}。
 
-\medskip
-\noindent 上述证据链表明，$A(t)$ 作为统一的 driver 变量，能够捕捉不同职业中 GenAI 渗透对任务结构的调制作用，且在实证层面具有可追溯的支撑。
-
-
 \subsubsection{将“发展轨迹”与“任务需求”紧密耦合：开始对未来的任务权重进行预测}
 
-题目要求“given the current trajectory and expected impacts of Gen-AI”，其中“current trajectory”可操作地对应为\textbf{采纳程度随时间的扩散}。
-我们用外生的采纳路径 $A(t)\in[0,1]$ 表示在时间 $t$ 已采纳GenAI的工作流占比（或强度）。
-直观上：在 $A(t)=0$ 时，任务结构保持基线；也就是说，这里需要假设，假设内生变化平稳。在 $A(t)$ 增大时，任务层净冲击 $\mu^{task}_{ij}$ 逐步释放，任务需求结构随之重排。\\
-注意：A（t）具体是零点几，根本不重要。
+题目要求“given the current trajectory and expected impacts of Gen-AI”，其中“current trajectory”我们将其定义为外生的采纳路径 $A(t)\in[0,1]$ 表示在时间 $t$ ，Gen-AI的采用率。并且，0被视为当前时间点，意味着从当前到未来的跨度。
 
-为避免凭空设定“绝对任务需求”的总量，也就是说符合们我“不对未来进行定量预测的原则”，我们以任务\textbf{相对需求权重}作为预测对象，并采用“采纳者/未采纳者混合”的最小机制：
-未采纳部分保持基线权重 $w_{ij}$；采纳部分对任务权重施加与 $\mu^{task}_{ij}$ 单调一致的乘性变换（保证权重为正）。
+考虑到模型的适用性以及准确性，我们不对未来的任何时间点进行任何的定量预测，转而从更本质的角度出发，以任务\textbf{相对份额}作为预测对象，
 定义未归一化任务权重
-
-需要思考以下这个公式的来源是什么。为什么这么设置，有无依据，还是原创模型？
 
 \begin{equation}
     q_{ij}(t)=w_{ij}\Big[(1-A(t))+A(t)\exp\big(\eta\,\mu^{task}_{ij}\big)\Big],
 \end{equation}
-其中 $\eta>0$ 为冲击强度缩放（无量纲），用于刻画“单位采纳（ai采用率）带来的任务结构重排幅度”，并在敏感性分析中报告其影响。
+其中 $\eta>0$ 为冲击强度缩放（无量纲），用于刻画“ai采用率带来的任务结构重排幅度”，并在敏感性分析中报告其影响。\\
+直观上，在 $A(t)=0$ 时，只剩下 $w_{ij}$，任务权重与当前保持一致；在 $A(t)$ 增大时，由于右侧部分对任务权重施加了一个与 $\mu^{task}_{ij}$ 单调一致的乘性变换（保证权重为正），任务层净冲击 $\mu^{task}_{ij}$ 逐步释放，任务需求结构随之重排。
 
-将 $q_{ij}(t)$ 归一化得到任务相对需求份额，那么上面的就是绝对需求份额。
+
+然后将 $q_{ij}(t)$ 归一化就可以得到任务的相对份额。
 \begin{equation}
     p_{ij}(t)=\frac{q_{ij}(t)}{\sum_{k=1}^{J_i} q_{ik}(t)}.
 \end{equation}
-该定义保证 $\sum_j p_{ij}(t)=1$，从而直接刻画职业内部任务结构如何随采纳轨迹而演化。
 
-当 $A(t)$ 上升（GenAI扩散加深）时，若 $\mu^{task}_{ij}<0$，则 $q_{ij}(t)$ 相对缩小，$p_{ij}(t)$ 下降；反之若 $\mu^{task}_{ij}>0$，则该任务份额上升。
-因此，$A(t)$ 将“发展轨迹”以严格数学方式映射为任务层需求结构的时间变化，从而满足题面关于“当前轨迹+预期影响”的建模要求。
+当 $A(t)$ 上升（GenAI采用率增大）时，若 $\mu^{task}_{ij}<0$，则 $q_{ij}(t)$ 相对缩小，$p_{ij}(t)$ 下降；反之若 $\mu^{task}_{ij}>0$，则该任务份额上升。
 
 % \paragraph{未来时间点}
 % 结合前述定义，任务的有效归零时间仍为
@@ -426,42 +389,16 @@ GenAI 与机器人平台、仿真环境及基础模型的集成显著提升了�
 % \end{equation}
 % 通过对Top任务的 $\tau_{ij}(\epsilon)$ 进行比较，我们可以直接回答：在不同采纳情景下，哪些任务会最先"消失"，哪些任务会长期保留，从而给出对该职业"未来"形态变化的可解释预测。
 
-\subsubsection{结构读出层：职业重新定义的可计算判据}
-\label{sec:structural_indicators}
-
-为将"职业重新定义"从定性描述转化为可计算、可审计的判断，我们构建一套\textbf{结构读出层}指标。这些指标均由机制层输出 $p_{ij}(t)$ 直接计算得出，无需额外估计。
-
-\paragraph{基线参考点的选择}
-结构比较需要明确的参考点。我们定义两种可操作的基线：
-\begin{itemize}
-  \item \textbf{机制基线}：$A=0 \Rightarrow p_{ij}(0)=w_{ij}$，很好理解，如果将外生发展置于0,意味着相对需求份额等于任务的原始权重。两个都是百分比数值。
-  \item \textbf{现实基线}：$t_0=2024$（与锚点一致的当前快照）。
-\end{itemize}
-正文采用机制基线作为主证据，现实基线结果置于稳健性附录。因为经过尝试，由于Gen-AI反战年限较短，缺乏足够的时间序列数据以展示非常直观的结构变异。
-
-\paragraph{(i) 份额变化}
-对于任意两个时间点 $t_0,t_1$，任务 $j$ 的份额变化定义为
+那么对于任意两个时间点 $t_0,t_1$，任务 $j$ 的份额变化定义为
 \begin{equation}
 \label{eq:delta_p}
-\Delta p_{ij}(t_0,t_1)=p_{ij}(t_1)-p_{ij}(t_0).
+r_{ij}(t_0,t_1)=\left|\Delta p_{ij}(t_0,t_1)\right|=p_{ij}(t_1)-p_{ij}(t_0).
 \end{equation}
 
-\paragraph{(ii) Top contributor（贡献分解）}
-我们用绝对份额变化量衡量每个任务对职业结构重排的贡献：
-\begin{equation}
-\label{eq:contributor}
-r_{ij}(t_0,t_1)=\frac{1}{2}\left|\Delta p_{ij}(t_0,t_1)\right|.
-\end{equation}
 按 $r_{ij}$ 降序排列，可识别出对结构变化贡献最大的任务（Top contributors）。该指标取代原先"按均值选取 TopK"的方式，避免挑到稳定大头而掩盖结构重排。
-\\这部分二分之一的使用依据有待考量。
 
-\paragraph{(iii) Top-$m$ 换血率}
-\begin{figure}[H]
-\centering
-\includegraphics[width=0.82\textwidth]{figures/fig_robotics_task_dna_wordcloud.pdf}
-\caption{Robotics 工程师 Task DNA 词云，Top 任务以更高权重与更深色调突出。}
-\label{fig:robotics_task_dna_wordcloud}
-\end{figure}
+\paragraph{(ii) Top-$m$ 换血率}
+
 定义职业的核心任务集为按 $p_{ij}(t)$ 降序的前 $m$ 个任务，记为 $\mathrm{Top}_m(p_i(t))$。换血率衡量核心任务集合的更替程度：
 \begin{equation}
 \label{eq:turnover}
@@ -490,7 +427,7 @@ I_i(t_0,t_1)=\#\{(a,b):\ \mathrm{rank}_i(a,t_0)<\mathrm{rank}_i(b,t_0)\ \wedge\ 
 \end{equation}
 其中 $\theta_{I}\in(0,1)$ 为翻转强度阈值（例如 $\theta_{I}=0.15$），$\theta_{J}\in(0,1)$ 为换血率阈值（例如 $\theta_{J}=0.40$），$m$ 为核心任务数（例如 $m=5$）。
 
-\noindent\textbf{阈值选择说明。} 阈值 $\theta_{I}$、$\theta_{J}$ 不作为固定常数，而是作为\emph{情景参数}报告：我们在多个阈值设置下计算结果，展示结论的稳健性区间，而非给出单一"触发/未触发"的二元判断。\\
+阈值 $\theta_{I}$、$\theta_{J}$ 不作为固定常数，我们在多个阈值设置下计算结果，展示结论的稳健性区间。\\
 这部分也要做敏感性分析，给出鲁棒区间。\\这部分也要做敏感性分析，给出鲁棒区间。
 
 \paragraph{结构指标的可视化}

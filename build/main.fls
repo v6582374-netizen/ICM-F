@@ -434,9 +434,6 @@ INPUT ./sections/abstract.tex
 INPUT ./sections/abstract.tex
 INPUT ./sections/abstract.tex
 INPUT sections/abstract.tex
-INPUT build/main.toc
-INPUT build/main.toc
-INPUT build/main.toc
 INPUT /usr/local/texlive/2025/texmf-dist/tex/latex/newtx/ot1minntx.fd
 INPUT /usr/local/texlive/2025/texmf-dist/tex/latex/newtx/ot1minntx.fd
 INPUT /usr/local/texlive/2025/texmf-dist/tex/latex/newtx/ot1minntx.fd
@@ -503,6 +500,9 @@ INPUT /usr/local/texlive/2025/texmf-dist/fonts/tfm/public/newtx/ntxsyc.tfm
 INPUT /usr/local/texlive/2025/texmf-dist/fonts/tfm/public/newtx/ntxexa.tfm
 INPUT /usr/local/texlive/2025/texmf-dist/fonts/tfm/public/newtx/ntxexa.tfm
 INPUT /usr/local/texlive/2025/texmf-dist/fonts/tfm/public/newtx/ntxexa.tfm
+INPUT build/main.toc
+INPUT build/main.toc
+INPUT build/main.toc
 OUTPUT build/main.toc
 INPUT ./sections/introduction.tex
 INPUT ./sections/introduction.tex
@@ -572,9 +572,6 @@ INPUT ./figures/task_dna_27-3092.00_weights.pdf
 INPUT ./figures/fig_genai_taskdna_chord_17-2199.08.pdf
 INPUT ./figures/fig_genai_taskdna_chord_17-2199.08.pdf
 INPUT ./figures/fig_genai_taskdna_chord_17-2199.08.pdf
-INPUT ./figures/task_dna_genai_mapping_triptych.pdf
-INPUT ./figures/task_dna_genai_mapping_triptych.pdf
-INPUT ./figures/task_dna_genai_mapping_triptych.pdf
 INPUT ./figures/task_dna_17-2199.08_authoritative_sc_distribution.pdf
 INPUT ./figures/task_dna_17-2199.08_authoritative_sc_distribution.pdf
 INPUT ./figures/task_dna_17-2199.08_authoritative_sc_distribution.pdf
@@ -584,9 +581,6 @@ INPUT ./figures/task_dna_49-1011.00_authoritative_sc_distribution.pdf
 INPUT ./figures/task_dna_27-3092.00_authoritative_sc_distribution.pdf
 INPUT ./figures/task_dna_27-3092.00_authoritative_sc_distribution.pdf
 INPUT ./figures/task_dna_27-3092.00_authoritative_sc_distribution.pdf
-INPUT ./figures/fig_robotics_task_dna_wordcloud.pdf
-INPUT ./figures/fig_robotics_task_dna_wordcloud.pdf
-INPUT ./figures/fig_robotics_task_dna_wordcloud.pdf
 INPUT ./figures/fig_STEM_rankflip_contribution_v2.pdf
 INPUT ./figures/fig_STEM_rankflip_contribution_v2.pdf
 INPUT ./figures/fig_STEM_rankflip_contribution_v2.pdf

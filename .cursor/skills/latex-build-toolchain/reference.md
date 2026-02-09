@@ -1,0 +1,35 @@
+---
+description: "Instructions for compiling LaTeX documents, handling errors, and managing bibliography."
+globs: ["**/*.tex", "Makefile", "latexmkrc"]
+alwaysApply: true
+---
+# LaTeX Build Pipeline
+
+## Compilation Command
+
+Always use `latexmk` for compilation. Do not run `pdflatex` manually multiple times.
+
+- **Command**: `latexmk -pdf -interaction=nonstopmode -synctex=1 -outdir=build main.tex`
+- **Clean**: `latexmk -c`
+
+## Error Handling Protocol
+
+If the build fails, follow this recursive debugging process:
+
+1. **Read the Log**: Do NOT rely on the terminal summary. Read the `.log` file in the build directory.
+2. **Identify Error**: Search for `!`, `Error:`, or `Undefined control sequence`.
+3. **Fix Strategy**:
+   - **Missing Package**: Add `\usepackage{...}` to the preamble in `main.tex`.
+   - **Undefined Reference**: Check `references.bib` keys and ensure `\bibliography` is called.
+   - **Bad Math**: Check for unclosed brackets or invalid commands in math mode.
+4. **Retry**: Run the compilation command again.
+
+## Package Whitelist
+
+Ensure the following standard packages are loaded for MCM papers:
+
+- `geometry` (Margins)
+- `amsmath`, `amssymb` (Math)
+- `graphicx` (Images)
+- `booktabs` (Professional tables)
+- `mcmthesis` (If available, use this class)

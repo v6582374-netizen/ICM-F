@@ -1,0 +1,47 @@
+---
+description: "Standards for generating scientific plots that blend with the PDF and prioritize document aesthetics."
+globs: ["**/*.py"]
+alwaysApply: false
+---
+# Visualization Standards
+
+**首要原则**：以 PDF 版面的美感为首要考量；图应与论文页面浑然天成、朴素淡雅，不追求高对比、高饱和或纯色鲜艳背景。不考虑色盲友好、印刷适配等额外约束。
+
+## Style Requirements
+
+- **Background**: 纯白或与正文一致的浅色背景，避免彩色块、渐变或深色底；与 PDF 白底自然融合。
+- **Colors**: 低饱和、淡雅配色：多用灰阶、浅灰蓝/浅灰绿、淡棕等柔和色调；避免大面积纯红/纯蓝/纯黄等高饱和纯色，防止“贴上去的图标”感。
+- **Line/Marker**: 线宽与标记大小适中，以清晰可辨为下限，以不抢眼为上限；可优先细线、小标记、浅色填充。
+- **Fonts**: 字号与正文协调，风格简洁，不刻意“大号便于打印”。
+- **Format**: 以 PDF (.pdf) 输出，保证矢量清晰度。
+
+## Palette Recommendation (非单调但克制)
+
+- **三色分组**（上方两个框、下方一个框）：
+  - Top-1：浅灰蓝 `#DDE7F2`
+  - Top-2：浅灰绿 `#DDEBE2`
+  - Bottom：淡暖灰 `#EDE7E0`
+- **线条/边框**：统一用中性灰 `#666666`，文本用 `#333333`。
+- **背景**：保持白色或极浅灰 `#FAFAFA`。
+
+## Content Requirements
+
+- 每条坐标轴须有标签与单位。
+- 每张图须有标题，或在 LaTeX 中用 `\caption` 统一说明。
+
+## Output Format
+
+保存为 PDF (.pdf)，便于在 LaTeX 中以 `\includegraphics` 嵌入并保持矢量质量。
+
+## LaTeX Output
+
+生成绘图代码时，同时给出 LaTeX 引用片段（路径需指向 `figures/`，与项目规范一致）：
+
+```latex
+\begin{figure}[htbp]
+\centering
+\includegraphics[width=0.8\textwidth]{figures/filename.pdf}
+\caption{Detailed description of what the trend implies.}
+\label{fig:filename}
+\end{figure}
+```

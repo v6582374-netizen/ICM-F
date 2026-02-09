@@ -1,0 +1,24 @@
+---
+description: "Verifies consistency between mathematical descriptions in LaTeX and code implementations."
+globs: ["**/*.tex", "**/*.py", "**/*.m"]
+alwaysApply: false
+---
+# Consistency Check Protocol
+
+When asked to "audit the model" or "check consistency":
+
+## Extract Formula
+Identify the mathematical formula in `sections/model.tex`.
+
+## Locate Code
+Find the corresponding function in `code/`.
+
+## Verify
+
+1. **Variable Names**: Do the variable names match? (e.g., is $\alpha$ in text named `alpha` in code?)
+2. **Logic**: Is the logic identical? (e.g., check loop boundaries, constants).
+3. **Units**: Are units consistent?
+
+## Report
+
+Provide a detailed list of discrepancies. **DO NOT auto-fix without explicit permission**, as the "source of truth" might be ambiguous.

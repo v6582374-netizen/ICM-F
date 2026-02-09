@@ -1,44 +1,42 @@
-\contentsline {section}{\numberline {1}引言}{2}{section.1}%
-\contentsline {subsection}{\numberline {1.1}研究背景与动机}{2}{subsection.1.1}%
-\contentsline {subsection}{\numberline {1.2}问题重述}{2}{subsection.1.2}%
-\contentsline {section}{\numberline {2}假设与符号}{2}{section.2}%
-\contentsline {subsection}{\numberline {2.1}基本假设}{2}{subsection.2.1}%
-\contentsline {subsection}{\numberline {2.2}符号定义}{2}{subsection.2.2}%
-\contentsline {section}{\numberline {3}模型构建与实现}{3}{section.3}%
-\contentsline {subsection}{\numberline {3.1}三个领域的职业选择}{3}{subsection.3.1}%
-\contentsline {subsubsection}{\numberline {3.1.1}基于O*NET的职业特征参数}{3}{subsubsection.3.1.1}%
-\contentsline {subsection}{\numberline {3.2}职业演化的模型构建}{7}{subsection.3.2}%
-\contentsline {subsubsection}{\numberline {3.2.1}任务层动态预测模型}{7}{subsubsection.3.2.1}%
-\contentsline {paragraph}{Robotics Engineers的驱动因素}{11}{section*.11}%
-\contentsline {paragraph}{First-Line Supervisors of Mechanics的驱动因素}{11}{section*.12}%
-\contentsline {paragraph}{Court Reporters and Simultaneous Captioners的驱动因素}{12}{section*.13}%
-\contentsline {subsubsection}{\numberline {3.2.2}将“发展轨迹”与“任务需求”紧密耦合}{12}{subsubsection.3.2.2}%
-\contentsline {paragraph}{(指标i) 结构变化贡献率}{12}{section*.14}%
-\contentsline {paragraph}{(指标ii) Top-$m$ 换血率}{13}{section*.15}%
-\contentsline {paragraph}{(指标iv) 排名翻转与归一化翻转强度}{13}{section*.16}%
-\contentsline {subsubsection}{\numberline {3.2.3}探索所选三个职业的未来}{14}{subsubsection.3.2.3}%
-\contentsline {paragraph}{法庭记录员与同声字幕员（27-3092.00）：替代主导型颠覆}{15}{section*.18}%
-\contentsline {subsection}{\numberline {3.3}教育项目与Gen-AI整合策略}{15}{subsection.3.3}%
-\contentsline {subsubsection}{\numberline {3.3.1}元模型：就业--人文--AI 重叠}{15}{subsubsection.3.3.1}%
-\contentsline {paragraph}{（轴一）就业匹配度（Employability Axis）}{16}{section*.19}%
-\contentsline {paragraph}{（轴二）人文价值（Humanistic Axis）}{16}{section*.20}%
-\contentsline {paragraph}{（轴三）AI 重叠度（AI-Overlap Axis）}{17}{section*.21}%
-\contentsline {paragraph}{三轴决策规则：KEEP / TRANSFORM / PRUNE}{17}{section*.22}%
-\contentsline {subsubsection}{\numberline {3.3.2}机构级战略建议}{18}{subsubsection.3.3.2}%
-\contentsline {paragraph}{Generations College: Court Reporting Program}{18}{section*.24}%
-\contentsline {paragraph}{Carnegie Mellon University: MRSD Program}{19}{section*.25}%
-\contentsline {paragraph}{Universal Technical Institute: Diesel Technology Program}{19}{section*.26}%
-\contentsline {paragraph}{跨机构共性建议}{19}{section*.27}%
-\contentsline {section}{\numberline {4}仿真结果与敏感性分析}{20}{section.4}%
-\contentsline {subsection}{\numberline {4.1}职业选择的敏感度分析}{20}{subsection.4.1}%
-\contentsline {paragraph}{检验方法}{20}{section*.28}%
-\contentsline {subsection}{\numberline {4.2}就业去向 $O$ 的结构敏感性}{20}{subsection.4.2}%
-\contentsline {section}{\numberline {5}讨论：优势与不足}{21}{section.5}%
-\contentsline {subsection}{\numberline {5.1}优势}{21}{subsection.5.1}%
-\contentsline {paragraph}{第一性原理：职业由任务构成}{21}{section*.32}%
-\contentsline {paragraph}{创新性：从"职业危不危险"到"任务如何重排"}{21}{section*.33}%
-\contentsline {subsection}{\numberline {5.2}不足}{22}{subsection.5.2}%
-\contentsline {section}{Appendices}{26}{section*.36}%
-\contentsline {subsection}{\numberline {.1}二维投影面积公式}{26}{subsection.1..1}%
-\contentsline {subsection}{\numberline {.2}补充说明：任务DNA文本图例}{26}{subsection.1..2}%
-\contentsline {subsection}{\numberline {.3}教育项目推荐详表}{26}{subsection.1..3}%
+\contentsline {section}{\numberline {1}Introduction}{2}{section.1}%
+\contentsline {subsection}{\numberline {1.1}Background and Motivation}{2}{subsection.1.1}%
+\contentsline {subsection}{\numberline {1.2}Problem Restatement}{2}{subsection.1.2}%
+\contentsline {section}{\numberline {2}Assumptions and Notation}{2}{section.2}%
+\contentsline {subsection}{\numberline {2.1}Fundamental Assumptions}{2}{subsection.2.1}%
+\contentsline {subsection}{\numberline {2.2}Notation}{2}{subsection.2.2}%
+\contentsline {section}{\numberline {3}Model Construction and Implementation}{3}{section.3}%
+\contentsline {subsection}{\numberline {3.1}Occupation Selection Across Three Domains}{3}{subsection.3.1}%
+\contentsline {subsubsection}{\numberline {3.1.1}O*NET-Based Occupation Feature Parameters}{3}{subsubsection.3.1.1}%
+\contentsline {subsection}{\numberline {3.2}Model Construction for Occupational Evolution}{6}{subsection.3.2}%
+\contentsline {subsubsection}{\numberline {3.2.1}Task-Level Dynamic Prediction Model}{6}{subsubsection.3.2.1}%
+\contentsline {subsubsection}{\numberline {3.2.2}Coupling ``Development Trajectory'' with ``Task Demand''}{10}{subsubsection.3.2.2}%
+\contentsline {paragraph}{(Indicator I) Structural Change Contribution Rate}{11}{section*.11}%
+\contentsline {paragraph}{(Indicator II) Top-$m$ Turnover Rate}{11}{section*.12}%
+\contentsline {paragraph}{(Indicator III) Rank Inversion and Normalized Inversion Intensity}{11}{section*.13}%
+\contentsline {subsubsection}{\numberline {3.2.3}Exploring the Future of the Three Selected Occupations}{12}{subsubsection.3.2.3}%
+\contentsline {paragraph}{Court Reporters and Simultaneous Captioners (27-3092.00): Substitution-Dominant Disruption}{13}{section*.15}%
+\contentsline {subsection}{\numberline {3.3}Educational Programs and Gen-AI Integration Strategies}{13}{subsection.3.3}%
+\contentsline {subsubsection}{\numberline {3.3.1}Meta-Model: Employment--Humanistic--AI Overlap}{13}{subsubsection.3.3.1}%
+\contentsline {paragraph}{(Axis I) Employability}{14}{section*.16}%
+\contentsline {paragraph}{(Axis II) Humanistic Value}{14}{section*.17}%
+\contentsline {paragraph}{(Axis III) AI Overlap}{15}{section*.18}%
+\contentsline {paragraph}{Three-Axis Decision Rules: Keep / Transform / Prune}{15}{section*.19}%
+\contentsline {subsubsection}{\numberline {3.3.2}Institution-Level Strategic Recommendations}{16}{subsubsection.3.3.2}%
+\contentsline {paragraph}{Generations College: Court Reporting Program}{16}{section*.21}%
+\contentsline {paragraph}{Carnegie Mellon University: MRSD Program}{16}{section*.22}%
+\contentsline {paragraph}{Universal Technical Institute: Diesel Technology Program}{17}{section*.23}%
+\contentsline {paragraph}{Cross-Institutional Common Recommendations}{17}{section*.24}%
+\contentsline {section}{\numberline {4}Simulation Results and Sensitivity Analysis}{18}{section.4}%
+\contentsline {subsection}{\numberline {4.1}Sensitivity Analysis of Occupation Selection}{18}{subsection.4.1}%
+\contentsline {paragraph}{Validation Method}{18}{section*.25}%
+\contentsline {subsection}{\numberline {4.2}Structural Sensitivity of Employment Destination $O$}{18}{subsection.4.2}%
+\contentsline {section}{\numberline {5}Discussion: Strengths and Limitations}{19}{section.5}%
+\contentsline {subsection}{\numberline {5.1}Strengths}{19}{subsection.5.1}%
+\contentsline {paragraph}{First Principles: Occupations Are Composed of Tasks}{19}{section*.29}%
+\contentsline {paragraph}{Innovation: From ``Is This Occupation at Risk?'' to ``How Are Tasks Being Rearranged?''}{19}{section*.30}%
+\contentsline {subsection}{\numberline {5.2}Limitations}{20}{subsection.5.2}%
+\contentsline {section}{Appendices}{23}{section*.33}%
+\contentsline {subsection}{\numberline {.1}O*NET Descriptor Access Links}{23}{subsection.1..1}%
+\contentsline {subsection}{\numberline {.2}Two-Dimensional Projection Area Formula}{23}{subsection.1..2}%
+\contentsline {subsection}{\numberline {.3}Supplementary Note: Task DNA Text Legends}{23}{subsection.1..3}%
+\contentsline {subsection}{\numberline {.4}Educational Program Recommendation Details}{23}{subsection.1..4}%

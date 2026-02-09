@@ -1,17 +1,15 @@
-\section{假设与符号}
-\subsection{基本假设}
+\section{Assumptions and Notation}
+\subsection{Fundamental Assumptions}
 
-为确保模型的可复现性与可审计性，我们对建模过程中的核心前提进行如下形式化：
+To ensure the reproducibility and auditability of our model, we formalize the core premises of the modeling process as follows:
 
-\begin{enumerate}[label=\textbf{A\arabic*.}, leftmargin=2em, itemsep=0.8em]
+\begin{itemize}[leftmargin=2em, itemsep=0.4em]
 
-\item \textbf{基线任务结构稳定性假设} \\
-    为了合理的简化模型，需要假设在 $A(t)=0$ 时，任务结构保持基线；也就是说，其内生变化平稳。
+\item \textbf{Baseline Task Structure Stability Assumption}. \textit{Justification:} When $A(t)=0$, the task structure remains at baseline; that is, its endogenous changes are stationary. This simplification allows us to isolate the effect of GenAI adoption from other confounding factors in occupational evolution.
 
-\item \textbf{采纳率单调递增假设} \\
-    假设当前GenAI的采用率从 $0$ 逐步递增至 $1$，用于刻画技术扩散过程中的阶段性渗透。
+\item \textbf{Monotonic Adoption Rate Assumption}. \textit{Justification:} The current GenAI adoption rate increases monotonically from $0$ to $1$, characterizing the staged penetration during the technology diffusion process. Historical data on technology adoption (e.g., internet, mobile devices) consistently shows S-curve patterns with monotonic growth phases.
 
-\end{enumerate}
+\end{itemize}
 
-\subsection{符号定义}
+\subsection{Notation}
 \input{sections/notations}

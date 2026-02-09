@@ -1,21 +1,30 @@
-\section{讨论：优势与不足}
-\subsection{优势}
+\section{Discussion: Strengths and Limitations}
+\subsection{Strengths}
 
-\paragraph{第一性原理：职业由任务构成}
-我们的建模思路源于一个简单的第一性原理——\textbf{职业的本质是其任务组合}。既然GenAI影响的是具体任务而非抽象的"职业标签"，那么研究职业演化就应当从任务层入手。既有经验证据也表明，GenAI 的采用正在重塑工作内容与技能需求结构，且这种改变首先体现在岗位内部的任务与技能组合上，而非简单等同为“某个职业被替代/不被替代”~\citep{gulati2025generativeaiadopti}。基于此，我们提出\textbf{Task DNA}的概念，将每个职业拆解为可度量的任务权重向量，使"AI对职业的影响"这一模糊问题变得可计算、可追溯。
+\paragraph{First Principles: Occupations Are Composed of Tasks}
+Our modeling approach stems from a simple first principle---\textbf{the essence of an occupation is its task composition}. Since GenAI impacts specific tasks rather than abstract ``occupation labels,'' studying occupational evolution should start from the task level. Existing empirical evidence also indicates that GenAI adoption is reshaping work content and skill demand structures, and this change first manifests in the task and skill composition within positions, rather than simply equating to ``a certain occupation being substituted/not substituted''~\citep{gulati2025generativeaiadopti}. Based on this, we propose the concept of \textbf{Task DNA}, decomposing each occupation into a measurable task weight vector, making the vague question of ``AI's impact on occupations'' computable and traceable.
 
-\paragraph{创新性：从"职业危不危险"到"任务如何重排"}
-传统研究往往给出"职业A高危/职业B安全"的模糊结论。我们的模型则回答更颗粒度更细的问题：哪些任务份额会收缩、哪些会扩张、职业边界何时触发重定义。这种任务层粒度的分析，与“就业与可迁移能力（career readiness）需要以人机互补技能而非静态岗位标签来定义”的教育与劳动力研究结论一致，从而更具可解释性与政策指导价值~\citep{mughal2025beyondautomationho,wong2025thefutureoflearnin}。
+\paragraph{Innovation: From ``Is This Occupation at Risk?'' to ``How Are Tasks Being Rearranged?''}
+Traditional research often provides vague conclusions like ``Occupation A is high-risk / Occupation B is safe.'' Our model answers more granular questions: which task shares will contract, which will expand, and when occupational boundaries trigger redefinition. This task-level granularity of analysis aligns with research conclusions in education and labor studies that ``career readiness needs to be defined by human-machine complementary skills rather than static job labels,'' thus having greater interpretability and policy guidance value~\citep{mughal2025beyondautomationho,wong2025thefutureoflearnin}.
 
-\subsection{不足}
-由于 Gen-AI 发展年限较短，我们缺乏足够的时间序列数据以展示直观的结构变异。
-并且如图~\ref{fig:task_share_all_stem} 所示，结构曲线的变化幅度非常小，得到的实际效果并不明显。
+\subsection{Limitations}
+Due to the short development period of Gen-AI, we lack sufficient time-series data to demonstrate intuitive structural mutations.
+Furthermore, as shown in Figure~\ref{fig:task_share_all_stem}, the magnitude of change in the structural curves is very small, resulting in effects that are not visually pronounced.
 
 \begin{figure}[H]
 \centering
 \includegraphics[width=0.60\textwidth]{figures/fig_STEM_task_share_all_tasks_appendix.pdf}
-\caption{STEM职业在基准情景下全部任务份额随时间的演化。}
+\caption{Evolution of all task shares over time for the STEM occupation under the baseline scenario.}
 \label{fig:task_share_all_stem}
 \end{figure}
 
+% \section{Conclusion}
+
+% We developed a ``Task-first'' occupational evolution framework that decomposes occupations into measurable Task DNA vectors and maps each task to a nine-dimensional GenAI capability scale. By treating adoption rate as the sole time-driven variable, our model generates dynamic trajectories of task shares and identifies structural redefinition thresholds through normalized inversion intensity and turnover rate indicators.
+
+% Our analysis of three heterogeneous occupations---Robotics Engineers (STEM), First-Line Supervisors of Mechanics (Trade), and Court Reporters (Arts)---reveals distinct evolution patterns: robotics engineers face balanced but augmentation-leaning impacts with task weight rebalancing; first-line supervisors exhibit the lowest substitution risk with GenAI serving as a complementary ``copilot''; and court reporters experience substitution-dominant disruption requiring fundamental role redefinition toward quality assurance and legal certification.
+
+% For educational policy, we recommend that institutions adopt ``institutionalized resource interfaces'' rather than single-point courses: Carnegie Mellon's MRSD program should leverage on-campus GenAI certificate resources; UTI's diesel programs should incorporate AI diagnostic tool training; and Generations College should shift court reporting curricula from speed-focused stenography toward real-time verification and human-AI collaboration workflows. The three-axis meta-model (Employment--Humanistic--AI Overlap) provides a reproducible, data-driven framework for curriculum reform decisions.
+
+% Finally, sensitivity analysis establishes extrapolation boundaries: the curriculum reform recommendation set remains highly consistent across target occupation definitions (Jaccard = 1.00), but employment contribution rankings vary significantly across institutions, indicating that while the model framework is transferable, target occupation sets must be re-specified for cross-institutional applications.
 

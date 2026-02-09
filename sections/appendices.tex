@@ -1,86 +1,82 @@
 \begin{appendices}
-\subsection{二维投影面积公式}
+
+\subsection{O*NET Descriptor Access Links}
+\label{appendix:onet_urls}
+
+Table~\ref{tab:onet_descriptor_urls} provides the access links and descriptor IDs for the six O*NET descriptors used in the three-dimensional feature mapping.
+
+\begin{table}[H]
+\centering
+\caption{O*NET Descriptor Access Links and Descriptor IDs (for Reproducibility)}
+\label{tab:onet_descriptor_urls}
+\small
+\begin{tabular}{@{}>{\raggedright\arraybackslash}p{2.2cm} >{\raggedright\arraybackslash}p{4.0cm} >{\raggedright\arraybackslash}p{2.3cm} >{\raggedright\arraybackslash}p{6.2cm}@{}}
+\toprule
+\textbf{Feature Axis} & \textbf{Descriptor Name} & \textbf{Descriptor ID} & \textbf{URL} \\
+\midrule
+$digit(x)$ & Working with Computers & 4.A.3.b.1 & \url{https://www.onetonline.org/find/descriptor/result/4.A.3.b.1} \\
+ & Electronic Mail & 4.C.1.a.2.h & \url{https://www.onetonline.org/find/descriptor/result/4.C.1.a.2.h} \\
+\addlinespace
+$physical(x)$ & Using Hands to Handle Objects & 4.C.2.d.1.g & \url{https://www.onetonline.org/find/descriptor/result/4.C.2.d.1.g} \\
+ & Kneeling/Crouching/Stooping & 4.C.2.d.1.e & \url{https://www.onetonline.org/find/descriptor/result/4.C.2.d.1.e} \\
+\addlinespace
+$iprisk(x)$ & Originality & 1.A.1.b.2 & \url{https://www.onetonline.org/find/descriptor/result/1.A.1.b.2} \\
+ & Thinking Creatively & 4.A.2.b.2 & \url{https://www.onetonline.org/find/descriptor/result/4.A.2.b.2} \\
+\bottomrule
+\end{tabular}
+\end{table}
+
+\subsection{Two-Dimensional Projection Area Formula}
 \label{appendix:area2d_formula}
 
-为保证二维投影下的异质性度量与三维定义一致，我们对任意投影 $\pi$（例如 $(digit, physical)$、$(digit, iprisk)$ 或 $(physical, iprisk)$）定义三点的二维三角形面积为
+To ensure the heterogeneity measure under two-dimensional projection is consistent with the three-dimensional definition, we define the two-dimensional triangle area for any projection $\pi$ (e.g., $(digit, physical)$, $(digit, iprisk)$, or $(physical, iprisk)$) as
 \[
 \mathrm{Area2D}_{\pi}(x_S,x_T,x_A)=\frac{1}{2}\left|\left(\pi(f(x_T))-\pi(f(x_S))\right)\times\left(\pi(f(x_A))-\pi(f(x_S))\right)\right|,
 \]
-其中 $\times$ 表示二维向量的叉积（标量）运算，$\pi(\cdot)$ 为三维特征到二维坐标的投影映射。
+where $\times$ denotes the cross product (scalar) operation of two-dimensional vectors, and $\pi(\cdot)$ is the projection mapping from three-dimensional features to two-dimensional coordinates.
 
-\subsection{补充说明：任务DNA文本图例}
+\subsection{Supplementary Note: Task DNA Text Legends}
 \label{app:task_dna_figures}
 
-由于版面限制，我们未在正文中逐条列出三职业的全部任务文本。我们在生成图~\ref{fig:task_dna_imfr_triptych} 时同步导出了按权重排序的任务文本图例，用于复现与审计。
+Due to page limitations, we did not list all task texts for the three occupations in the main text. When generating Figure~\ref{fig:task_dna_imfr_triptych}, we simultaneously exported weight-sorted task text legends for reproducibility and auditing purposes.
 
-% % \subsection{补充图示：任务DNA权重分布}
-% % \label{app:task_dna_figures}
-
-% 三职业的任务DNA权重分布及任务文本图例见正文图~\ref{fig:task_dna_imfr_triptych}。
-
-% 以下为各职业的详细任务文本图例（按权重 $w$ 排序），可选展示。
-
-% \noindent\textbf{职业 17-2199.08：机器人工程师。}
-% \begin{figure}[H]
-% \centering
-% \includegraphics[width=0.95\linewidth]{figures/task_dna_17-2199.08_weights_legend.pdf}
-% \caption{职业 17-2199.08 的任务文本图例（按权重 $w$ 排序）。}
-% \label{fig:task_dna_17_legend}
-% \end{figure}
-
-% \noindent\textbf{职业 49-1011.00：一线主管（机械/安装/维修）。}
-% \begin{figure}[H]
-% \centering
-% \includegraphics[width=0.95\linewidth]{figures/task_dna_49-1011.00_weights_legend.pdf}
-% \caption{职业 49-1011.00 的任务文本图例（按权重 $w$ 排序）。}
-% \label{fig:task_dna_49_legend}
-% \end{figure}
-
-% \noindent\textbf{职业 27-3092.00：法庭速录与字幕。}
-% \begin{figure}[H]
-% \centering
-% \includegraphics[width=0.95\linewidth]{figures/task_dna_27-3092.00_weights_legend.pdf}
-% \caption{职业 27-3092.00 的任务文本图例（按权重 $w$ 排序）。}
-% \label{fig:task_dna_27_legend}
-% \end{figure}
-
-\subsection{教育项目推荐详表}
+\subsection{Educational Program Recommendation Details}
 \label{app:program_recommendations}
 
-表~\ref{tab:programs_genai_rationale}汇总了三个代表性职业的推荐教育项目及其选择理由。
+Table~\ref{tab:programs_genai_rationale} summarizes the recommended educational programs and selection rationale for the three representative occupations.
 
 \begin{table}[H]
 \centering
 \renewcommand{\arraystretch}{1.3}
 \small
-\caption{推荐教育项目与选择理由}
+\caption{Recommended Educational Programs and Selection Rationale}
 \label{tab:programs_genai_rationale}
 \begin{tabular}{@{}p{0.18\textwidth}p{0.26\textwidth}p{0.51\textwidth}@{}}
 \toprule
-\textbf{职业及院校类型} & \textbf{推荐院校及专业} & \textbf{选择理由} \\
+\textbf{Occupation \& Institution Type} & \textbf{Recommended Institution \& Program} & \textbf{Selection Rationale} \\
 \midrule
 
-机器人工程师 \newline（大学） &
-卡内基梅隆大学（Carnegie Mellon University）\newline
-机器人研究院：机器人系统开发理学硕士（MRSD） &
-\textbf{（1）机构层面具备"领路者"属性：}机器人研究院自1979年成立以来强调在机器人研究与教育方面的领先定位~\cite{cmu_ri_2026}。\newline
-\textbf{（2）项目培养目标对齐产业与系统工程能力：}MRSD定位为面向产业实践的高级学位，强调多学科技术与商业能力，并包含与产业伙伴相关的实习路径~\cite{cmu_mrsd_2026}。\newline
-\textbf{（3）Gen-AI适配的校内资源明确可用：}学校提供"生成式AI与大模型"研究生证书项目，可作为机器人课程中引入LLM/Gen-AI（例如自然语言规划、人机协作、生成式设计）的制度化资源接口~\cite{cmu_gai_cert_2026}。 \\
+Robotics Engineers \newline(University) &
+Carnegie Mellon University\newline
+Robotics Institute: Master of Science in Robotic Systems Development (MRSD) &
+\textbf{(1) Institution-level ``pathfinder'' attributes:} Since its establishment in 1979, the Robotics Institute has emphasized its leading position in robotics research and education~\cite{cmu_ri_2026}.\newline
+\textbf{(2) Program objectives align with industry and systems engineering capabilities:} MRSD is positioned as an advanced industry-practice-oriented degree, emphasizing multidisciplinary technical and business capabilities, and includes internship pathways related to industry partners~\cite{cmu_mrsd_2026}.\newline
+\textbf{(3) Gen-AI-compatible on-campus resources are explicitly available:} The university offers a ``Generative AI and Large Models'' graduate certificate program, which can serve as an institutionalized resource interface for introducing LLM/Gen-AI (e.g., natural language planning, human-robot collaboration, generative design) into robotics courses~\cite{cmu_gai_cert_2026}. \\
 \addlinespace
 
-机械、安装与维修人员的一线主管 \newline（职业/技校） &
-Universal Technical Institute（UTI）\newline
-汽车与柴油技术等相关项目 &
-\textbf{（1）行业对齐与课程迭代能力强：}UTI通过与Bosch合作开发电动车（BEV）新课件，作为其电动车训练策略的一部分，体现其能快速响应产业技术迁移~\cite{uti_bosch_2022}。\newline
-\textbf{（2）将"AI化诊断/估损"纳入技能语境具备现实基础：}UTI公开内容已直接讨论"AI支持的诊断"用于识别隐性损伤并辅助估算维修所需零件与工时，说明其在教学叙事与训练模块上具备纳入AI工具链的入口~\cite{uti_collision_ai_2026}。 \\
+First-Line Supervisors of Mechanics, Installers, and Repairers \newline(Vocational/Technical School) &
+Universal Technical Institute (UTI)\newline
+Automotive and Diesel Technology Programs &
+\textbf{(1) Strong industry alignment and curriculum iteration capability:} UTI developed new BEV (Battery Electric Vehicle) courseware through collaboration with Bosch as part of its EV training strategy, demonstrating its ability to rapidly respond to industry technology transitions~\cite{uti_bosch_2022}.\newline
+\textbf{(2) Realistic foundation for incorporating ``AI-enhanced diagnostics/damage estimation'' into skill contexts:} UTI's public content already directly discusses ``AI-supported diagnostics'' for identifying hidden damage and assisting in estimating repair parts and labor hours, indicating entry points for incorporating AI tool chains in educational narratives and training modules~\cite{uti_collision_ai_2026}. \\
 \addlinespace
 
-法庭速录师与同声字幕员 \newline（艺术/专门院校） &
-Generations College（原MacCormac School）\newline
-Court Reporting 副学士（A.A.S.） &
-\textbf{（1）项目历史与行业代表性强：}学校明确宣称其在1912年建立了美国同类项目中的"首创"法庭速录项目，且在招生页面强调其行业声誉~\cite{generations_court_2026}。\newline
-\textbf{（2）实时（Realtime）训练在项目目标中被明确要求：}在线项目页面明确写入"核心课程中获得Realtime reporting经验"~\cite{generations_online_2026}。\newline
-\textbf{（3）与行业质量标准存在对接抓手：}NCRA公布的"批准项目"列表中包含Generations College（并标注批准有效期），可作为项目质量与realtime教育承诺的外部背书线索~\cite{ncra_approved_2026}。 \\
+Court Reporters and Simultaneous Captioners \newline(Arts/Specialized School) &
+Generations College (formerly MacCormac School)\newline
+Court Reporting Associate Degree (A.A.S.) &
+\textbf{(1) Strong program history and industry representation:} The school explicitly claims it established the ``first'' court reporting program of its kind in the United States in 1912, and emphasizes its industry reputation on enrollment pages~\cite{generations_court_2026}.\newline
+\textbf{(2) Realtime training is explicitly required in program objectives:} The online program page explicitly states ``gain Realtime reporting experience in core courses''~\cite{generations_online_2026}.\newline
+\textbf{(3) Connection points with industry quality standards exist:} The NCRA (National Court Reporters Association) published ``approved programs'' list includes Generations College (with approval validity period noted), serving as external endorsement evidence for program quality and realtime education commitment~\cite{ncra_approved_2026}. \\
 \bottomrule
 \end{tabular}
 \end{table}

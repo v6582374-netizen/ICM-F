@@ -3,6 +3,20 @@
 
 \documentclass{mcmthesis} % 核心文档类 
 \usepackage[fontset=fandol]{ctex}
+
+% --- 恢复英文标签（覆盖ctex默认的中文设置）---
+\renewcommand{\figurename}{Figure}
+\renewcommand{\tablename}{Table}
+\renewcommand{\refname}{References}
+\renewcommand{\contentsname}{Contents}
+\renewcommand{\abstractname}{Summary}
+
+% --- 行间距与段落间距压缩（符合MCM规范）---
+\linespread{0.95}  % 略微压缩行间距（单倍行距为1.0）
+\setlength{\parskip}{0.3\baselineskip}  % 减少段落间距（默认0.5）
+\usepackage{indentfirst}  % 首段也缩进
+\setlength{\parindent}{2em}  % 段首空两格
+
 \mcmsetup{
   tcn = {2621043},            % 修改为您的控制编号 
   problem = {F},              % 参赛题号 (A, B, C, D, E, F) [5, 16]
@@ -27,12 +41,13 @@
 \usepackage{geometry}
 \usepackage{tocloft}
 \usepackage{tikz}
-\usetikzlibrary{arrows.meta, positioning, calc}
+\usetikzlibrary{arrows.meta, positioning, calc, shapes.geometric, fit, backgrounds}
 \usepackage[labelfont={bf,sf}, font=normalsize]{caption}
 \usepackage{lastpage}
 \usepackage{setspace}
 \usepackage{amsthm}
 \usepackage[numbers]{natbib}
+\usepackage{xurl}  % 允许 URL 在任意位置换行
 \usepackage{hyperref}
 \newtheoremstyle{scplain}{}{}{\itshape}{}{\bfseries\scshape}{.}{.5em}{}
 \theoremstyle{scplain}
@@ -58,7 +73,7 @@
 }
 
 % --- 文档元数据 ---
-\title{重塑职业 DNA：生成式 AI 时代的进化策略}
+\title{Reshaping Occupational DNA: Evolution Strategies in the Generative AI Era}
 \author{Team \# 2621043}
 \date{\today}
 

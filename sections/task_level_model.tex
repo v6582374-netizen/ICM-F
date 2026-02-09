@@ -37,7 +37,7 @@ D_{ij}(t) &:\ \text{任务 } j \text{ 的人力劳动需求指数}
 \label{eq:labor_intensity_closed}
 \ell_{ij}(t) = \exp\!\left(-\kappa_s s_{ij}\int_0^t A(\tau)\,d\tau\right).
 \end{equation}
-\noindent\textbf{参数含义（通俗语言）。} $\kappa_s$ 是\emph{替代速度系数}。更大的 $\kappa_s$ 意味着在相同的 $A(t)$ 和 $s_{ij}$ 下人力努力下降更快。
+\indent\textbf{参数含义（通俗语言）。} $\kappa_s$ 是\emph{替代速度系数}。更大的 $\kappa_s$ 意味着在相同的 $A(t)$ 和 $s_{ij}$ 下人力努力下降更快。
 
 \paragraph{(b) 任务结构更新：职业内部重新分配。}
 自动化改变了职业的内部组成。我们形成未归一化份额并重新归一化：
@@ -47,7 +47,7 @@ D_{ij}(t) &:\ \text{任务 } j \text{ 的人力劳动需求指数}
 \qquad
 w_{ij}(t)=\frac{\tilde w_{ij}(t)}{\sum_{k} \tilde w_{ik}(t)}.
 \end{equation}
-\noindent\textbf{解释。} 高度自动化的任务（小的 $\ell_{ij}(t)$）失去份额；剩余的人力劳动转移到更难替代的任务。
+\indent\textbf{解释。} 高度自动化的任务（小的 $\ell_{ij}(t)$）失去份额；剩余的人力劳动转移到更难替代的任务。
 
 \paragraph{(b') 排名翻转指标：重分配的可视证据。}
 我们用“排名翻转”量化任务相对重要性的结构性变化。令 $rank_w(j)$ 表示基线权重 $w_{ij}(0)$ 的排序名次（1 为最高），
@@ -70,7 +70,7 @@ F_{ij}=\left|rank_p(j)-rank_w(j)\right|.
 \label{eq:cbar}
 \bar c_i = \sum_{j} w_{ij}(0)\,c_{ij}.
 \end{equation}
-\noindent\textbf{参数含义（通俗语言）。} $g_i$ 是功能需求的基线（非GenAI）增长；如果想避免宏观假设，可设 $g_i=0$。$\kappa_c\ge 0$ 是\emph{增强对需求}的放大因子。$\bar c_i$ 总结了职业在基线组成下的增强潜力。（一种变体用 $w_{ij}(t)$ 替代 $w_{ij}(0)$；我们使用 \eqref{eq:cbar} 以简化和参数稳定性。）
+\indent\textbf{参数含义（通俗语言）。} $g_i$ 是功能需求的基线（非GenAI）增长；如果想避免宏观假设，可设 $g_i=0$。$\kappa_c\ge 0$ 是\emph{增强对需求}的放大因子。$\bar c_i$ 总结了职业在基线组成下的增强潜力。（一种变体用 $w_{ij}(t)$ 替代 $w_{ij}(0)$；我们使用 \eqref{eq:cbar} 以简化和参数稳定性。）
 
 \paragraph{(d) 任务劳动需求指数。}
 我们通过当前任务结构将功能需求分配给任务：
@@ -80,7 +80,7 @@ D_{ij}(t) = Q_i(t)\,w_{ij}(t),
 \qquad
 \frac{D_{ij}(t)}{D_{ij}(0)}=\frac{Q_i(t)\,w_{ij}(t)}{w_{ij}(0)}.
 \end{equation}
-\noindent\textbf{解释。} 即使整体需求 $Q_i(t)$ 增长，如果任务份额 $w_{ij}(t)$ 因替代而崩溃，任务的人力需求仍可能缩减。
+\indent\textbf{解释。} 即使整体需求 $Q_i(t)$ 增长，如果任务份额 $w_{ij}(t)$ 因替代而崩溃，任务的人力需求仍可能缩减。
 
 \subsubsection{\texorpdfstring{采纳情景 $A(t)$}{采纳情景 A(t)}}
 \label{sec:adoption}
@@ -89,11 +89,11 @@ D_{ij}(t) = Q_i(t)\,w_{ij}(t),
 \label{eq:adoption_logistic}
 A(t) = \frac{1}{1+\exp\!\left(-k(t-t_0)\right)}.
 \end{equation}
-\noindent\textbf{参数含义（通俗语言）。} $k$ 控制陡峭程度（采纳加速的速度）。$t_0$ 是拐点时间，此时采纳达到50\%。我们通过选择三对 $(k,t_0)$ 定义三种情景（快速/中速/慢速）；这保持了驱动因子数量较少，同时支持敏感性比较。
+\indent\textbf{参数含义（通俗语言）。} $k$ 控制陡峭程度（采纳加速的速度）。$t_0$ 是拐点时间，此时采纳达到50\%。我们通过选择三对 $(k,t_0)$ 定义三种情景（快速/中速/慢速）；这保持了驱动因子数量较少，同时支持敏感性比较。
 
 \subsubsection{职业重新定义触发器（工作本质变化）}
 \label{sec:redefinition}
-我们通过\emph{任务消亡}和\emph{任务结构漂移}形式化"工作本质变化"。两个标准中任一标准均可触发重新定义。
+我们通过\emph{任务消亡}和\emph{任务结构偏移}形式化"工作本质变化"。两个标准中任一标准均可触发重新定义。
 
 \paragraph{(a) 消亡质量（任务需求变得可忽略不计）。}
 当任务的人力需求指数降至其基线的一小部分以下时，该任务被视为功能上可忽略不计：
@@ -113,15 +113,15 @@ M_{\text{drop}}(t)\ge \theta,
 \end{equation}
 其中 $\theta\in(0,1)$（例如，$\theta=0.30$）是在触发重新定义之前必须变得可忽略不计的基线任务质量份额。
 
-\paragraph{(b) 任务结构漂移（分布变化）。}
-即使没有许多任务完全变得可忽略不计，如果职业的任务份额分布发生足够大的变化，该职业也可能在性质上变得不同。令 $w_i(t)$ 表示向量 $(w_{i1}(t),\dots,w_{iJ_i}(t))$。我们使用Jensen--Shannon散度作为对称、有界的漂移度量：
+\paragraph{(b) 任务结构偏移（分布变化）。}
+即使没有许多任务完全变得可忽略不计，如果职业的任务份额分布发生足够大的变化，该职业也可能在性质上变得不同。令 $w_i(t)$ 表示向量 $(w_{i1}(t),\dots,w_{iJ_i}(t))$。我们使用Jensen--Shannon散度作为对称、有界的偏移度量：
 \begin{equation}
 \label{eq:JS_trigger}
 \mathrm{JS}\!\left(w_i(t)\,\|\,w_i(0)\right) \ge \delta,
 \end{equation}
 其中 $\delta>0$ 是为稳健性选择的保守阈值。
 
-\noindent\textbf{触发时间。} 定义
+\indent\textbf{触发时间。} 定义
 \begin{equation}
 \label{eq:tstar}
 t^*=\inf\left\{t:\ M_{\text{drop}}(t)\ge\theta\ \ \text{或}\ \ \mathrm{JS}(w_i(t)\|w_i(0))\ge\delta\right\}.
@@ -158,7 +158,7 @@ $g_i$ & $0$（默认） & 基线功能需求增长（非GenAI） \\
 $\kappa_c$ & $0$ 或 $>0$ & 增强扩展总需求的强度 \\
 $\varepsilon$ & 例如 $0.05$ & "可忽略任务"阈值（基线的5\%） \\
 $\theta$ & 例如 $0.30$ & 重新定义职业所需的消亡质量 \\
-$\delta$ & 例如 $0.10$--$0.30$ & 任务份额漂移阈值（JS散度） \\
+$\delta$ & 例如 $0.10$--$0.30$ & 任务份额偏移阈值（JS散度） \\
 \hline
 \end{tabular}
 \end{table}
@@ -186,7 +186,7 @@ $\delta$ & 例如 $0.10$--$0.30$ & 任务份额漂移阈值（JS散度） \\
 \label{fig:task_demand_top}
 \end{figure}
 
-\paragraph{图3：任务结构漂移 $w_{ij}(t)$。}
+\paragraph{图3：任务结构变化 $w_{ij}(t)$。}
 完整任务结构演化图已在附录中给出，用于展示所有任务的份额变化（参见附录）。
 
 \paragraph{图4：重新定义证据和触发时间 $t^*$。}
@@ -234,6 +234,6 @@ $\delta$ & 例如 $0.10$--$0.30$ & 任务份额漂移阈值（JS散度） \\
 对于每个职业和每个采纳情景，我们呈现：
 \begin{enumerate}
   \item \textbf{任务需求结果：} 按 $D_{ij}(15)/D_{ij}(0)$ 排名的任务列表，突出显示低于 $\varepsilon$ 的任务。
-  \item \textbf{任务结构变化：} $w_{ij}(t)$ 的可视化以及漂移度量 $\mathrm{JS}(w_i(t)\|w_i(0))$。
+  \item \textbf{任务结构变化：} $w_{ij}(t)$ 的可视化以及偏移程度 $\mathrm{JS}(w_i(t)\|w_i(0))$。
   \item \textbf{重新定义决策：} \eqref{eq:Mdrop_trigger} 或 \eqref{eq:JS_trigger} 中的标准是否满足，以及触发时间 $t^*$（如适用）。
 \end{enumerate}

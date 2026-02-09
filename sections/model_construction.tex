@@ -1,492 +1,535 @@
 %! TeX root = ../main.tex
 
-\section{模型构建与实现}
+\section{Model Construction and Implementation}
 
-\subsection{三个领域的职业选择}
-对于职业的选择，我们并没有直接将此视为一种假设，而是将其视为一个优化问题。
-将三个职业之间的差异性作为目标函数，目的是确保模型具有尽可能大的解释效度。
-将“完备的数据支撑”与“政策相关性“作为约束条件，最终确保后续的模型均建立在基于数据的可复现的框架之上。
+\begin{figure}[t]
+\centering
+\resizebox{0.92\textwidth}{!}{%
+\begin{tikzpicture}[
+    font=\small,
+    >=Latex,
+    node distance=6mm and 8mm,
+    box/.style={draw, rounded corners=2pt, align=center, inner sep=3pt},
+    sub/.style={box, fill=white},
+    io/.style={box, fill=yellow!15},
+    taskframe/.style={draw, dashed, very thick, rounded corners=2pt, inner sep=7pt},
+    tasktitle/.style={font=\bfseries},
+    arrow/.style={->, thick}
+]
 
-\subsubsection{基于O*NET的职业特征参数}
-首先，我们需要将三个职业划定在三种特征维度上，以此为基础拉开三者的机制对比度，正好题目本身确定的三个领域就具备这样的条件，于是我们参考得出三个职业的特征参数为 $\textit{digit}(x)$、$\textit{physical}(x)$ 和 $\textit{iprisk}(x)$ ，然后我们需要针对美国所有的职业在这三个维度上进行打分，为了避免主观赋值，我们采用美国劳工部维护的\textbf{O*NET}职业数据库\cite{onet2025database}作为统一数据源。
-O*NET基于专家调查和从业者反馈，为每个职业提供大量\emph{数值量表descriptor}，大多数指标自然地给出在$0$--$100$之间的实数上，适合直接用于定量建模。
+%-------------------------
+% Left I/O (data)
+%-------------------------
+\node[io, minimum width=26mm, minimum height=10mm] (data) {Data\\Sources};
+\node[io, below=10mm of data, minimum width=26mm, minimum height=10mm] (prep) {Data\\Preprocessing};
 
-我们不试图为每个维度找到"唯一正确"的指标，针对每个特征轴，我们选择语义上能将O*NET描述符与三个维度直接对应起来的，且可下载的O*NET描述符\cite{onet2025database}，并将其用作该轴的代理变量，我们对于没有描述（descriptor字段缺失）的职业直接剔除。
-基于以上约束，我们识别出三个主导维度
+% Optional connector
+\draw[arrow] (data) -- (prep);
+
+%-------------------------
+% Task 1: Occupation / Task DNA + Dynamics
+%-------------------------
+\node[sub, right=24mm of prep, minimum width=50mm, minimum height=10mm] (t1a) {O*NET Task DNA\\(importance $\times$ frequency)};
+\node[sub, below=4mm of t1a, minimum width=50mm, minimum height=10mm] (t1b) {Candidate Pool \&\\Heterogeneity Scoring};
+\node[sub, below=4mm of t1b, minimum width=50mm, minimum height=10mm] (t1c) {Max-Area Triangle\\Occupation Selection};
+\node[sub, below=4mm of t1c, minimum width=50mm, minimum height=10mm] (t1d) {Adoption-Driven\\Task Share Dynamics};
+
+\node[sub, right=10mm of t1b, minimum width=34mm, minimum height=10mm] (t1o1) {Selected\\Occupations};
+\node[sub, right=10mm of t1d, minimum width=34mm, minimum height=10mm] (t1o2) {Task-Shift\\Readouts};
+
+\draw[arrow] (t1a) -- (t1b);
+\draw[arrow] (t1b) -- (t1c);
+\draw[arrow] (t1c) -- (t1d);
+\draw[arrow] (t1c.east) -- (t1o1.west);
+\draw[arrow] (t1d.east) -- (t1o2.west);
+
+\node[taskframe, fit=(t1a)(t1b)(t1c)(t1d)(t1o1)(t1o2)] (TASK1) {};
+\node[tasktitle, anchor=north west] at ($(TASK1.north west)+(2pt,2pt)$)
+{Task 1: Task-First Occupation Modeling};
+
+% Connect preprocessing to Task 1
+\draw[arrow] (prep.east) -- ++(10mm,0) |- (t1a.west);
+
+%-------------------------
+% Task 2: GenAI Capability Scale + Impact Attribution
+%-------------------------
+\node[sub, right=22mm of t1o1, minimum width=54mm, minimum height=10mm] (t2a)
+{Nine-Dimension\\GenAI Capability Scale};
+\node[sub, below=4mm of t2a, minimum width=54mm, minimum height=10mm] (t2b)
+{Substitution vs.\ Complement\\Classification (per dimension)};
+\node[sub, below=4mm of t2b, minimum width=54mm, minimum height=10mm] (t2c)
+{Occupation-Level\\Impact Aggregation};
+\node[sub, below=4mm of t2c, minimum width=54mm, minimum height=10mm] (t2d)
+{Effective-Zero Time\\\& Scenario Readouts};
+
+\node[sub, right=10mm of t2c, minimum width=36mm, minimum height=10mm] (t2o)
+{Impact\\Summary};
+
+\draw[arrow] (t2a) -- (t2b);
+\draw[arrow] (t2b) -- (t2c);
+\draw[arrow] (t2c) -- (t2d);
+\draw[arrow] (t2c.east) -- (t2o.west);
+
+\node[taskframe, fit=(t2a)(t2b)(t2c)(t2d)(t2o)] (TASK2) {};
+\node[tasktitle, anchor=north west] at ($(TASK2.north west)+(2pt,2pt)$)
+{Task 2: GenAI Impact Decomposition};
+
+% Flow from Task 1 outputs to Task 2
+\draw[arrow] (t1o1.east) -- ++(6mm,0) |- (t2a.west);
+\draw[arrow] (t1o2.east) -- ++(6mm,0) |- (t2c.west);
+
+%-------------------------
+% Task 3: Curriculum Meta-Model + Policy Recommendations
+%-------------------------
+\node[sub, right=24mm of t2o, minimum width=56mm, minimum height=10mm] (t3a)
+{Program Selection\\(Institution Leadership \& Fit)};
+\node[sub, below=4mm of t3a, minimum width=56mm, minimum height=10mm] (t3b)
+{Course Text Parsing\\(title + description)};
+\node[sub, below=4mm of t3b, minimum width=56mm, minimum height=10mm] (t3c)
+{Three-Axis Meta-Model\\Employability--Humanistic--AI-overlap v2};
+\node[sub, below=4mm of t3c, minimum width=56mm, minimum height=10mm] (t3d)
+{KEEP / TRANSFORM / PRUNE\\Decision Rules};
+\node[sub, below=4mm of t3d, minimum width=56mm, minimum height=10mm] (t3e)
+{$O$-Variants Robustness\\(stability \& boundaries)};
+
+\node[sub, right=10mm of t3d, minimum width=40mm, minimum height=10mm] (t3o1)
+{Redesign\\Templates};
+\node[sub, right=10mm of t3e, minimum width=40mm, minimum height=10mm] (t3o2)
+{Policy\\Recommendations};
+
+\draw[arrow] (t3a) -- (t3b);
+\draw[arrow] (t3b) -- (t3c);
+\draw[arrow] (t3c) -- (t3d);
+\draw[arrow] (t3d) -- (t3e);
+\draw[arrow] (t3d.east) -- (t3o1.west);
+\draw[arrow] (t3e.east) -- (t3o2.west);
+
+\node[taskframe, fit=(t3a)(t3b)(t3c)(t3d)(t3e)(t3o1)(t3o2)] (TASK3) {};
+\node[tasktitle, anchor=north west] at ($(TASK3.north west)+(2pt,2pt)$)
+{Task 3: Curriculum Policy \& Recommendations};
+
+% Flow from Task 2 to Task 3
+\draw[arrow] (t2o.east) -- ++(6mm,0) |- (t3c.west);
+
+% Optional: preprocessing feeds curriculum text parsing directly
+\draw[arrow] (prep.east) -- ++(10mm,0) |- (t3b.west);
+
+%-------------------------
+% Outer frame (overall)
+%-------------------------
+\begin{scope}[on background layer]
+\node[draw, very thick, rounded corners=2pt, inner sep=10pt,
+      fit=(data)(prep)(TASK1)(TASK2)(TASK3)] (OUTER) {};
+\end{scope}
+
+\end{tikzpicture}
+}
+\caption{Overall Structure of Our Modeling Pipeline (Task 1--3).}
+\label{fig:overall_structure}
+\end{figure}
+
+\subsection{Occupation Selection Across Three Domains}
+For occupation selection, we do not treat this as an assumption but rather as an optimization problem. We use the heterogeneity among the three occupations as the objective function, aiming to ensure the model has maximum explanatory validity. We employ ``complete data support'' and ``policy relevance'' as constraints, ultimately ensuring that subsequent models are built upon a reproducible, data-driven framework.
+
+\subsubsection{O*NET-Based Occupation Feature Parameters}
+First, we need to position the three occupations along three feature dimensions to establish mechanistic contrast among them. The three domains specified by the problem naturally possess such conditions. We derive the feature parameters for the three occupations as $\textit{digit}(x)$, $\textit{physical}(x)$, and $\textit{iprisk}(x)$. We then score all U.S. occupations on these three dimensions. To avoid subjective assignment, we adopt the \textbf{O*NET} occupational database maintained by the U.S. Department of Labor~\cite{onet2025database} as the unified data source.
+O*NET, based on expert surveys and practitioner feedback, provides numerous \emph{numerical scale descriptors} for each occupation, with most indicators naturally given as real numbers between $0$ and $100$, suitable for direct use in quantitative modeling.
+
+We do not attempt to find a ``uniquely correct'' indicator for each dimension. For each feature axis, we select O*NET descriptors that semantically correspond directly to the three dimensions and are downloadable~\cite{onet2025database}, using them as proxy variables for that axis. We directly exclude occupations with missing descriptor fields.
+Based on these constraints, we identify three dominant dimensions:
 \begin{itemize}
-    \item \textbf{数字化程度$digit(x)$}：核心任务可以以数字方式表示、自动化或增强的程度；
-    \item \textbf{物理锚定$physical(x)$}：任务执行对现场物理存在或与环境的手动交互的依赖程度；
-    \item \textbf{知识产权和署名风险$iprisk(x)$}：价值创造对作者身份、原创性和所有权的敏感程度。
+    \item \textbf{Digitization degree $digit(x)$}: The extent to which core tasks can be digitally represented, automated, or augmented;
+    \item \textbf{Physical anchoring $physical(x)$}: The degree of dependence on on-site physical presence or manual interaction with the environment for task execution;
+    \item \textbf{Intellectual property and attribution risk $iprisk(x)$}: The sensitivity of value creation to authorship, originality, and ownership.
 \end{itemize}
 
-表~\ref{tab:onet_descriptor_mapping} 列出了每个特征轴所对应的O*NET描述符及说明。
+% Table~\ref{tab:onet_descriptor_mapping} lists the O*NET descriptors corresponding to each feature axis and their explanations.
 
 \begin{table}[H]
 \centering
-\caption{三维特征轴与O*NET描述符的对应关系}
+\caption{Mapping Between Three-Dimensional Feature Axes and O*NET Descriptors}
 \label{tab:onet_descriptor_mapping}
-\begin{tabular}{@{}>{\raggedright\arraybackslash}p{2.2cm} >{\raggedright\arraybackslash}p{4.0cm} >{\raggedright\arraybackslash}p{4.8cm} >{\raggedright\arraybackslash}p{3.0cm}@{}}
+\begin{tabular}{@{}>{\raggedright\arraybackslash}p{2.8cm} >{\raggedright\arraybackslash}p{5.5cm} >{\raggedright\arraybackslash}p{5.5cm}@{}}
 \toprule
-\textbf{特征轴} & \textbf{客观取值方式} & \textbf{O*NET描述符} & \textbf{合理性说明} \\
+\textbf{Feature Axis} & \textbf{Objective Measurement} & \textbf{O*NET Descriptor} \\
 \midrule
-$digit(x)$\newline 数字化程度 & 工作行为中对计算机/电子媒介的依赖 & Working with Computers~\cite{onetWorkingWithComputers}；\newline E-Mail~\cite{onetEmail} & 直接刻画工作是否以计算机与电子信息流为主 \\
+$digit(x)$\newline Digitization & Dependence on computers/electronic media in work activities & Working with Computers~\cite{onetWorkingWithComputers};\newline E-Mail~\cite{onetEmail} \\
 \addlinespace
-$physical(x)$\newline 物理锚定程度 & 手部操作+身体姿态负担等物理现场需求 & Using Hands to Handle Objects~\cite{onetUsingHands}；\newline Kneeling/Crouching~\cite{onetKneeling} & 直接量化现场动手强度与工位姿态限制 \\
+$physical(x)$\newline Physical Anchoring & Manual operation + physical posture demands & Using Hands to Handle Objects~\cite{onetUsingHands};\newline Kneeling/Crouching~\cite{onetKneeling} \\
 \addlinespace
-$iprisk(x)$\newline 产权/归因风险 & 产出是否以原创表达/创意贡献为核心 & Originality~\cite{onetOriginality}；\newline Thinking Creatively~\cite{onetThinkingCreatively} & 用原创表达强度作为可复现的风险代理变量 \\
+$iprisk(x)$\newline IP/Attribution Risk & Whether output centers on original expression/creative contribution & Originality~\cite{onetOriginality};\newline Thinking Creatively~\cite{onetThinkingCreatively} \\
 \bottomrule
 \end{tabular}
 \end{table}
 
-为便于复现与审计，我们将上述6个描述符的访问直链与描述符ID集中维护在正文中（表~\ref{tab:onet_descriptor_urls}）。
+For reproducibility and auditability, we maintain the access links and descriptor IDs for the six descriptors in Appendix Table~\ref{tab:onet_descriptor_urls}.
 
-\begin{table}[H]
-\centering
-\caption{O*NET描述符访问链接与描述符ID（用于复现）}
-\label{tab:onet_descriptor_urls}
-\small
-\begin{tabular}{@{}>{\raggedright\arraybackslash}p{2.2cm} >{\raggedright\arraybackslash}p{4.0cm} >{\raggedright\arraybackslash}p{2.3cm} >{\raggedright\arraybackslash}p{6.2cm}@{}}
-\toprule
-\textbf{特征轴} & \textbf{描述符名称} & \textbf{描述符ID} & \textbf{URL} \\
-\midrule
-$digit(x)$ & Working with Computers & 4.A.3.b.1 & \url{https://www.onetonline.org/find/descriptor/result/4.A.3.b.1} \\
- & Electronic Mail & 4.C.1.a.2.h & \url{https://www.onetonline.org/find/descriptor/result/4.C.1.a.2.h} \\
-\addlinespace
-$physical(x)$ & Using Hands to Handle Objects & 4.C.2.d.1.g & \url{https://www.onetonline.org/find/descriptor/result/4.C.2.d.1.g} \\
- & Kneeling/Crouching/Stooping & 4.C.2.d.1.e & \url{https://www.onetonline.org/find/descriptor/result/4.C.2.d.1.e} \\
-\addlinespace
-$iprisk(x)$ & Originality & 1.A.1.b.2 & \url{https://www.onetonline.org/find/descriptor/result/1.A.1.b.2} \\
- & Thinking Creatively & 4.A.2.b.2 & \url{https://www.onetonline.org/find/descriptor/result/4.A.2.b.2} \\
-\bottomrule
-\end{tabular}
-\end{table}
-
-基于此，筛选出同时具备以上6个描述符字段的所有职业，对于每个职业 $x$，O*NET均提供了对应的描述符的评分，于是令 $v_m(x)$ 表示其在O*NET描述符 $m$ 下的原始评分（$0$--$100$）。
-我们在整个职业集上应用最小-最大归一化：
+Based on this, we filter all occupations that possess all six descriptor fields. For each occupation $x$, O*NET provides corresponding descriptor scores, so we let $v_m(x)$ denote its raw score under O*NET descriptor $m$ ($0$--$100$).
+We apply min-max normalization across the entire occupation set:
 \begin{equation}
     z_m(x)=\frac{v_m(x)-\min_{y}v_m(y)}{\max_{y}v_m(y)-\min_{y}v_m(y)} \in [0,1],
 \end{equation}
-其中 $y$ 遍历所有职业。设特征轴 $k \in \{digit, physical, iprisk\}$ 对应的描述符集合为 $D_k$（见表~\ref{tab:onet_descriptor_mapping}），则对同一特征轴下的多个描述符取等权平均：
+where $y$ ranges over all occupations. Let the descriptor set for feature axis $k \in \{digit, physical, iprisk\}$ be $D_k$ (see Table~\ref{tab:onet_descriptor_mapping}), and we take the equal-weight average of multiple descriptors under the same feature axis:
 \begin{equation}
     \textit{feature}_k(x) = \frac{1}{|D_k|} \sum_{m \in D_k} z_m(x).
 \end{equation}
-由此得到 $\textit{digit}(x)$、$\textit{physical}(x)$ 和 $\textit{iprisk}(x)$的数值。
+This yields the numerical values for $\textit{digit}(x)$, $\textit{physical}(x)$, and $\textit{iprisk}(x)$.
 
-每个候选职业$x$由一个归一化的三维特征向量表示，作为作为3Dscatter中的一个数据点。
+Each candidate occupation $x$ is represented by a normalized three-dimensional feature vector, serving as a data point in a 3D scatter plot.
 \begin{equation}
     f(x)=\big(digit(x),\,physical(x),\,iprisk(x)\big)\in[0,1]^3,
 \end{equation}
-为了选出符合条件的职业中，三个能够构成最大异质性（差异性）的职业，考虑从几何角度出发，找到三个在三维坐标系中构成最大三角平面的数据点，于是按照标准面积计算公式有：
+To select three occupations that constitute maximum heterogeneity (diversity) among qualifying occupations, we approach this geometrically: finding three data points that form the largest triangular plane in the three-dimensional coordinate system. Following the standard area formula:
 
 \begin{equation}
-Area3D(x_S, x_T, x_A) = \frac{1}{2} \left\lVert \big(f(x_T) - f(x_S)\big) \times \big(f(x_A) - f(x_S)\big) \right\rVert_{2}
+Area3D(x_S, x_T, x_A) = \frac{1}{2} \left\lVert \big(f(x_T) - f(x_S)\big) \times \big(f(x_A) - f(x_S)\big) \right\rVert_{2},
 \label{eq:area3d}
 \end{equation}
-其中 $x_S \in \text{STEM}$ ，$x_T \in \text{Trade}$ ，$x_A \in \text{Arts}$ 。\\
+where $x_S \in \text{STEM}$, $x_T \in \text{Trade}$, $x_A \in \text{Arts}$.
 
-%（公式已移至附录，详见附录~\ref{appendix:area2d_formula}。此处不再赘述。）
-然后通过Python进行可视化（图~\ref{fig:heterogeneity3d} 和图~\ref{fig:heterogeneity2d}）。
+We then visualize using Python (Figure~\ref{fig:heterogeneity3d} and Figure~\ref{fig:heterogeneity2d}).
+\vspace{-0.5em}
 
-\vspace*{-3em} % 根据版式适当调整消耗空白空间的高度。可微调 -3em 为合适数值。
 \begin{figure}[H]
 \centering
-\includegraphics[width=0.93\textwidth]{figures/fig_heterogeneity_3d_all_points_strict_tight.pdf}
-\caption{全体职业三维异质性点云与最优三角面（基于归一化后的O*NET描述符）}
+\includegraphics[width=0.65\textwidth]{figures/fig_heterogeneity_3d_all_points_strict_tight.pdf}
+\vspace{-0.5em}
+\caption{Three-dimensional heterogeneity point cloud of all occupations and optimal triangle plane (based on normalized O*NET descriptors)}
 \label{fig:heterogeneity3d}
 \end{figure}
+\vspace{-0.5em}
 
-我们先在全点云上求解无约束的最大面积三角形，但结果中包含的某一职业并未被官方纳入三个领域中的任何一个。因此，我们在可行域内加入必须属于 O*NET 维护的目标领域的约束，最终得到约束下的最优三点分别为 STEM（Robotics Engineers）、技工/Trades（First-Line Supervisors of Mechanics, Installers, and Repairers）与艺术/媒体（Court Reporters and Simultaneous Captioners）。三者构成的三角形面积为 $0.262221$。
+We first solve for the unconstrained maximum-area triangle on the full point cloud, but the result included an occupation not officially classified under any of the three domains. Therefore, we add the constraint that selections must belong to O*NET-maintained target domains within the feasible region. The final constrained optimal three points are STEM (Robotics Engineers), Trade (First-Line Supervisors of Mechanics, Installers, and Repairers), and Arts/Media (Court Reporters and Simultaneous Captioners). The triangle formed by these three has an area of $0.262221$.
 
-如图~\ref{fig:heterogeneity3d} 所示，三维散点图直观展示了最终优化结果。为了体现职业之间的两两之间的异质性，我们进一步绘制了该“职业三角”的二维投影，见图~\ref{fig:heterogeneity2d}。
-
-\vspace{0.6\baselineskip}
+As shown in Figure~\ref{fig:heterogeneity3d}, the three-dimensional scatter plot intuitively displays the final optimization result. To illustrate the pairwise heterogeneity among occupations, we further plot the two-dimensional projections of this ``occupational triangle'' in Figure~\ref{fig:heterogeneity2d}.
 
 \begin{figure}[H]
 \centering
 \includegraphics[width=0.92\textwidth]{figures/fig_heterogeneity_2d_projections_all_points_strict.pdf}
-\caption{全体职业异质性空间的二维投影与最优三点标注（二维面积公式见附录~\ref{appendix:area2d_formula}）}
+\caption{Two-dimensional projections of the occupation heterogeneity space with optimal three-point annotations (2D area formula in Appendix~\ref{appendix:area2d_formula})}
 \label{fig:heterogeneity2d}
 \end{figure}
 
-针对二维投影进行分析：Robotics Engineers的数字化略低于Court Reporters and Simultaneous Captioners，并且位于高物理性、高知识产权风险区域；First-Line Supervisors of Mechanics, Installers, and Repairers位于低物理性、中等知识产权风险区域；而Court Reporters and Simultaneous Captioners则位于中等物理性、低知识产权风险区域。可见三种职业在任意两维组合下均保持较大的差异性，将其作为三个领域代表具有合理性。（三者的O*NET-SOC 代码分别为：STEM：17-2199.08；Trade：49-1011.00；Arts：27-3092.00~\cite{onet2019structure}。）
+Analyzing the two-dimensional projections: Robotics Engineers have slightly lower digitization than Court Reporters and Simultaneous Captioners, and are located in the high physical/high IP risk region; First-Line Supervisors of Mechanics, Installers, and Repairers are in the low physical/medium IP risk region; while Court Reporters and Simultaneous Captioners are in the medium physical/low IP risk region. We observe that the three occupations maintain substantial differentiation in any two-dimensional combination, validating their selection as domain representatives. (The O*NET-SOC codes are: STEM: 17-2199.08; Trade: 49-1011.00; Arts: 27-3092.00~\cite{onet2019structure}.)
 
-\subsection{职业演化的模型构建}
+\subsection{Model Construction for Occupational Evolution}
 
-问题的第二个核心要求是为所选的三个职业构建一个\emph{数据驱动}的未来演化模型，并强调了结合“当前轨迹（current trajectory）”以及相关的驱动因素。
-首先，从第一性原理出发，职业是由其任务组成（DNA）所定义的，因此在Gen-AI的影响下，其未来的Task DNA必定会发生结构上的“变异”，因此，试图预测未来的该职业的岗位需求本身逻辑上就存在问题，因为彼时的职业已经非此时的职业了。\\
-所以，我们并不会直接预测未来职业的岗位需求，而是从更本质的角度出发，研究在当前Gen-AI发展轨迹下，未来职业的Task DNA的结构变化。为了便于理解，我们绘制图~\ref{fig:task_redefinition} 来展示职业的演化流程。
+The second core requirement of the problem is to construct a \emph{data-driven} future evolution model for the three selected occupations, emphasizing the combination of ``current trajectory'' and related driving factors.
+First, from first principles, an occupation is defined by its task composition (DNA); therefore, under Gen-AI's influence, its future Task DNA will inevitably undergo structural ``mutation.'' Thus, attempting to predict future job demand for that occupation is logically problematic, as the occupation at that time will no longer be the same as today.
+
+Therefore, we do not directly predict future occupational job demand, but instead approach from a more fundamental angle, studying the structural changes in occupational Task DNA under the current Gen-AI development trajectory.
+
+For ease of understanding, we draw Figure~\ref{fig:task_redefinition} to illustrate the occupational evolution process.
 
 \begin{figure}[htbp]
 \centering
 \begin{tikzpicture}[
-  node distance=2.4cm,
-  box/.style={draw=gray!70, rounded corners=2pt, minimum width=3.2cm, minimum height=1.0cm, align=center},
-  mid/.style={draw=gray!70, rounded corners=2pt, minimum width=3.2cm, minimum height=1.0cm, align=center, fill=gray!5},
+  node distance=3.2cm,
+  box/.style={draw=gray!70, rounded corners=2pt, minimum width=3.4cm, minimum height=1.0cm, align=center},
+  mid/.style={draw=gray!70, rounded corners=2pt, minimum width=3.4cm, minimum height=1.0cm, align=center, fill=gray!5},
   arrow/.style={-Latex, line width=0.8pt, color=gray!80}
 ]
-  \node[box] (jobA) {职业A\\(原有结构)};
-  \node[mid, right=of jobA] (mutation) {结构变异};
-  \node[box, right=of mutation] (jobB) {职业B\\(重定义后)};
+  \node[box] (jobA) {Occupation A\\(Original Structure)};
+  \node[mid, right=of jobA] (mutation) {Structural Mutation};
+  \node[box, right=of mutation] (jobB) {Occupation B\\(Redefined)};
 
-  \draw[arrow] (jobA) -- node[above, align=center, font=\small, text=gray!80] {Gen-AI影响} (mutation);
-  \draw[arrow] (mutation) -- node[above, align=center, font=\small, text=gray!80] {职业重定义} (jobB);
+  \draw[arrow] (jobA) -- node[above=0.15cm, align=center, font=\small, text=gray!80] {Gen-AI Impact} (mutation);
+  \draw[arrow] (mutation) -- node[above=0.15cm, align=center, font=\small, text=gray!80] {Occupation\\Redefinition} (jobB);
 
-  \coordinate (progressLeft) at ($(jobA.south west)+(0,-0.6)$);
-  \coordinate (progressRight) at ($(jobB.south east)+(0,-0.6)$);
+  \coordinate (progressLeft) at ($(jobA.south west)+(0,-0.8)$);
+  \coordinate (progressRight) at ($(jobB.south east)+(0,-0.8)$);
   \coordinate (progressMid) at ($(progressLeft)!0.5!(progressRight)$);
-  \draw[arrow] (progressLeft) -- ($(progressMid)+(-0.6,0)$);
-  \draw[arrow] ($(progressMid)+(0.6,0)$) -- (progressRight);
-  \node[font=\small, text=gray!80] at (progressMid) {发展趋势};
+  \draw[arrow] (progressLeft) -- ($(progressMid)+(-1.0,0)$);
+  \draw[arrow] ($(progressMid)+(1.0,0)$) -- (progressRight);
+  \node[font=\small, text=gray!80] at (progressMid) {Development Trend};
 \end{tikzpicture}
-\caption{任务结构重排导致职业重定义的演绎路径}
+\caption{Deductive path from task structure rearrangement to occupation redefinition}
 \label{fig:task_redefinition}
 \end{figure}
 
+\subsubsection{Task-Level Dynamic Prediction Model}
 
-\vspace{0.5\baselineskip}
-
-% \subsubsection{未来演化的可计算定义}
-% 我们基于“没有人能准确预测未来某个具体时间节点的定量变化”原则，转而采用更广义的时间跨度来预测定性的变化。\\
-% 对此，我们定义当某个关键任务在职业内的相对需求（份额）下降至一个足够小的阈值 $\epsilon$ 以下时，即认为该任务在可操作意义上“趋近于消失”。
-% 具体地，若 $p_{ij}(t)$ 表示职业 $i$ 中任务 $j$ 在时刻 $t$ 的相对需求份额（定义见后文），则定义任务 $j$ 的“有效归零时间”为
-% \begin{equation}
-%     \tau_{ij}(\epsilon)=\min\{t:\ p_{ij}(t)\le \epsilon\}.
-% \end{equation}
-% 该定义可直接用于回答“未来何时发生显著变化”的问题，并允许通过不同 $\epsilon$ 取值进行敏感性分析。
-
-\subsubsection{任务层动态预测模型}
-
-由于官方给出的职业的原始任务描述字段太多，因此需要进行筛选。通过构建 Task DNA 的任务权重 $w_{ij}$，结合权威数据来源，在任务（而非职业）层面，计算其替代/增强强度 $(s_{ij},c_{ij})$，得到该职业的任务级净冲击为
+Since the official raw task description fields for occupations are too numerous, filtering is required. By constructing Task DNA task weights $w_{ij}$, combined with authoritative data sources, we calculate substitution/augmentation intensities $(s_{ij},c_{ij})$ at the task (rather than occupation) level, obtaining the task-level net impact for the occupation as
 \begin{equation}
     \mu_{ij}^{task}=c_{ij}-s_{ij},
 \end{equation}
-并将“当前轨迹”定义为社会的AI采用率 $A(t)\in[0,1]$，用于驱动任务需求随时间的演化。
+and define ``current trajectory'' as society's AI adoption rate $A(t)\in[0,1]$, which drives the evolution of task demand over time.
 
-进一步，我们开始构建任务层预测的数学模型。
-% 模型包含两类输入：\textbf{任务结构}（来自O*NET任务数据）与\textbf{发展轨迹}（GenAI采纳路径 $A(t)$）。
-% 预测输出为：每个职业内部任务的相对需求演化 $p_{ij}(t)$，以及“有效归零时间” $\tau_{ij}(\epsilon)$。
+Furthermore, we begin constructing the mathematical model for task-level prediction.
 
-对于职业 $i$，我们需要选取其\textbf{前N项核心任务}作为其任务DNA（任务索引 $j = 1, \ldots, 20$）。每项任务 $j$ 取自O*NET对于此职业的任务描述 $Task_j$\cite{onet2025database}，该数据库对于每个职业的任务构成都有相应的重要性和频率评分数据，因此我们定义两个基于该数据的描述符：
-\textbf{任务重要性} $IM_j$（范围 0--100）；
-\textbf{任务频率} $FR_j$（范围 0--100，或同等的频率量表）。\\
-我们将任务权重定义为重要性 $IM_j$ 与频率 $FR_j$ 乘积的归一化值。令未归一化的权重为：
+For occupation $i$, we select its \textbf{top N core tasks} as its Task DNA (task index $j = 1, \ldots, 20$). Each task $j$ is taken from O*NET's task description $Task_j$ for this occupation~\cite{onet2025database}. The database provides importance and frequency scoring data for each occupation's task composition, so we define two descriptors based on this data:
+\textbf{Task Importance} $IM_j$ (range 0--100);
+\textbf{Task Frequency} $FR_j$ (range 0--100, or equivalent frequency scale).
+
+We define task weight as the normalized value of the product of importance $IM_j$ and frequency $FR_j$. Let the unnormalized weight be:
 \begin{equation}
     \tilde{w}_j = IM_j \cdot FR_j,
 \end{equation}
-然后将其归一化：
+then normalize:
 \begin{equation}
     w_{ij} = \frac{\tilde{w}_j}{\sum_{k=1}^{20} \tilde{w}_k}, \quad \sum_{j=1}^{20} w_j = 1.
 \label{eq:task_weight_norm}
 \end{equation}
 
-基于公式~\eqref{eq:task_weight_norm}，我们通过Python编程计算各职业的任务权重（若所选SOC（标准职业分类）代码缺少任务频率量表 $FR_j$，则仅使用重要性值，即令 $\tilde{w}_j = IM_j$），进而选取三个职业的Top Task（20个以内），并将其可视化。分布结果见图~\ref{fig:task_dna_imfr_triptych}，任务文本图例见附录~\ref{app:task_dna_figures}。
+Based on Equation~\eqref{eq:task_weight_norm}, we compute each occupation's task weights using Python programming (if the selected SOC code lacks the task frequency scale $FR_j$, we use only importance values, i.e., $\tilde{w}_j = IM_j$), then select the Top Tasks (up to 20) for the three occupations and visualize them. Distribution results are shown in Figure~\ref{fig:task_dna_imfr_triptych}; task text legends are in Appendix~\ref{app:task_dna_figures}.
 
 \begin{figure}[H]
 \centering
 \begin{minipage}{0.32\linewidth}
     \centering
     \includegraphics[width=\linewidth]{figures/task_dna_17-2199.08_weights.pdf}\\
-    \small (a) 17-2199.08 机器人工程师
+    \small (a) 17-2199.08 Robotics Engineers
 \end{minipage}\hfill
 \begin{minipage}{0.32\linewidth}
     \centering
     \includegraphics[width=\linewidth]{figures/task_dna_49-1011.00_weights.pdf}\\
-    \small (b) 49-1011.00 一线主管
+    \small (b) 49-1011.00 First-Line Supervisors
 \end{minipage}\hfill
 \begin{minipage}{0.32\linewidth}
     \centering
     \includegraphics[width=\linewidth]{figures/task_dna_27-3092.00_weights.pdf}\\
-    \small (c) 27-3092.00 法庭速录
+    \small (c) 27-3092.00 Court Reporters
 \end{minipage}
-\caption{三个职业任务DNA权重分布（IM--FR 散点图），点面积与 $w_j$ 成正比。字母对应的文本图例见附录~\ref{app:task_dna_figures}。}
+\caption{Task DNA weight distribution for three occupations (IM--FR scatter plot), point area proportional to $w_j$. Text legends for letters in Appendix~\ref{app:task_dna_figures}.}
 \label{fig:task_dna_imfr_triptych}
 \end{figure}
 
-结合三类职业的Task DNA，进一步给出针对性的解释：对于\textbf{机器人工程师}，其职业价值主要由少数高权重技术任务驱动；对于\textbf{一线主管（机械/安装/维修）}，点更分散且中等权重任务占比更高，反映管理、协调、现场判断等任务并存，结构变化由多项任务共同贡献；而\textbf{法庭速录与字幕}高度依赖少数语言处理核心任务。
+Combining the Task DNA of the three occupation types, we provide targeted interpretations: for \textbf{Robotics Engineers}, occupational value is primarily driven by a few high-weight technical tasks; for \textbf{First-Line Supervisors (Mechanics/Installation/Repair)}, points are more dispersed with higher proportions of medium-weight tasks, reflecting the coexistence of management, coordination, and on-site judgment tasks, with structural change contributed by multiple tasks; while \textbf{Court Reporting and Captioning} highly depends on a few core language processing tasks.
 
-得到三个职业的Top Task后，我们需要将其与当前Gen-AI能力进行映射，进而研究每一个Task受到的影响强度。那么我们同样需要对当今Gen-AI的能力进行解剖，划分出多个能力维度。以下的三点为主要的划分依据：
+After obtaining the Top Tasks for the three occupations, we need to map them to current Gen-AI capabilities to study the impact intensity on each Task. Thus, we similarly need to dissect current Gen-AI capabilities, dividing them into multiple capability dimensions. The following three points serve as the main basis for division:
 
 \begin{itemize}
-    \item 覆盖主要工作活动类型：从技术问题解决到语言处理，涵盖职业任务的主要类别
-    \item 可量化可审计：每个维度都有对应的权威基准测试，避免主观评估
-    \item 与当前三个职业的任务构成相匹配：每个Task DNA都能通过公开的 AI 测试分数来衡量。
+    \item Coverage of major work activity types: from technical problem-solving to language processing, encompassing the main categories of occupational tasks
+    \item Quantifiable and auditable: each dimension has corresponding authoritative benchmark tests, avoiding subjective evaluation
+    \item Matching the task composition of the current three occupations: each Task DNA can be measured through publicly available AI test scores.
 \end{itemize}
 
-为避免主观的连续评分，我们针对能力分段（$M_k$）构建一个横向的离散能力等级：
+To avoid subjective continuous scoring, we construct a horizontal discrete capability scale for capability segmentation ($M_k$):
 \begin{itemize}[label={},leftmargin=*]
-    \item[] 高（$\ge 0.85$）\quad
-    较高（$0.70$--$0.85$）\quad
-    中等（$0.50$--$0.70$）\quad
-    低（$0.30$--$0.50$）\quad
-    极低（$<0.30$）
+    \item[] High ($\ge 0.85$)\quad
+    Moderately High ($0.70$--$0.85$)\quad
+    Medium ($0.50$--$0.70$)\quad
+    Low ($0.30$--$0.50$)\quad
+    Very Low ($<0.30$)
 \end{itemize}
-并在每个区间内取归一化后的代表评分 $M_k$（具体映射见表~\ref{tab:genai_scale}）。
+with representative normalized scores $M_k$ taken within each interval (specific mapping in Table~\ref{tab:genai_scale}).
 
-同时引入{方向系数（$\rho_k$）}刻画“替代/互补/平衡”的偏向强度，若
-$\rho_k<0$：则偏替代（AI可独立完成可交付物）；
-若$\rho_k>0$：则偏互补（AI提供建议/辅助，人必须在环）；
-若$\rho_k=0$：则平衡（两边都强，净效应不确定）。
-$\rho_k = c_k - s_k$ ，表示GenAI对该维度的影响方向：正值为互补（提升人效使需求上升），负值为替代（可自动化使需求下降）。
+We also introduce the {direction coefficient ($\rho_k$)} to characterize the bias strength of ``substitution/complementarity/balance'': if
+$\rho_k<0$: substitution-biased (AI can independently complete deliverables);
+if $\rho_k>0$: complementarity-biased (AI provides suggestions/assistance, human must be in the loop);
+if $\rho_k=0$: balanced (both strong, net effect uncertain).
+$\rho_k = c_k - s_k$ represents the direction of GenAI's impact on that dimension: positive for complementarity (improving human efficiency increases demand), negative for substitution (automation decreases demand).
 
-最终将结果汇总至表~\ref{tab:genai_scale}。
+The final results are summarized in Table~\ref{tab:genai_scale}.
 \begin{table}[H]
 \centering
-\caption[GenAI 九维能力映射总表]{GenAI 九维能力映射总表}
+\caption[GenAI Nine-Dimensional Capability Mapping Summary]{GenAI Nine-Dimensional Capability Mapping Summary}
 \label{tab:genai_scale}
 \small
 \setlength{\tabcolsep}{2pt}
 \renewcommand{\arraystretch}{1.15}
 \setlength{\extrarowheight}{2pt}
 \resizebox{\textwidth}{!}{%
-\begin{tabular}{p{2.6cm} p{3.6cm} p{4.6cm} p{1.0cm} p{2.2cm} p{1.0cm} p{0.9cm} p{0.9cm}}
+\begin{tabular}{p{3.2cm} p{5.8cm} p{1.0cm} p{2.2cm} p{1.0cm} p{0.9cm} p{0.9cm}}
 \toprule
-\textbf{维度（编号）} & \textbf{定义} & \textbf{代表性指标（来源 \& 分数）} & \textbf{$M_k$} & \textbf{能力等级（阈值规则）} & \textbf{$\rho_k$} & \textbf{$s_k$} & \textbf{$c_k$} \\
+\textbf{Dimension (ID)} & \textbf{Representative Metrics (Source \& Score)} & \textbf{$M_k$} & \textbf{Capability Level (Threshold Rules)} & \textbf{$\rho_k$} & \textbf{$s_k$} & \textbf{$c_k$} \\
 \midrule
-D1 工程技术问题解决 &
-运用工程知识分析解决技术问题（调试维护、技术支持） &
-MMLU 86.4\%；ARC 96.3\%（GPT-4 报告\citep{openai2023gpt4}） &
-0.90 & 高（$\ge 0.85$） & $+0.35$ & 0.50 & 0.85 \\
-D2 数据分析与评估 &
-分析传感器/数值数据并据标准评估（质检、数据监控） &
-GSM8K 92.0\%；DROP 80.9（GPT-4 报告\citep{openai2023gpt4}） &
-0.80 & 较高（$0.70$--$0.85$） & $+0.20$ & 0.30 & 0.50 \\
-D3 算法编程与自动化 &
-编写和修正代码脚本实现需求（软件算法开发、自动化流程） &
-HumanEval 67.0\%；SWE-bench 修复 20\%\citep{openaicodex2021,swebench2024} &
-0.67 & 中等（$0.50$--$0.70$） & $-0.20$ & 0.90 & 0.70 \\
-D4 现场感知与物理操作 &
-感知物理环境及动手操作设备（现场检查、安全监督、设备调校） &
-AutoGPT 实体环境任务 24\%；视觉识别 $\approx 85\%+$\citep{autogpt2023,imagenet2009} &
-0.25 & 低（$0.30$--$0.50$） & $+0.40$ & 0.10 & 0.50 \\
-D5 规划与流程调度 &
-制定任务计划、优化流程顺序和资源分配（调度排程、进度管理） &
-AutoGPT 自主任务完成率 $\sim 65\%$；工具使用成功率 $\sim 80\%$\citep{autogpt2023} &
-0.65 & 中等（$0.50$--$0.70$） & $-0.10$ & 0.60 & 0.50 \\
-D6 协作沟通与培训 &
-沟通协作、传授知识并协调团队（培训、跨部门协作） &
-人类偏好：GPT-4 胜率 70.2\%\citep{openai2023gpt4} &
-0.70 & 较高（$0.70$--$0.85$） & $+0.45$ & 0.30 & 0.75 \\
-D7 监督管理与质量控制 &
-监督工作表现并确保质量达标（绩效管理、质检） &
+D1 Engineering \& Technical Problem Solving &
+MMLU 86.4\%; ARC 96.3\% (GPT-4 Report\citep{openai2023gpt4}) &
+0.90 & High ($\ge 0.85$) & $+0.35$ & 0.50 & 0.85 \\
+D2 Data Analysis \& Evaluation &
+GSM8K 92.0\%; DROP 80.9 (GPT-4 Report\citep{openai2023gpt4}) &
+0.80 & Moderately High ($0.70$--$0.85$) & $+0.20$ & 0.30 & 0.50 \\
+D3 Algorithm Programming \& Automation &
+HumanEval 67.0\%; SWE-bench fix 20\%\citep{openaicodex2021,swebench2024} &
+0.67 & Medium ($0.50$--$0.70$) & $-0.20$ & 0.90 & 0.70 \\
+D4 On-Site Perception \& Physical Operation &
+AutoGPT physical environment tasks 24\%; Visual recognition $\approx 85\%+$\citep{autogpt2023,imagenet2009} &
+0.25 & Low ($0.30$--$0.50$) & $+0.40$ & 0.10 & 0.50 \\
+D5 Planning \& Workflow Scheduling &
+AutoGPT autonomous task completion rate $\sim 65\%$; Tool use success rate $\sim 80\%$\citep{autogpt2023} &
+0.65 & Medium ($0.50$--$0.70$) & $-0.10$ & 0.60 & 0.50 \\
+D6 Collaboration, Communication \& Training &
+Human preference: GPT-4 win rate 70.2\%\citep{openai2023gpt4} &
+0.70 & Moderately High ($0.70$--$0.85$) & $+0.45$ & 0.30 & 0.75 \\
+D7 Supervision, Management \& Quality Control &
 HellaSwag 95.3\%\citep{openai2023gpt4} &
-0.80 & 较高（$0.70$--$0.85$） & 0.00 & 0.68 & 0.68 \\
-D8 语言理解与文本生成 &
-理解口语/文本并生成书面内容（转录、写作、翻译） &
-Whisper WER $\approx 0.011$；GPT-4 文本偏好胜率 70\%\citep{whisper2022,openai2023gpt4} &
-0.95 & 高（$\ge 0.85$） & $-0.40$ & 0.90 & 0.50 \\
-D9 信息管理与检索 &
-有序存储组织信息并按需高速检索核验（档案管理、查询答复） &
-DocVQA 99.16\%；Text-to-SQL $>80\%$\citep{docvqa2017,spider2018} &
-0.90 & 高（$\ge 0.85$） & 0.00 & 0.30 & 0.30 \\
+0.80 & Moderately High ($0.70$--$0.85$) & 0.00 & 0.68 & 0.68 \\
+D8 Language Understanding \& Text Generation &
+Whisper WER $\approx 0.011$; GPT-4 text preference win rate 70\%\citep{whisper2022,openai2023gpt4} &
+0.95 & High ($\ge 0.85$) & $-0.40$ & 0.90 & 0.50 \\
+D9 Information Management \& Retrieval &
+DocVQA 99.16\%; Text-to-SQL $>80\%$\citep{docvqa2017,spider2018} &
+0.90 & High ($\ge 0.85$) & 0.00 & 0.30 & 0.30 \\
 \bottomrule
+\multicolumn{7}{@{}p{\dimexpr\textwidth}@{}}{\rule{0pt}{2.2ex}\footnotesize\textit{Note:} D9's DocVQA 99.16\% can be viewed as upper-bound evidence for document QA scenarios, not equivalent to general capability across all retrieval contexts and database scales. D4/D5 use AutoGPT end-to-end completion rate and tool use success rate as lower-bound evidence to avoid overstating the automation potential of ``on-site operations/workflow scheduling.''} \\
 \end{tabular}}
 
 \end{table}
-\begin{spacing}{0.9}
-\noindent
-\textbf{注：}D9 的 DocVQA 99.16\% 可视为文档问答场景的上界证据，不等价于所有检索情境与数据库规模下的通用能力。D4/D5 采用 AutoGPT 端到端完成率与工具使用成功率作为下界证据，用于避免夸大“现场操作/流程调度”的可自动化程度。
-
-上表只展示了Gen-AI的九个维度，而
-图~\ref{fig:genai_taskdna_chord_robotics}为各个维度映射到职业任务构成的更直观展示。
+\vspace{-0.5em}
+\indent The table above only shows GenAI's nine dimensions, while Figure~\ref{fig:genai_taskdna_chord_robotics} provides a more intuitive visualization of each dimension mapping to occupational task composition.
+\vspace{-0.5em}
 \begin{figure}[H]
 \centering
-\includegraphics[width=0.86\textwidth]{figures/fig_genai_taskdna_chord_17-2199.08.pdf}
-\caption{GenAI 能力 $\rightarrow$ Task DNA 映射弦图（机器人工程师，17-2199.08）。}
+\includegraphics[width=0.69\textwidth]{figures/fig_genai_taskdna_chord_17-2199.08.pdf}
+\vspace{-0.5em}
+\caption{GenAI Capability $\rightarrow$ Task DNA mapping chord diagram (Robotics Engineers, 17-2199.08).}
 \label{fig:genai_taskdna_chord_robotics}
 \end{figure}
+\vspace{-0.5em}
+\indent Overall, GenAI demonstrates high capability in language and coding dimensions, exhibiting substitution trends, while in dimensions involving physical operations and management, it still primarily serves as an auxiliary tool, forming complementarity with human skills.
 
-
-总的来看，GenAI 在语言和编码等维度能力较高，呈现替代趋势，而在涉及物理、管理等维度时，仍主要作为辅助工具，与人类技能形成互补。
-\end{spacing}
-
-% 为了更直观的显示Gen-AI能力对三个职业的task的映射，我们绘制了图~\ref{fig:task_dna_genai_mapping_triptych}。
-
-
-% \begin{figure}[H]
-% \centering
-% \includegraphics[width=0.98\textwidth]{figures/task_dna_genai_mapping_triptych.pdf}
-% \caption{基于GenAI能力$\rightarrow$任务映射数据的职业DNA维度权重分布（D1--D9）。三幅子图分别对应职业 17-2199.08、49-1011.00 与 27-3092.00；柱高表示任务权重在能力维度上的占比，水平线表示维度均值，标注点为主导维度。}
-% \label{fig:task_dna_genai_mapping_triptych}
-% \end{figure}
-% 在此简单分析上图：分析分析分析分析分析分析分析分析分析分析分析分析分析分析分析分析分析分析分析分析分析分析分析分析分析分析分析分析分析分析分析分析分析分析分析分析分析分析分析分析分析分析分析分析分析分析分析分析分析分析分析分析分析分析分析分析分析分析分析分析分析分析分析分析分析分析\\
-
-继续基于上表得到的$s,c$数据，绘制\textbf{ $s,c$ 档位分布图}。该图的作用是\emph{揭示GenAI对该职业的潜在冲击模式}：若多数任务落在高 $s$ 低 $c$ 区域，表明该职业面临较高的自动化替代风险；反之，若多数任务落在低 $s$ 高 $c$ 区域，则GenAI更可能增强而非替代人类工作。
+Continuing based on the $s,c$ data from the table above, we plot the \textbf{$s,c$ tier distribution chart}. This chart serves to \emph{reveal GenAI's potential impact pattern on the occupation}: if most tasks fall in the high $s$ low $c$ region, the occupation faces higher automation substitution risk; conversely, if most tasks fall in the low $s$ high $c$ region, GenAI is more likely to augment rather than substitute human work.
 
 \begin{figure}[H]
 \centering
 \begin{minipage}{0.32\linewidth}
     \centering
     \includegraphics[width=\linewidth]{figures/task_dna_17-2199.08_authoritative_sc_distribution.pdf}\\
-    \small (a) 17-2199.08 机器人工程师
+    \small (a) 17-2199.08 Robotics Engineers
 \end{minipage}\hfill
 \begin{minipage}{0.32\linewidth}
     \centering
     \includegraphics[width=\linewidth]{figures/task_dna_49-1011.00_authoritative_sc_distribution.pdf}\\
-    \small (b) 49-1011.00 一线主管
+    \small (b) 49-1011.00 First-Line Supervisors
 \end{minipage}\hfill
 \begin{minipage}{0.32\linewidth}
     \centering
     \includegraphics[width=\linewidth]{figures/task_dna_27-3092.00_authoritative_sc_distribution.pdf}\\
-    \small (c) 27-3092.00 法庭速录
+    \small (c) 27-3092.00 Court Reporters
 \end{minipage}
-\caption{三职业的权威 $s,c$ 档位分布对比}
+\caption{Authoritative $s,c$ tier distribution comparison across three occupations}
 \label{fig:task_dna_sc_triptych}
 \end{figure}
 
-结合图~\ref{fig:task_dna_sc_triptych}，我们从 $(s_{ij},c_{ij})$ 的结构分布解释三类职业的冲击机制，并与预测阶段的结果相互印证。对\textbf{机器人工程师}，针对机器人工程师主要关注右侧两条高s和高c柱、说明GenAI对其带来的净冲击较高，因此该职业需要更大程度的通过结构调整来适应发展。针对\textbf{一线主管（机械/安装/维修）}，最右侧柱高几乎为0，并且较多任务平均分散在中等高度的柱面，再次反应其任务的多元，且每个任务对总体结构的变化较平均。针对\textbf{法庭速录与字幕}，特征非常明显，最右侧只有一个高s柱，相应的c柱高则为0,再次说明其职业高度依赖少数核心任务。
+Combining Figure~\ref{fig:task_dna_sc_triptych}, we explain the impact mechanisms of the three occupation types from the $(s_{ij},c_{ij})$ structural distribution, corroborating with the prediction phase results. For \textbf{Robotics Engineers}, the focus is on the two high-$s$ and high-$c$ bars on the right side, indicating that GenAI brings substantial net impact, thus requiring greater structural adjustment to adapt. For \textbf{First-Line Supervisors (Mechanics/Installation/Repair)}, the rightmost bar is nearly zero, with more tasks evenly distributed across medium-height bars, reflecting task diversity with relatively balanced contribution to overall structural change. For \textbf{Court Reporters and Captioners}, the characteristics are very pronounced---the rightmost has only one high-$s$ bar while the corresponding $c$ bar is zero, confirming high dependence on a few core tasks.
 
 
 
-得到$(s_{ij},c_{ij})$ 数据之后，便可计算$\mu^{task}_{ij}$，$\mu^{task}_{ij}>0$ 表示GenAI更可能增强该任务（提高产出/质量/速度），$\mu^{task}_{ij}<0$ 表示该任务更可能被替代或显著压缩。便可以进一步汇总三职业中负净冲击任务（$\mu^{task}_{ij}<0$）的权重与典型任务，结果见表~\ref{tab:task_sc_negative_impact} 
-负净冲击（被替代倾向）
+After obtaining $(s_{ij},c_{ij})$ data, we can calculate $\mu^{task}_{ij}$. $\mu^{task}_{ij}>0$ indicates GenAI is more likely to augment that task (improving output/quality/speed), while $\mu^{task}_{ij}<0$ indicates the task is more likely to be substituted or significantly compressed. We can further summarize the weights and typical tasks with negative net impact ($\mu^{task}_{ij}<0$) across the three occupations, with results in Table~\ref{tab:task_sc_negative_impact}.
 
 \begin{table}[H]
 \centering
-\caption{三职业负净冲击任务（$\mu^{task}_{ij}<0$）汇总}
+\caption{Summary of Negative Net Impact Tasks ($\mu^{task}_{ij}<0$) Across Three Occupations}
 \label{tab:task_sc_negative_impact}
 \small
-\begin{tabular}{llccc}
+\begin{tabular}{@{}l >{\raggedright\arraybackslash}p{3.2cm} c c >{\raggedright\arraybackslash}p{4.8cm}@{}}
 \toprule
-\textbf{SOC} & \textbf{职业名称} & \textbf{负冲击任务数} & $\sum_{j:\mu_{ij}<0} w_{ij}$ & \textbf{典型任务（task\_id, $w$, $\mu$, dims）} \\
+\textbf{SOC} & \textbf{Occupation} & \textbf{Count} & $\boldsymbol{\sum w_{ij}}$ & \textbf{Typical Tasks (id, $\mu$, dim)} \\
 \midrule
-17-2199.08 & 机器人工程师 & 8 & 0.400 & 16521/16516/21057/16528等，$\mu=-0.20$，D3 \\
-49-1011.00 & 一线主管（机械维修） & 1 & 0.059 & 2912, 0.059, $-0.20$, D5 \\
-27-3092.00 & 法庭速录与字幕 & 5 & 0.413 & 8653/21183/8663/8656/8657，$\mu=-0.40$，D8 \\
+17-2199.08 & Robotics Engineers & 8 & 0.400 & 16521/16516/21057/16528 etc., $\mu{=}{-}0.20$, D3 \\
+49-1011.00 & First-Line Supervisors (Mechanics) & 1 & 0.059 & 2912, $\mu{=}{-}0.20$, D5 \\
+27-3092.00 & Court Reporters \& Captioners & 5 & 0.413 & 8653/21183/8663/8656/8657, $\mu{=}{-}0.40$, D8 \\
 \bottomrule
 \end{tabular}
 \end{table}
 
 \begin{itemize}
-    \item \textbf{机器人工程师}：负净冲击权重总和为 0.400，8 项任务均落在 D3（算法编程与自动化），$\mu=-0.20$。这意味着该职业约 40\% 的核心任务存在可自动化压力，但净冲击幅度相对温和（$s=0.90,c=0.70$），体现为"高替代但仍有较强增强"的编码类任务。也就是说强强抵消了。
-    \item \textbf{一线主管}：仅 1 项任务（调度排程，task\_id=2912）呈负净冲击，权重仅 0.059，落在 D5（规划与流程调度），$\mu=-0.20$。该职业的核心任务更多落在监督、培训与协调维度（D6/D7），与人类技能形成互补，整体替代风险最低。
-    \item \textbf{法庭速录与字幕}：负净冲击权重总和高达 0.413，5 项任务集中落在 D8（语言理解与文本生成），$\mu=-0.40$，远高于其他两职业。这表明该职业的核心任务（速记、转写、校对）高度集中于语言自动化维度，GenAI 替代效应最强，预期将在后续动态演化中更早出现"任务份额跌破阈值"的时间点。
+    \item \textbf{Robotics Engineers}: Cumulative negative net impact weight is 0.400, with all 8 tasks falling in D3 (Algorithm Programming \& Automation), $\mu=-0.20$. This means approximately 40\% of core tasks face automation pressure, but the net impact magnitude is relatively moderate ($s=0.90,c=0.70$), manifesting as ``high substitution but still substantial augmentation'' in coding tasks---essentially strong effects canceling out.
+    \item \textbf{First-Line Supervisors}: Only 1 task (scheduling and dispatch, task\_id=2912) shows negative net impact, with weight only 0.059, falling in D5 (Planning \& Workflow Scheduling), $\mu=-0.20$. This occupation's core tasks mostly fall in supervision, training, and coordination dimensions (D6/D7), forming complementarity with human skills, with the lowest overall substitution risk.
+    \item \textbf{Court Reporters \& Captioners}: Cumulative negative net impact weight reaches 0.413, with 5 tasks concentrated in D8 (Language Understanding \& Text Generation), $\mu=-0.40$, far exceeding the other two occupations. This indicates the occupation's core tasks (stenography, transcription, proofreading) are highly concentrated in the language automation dimension, with the strongest GenAI substitution effect, expected to show earlier ``task share dropping below threshold'' time points in subsequent dynamic evolution.
 \end{itemize}
 
-基于以上对职业核心组成任务（Top Task DNA）、GenAI能力维度匹配以及正负冲击强度的分析，我们现在回答题目的核心问题：\textbf{受Gen-AI的影响，哪些驱动因素会造成职业的变化？}
+Based on the above analysis, we identify the key driving factors for each occupation:
 
-\paragraph{Robotics Engineers的驱动因素}
-
-\begin{itemize}[leftmargin=2.5em]
-    \item \textbf{AI辅助代码生成与调试工具}（如GitHub Copilot、AI编程助手）。这类工具直接作用于D3（算法编程与自动化）维度，提升了"编写控制算法""调试软件模块"等任务的替代强度 $s_{ij}$，是该职业40\%任务权重面临负净冲击的主要来源。
-    \item \textbf{GenAI驱动的机器人仿真平台}（如NVIDIA Isaac~\cite{nvidia_isaac_2024}）。仿真环境与生成式AI的集成显著加速了"测试与验证""场景模拟"等任务的自动化程度，同时增强了"系统级设计"任务的效率（$c_{ij}\uparrow$）。
-    \item \textbf{大语言模型与机器人控制的融合}。这类技术提升了"人机交互设计""自然语言指令解析"等任务的自动化潜力，但同时为"跨模态系统集成"等高层任务创造了新的增强空间。
+\begin{itemize}[leftmargin=1.5em, itemsep=0.4em]
+    \item \textbf{Robotics Engineers}: AI-assisted code generation tools (GitHub Copilot) affect D3 dimension, driving 40\% task weight negative impact; GenAI-driven simulation platforms (NVIDIA Isaac~\cite{nvidia_isaac_2024}) accelerate testing automation while enhancing system-level design efficiency; LLM-robot control integration creates new augmentation space for cross-modal tasks.
+    \item \textbf{First-Line Supervisors}: Predictive maintenance AI (IBM Maximo, SAP) affects D5/D7 dimensions~\cite{mckinsey_maintenance_2023}; AR/AI diagnostic tools enhance efficiency but core value relies on on-site judgment (D4) and coordination (D6), yielding complementary effects; automated scheduling is the only negative-impact category ($\mu=-0.20$).
+    \item \textbf{Court Reporters}: High-accuracy ASR systems (Whisper, WER $<1\%$~\cite{whisper2022}) directly impact core transcription tasks---the primary substitution driver; AI captioning services (Zoom, YouTube) reduce market demand; GenAI legal tools (Harvey AI, CoCounsel) automate auxiliary tasks~\cite{ncra_trends_2024}.
 \end{itemize}
 
-\paragraph{First-Line Supervisors of Mechanics的驱动因素}
+\subsubsection{Coupling ``Development Trajectory'' with ``Task Demand''}
 
-\begin{itemize}[leftmargin=2.5em]
-    \item \textbf{预测性维护AI系统}。基于机器学习的设备健康监测与故障预警工具（如IBM Maximo、SAP Predictive Maintenance）作用于D5（规划与流程调度）和D7（监督管理与质量控制）维度，部分替代了"例行检查排程""故障模式识别"等任务~\cite{mckinsey_maintenance_2023}。
-    \item \textbf{智能诊断与远程支持平台}。AR/AI辅助的现场诊断工具增强了"技术问题定位""维修指导"等任务的效率（$c_{ij}\uparrow$），但由于核心价值仍依赖现场判断（D4）和人员协调（D6），整体呈现互补效应。
-    \item \textbf{AI驱动的工单与资源优化系统}。自动化排程工具提升了"任务分配""进度协调"等文书类任务的效率，这也是该职业唯一呈现负净冲击的任务类别（task\_id=2912，$\mu=-0.20$）。
-\end{itemize}
+The problem requires ``given the current trajectory and expected impacts of Gen-AI,'' where we define ``current trajectory'' as an exogenous adoption path $A(t)\in[0,1]$ representing Gen-AI's adoption rate at time $t$. Furthermore, 0 is treated as the current time point, meaning the span from present to future. To ensure this exogenous trajectory's magnitude is consistent with reality, we reference trend boundaries and scenario upper bounds from organizational-level AI adoption surveys and industry forecasts~\cite{mckinsey2024stateai,mckinsey2025stateai,gartner2023genai}.
 
-\paragraph{Court Reporters and Simultaneous Captioners的驱动因素}
-
-\begin{itemize}[leftmargin=2.5em]
-    \item \textbf{高精度自动语音识别（ASR）系统}（如OpenAI Whisper、Google Speech-to-Text）。ASR技术在受控声学环境下的词错误率（WER）已降至1\%以下~\cite{whisper2022}，直接冲击"实时听写转录""语音-文本转换"等核心任务，是该职业面临高替代压力的首要驱动因素。
-    \item \textbf{AI驱动的实时字幕与翻译服务}。流媒体平台与会议软件集成的自动字幕功能（如Zoom Live Transcription、YouTube Auto-Caption）降低了"同步字幕生成"任务的市场需求，进一步压缩该职业的传统价值空间。
-    \item \textbf{智能文本校对与格式化工具}。GenAI驱动的法律文书处理系统（如Harvey AI、CoCounsel）提升了"初稿校对""格式标准化""归档管理"等辅助任务的自动化程度~\cite{ncra_trends_2024}。
-\end{itemize}
-
-\subsubsection{将“发展轨迹”与“任务需求”紧密耦合}
-
-题目要求“given the current trajectory and expected impacts of Gen-AI”，其中“current trajectory”我们将其定义为外生的采纳路径 $A(t)\in[0,1]$ 表示在时间 $t$ ，Gen-AI的采用率。并且，0被视为当前时间点，意味着从当前到未来的跨度。为确保该外生轨迹的数量级与现实一致，我们参考组织层面的AI采纳调查与行业预测所给出的趋势边界与情景上界~\cite{mckinsey2024stateai,mckinsey2025stateai,gartner2023genai}。
-
-考虑到模型的适用性以及准确性，我们不对未来的任何时间点进行任何的定量预测，转而从更本质的角度出发，探讨未来任务相对份额的变化。我们通过引入几个指标来判定“任务的本质发生了变化”。
-\paragraph{(指标i) 结构变化贡献率}
-首先定义未归一化任务权重
+Considering model applicability and accuracy, we do not make any quantitative predictions for any future time point, but instead approach from a more fundamental angle, exploring changes in future task relative shares. We introduce several indicators to determine ``the essential nature of tasks has changed.''
+\paragraph{(Indicator I) Structural Change Contribution Rate}
+First, define the unnormalized task weight
 
 \begin{equation}
     q_{ij}(t)=w_{ij}\Big[(1-A(t))+A(t)\exp\big(\eta\,\mu^{task}_{ij}\big)\Big],
 \end{equation}
-其中 $\eta>0$ 为冲击强度缩放（无量纲），用于刻画“ai采用率带来的任务结构重排幅度”，并在敏感性分析中报告其影响。\\
-直观上，在 $A(t)=0$ 时，只剩下 $w_{ij}$，任务权重与当前保持一致；在 $A(t)$ 增大时，由于右侧部分对任务权重施加了一个与 $\mu^{task}_{ij}$ 单调一致的乘性变换（保证权重为正），任务层净冲击 $\mu^{task}_{ij}$ 逐步释放，任务需求结构随之重排。
+where $\eta>0$ is the impact intensity scaling (dimensionless), characterizing ``the magnitude of task structure rearrangement brought by AI adoption rate,'' with its effects reported in sensitivity analysis.
+
+Intuitively, when $A(t)=0$, only $w_{ij}$ remains, keeping task weights consistent with current state; as $A(t)$ increases, since the right-side portion applies a multiplicative transformation monotonically consistent with $\mu^{task}_{ij}$ (ensuring positive weights), the task-level net impact $\mu^{task}_{ij}$ gradually releases, and task demand structure rearranges accordingly.
 
 
-然后将 $q_{ij}(t)$ 归一化就可以得到任务的相对份额。
+Then normalizing $q_{ij}(t)$ yields the relative task share.
 \begin{equation}
     p_{ij}(t)=\frac{q_{ij}(t)}{\sum_{k=1}^{J_i} q_{ik}(t)}.
 \end{equation}
 
-当 $A(t)$ 上升（GenAI采用率增大）时，若 $\mu^{task}_{ij}<0$，则 $q_{ij}(t)$ 相对缩小，$p_{ij}(t)$ 下降；反之若 $\mu^{task}_{ij}>0$，则该任务份额上升。
+When $A(t)$ rises (GenAI adoption rate increases), if $\mu^{task}_{ij}<0$, then $q_{ij}(t)$ relatively shrinks and $p_{ij}(t)$ decreases; conversely if $\mu^{task}_{ij}>0$, that task's share rises.
 
-% \paragraph{未来时间点}
-% 结合前述定义，任务的有效归零时间仍为
-% \begin{equation}
-%     \tau_{ij}(\epsilon)=\min\{t:\ p_{ij}(t)\le \epsilon\}.
-% \end{equation}
-% 通过对Top任务的 $\tau_{ij}(\epsilon)$ 进行比较，我们可以直接回答：在不同采纳情景下，哪些任务会最先"消失"，哪些任务会长期保留，从而给出对该职业"未来"形态变化的可解释预测。
-
-那么对于任意两个时间点 $t_0,t_1$，任务 $j$ 的份额变化定义为
+For any two time points $t_0,t_1$, task $j$'s share change is defined as
 \begin{equation}
 \label{eq:delta_p}
 r_{ij}(t_0,t_1)=\left|\Delta p_{ij}(t_0,t_1)\right|=p_{ij}(t_1)-p_{ij}(t_0).
 \end{equation}
 
-按 $r_{ij}$ 降序排列，可识别出对结构变化贡献最大的任务（Top contributors）。
-\paragraph{(指标ii) Top-$m$ 换血率}
+Sorting by $r_{ij}$ in descending order identifies tasks contributing most to structural change (top contributors).
+\paragraph{(Indicator II) Top-$m$ Turnover Rate}
 
-定义职业的核心任务集为按 $p_{ij}(t)$ 降序的前 $m$ 个任务，记为 $\mathrm{Top}_m(p_i(t))$。换血率衡量核心任务集合的更替程度：
+Define an occupation's core task set as the top $m$ tasks sorted by $p_{ij}(t)$ in descending order, denoted $\mathrm{Top}_m(p_i(t))$. The turnover rate measures the degree of change in the core task set:
 \begin{equation}
 \label{eq:turnover}
 J_i(t_0,t_1;m)=1-\frac{\left|\mathrm{Top}_m(p_i(t_0))\cap \mathrm{Top}_m(p_i(t_1))\right|}{m}.
 \end{equation}
-当 $J_i=0$ 时，核心任务集完全不变；当 $J_i=1$ 时，核心任务集完全换血。
+When $J_i=0$, the core task set is completely unchanged; when $J_i=1$, the core task set is completely replaced.
 
-\paragraph{(指标iv) 排名翻转与归一化翻转强度}
-令 $\mathrm{rank}_i(j,t)$ 表示任务 $j$ 在职业 $i$ 中按 $p_{ij}(t)$ 降序的名次（1 为最高）。定义翻转对数为
+\paragraph{(Indicator III) Rank Inversion and Normalized Inversion Intensity}
+Let $\mathrm{rank}_i(j,t)$ denote task $j$'s rank in occupation $i$ sorted by $p_{ij}(t)$ in descending order (1 being highest). Define the inversion count as
 \begin{equation}
 \label{eq:inversion_count}
 I_i(t_0,t_1)=\#\{(a,b):\ \mathrm{rank}_i(a,t_0)<\mathrm{rank}_i(b,t_0)\ \wedge\ \mathrm{rank}_i(a,t_1)>\mathrm{rank}_i(b,t_1)\}.
 \end{equation}
-该指标计数"在 $t_0$ 时 $a$ 排在 $b$ 前面，但在 $t_1$ 时 $a$ 落到 $b$ 后面"的任务对数目。为便于跨职业比较，我们进行归一化：
+This indicator counts the number of task pairs where ``at $t_0$, $a$ ranked ahead of $b$, but at $t_1$, $a$ fell behind $b$.'' For cross-occupation comparison, we normalize:
 \begin{equation}
 \label{eq:normalized_inversion}
 \widetilde I_i(t_0,t_1)=\frac{2I_i(t_0,t_1)}{N_i(N_i-1)}\in[0,1],
 \end{equation}
-其中 $N_i$ 为职业 $i$ 的任务总数。$\widetilde I_i$ 作为 Kendall $\tau$ 距离的归一化形式\cite{kendall1938rank}，解释了任务相对重要性的结构变化称程度。
-以上指标可作为"职业已重新定义"的主要判据：
+where $N_i$ is the total number of tasks in occupation $i$. $\widetilde I_i$, as the normalized form of Kendall $\tau$ distance~\cite{kendall1938rank}, explains the degree of structural change in task relative importance.
+The above indicators serve as the main criteria for ``occupation has been redefined'':
 \begin{equation}
 \label{eq:redefinition_trigger}
-\text{结构已重定义} \Longleftrightarrow \widetilde I_i(t_0,t_1) \ge \theta_{I} \quad \text{或} \quad J_i(t_0,t_1;m) \ge \theta_{J},
+\text{Structure Redefined} \Longleftrightarrow \widetilde I_i(t_0,t_1) \ge \theta_{I} \quad \text{or} \quad J_i(t_0,t_1;m) \ge \theta_{J},
 \end{equation}
-其中 $\theta_{I}\in(0,1)$ 为翻转强度阈值（例如 $\theta_{I}=0.15$），$\theta_{J}\in(0,1)$ 为换血率阈值（例如 $\theta_{J}=0.40$），$m$ 为核心任务数（例如 $m=5$）。
+where $\theta_{I}\in(0,1)$ is the inversion intensity threshold (e.g., $\theta_{I}=0.15$), $\theta_{J}\in(0,1)$ is the turnover rate threshold (e.g., $\theta_{J}=0.40$), and $m$ is the number of core tasks (e.g., $m=5$).
 
-阈值 $\theta_{I}$、$\theta_{J}$ 不作为固定常数，我们在多个阈值设置下计算结果，最后展示最优结果。
+Thresholds $\theta_{I}$ and $\theta_{J}$ are not fixed constants; we compute results under multiple threshold settings and present optimal results.
 
-基于以上定义的三个指标，我们可以构建\textbf{排名翻转图}（图~\ref{fig:rank_flip_stem}）、\textbf{贡献分解条形图}（图~\ref{fig:rank_flip_stem} 右）两个核心可视化图标：
+Based on the three indicators defined above, we can construct two core visualizations: \textbf{rank inversion diagram} (Figure~\ref{fig:rank_flip_stem}) and \textbf{contribution decomposition bar chart} (Figure~\ref{fig:rank_flip_stem} right):
 
 \begin{figure}[H]
 \centering
 \includegraphics[width=0.95\linewidth]{figures/fig_STEM_rankflip_contribution_v2.pdf}
-\caption{左图为：STEM职业的排名翻转。连线两端分别为 $\mathrm{rank}_i(j,t_0)$ 与 $\mathrm{rank}_i(j,t_1)$，翻转幅度越大，结构性重排越显著。右图为：STEM职业结构变化的 Top contributors 贡献分解。按 $r_{ij}$ 降序展示各任务对总份额变化的累积贡献，揭示结构重排的主要驱动任务。}
+\caption{Left: STEM occupation rank inversions. Line endpoints represent $\mathrm{rank}_i(j,t_0)$ and $\mathrm{rank}_i(j,t_1)$; larger inversion magnitude indicates more significant structural rearrangement. Right: Top contributor decomposition of STEM occupation structural change. Tasks shown in descending $r_{ij}$ order with cumulative contribution to total share change, revealing the main driving tasks for structural rearrangement.}
 \label{fig:rank_flip_stem}
 \end{figure}
 
-正文中只展示机器人工程师的可视化图标，其余两个职业均采用同样的建模方式得出数据结果，并在章节3.2.3中给出详细分析。
-\subsubsection{探索所选三个职业的未来}
+The main text only shows visualizations for Robotics Engineers; the other two occupations use the same modeling approach to obtain data results, with detailed analysis in Section 3.2.3.
+\subsubsection{Exploring the Future of the Three Selected Occupations}
 
-基于以上任务预测模型、GenAI能力映射（表~\ref{tab:genai_scale}）以及上文定义的结构性变化指标，我们现在综合分析结果，探讨各职业在GenAI采用路径下的未来轨迹。
+Based on the task prediction model, GenAI capability mapping (Table~\ref{tab:genai_scale}), and the structural change indicators defined above, we now comprehensively analyze results and explore each occupation's future trajectory under the GenAI adoption path.
 
-我们的分析表明，机器人工程师呈现出平衡但偏向增强的影响特征。图~\ref{fig:task_dna_sc_triptych}a显示，互补性得分 $c$ 集中在中高档次，而约 40\% 的任务权重处于负净影响区域，主要集中在维度 D3（算法编程与自动化），其中 $\mu = -0.20$。然而，这一部分的替代压力被工程问题解决（D1）和数据分析（D2）的强增强作用所抵消。这种” 此消彼长” 的对称模式表明：GenAI 并非单纯地” 消灭” 某类任务，而是触发
-了职业内部的任务权重再平衡
+Our analysis indicates that Robotics Engineers exhibit a balanced but augmentation-leaning impact profile. Figure~\ref{fig:task_dna_sc_triptych}a shows complementarity scores $c$ concentrated in mid-to-high tiers, while approximately 40\% of task weight falls in the negative net impact region, primarily concentrated in dimension D3 (Algorithm Programming \& Automation), with $\mu = -0.20$. However, this portion of substitution pressure is offset by strong augmentation effects in engineering problem-solving (D1) and data analysis (D2). This ``give-and-take'' symmetric pattern indicates: GenAI is not simply ``eliminating'' certain task types, but triggering task weight rebalancing within the occupation.
 
-在基准情景下 $\eta = 1.0$ 时，重配置质量从 $R(t_0) = 0.086$ 增长至 $R(t_{\text{end}}) = 0.121$，表明当采用率饱和至 $A = 0.95$ 时，累积结构性转变约为 12\%。Top-5 周转率稳定在 $J_5 = 0.40$，意味着五项最重要任务中有两项被先前次要任务所取代。如图~\ref{fig:rank_flip_stem} 所示，排名逆转模式表明，常规编码和文档任务的相对份额下降，而系统级集成、软硬件协同设计和跨职能协作任务上升。
+Under the baseline scenario with $\eta = 1.0$, reconfiguration mass grows from $R(t_0) = 0.086$ to $R(t_{\text{end}}) = 0.121$, indicating approximately 12\% cumulative structural transformation when adoption rate saturates at $A = 0.95$. Top-5 turnover rate stabilizes at $J_5 = 0.40$, meaning two of the five most important tasks are replaced by previously secondary tasks. As shown in Figure~\ref{fig:rank_flip_stem}, rank inversion patterns indicate declining relative shares for routine coding and documentation tasks, while system-level integration, hardware-software co-design, and cross-functional collaboration tasks rise.
 
-我们的结论是，未来负责编排 AI 辅助的开发流程、验证机器生成的解决方案，并专注于需要物理世界判断和创造性问题解决将成为机器人工程师的主要任务——这些是当前 GenAI 无法复制的。
+We conclude that future robotics engineers will primarily be responsible for orchestrating AI-assisted development workflows, validating machine-generated solutions, and focusing on tasks requiring physical-world judgment and creative problem-solving---capabilities current GenAI cannot replicate.
 
-针对机械、安装与维修一线主管，其在三个职业中表现出最低的替代风险。$(s,c)$ 分布（图~\ref{fig:task_dna_sc_triptych}b）显著分散，没有单一维度主导影响特征。仅有一项任务（调度与派工，task\_id = 2912）具有负净影响，仅贡献0.059的总体任务权重。主导维度——D4（现场感知与物理操作）、D6（协作与培训）以及 D7（监督与质量控制）——均表现出正值或中性的 $\rho_k$ 值，表明 GenAI 的互补效应而非替代效应。
+For First-Line Supervisors of Mechanics, Installation, and Repair, this occupation exhibits the lowest substitution risk among the three. The $(s,c)$ distribution (Figure~\ref{fig:task_dna_sc_triptych}b) is notably dispersed, with no single dimension dominating the impact profile. Only one task (scheduling and dispatch, task\_id = 2912) has negative net impact, contributing only 0.059 of total task weight. Dominant dimensions---D4 (On-Site Perception \& Physical Operation), D6 (Collaboration \& Training), and D7 (Supervision \& Quality Control)---all exhibit positive or neutral $\rho_k$ values, indicating GenAI's complementary rather than substitutive effects.
 
-在基准情景（$\eta = 1.0$）下，重配置质量从 $R(t_0) = 0.061$ 适度增长至 $R(t_{\text{end}}) = 0.086$，是三个职业中结构性变化最小的。然而，Top-5 周转率达到 $J_5 = 0.80$，乍看之下似乎矛盾。这一高周转率反映了监督角色特有的扁平权重分布：许多重要性相近的任务竞争 Top-5 位置，即使总重配置量有限，排名也对微小扰动敏感。
+Under the baseline scenario ($\eta = 1.0$), reconfiguration mass grows modestly from $R(t_0) = 0.061$ to $R(t_{\text{end}}) = 0.086$, the smallest structural change among the three occupations. However, Top-5 turnover rate reaches $J_5 = 0.80$, which appears contradictory at first glance. This high turnover rate reflects the flat weight distribution characteristic of supervisory roles: many similarly important tasks compete for Top-5 positions, making rankings sensitive to minor perturbations even with limited total reconfiguration.
 
-未来的一线主管将保持结构稳定但在操作上得到增强。GenAI 工具将增强诊断能力、简化调度流程并改进培训交付，但核心价值主张——在不可预测的物理环境中进行实时判断、人际协调和动手排障——仍牢固地以人为锚点。该职业体现了「AI 作为副驾驶」范式，而非转型或替代。
+Future first-line supervisors will remain structurally stable but operationally enhanced. GenAI tools will enhance diagnostic capabilities, streamline scheduling processes, and improve training delivery, but the core value proposition---real-time judgment in unpredictable physical environments, interpersonal coordination, and hands-on troubleshooting---remains firmly human-anchored. This occupation embodies the ``AI as copilot'' paradigm rather than transformation or substitution.
 
-\paragraph{法庭记录员与同声字幕员（27-3092.00）：替代主导型颠覆}
+\paragraph{Court Reporters and Simultaneous Captioners (27-3092.00): Substitution-Dominant Disruption}
 
-法庭记录员面临三个职业中最严重的替代压力。$(s,c)$ 分布（图~\ref{fig:task_dna_sc_triptych}c）显示，高权重任务明显集中在维度 D8（语言理解与文本生成），其中 $s = 0.90$ 和 $c = 0.50$ 产生强负净影响 $\mu = -0.40$。负面影响任务的累积权重达到 $\sum_{j:\mu_{ij}<0} w_{ij} = 0.413$，是三个职业中最高的。
+Court reporters face the most severe substitution pressure among the three occupations. The $(s,c)$ distribution (Figure~\ref{fig:task_dna_sc_triptych}c) shows high-weight tasks clearly concentrated in dimension D8 (Language Understanding \& Text Generation), where $s = 0.90$ and $c = 0.50$ produce strong negative net impact $\mu = -0.40$. The cumulative weight of negative-impact tasks reaches $\sum_{j:\mu_{ij}<0} w_{ij} = 0.413$, the highest among the three occupations.
 
-在基准情景（$\eta = 1.0$）下，重配置质量从 $R(t_0) = 0.060$ 增长至 $R(t_{\text{end}}) = 0.092$。虽然绝对幅度看似适度，但变化方向毫不含糊：核心转录和起草任务的份额快速下降，而质量验证、法律语境解释和认证任务的相对重要性上升。$J_5 = 0.60$ 的 Top-5 周转率确认了任务层级的实质性重组。
+Under the baseline scenario ($\eta = 1.0$), reconfiguration mass grows from $R(t_0) = 0.060$ to $R(t_{\text{end}}) = 0.092$. While the absolute magnitude appears moderate, the direction of change is unambiguous: core transcription and drafting task shares decline rapidly, while the relative importance of quality verification, legal context interpretation, and certification tasks rises. The $J_5 = 0.60$ Top-5 turnover rate confirms substantial restructuring of the task hierarchy.
 
-未来的法庭记录员将经历根本性的角色重新定义。随着 ASR 和 GenAI 转录工具在受控声学环境中达到接近人类的准确度，该职业从速记生产转向质量保证和法律认证。从业者将越来越多地充当专家验证者，确保对抗性法律环境中的转录准确性、解释特定领域术语，并维护官方记录的监管链。那些未能获得法律技术、质量管理或专业领域互补技能的从业者将面临显著的替代风险。
+Future court reporters will experience fundamental role redefinition. As ASR and GenAI transcription tools achieve near-human accuracy in controlled acoustic environments, the occupation shifts from stenographic production toward quality assurance and legal certification. Practitioners will increasingly serve as expert validators, ensuring transcription accuracy in adversarial legal environments, interpreting domain-specific terminology, and maintaining chain of custody for official records. Those who fail to acquire complementary skills in legal technology, quality management, or specialized domains will face significant substitution risk.
 
 \input{sections/task3_program_recommendations}

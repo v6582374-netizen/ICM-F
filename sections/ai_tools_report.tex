@@ -1,20 +1,24 @@
-\section*{AI工具使用报告}
-\subsection*{1. 对话可追溯性}
-对于每次使用，提供准确的\textbf{提示词/查询}和\textbf{原始AI输出}（或具有代表性的摘录）。仅当AI仅用于翻译时才可省略完整日志；在这种情况下，需注明\textbf{工具名称和版本}。
+\section*{Report on Use of AI}
+\label{sec:ai_report}
 
-\begin{itemize}[leftmargin=*]
-    \item \textbf{示例---提示词：} "为模型部分建议一个大纲。" \textbf{输出（摘录）：} "1. 陈述假设；2. 定义符号；3. 推导主要方程\ldots"
-    \item \textbf{仅使用翻译的团队：} 声明工具名称和版本（如DeepL 4.2、ChatGPT-4）；无需提供完整的提示词日志。
-\end{itemize}
+\textbf{OpenAI ChatGPT (Feb 2026, GPT-5.2 Thinking).}
+We used AI as a \emph{research assistant and technical editor} to accelerate model design, verify internal logical consistency, and polish exposition. All modeling choices, assumptions, and final claims were determined and validated by the team.
 
-\subsection*{2. 分阶段声明}
-说明AI在哪些阶段被使用，例如：
-\begin{itemize}[leftmargin=*]
-    \item \textbf{初始构思/头脑风暴}
-    \item \textbf{代码修正/调试}
-    \item \textbf{翻译/文字编辑}
-\end{itemize}
-标注每个阶段是否使用，并注明每个阶段使用的工具。
+\begin{enumerate}
+   
 
-\subsection*{3. 风险验证}
-描述团队如何检查\textbf{幻觉}和\textbf{错误引用}：例如，对关键声明进行人工事实核查、验证参考文献、交叉检验公式和代码。如果仅用于翻译，请声明没有将实质性技术内容委托给AI处理。
+    \item \textbf{Decision-rule simplification under data availability constraints}\\
+    \textbf{Query:} Our initial curriculum model is too complex and requires unavailable fields (e.g., credits). Can we redesign it to depend only on course title/description while remaining defensible?\\
+    \textbf{Output:} AI recommended (i) removing course-to-course redundancy to avoid unnecessary data requirements, (ii) using only text-derived course representations, and (iii) defining thresholds endogenously via within-program empirical quantiles (credit-weighted if available, uniform otherwise). This kept the rule set simple, portable, and reproducible while preserving interpretability.
+
+    \item \textbf{Data source identification and cross-validation}\\
+    \textbf{Query:} Where can we find reliable and authoritative public data sources relevant to this study, and how should we cross-validate them?\\
+    \textbf{Output:} AI recommended authoritative sources including O*NET OnLine for occupational task structures, Bureau of Labor Statistics (BLS) for employment projections, and peer-reviewed literature for GenAI capability assessments. For cross-validation, AI suggested triangulating task importance scores across multiple O*NET releases and comparing employment trends with independent forecasts.
+
+    \item \textbf{Robustness design and interpretation (occupation-set $O$ perturbations)}\\
+    \textbf{Query:} The prompt asks whether our framework generalizes across institutions/programs. What is the single most critical sensitivity analysis, and how should we report it?\\
+    \textbf{Output:} AI identified the target occupation set $O$ as the dominant external input and designed a narrow/medium/wide $O$ perturbation test. AI also prescribed stability metrics (label stability, TRANSFORM-set Jaccard, employability-rank stability) and helped interpret results conservatively: policy labels remained stable under reasonable $O$ perturbations, while fine-grained employability ranking can vary---therefore the model is transferable, but $O$ must be re-specified when extrapolating to new contexts.
+
+\end{enumerate}
+
+\textbf{Human verification.} We verified all intermediate outputs (course labels, threshold values, and robustness summaries) for logical consistency with the final decision rules, and revised any inconsistent intermediate drafts before inclusion in the paper.

@@ -1,92 +1,99 @@
-\subsection{教育项目与Gen-AI整合策略}
+\subsection{Educational Programs and Gen-AI Integration Strategies}
 
 \label{subsec:task3_programs}
 
-基于前述职业选择及其任务层面的 Gen-AI 影响分析，我们为三个职业各推荐一个具有代表性的教育项目。遵循以下三个准则：\textbf{在相关行业中是否具有较强的行业领导力}、\textbf{课程项目需要与产业需求是否具有较高的匹配度}、以及\textbf{当前针对Gen-AI是否已经具备一定的资源}。具体选择及其选择依据见附录表~\ref{tab:programs_genai_rationale}。
+Based on the aforementioned occupation selection and task-level Gen-AI impact analysis, we recommend one representative educational program for each of the three occupations. We follow three criteria: \textbf{whether the institution demonstrates strong industry leadership in the relevant sector}, \textbf{whether the curriculum aligns well with industry demands}, and \textbf{whether the institution already possesses Gen-AI-related resources}. Specific selections and rationale are provided in Appendix Table~\ref{tab:programs_genai_rationale}.
 
-针对\textbf{机器人工程师}，我们推荐卡内基梅隆大学机器人研究院的 MRSD 项目，该项目具备行业领导力且已建立 Gen-AI 相关的课程资源。
-针对\textbf{机械维修一线主管}，Universal Technical Institute（UTI）展现出快速响应产业技术迁移的能力，并已将 AI 诊断纳入教学叙事。
-针对\textbf{法庭速录师}，Generations College 作为美国首创法庭速录项目的历史传承者，其 Realtime 训练体系与 Gen-AI 时代的编辑工具形成互补。
+For \textbf{Robotics Engineers}, we recommend Carnegie Mellon University's Robotics Institute MRSD program, which possesses industry leadership and has established Gen-AI-related curriculum resources.
+For \textbf{First-Line Supervisors of Mechanics}, Universal Technical Institute (UTI) demonstrates the ability to rapidly respond to industry technology transitions and has already incorporated AI diagnostics into its educational narrative.
+For \textbf{Court Reporters}, Generations College, as the historical inheritor of America's first court reporting program, offers a Realtime training system that complements Gen-AI era editing tools.
 
-\subsubsection{元模型：就业--人文--AI 重叠}
+\subsubsection{Meta-Model: Employment--Humanistic--AI Overlap}
 \label{subsubsec:three_axis_metamodel}
 
-在确定推荐项目后，我们构建一个\textbf{课程层面的评估框架}，用于指导项目内部的课程改革建议。模型的核心思想是：每门课程在三个正交维度上接受评估——\emph{就业匹配度}、\emph{人文价值}与\emph{AI 重叠度}——从而得出三种方向的选择： ``KEEP / TRANSFORM / PRUNE'' 。其中，就业轴更关注劳动力市场的需求；人文轴主要由主观进行界定；AI 重叠轴仅关注课程内容与 Gen-AI 能力维度的联系。
+After determining the recommended programs, we construct a \textbf{curriculum-level evaluation framework} to guide course reform recommendations within each program. The model's core idea is: each course is evaluated along three orthogonal dimensions---\emph{employability}, \emph{humanistic value}, and \emph{AI overlap}---thereby yielding three directional choices: ``Keep / Transform / Prune.'' The employment axis focuses more on labor market demands; the humanistic axis is primarily subjectively defined; the AI overlap axis focuses solely on the connection between course content and Gen-AI capability dimensions.
 
-设教育项目包含 $M$ 门课程，课程索引 $m=1,\ldots,M$，课程文本描述为 $t_m$（课程名称与简介）。目标职业集合记为 $O$，职业 $o\in O$ 对应 O*NET 任务数据库。定义：
+Let the educational program contain $M$ courses, with course index $m=1,\ldots,M$, and course text description $t_m$ (course title and description). The target occupation set is denoted $O$, with occupation $o\in O$ corresponding to the O*NET task database. Define:
 \begin{itemize}
-    \item $w_o$：职业 $o$ 的劳动力市场需求权重（若不可获取则设为均匀分布）；
-    \item $v_{o,j}$：任务 $j$ 在职业 $o$ 中的显著性权重，由 O*NET 重要性$\times$频率归一化得到；也就是第二问已经跑通的方法。
-    \item $s_{m,o,j}=\mathrm{sim}(t_m,\mathrm{task}_{o,j})$：课程 $m$ 对任务 $(o,j)$ 的语义覆盖度（基于文本相似度）；
-    \item $b_k$：人文维度锚文本，$k\in\{\mathrm{civic,agency,wellbeing,lifelong}\}$；
-    \item $k=1,\ldots,9$：前述九维 Gen-AI 能力维度索引；
-    \item $w_{m,k}\in[0,1]$：课程 $m$ 在第 $k$ 维的归一化足迹，$\sum_{k=1}^9 w_{m,k}=1$（由课程标题与简介抽取）；
-    \item $(M_k,s_k,c_k,\rho_k)$：九维能力量表参数，其中 $\rho_k=c_k-s_k$。
+    \item $w_o$: Labor market demand weight for occupation $o$ (set to uniform distribution if unavailable);
+    \item $v_{o,j}$: Saliency weight of task $j$ in occupation $o$, obtained from O*NET importance$\times$frequency normalization; this is the method already implemented in Question 2.
+    \item $s_{m,o,j}=\mathrm{sim}(t_m,\mathrm{task}_{o,j})$: Semantic coverage of course $m$ for task $(o,j)$ (based on text similarity);
+    \item $b_k$: Humanistic dimension anchor text, $k\in\{\mathrm{civic,agency,wellbeing,lifelong}\}$;
+    \item $k=1,\ldots,9$: The aforementioned nine-dimensional Gen-AI capability dimension index;
+    \item $w_{m,k}\in[0,1]$: Normalized footprint of course $m$ in dimension $k$, $\sum_{k=1}^9 w_{m,k}=1$ (extracted from course title and description);
+    \item $(M_k,s_k,c_k,\rho_k)$: Nine-dimensional capability scale parameters, where $\rho_k=c_k-s_k$.
 \end{itemize}
 
-\paragraph{（轴一）就业匹配度（Employability Axis）}
-就业轴的核心问题是：课程对学生进入目标职业集合 $O$ 的\emph{边际贡献}有多大？我们采用 ``职业需求加权的任务覆盖率'' 来刻画项目与劳动力市场的匹配。
+\paragraph{(Axis I) Employability}
+The core question of the employment axis is: what is the course's \emph{marginal contribution} to students entering the target occupation set $O$? We use ``occupation-demand-weighted task coverage rate'' to characterize the program's match with the labor market.
 
-首先定义项目对任务 $(o,j)$ 的覆盖度为所有课程中的最大相似度：
+First, define the program's coverage of task $(o,j)$ as the maximum similarity across all courses:
 \begin{equation}
     c_{o,j}=\max_{m\in\{1,\ldots,M\}} s_{m,o,j}.
 \end{equation}
-整体就业匹配分数为：
+The overall employability score is:
 \begin{equation}
     E=\sum_{o\in O} w_o \cdot \sum_{j\in J(o)} v_{o,j}\cdot c_{o,j}.
 \end{equation}
-为衡量单门课程的贡献，我们定义\textbf{边际就业价值}。令 $E^{(-m)}$ 表示移除课程 $m$ 后的就业匹配分数：
+To measure a single course's contribution, we define \textbf{marginal employment value}. Let $E^{(-m)}$ denote the employability score after removing course $m$:
 \begin{equation}
     E^{(-m)}=\sum_{o\in O} w_o \cdot \sum_{j\in J(o)} v_{o,j}\cdot \max_{n\neq m} s_{n,o,j}.
 \end{equation}
-则课程 $m$ 的边际贡献为：
+Then course $m$'s marginal contribution is:
 \begin{equation}
     \Delta E_m=E-E^{(-m)}.
 \end{equation}
-$\Delta E_m$ 的可解释含义是：若课程 $m$ 被移除，项目与当前劳动力市场的对齐度将下降多少；$\Delta E_m$ 越大，表明该课程在就业轴上越\emph{不可替代}。
+The interpretable meaning of $\Delta E_m$ is: if course $m$ is removed, how much will the program's alignment with the current labor market decrease; the larger $\Delta E_m$, the more \emph{irreplaceable} the course is on the employment axis.
 
-\paragraph{（轴二）人文价值（Humanistic Axis）}
-人文轴关注课程对学生\emph{非职业性能力}的培养。我们采用锚文本相似度作为简洁且可复现的度量：
+\paragraph{(Axis II) Humanistic Value}
+The humanistic axis focuses on a course's cultivation of students' \emph{non-occupational capabilities}. We use anchor text similarity as a concise and reproducible metric:
 \begin{equation}
     H_m=\sum_{k\in\{\mathrm{civic,agency,wellbeing,lifelong}\}} \mathrm{sim}(t_m, b_k).
 \end{equation}
-其中 $b_k$ 为预定义的人文锚文本（如公民责任、自主判断、身心健康、终身学习）。该轴用于识别那些虽不直接提升短期就业匹配，但对学生长期发展与社会公共价值具有贡献的课程。\\
-此处需要预先主观给定一个文本集，这部分后续有空间就放在附录，没有就引用。
+where $b_k$ are predefined humanistic anchor texts. The four dimensions and their anchor keywords are:
+\begin{itemize}[nosep, leftmargin=1.5em]
+    \item \textbf{Civic Literacy}: \texttt{ethics}, \texttt{public}, \texttt{civic}, \texttt{law}, \texttt{compliance}, \texttt{responsibility};
+    \item \textbf{Agency}: \texttt{decision}, \texttt{leadership}, \texttt{management}, \texttt{planning}, \texttt{strategy}, \texttt{autonomy};
+    \item \textbf{Well-being}: \texttt{safety}, \texttt{health}, \texttt{wellbeing}, \texttt{risk}, \texttt{care}, \texttt{quality};
+    \item \textbf{Lifelong Learning}: \texttt{learning}, \texttt{training}, \texttt{skill}, \texttt{development}, \texttt{professional}, \texttt{continuous}.
+\end{itemize}
+This axis identifies courses that, while not directly improving short-term employment matching, contribute to students' long-term development and social public value.
 
-\paragraph{（轴三）AI 重叠度（AI-Overlap Axis）}
-AI 重叠轴衡量课程内容与 Gen-AI 能力维度之间的\emph{可替代压力}。不同于基于关键词或不透明词典的方法，我们将 AI-Overlap 指标定义为 ``课程九维能力足迹'' 与 ``Gen-AI 在各维度的独立交付强度'' 的加权重合，完全复用前述九维能力量表参数 $(M_k,s_k,c_k,\rho_k)$，从而避免主观权重。
+\paragraph{(Axis III) AI Overlap}
+The AI overlap axis measures the \emph{substitution pressure} between course content and Gen-AI capability dimensions. Unlike approaches based on keywords or opaque dictionaries, we define the AI-Overlap metric as the weighted overlap between ``course nine-dimensional capability footprint'' and ``Gen-AI's independent delivery strength in each dimension,'' fully reusing the aforementioned nine-dimensional capability scale parameters $(M_k,s_k,c_k,\rho_k)$, thereby avoiding subjective weighting.
 
-首先定义维度门控（两种口径）：\\
-区别只在于定义域的不同，使用1为了不影响数值。
+First, define dimension gating (two calibers):
+
+The only difference lies in the domain; using 1 to avoid affecting numerical values.
 \begin{equation}
     I_k=\mathbf{1}[\rho_k\le 0], \qquad I_k^{\mathrm{strict}}=\mathbf{1}[\rho_k<0].
 \end{equation}
-其中 $I_k$ 允许 ``不确定/平衡'' 维度进入压力测度，$I_k^{\mathrm{strict}}$ 仅将 ``明确替代向'' 维度计入压力，用于构造保守的删减条件。定义维度级可替代强度为：
+where $I_k$ allows ``uncertain/balanced'' dimensions to enter the pressure measure, while $I_k^{\mathrm{strict}}$ only counts ``explicitly substitution-oriented'' dimensions into pressure, used to construct conservative pruning conditions. Define dimension-level substitutability intensity as:
 \begin{equation}
     a_k=M_k\cdot s_k\cdot I_k, \qquad a_k^{\mathrm{strict}}=M_k\cdot s_k\cdot I_k^{\mathrm{strict}}.
 \end{equation}
-则课程 $m$ 的 AI-Overlap（两种口径）为：
+Then course $m$'s AI-Overlap (two calibers) is:
 \begin{equation}
     A_m=\sum_{k=1}^{9} w_{m,k}\,a_k, \qquad A_m^{\mathrm{strict}}=\sum_{k=1}^{9} w_{m,k}\,a_k^{\mathrm{strict}}.
 \end{equation}
-$A_m$ 反映课程与 Gen-AI 能力维度的总体重合压力，$A_m^{\mathrm{strict}}$ 则反映来自 ``已证实替代'' 维度的保守压力。该定义与前两问的能力维度研究保持一致，并且仅依赖课程文本（标题与简介）。
+$A_m$ reflects the overall overlap pressure between the course and Gen-AI capability dimensions, while $A_m^{\mathrm{strict}}$ reflects the conservative pressure from ``proven substitution'' dimensions. This definition maintains consistency with the capability dimension research in the previous two questions and depends only on course text (title and description).
 
-\paragraph{三轴决策规则：KEEP / TRANSFORM / PRUNE}
-在三轴指标基础上，我们给出课程决策规则。直观逻辑如下：
+\paragraph{Three-Axis Decision Rules: Keep / Transform / Prune}
+Based on the three-axis metrics, we provide course decision rules. The intuitive logic is as follows:
 \begin{itemize}
-    \item \textbf{PRUNE（删减）}：课程同时满足 ``就业边际低''、``人文价值低''、且 ``严格 AI-Overlap 极高''。此类课程既缺乏就业与人文支撑，其核心产出又高度可被 Gen-AI 独立交付，建议从课程体系中移除。
-    \item \textbf{TRANSFORM（转型）}：课程 AI-Overlap 较高，但不满足保守删减条件。此类课程不应删除，而应重新设计（例如压缩可被 Gen-AI 直接生成的产出，转向人类主导的过程证据、现场推理、伦理审议与人机协作能力）。
-    \item \textbf{KEEP（保留）}：其余课程维持现有形态。
+    \item \textbf{Prune}: The course simultaneously satisfies ``low employment margin,'' ``low humanistic value,'' and ``extremely high strict AI overlap.'' Such courses lack both employment and humanistic support, and their core outputs are highly deliverable independently by Gen-AI; we recommend removing them from the curriculum.
+    \item \textbf{Transform}: The course has high AI overlap but does not satisfy the conservative pruning conditions. Such courses should not be deleted but redesigned (e.g., compressing outputs that can be directly generated by Gen-AI, shifting toward human-led process evidence, on-site reasoning, ethical deliberation, and human-AI collaboration capabilities).
+    \item \textbf{Keep}: Remaining courses maintain their current form.
 \end{itemize}
 
-为确保跨机构可移植且避免臆造常数，我们将门槛定义为项目内的经验分位数（当课程学分可得时使用学分加权分位数；否则使用均匀分位数）。记
+To ensure cross-institutional portability and avoid fabricating constants, we define thresholds as empirical quantiles within the program (using credit-weighted quantiles when course credits are available; otherwise, uniform quantiles). Let
 \begin{equation}
     e_{\mathrm{low}}=Q_{0.25}(\Delta E_m),\qquad
     h_{\mathrm{low}}=Q_{0.25}(H_m),\qquad
     a_{\mathrm{high}}=Q_{0.75}(A_m),\qquad
     a_{\mathrm{strict\_high}}=Q_{0.90}(A_m^{\mathrm{strict}}).
 \end{equation}
-则最终决策规则为：
+The final decision rules are:
 \begin{align}
     \mathrm{PRUNE}(m) &= \mathbf{1}\Big[(\Delta E_m\le e_{\mathrm{low}})\land(H_m\le h_{\mathrm{low}})\land(A_m^{\mathrm{strict}}\ge a_{\mathrm{strict\_high}})\Big],\\
     \mathrm{TRANSFORM}(m) &= \mathbf{1}\Big[\neg \mathrm{PRUNE}(m)\land(A_m\ge a_{\mathrm{high}})\Big],\\
@@ -94,10 +101,12 @@ $A_m$ 反映课程与 Gen-AI 能力维度的总体重合压力，$A_m^{\mathrm{s
 \end{align}
 
 
-我们将上述三轴决策规则应用于三个代表性教育项目，结果汇总于表~\ref{tab:transform_all_programs}。
+We apply the above three-axis decision rules to the three representative educational programs, with results summarized in Table~\ref{tab:transform_all_programs}.
 
 \begin{table}[H]
 \centering
+\caption{Course-Level Transformation Recommendations Across Three Programs. All flagged courses receive \textsc{Transform} labels; no courses qualify for \textsc{Prune}, reflecting the model's conservative stance toward course elimination. $A^s$ denotes $A^{\mathrm{strict}}$.}
+\label{tab:transform_all_programs}
 \footnotesize
 \begin{tabularx}{\textwidth}{>{\raggedright\arraybackslash}p{1.6cm} >{\raggedright\arraybackslash}X c c c c >{\raggedright\arraybackslash}p{2.2cm}}
 \toprule
@@ -119,52 +128,43 @@ $A_m$ 反映课程与 Gen-AI 能力维度的总体重合压力，$A_m^{\mathrm{s
 & \href{https://catalogs.uti.edu/diesel-programs}{DT13-211} Diesel Engines & 0.000 & 0.0 & 0.380 & 0.055 & D7=0.60, D2=0.12 \\
 \bottomrule
 \end{tabularx}
-\caption{Course-Level Transformation Recommendations Across Three Programs. All flagged courses receive \textsc{Transform} labels; no courses qualify for \textsc{Prune}, reflecting the model's conservative stance toward course elimination. $A^s$ denotes $A^{\mathrm{strict}}$.}
-\label{tab:transform_all_programs}
 \end{table}
 
-\subsubsection{机构级战略建议}
+\subsubsection{Institution-Level Strategic Recommendations}
 \label{subsubsec:institutional_recommendations}
 
-基于上述元模型得到的结果，值得注意的是，三个项目的 \texttt{prune\_list} 全为空，所有建议均落在 \textsc{Transform} 而非 \textsc{Prune}。这一结果非常符合现实：教育改革循序渐进，而非不切实际的一刀切。进一步，我们再为三所机构的领导者提供针对性的 Gen-AI 整合策略建议。
+Based on the results from the above meta-model, it is noteworthy that the prune lists for all three programs are empty, with all recommendations falling under ``Transform'' rather than ``Prune.'' This result aligns well with reality: educational reform proceeds incrementally rather than through unrealistic wholesale elimination. We further provide targeted Gen-AI integration strategy recommendations for the leaders of the three institutions.
 
 \paragraph{Generations College: Court Reporting Program}
 
-% \textbf{背景诊断：}该项目仅一门课程 \textit{Machine Shorthand Theory} (CR-CAT-1) 触发 \textsc{Transform} 标签。该课程就业边际贡献极高（$\Delta E=1.0$，为项目内最高），但 AI-Overlap 同样显著（$A=0.584$, $A^s=0.453$）。主导能力维度为 D8（文本生成与编辑，权重0.53）与 D9（实时语言处理，权重0.42）——这两个维度恰是 Gen-AI 语音转写与文本编辑能力最强的领域。
-
-\begin{enumerate}
-    \item \textbf{重新定义核心能力：从"速度"到"判断"}。传统法庭速录强调每分钟225词以上的实时转写速度，而 Gen-AI 语音识别能力的提升正在改变学生需要训练的“可迁移能力”边界。我们建议将课程重心从"机械性速度训练"转向"实时校验与语义判断"——即培养学生在 AI 初稿基础上进行法律术语校正、说话人辨识、以及庭审语境理解的能力~\citep{mughal2025beyondautomationho}。
-    \item \textbf{引入人机协作工作流}。课程应设计 AI-辅助速录实验模块，让学生在 AI 实时转写输出上进行人工干预、标注不确定段落、并对 AI 错误进行归因分析。这不仅提升学生对 AI 局限性的认知，也为其未来职业中的人机协作奠定基础。
-    \item \textbf{强化法律伦理与责任性评估}。法庭记录具有法律效力，AI 生成内容的准确性责任最终由人类承担。课程应增设"AI 输出审计"单元，培养学生对 AI 幻觉（hallucination）、偏见（bias）与隐私泄露风险的识别能力。
+\begin{enumerate}[label=\roman*.]
+    \item \textbf{Redefine core competencies: From ``speed'' to ``judgment''}. Traditional court reporting emphasizes real-time transcription speeds above 225 words per minute, while Gen-AI's advancing speech recognition capabilities are changing the boundaries of ``transferable skills'' that students need to train. We recommend shifting the curriculum focus from ``mechanical speed training'' to ``real-time verification and semantic judgment''---cultivating students' ability to perform legal terminology correction, speaker identification, and courtroom context understanding on AI drafts~\citep{mughal2025beyondautomationho}.
+    \item \textbf{Introduce human-AI collaboration workflows}. The curriculum should design AI-assisted stenography experimental modules, allowing students to perform human intervention on AI real-time transcription outputs, annotate uncertain passages, and conduct attribution analysis of AI errors. This not only enhances students' awareness of AI limitations but also lays the foundation for human-AI collaboration in their future careers.
+    \item \textbf{Strengthen legal ethics and responsibility assessment}. Court records have legal effect, and responsibility for AI-generated content accuracy ultimately rests with humans. The curriculum should add an ``AI output auditing'' unit to cultivate students' ability to identify AI hallucination, bias, and privacy leakage risks.
 \end{enumerate}
 
 \paragraph{Carnegie Mellon University: MRSD Program}
 
-% \textbf{背景诊断：}该项目有三门课程触发 \textsc{Transform} 标签，主导能力维度集中于 D3（数据分析与模式识别）与 D4（复杂推理与规划）。值得注意的是，16-697 \textit{Introduction to Robotics Business} 具有一定人文价值（$H=0.5$），但仍因 AI-Overlap 较高而需转型。三门课程的 $A^{\mathrm{strict}}$ 均等于 $A$，表明其能力足迹完全落在 Gen-AI "已证实替代"的维度区间内。
-
-\begin{enumerate}
-    \item \textbf{从"算法实现"转向"系统集成与边界条件"}。Gen-AI 已能生成高质量的控制算法代码与优化求解器。我们建议 16-642 \textit{Manipulation, Estimation \& Control} 压缩传统算法推导与编码训练，转向强调：(a) 真实物理系统中的传感器噪声、执行器延迟与环境不确定性；(b) AI 生成代码的安全性审计与边界条件测试；(c) 人机协作场景下的故障恢复与伦理决策。
-    \item \textbf{商业课程聚焦"不可自动化"的战略判断}。16-697 与 16-698 两门商业课程应减少对市场分析报告、财务模型等可被 Gen-AI 快速生成内容的依赖，转向强调：(a) 技术路线的战略选择与时机判断；(b) 跨文化团队管理与利益相关者谈判；(c) 技术伦理与社会责任的案例研讨。
-    \item \textbf{建立"AI 素养"横向模块}。鉴于 MRSD 学生未来将领导机器人研发团队，我们建议在项目层面引入 AI 素养必修模块，内容涵盖：大语言模型的能力边界、提示工程（prompt engineering）最佳实践、以及 AI 系统的可解释性与审计方法；这与“将 AI 能力从个体试用提升为制度化课程设计与政策框架”的高教证据一致~\citep{jogezai2025generativeartifici,wong2025thefutureoflearnin}。
+\begin{enumerate}[label=\roman*.]
+    \item \textbf{From ``algorithm implementation'' to ``system integration and boundary conditions''}. Gen-AI can already generate high-quality control algorithm code and optimization solvers. We recommend that 16-642 \textit{Manipulation, Estimation \& Control} compress traditional algorithm derivation and coding training, shifting emphasis toward: (a) sensor noise, actuator delay, and environmental uncertainty in real physical systems; (b) safety auditing and boundary condition testing of AI-generated code; (c) fault recovery and ethical decision-making in human-AI collaboration scenarios.
+    \item \textbf{Business courses focus on ``non-automatable'' strategic judgment}. The two business courses 16-697 and 16-698 should reduce dependence on content that Gen-AI can rapidly generate, such as market analysis reports and financial models, shifting emphasis toward: (a) strategic selection and timing judgment of technical roadmaps; (b) cross-cultural team management and stakeholder negotiation; (c) case studies on technology ethics and social responsibility.
+    \item \textbf{Establish ``AI literacy'' horizontal modules}. Given that MRSD students will lead robotics R\&D teams in the future, we recommend introducing AI literacy required modules at the program level, covering: capability boundaries of large language models, prompt engineering best practices, and explainability and auditing methods for AI systems; this aligns with higher education evidence on ``elevating AI capabilities from individual experimentation to institutionalized curriculum design and policy frameworks''~\citep{jogezai2025generativeartifici,wong2025thefutureoflearnin}.
 \end{enumerate}
 
 \paragraph{Universal Technical Institute: Diesel Technology Program}
 
-% \textbf{背景诊断：}该项目有两门课程触发 \textsc{Transform} 标签：\textit{Steering \& Suspension Systems} (DT13-162) 与 \textit{Diesel Engines} (DT13-211)。主导能力维度为 D7（设备操作与监控，权重0.48--0.60）与 D2（技术文档理解，权重0.12--0.18）。值得注意的是，$A^{\mathrm{strict}}$ 远低于 $A$（分别为0.058与0.055 vs. 0.336与0.380），表明这两门课程虽与 Gen-AI 能力有重叠，但主要落在"不确定/平衡"维度而非"已证实替代"维度——这与柴油技术高度依赖物理操作的特性一致。
-
-% \textbf{战略建议：}
-\begin{enumerate}
-    \item \textbf{将 AI 诊断工具纳入实训环节}。现代柴油车辆已配备 OBD-II 诊断接口与 AI 故障预测系统。我们建议课程增设"AI 诊断工具实操"模块，让学生学习如何解读 AI 生成的故障代码、评估 AI 建议的可靠性、并在 AI 提示基础上进行物理检测与维修决策。
-    \item \textbf{强化"AI 无法替代"的物理技能}。尽管 AI 可辅助诊断，实际的拆装、调校与维修仍需人类技师完成。课程应明确区分"AI 可辅助"与"AI 不可替代"的技能边界，并在评估中增加现场实操权重，减少对理论知识记忆的依赖。
-    \item \textbf{引入电动化与混合动力转型内容}。随着运输行业向电动化转型，传统柴油技术的市场需求将逐步收缩。我们建议课程增设电动与混合动力系统模块，帮助学生建立跨技术平台的适应能力，降低单一技术路径的职业风险。
+\begin{enumerate}[label=\roman*.]
+    \item \textbf{Incorporate AI diagnostic tools into hands-on training}. Modern diesel vehicles are equipped with OBD-II diagnostic interfaces and AI fault prediction systems. We recommend adding an ``AI diagnostic tools hands-on'' module to the curriculum, allowing students to learn how to interpret AI-generated fault codes, evaluate the reliability of AI recommendations, and make physical inspection and repair decisions based on AI prompts.
+    \item \textbf{Strengthen physical skills that ``AI cannot replace''}. Although AI can assist diagnosis, actual disassembly, calibration, and repair still require human technicians. The curriculum should clearly distinguish between ``AI-assistable'' and ``AI-irreplaceable'' skill boundaries, and increase hands-on practical weighting in assessments while reducing dependence on theoretical knowledge memorization.
+    \item \textbf{Introduce electrification and hybrid powertrain transition content}. As the transportation industry transitions toward electrification, market demand for traditional diesel technology will gradually shrink. We recommend adding electric and hybrid system modules to the curriculum, helping students build adaptability across technology platforms and reducing career risk from single technology paths.
 \end{enumerate}
 
-\paragraph{跨机构共性建议}
+\paragraph{Cross-Institutional Common Recommendations}
 
-除上述机构特定建议外，我们提出三项跨机构的共性原则：
+Beyond the institution-specific recommendations above, we propose three cross-institutional common principles:
 \begin{itemize}
-    \item \textbf{评估体系转型：从"产出"到"过程"}。传统评估侧重学生提交的最终作品（论文、代码、报告），而 Gen-AI 使得这些产出的"自动生成"成为可能。我们建议将评估重心转向过程证据——如现场口头答辩、实时问题解决、以及协作过程记录——以确保评估的有效性与公平性~\citep{harris2024processoverproduct}。
-    \item \textbf{教师发展优先}。课程转型的前提是教师具备 Gen-AI 素养。机构应优先投资教师培训，使其理解 Gen-AI 的能力边界、掌握人机协作教学设计方法、并能在课堂中示范负责任的 AI 使用~\citep{jogezai2025generativeartifici}。
-    \item \textbf{持续监测与迭代}。Gen-AI 能力处于快速演进之中，当前的"不可替代"维度未来可能被突破。我们建议机构建立年度课程审计机制，定期重新评估三轴指标，并根据 Gen-AI 能力演进动态调整课程设计；同时需要明确“允许使用但设定边界”的制度化政策，以降低灰区带来的学习与诚信张力~\citep{hamerman2024aninvestigationofg,hashemi2025navigatingthedoubl}。
+    \item \textbf{Assessment system transformation: From ``output'' to ``process''}. Traditional assessment focuses on students' final submitted work (papers, code, reports), while Gen-AI makes ``automatic generation'' of these outputs possible. We recommend shifting assessment focus toward process evidence---such as live oral defenses, real-time problem-solving, and collaboration process documentation---to ensure assessment validity and fairness~\citep{harris2024processoverproduct}.
+    \item \textbf{Faculty development first}. The prerequisite for curriculum transformation is faculty possessing Gen-AI literacy. Institutions should prioritize investment in faculty training, enabling them to understand Gen-AI capability boundaries, master human-AI collaborative instructional design methods, and demonstrate responsible AI use in the classroom~\citep{jogezai2025generativeartifici}.
+    \item \textbf{Continuous monitoring and iteration}. Gen-AI capabilities are rapidly evolving, and currently ``irreplaceable'' dimensions may be breached in the future. We recommend institutions establish annual curriculum audit mechanisms, periodically re-evaluate three-axis metrics, and dynamically adjust curriculum design according to Gen-AI capability evolution; meanwhile, clear institutionalized policies on ``allowing use but setting boundaries'' are needed to reduce the learning and integrity tensions from gray areas~\citep{hamerman2024aninvestigationofg,hashemi2025navigatingthedoubl}.
 \end{itemize}
 

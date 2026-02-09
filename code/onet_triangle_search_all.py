@@ -425,11 +425,11 @@ def plot_3d_all_points(
     ax.set_xlabel("Digitization (normalized)")
     ax.set_ylabel("Physicality (normalized)", labelpad=10)
     ax.set_zlabel("IP Risk (normalized)")
-    ax.set_title("All Occupations: 3D Heterogeneity Cloud")
+    # Title removed for paper figure
     ax.grid(True)
     apply_axis_trim(ax, coords)
 
-    ax.legend(loc="upper left", bbox_to_anchor=(0.0, 1.02), ncol=2)
+    ax.legend(loc="upper left", bbox_to_anchor=(0.0, 0.88), ncol=2)
     output_path.parent.mkdir(parents=True, exist_ok=True)
     fig.tight_layout()
     fig.savefig(output_path, dpi=300)
@@ -496,7 +496,7 @@ def plot_2d_projections_all_points(
         plot_trendline(ax, all_df[x_col].to_numpy(), all_df[y_col].to_numpy(), "#7A7A7A", "Trendline")
         ax.set_xlabel(f"{x_col.capitalize()} (normalized)")
         ax.set_ylabel(f"{y_col.capitalize()} (normalized)")
-        ax.set_title(title)
+        # ax.set_title(title)  # 去掉子图标题
         ax.grid(True)
         ax.set_xlim(-0.05, 1.05)
         ax.set_ylim(-0.05, 1.05)

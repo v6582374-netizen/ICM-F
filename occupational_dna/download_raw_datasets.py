@@ -6,9 +6,9 @@
 - 运行前请确保网络可达（ITU / CISA / NIST）。
 
 使用方法（在项目根目录执行）：
-    uv run python code/download_raw_datasets.py
+    uv run python occupational_dna/download_raw_datasets.py
 或：
-    .venv/bin/python code/download_raw_datasets.py
+    .venv/bin/python occupational_dna/download_raw_datasets.py
 """
 
 from __future__ import annotations
@@ -19,7 +19,7 @@ from urllib.request import Request, urlopen
 from urllib.error import URLError, HTTPError
 from http.client import IncompleteRead
 
-# 项目根目录：脚本在 code/ 下时为父目录
+# 项目根目录：脚本在 occupational_dna/ 下时为父目录
 PROJECT_ROOT = Path(__file__).resolve().parent.parent
 DATA_RAW = PROJECT_ROOT / "data" / "raw"
 

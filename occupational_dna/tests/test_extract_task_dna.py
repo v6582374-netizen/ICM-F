@@ -1,6 +1,6 @@
 import unittest
 
-from code.extract_task_dna import compute_fr_from_ft, compute_weights, TaskRecord
+from occupational_dna.extract_task_dna import compute_fr_from_ft, compute_weights, TaskRecord
 
 
 class TestExtractTaskDna(unittest.TestCase):

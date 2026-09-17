@@ -14,7 +14,7 @@ ROOT_DIR = os.path.abspath(os.path.join(os.path.dirname(__file__), ".."))
 if ROOT_DIR not in sys.path:
     sys.path.insert(0, ROOT_DIR)
 
-from code.curriculum_pruner import (
+from occupational_dna.curriculum_pruner import (
     DATA_DIR,
     PROCESSED_DIR,
     read_json,

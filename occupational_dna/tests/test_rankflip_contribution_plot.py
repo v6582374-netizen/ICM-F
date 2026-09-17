@@ -7,7 +7,7 @@ import pandas as pd
 
 matplotlib.use("Agg")
 
-from code.reallocation_metrics_plots import plot_rankflip_and_contribution  # noqa: E402
+from occupational_dna.reallocation_metrics_plots import plot_rankflip_and_contribution  # noqa: E402
 
 
 def _fake_rankflip_df() -> pd.DataFrame:

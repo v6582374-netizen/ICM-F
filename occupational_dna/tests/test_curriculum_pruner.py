@@ -1,6 +1,6 @@
 import unittest
 
-from code.curriculum_pruner import (
+from occupational_dna.curriculum_pruner import (
     tokenize,
     cosine_similarity,
     build_similarity_matrix,

@@ -11,9 +11,9 @@
 
 ```bash
 # 在项目根目录执行（需网络）
-.venv/bin/python code/download_raw_datasets.py
+.venv/bin/python occupational_dna/download_raw_datasets.py
 # 或
-uv run python code/download_raw_datasets.py
+uv run python occupational_dna/download_raw_datasets.py
 ```
 
 脚本会向 `data/raw/` 写入以下文件（若某次运行因网络失败，可多次重试）：

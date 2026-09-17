@@ -1,7 +1,7 @@
 import unittest
 import pandas as pd
 
-from code.onet_heterogeneity import aggregate_axes, normalize_to_0_100, score_title_matches
+from occupational_dna.onet_heterogeneity import aggregate_axes, normalize_to_0_100, score_title_matches
 
 
 class TestOnetHeterogeneity(unittest.TestCase):

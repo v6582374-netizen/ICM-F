@@ -29,8 +29,8 @@
 
 ## 运行顺序
 
-1. 先执行 `code/relabel_task_dna_authoritative_sc.py` 生成含 `mu_task` 的权威任务层 CSV。
-2. 再执行 `code/aggregate_authoritative_sc.py` 生成含 `mu_occ` 的聚合 JSON。
+1. 先执行 `occupational_dna/relabel_task_dna_authoritative_sc.py` 生成含 `mu_task` 的权威任务层 CSV。
+2. 再执行 `occupational_dna/aggregate_authoritative_sc.py` 生成含 `mu_occ` 的聚合 JSON。
 3. 使用 `data/processed/mu_refactor_audit_report.md` 检查是否仍有裸 `mu` 产物残留。
 
 ## 兼容性提示

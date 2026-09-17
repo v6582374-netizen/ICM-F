@@ -4,7 +4,7 @@
 import unittest
 import numpy as np
 
-from code.adoption_task_share_forecast import compute_q_p
+from occupational_dna.adoption_task_share_forecast import compute_q_p
 
 
 class TestAdoptionTaskShareForecast(unittest.TestCase):

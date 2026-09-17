@@ -15,24 +15,15 @@ import re
 from pathlib import Path
 from typing import Dict, List, Tuple
 
-import importlib.util
-import sys
 import numpy as np
 import pandas as pd
 import matplotlib.pyplot as plt
 
-ROOT = Path(__file__).resolve().parents[1]
-module_path = ROOT / "code" / "adoption_task_share_forecast.py"
-spec = importlib.util.spec_from_file_location("adoption_task_share_forecast", module_path)
-if spec is None or spec.loader is None:
-    raise ImportError("无法加载 adoption_task_share_forecast.py")
-module = importlib.util.module_from_spec(spec)
-sys.modules["adoption_task_share_forecast"] = module
-spec.loader.exec_module(module)
-
-build_time_grid = module.build_time_grid
-load_adoption_anchors = module.load_adoption_anchors
-load_scenario_config = module.load_scenario_config
+from occupational_dna.adoption_task_share_forecast import (
+    build_time_grid,
+    load_adoption_anchors,
+    load_scenario_config,
+)
 
 
 STOPWORDS = {

@@ -5,7 +5,7 @@ from pathlib import Path
 
 import pandas as pd
 
-from code.aggregate_authoritative_sc import aggregate_task_dna
+from occupational_dna.aggregate_authoritative_sc import aggregate_task_dna
 
 
 class TestAuthoritativeScAggregate(unittest.TestCase):

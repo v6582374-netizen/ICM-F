@@ -79,12 +79,12 @@ At least one file selection option must be defined in the `tool.hatch.build.targ
 2. 查找 `src/` 目录下的包
 3. 如果都找不到，就会报错
 
-本项目是学术项目，代码放在 `code/` 目录下，且该目录不是标准的 Python 包结构（缺少 `__init__.py`），所以 `hatchling` 无法自动识别。
+本项目是学术项目，代码放在 `occupational_dna/` 目录下，并以标准 Python 包形式发布。
 
 ### 解决方案
 **两步操作**：
 
-1. **创建包结构**：在 `code/` 目录下创建 `__init__.py` 文件
+1. **创建包结构**：在 `occupational_dna/` 目录下创建 `__init__.py` 文件
    ```python
    # ICM-F project code package
    ```
@@ -92,10 +92,10 @@ At least one file selection option must be defined in the `tool.hatch.build.targ
 2. **配置构建工具**：在 `pyproject.toml` 中添加配置
    ```toml
    [tool.hatch.build.targets.wheel]
-   packages = ["code"]
+   packages = ["occupational_dna"]
    ```
 
-这样告诉 `hatchling` 将 `code` 目录作为包来构建。
+这样告诉 `hatchling` 将 `occupational_dna` 目录作为包来构建。
 
 ### 经验教训
 - Python 包必须包含 `__init__.py` 文件才能被识别为包
@@ -109,7 +109,7 @@ At least one file selection option must be defined in the `tool.hatch.build.targ
 ### 错误信息
 ```
 Traceback (most recent call last):
-  File "/Users/shiwen/Downloads/ICM-F/code/scheme_a_pipeline.py", line 23, in <module>
+  File "/Users/shiwen/Downloads/ICM-F/occupational_dna/scheme_a_pipeline.py", line 23, in <module>
     import numpy as np
 ModuleNotFoundError: No module named 'numpy'
 ```
@@ -165,7 +165,7 @@ ModuleNotFoundError: No module named 'numpy'
 
 ### 替代方案
 如果手动选择解释器不起作用，可以：
-1. 使用 `uv run python code/script.py` 命令运行脚本
+1. 使用 `uv run python occupational_dna/script.py` 命令运行脚本
 2. 手动创建 `.vscode/settings.json` 配置文件（详见 `cursor-python-interpreter-config.md`）
 
 ---
@@ -192,7 +192,7 @@ requires = ["hatchling"]
 build-backend = "hatchling.build"
 
 [tool.hatch.build.targets.wheel]
-packages = ["code"]
+packages = ["occupational_dna"]
 
 [tool.uv]
 dev-dependencies = []
@@ -201,8 +201,8 @@ dev-dependencies = []
 ### 项目结构
 ```
 ICM-F/
-├── code/
-│   ├── __init__.py          # 新增：使 code 成为 Python 包
+├── occupational_dna/
+│   ├── __init__.py          # Python package marker
 │   └── scheme_a_pipeline.py
 ├── data/
 ├── pyproject.toml           # 已修改：移除 readme，添加包配置

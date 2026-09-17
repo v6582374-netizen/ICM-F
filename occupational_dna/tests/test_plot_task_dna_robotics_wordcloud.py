@@ -1,6 +1,6 @@
 from pathlib import Path
 
-from code.plot_task_dna_robotics_wordcloud import (
+from occupational_dna.plot_task_dna_robotics_wordcloud import (
     build_frequencies,
     load_top_task_ids,
     read_task_dna_csv,

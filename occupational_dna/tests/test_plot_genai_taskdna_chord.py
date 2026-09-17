@@ -1,6 +1,6 @@
 from pathlib import Path
 
-from code.plot_genai_taskdna_chord import (
+from occupational_dna.plot_genai_taskdna_chord import (
     _build_edges,
     _parse_sim,
     write_summary_xml,

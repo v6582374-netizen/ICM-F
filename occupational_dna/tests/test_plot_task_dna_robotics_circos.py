@@ -2,7 +2,7 @@ from pathlib import Path
 
 import numpy as np
 
-from code.plot_task_dna_robotics_circos import (
+from occupational_dna.plot_task_dna_robotics_circos import (
     build_dummy_tasks,
     compute_key_points,
     synthesize_ring_data,

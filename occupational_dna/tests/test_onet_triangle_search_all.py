@@ -1,7 +1,7 @@
 import unittest
 import pandas as pd
 
-from code.onet_triangle_search_all import compute_triangle_search, map_domain, soc_major_group
+from occupational_dna.onet_triangle_search_all import compute_triangle_search, map_domain, soc_major_group
 
 
 class TestOnetTriangleSearchAll(unittest.TestCase):

@@ -155,7 +155,7 @@ print("✅ 成功导入 numpy 和 pandas")
 
 2. **日常使用**：
    - 直接点击运行按钮 ▶️
-   - 或使用 `uv run python code/script.py`
+   - 或使用 `uv run python occupational_dna/script.py`
 
 3. **验证环境**：
    - 定期检查状态栏显示的 Python 路径

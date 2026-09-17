@@ -1,7 +1,7 @@
 import os
 import unittest
 
-from code.relabel_task_dna_authoritative_sc import (
+from occupational_dna.relabel_task_dna_authoritative_sc import (
     ALLOWED_LEVELS,
     build_dimension_profiles,
     relabel_task_rows,

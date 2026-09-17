@@ -2,9 +2,15 @@
 
 **A reproducible computational study of how generative AI reallocates occupational tasks and changes the design of post-secondary curricula.**
 
-[Read the manuscript](build/main.pdf) · [Explore the data](data/README.md) · [Reproduce the analysis](#reproduce-the-analysis)
+[Full paper (PDF)](build/main.pdf) · [Explore the data](data/README.md) · [Reproduce the analysis](#reproduce-the-analysis)
 
-![O*NET heterogeneity space, with the selected STEM, skilled-trade, and arts occupations](assets/occupational-heterogeneity.webp)
+<p align="center">
+  <a href="build/main.pdf">
+    <img src="assets/manuscript-abstract.webp" alt="Abstract page of Reshaping Occupational DNA" width="72%">
+  </a>
+  <br>
+  <sub><a href="build/main.pdf">Read the full paper (PDF)</a></sub>
+</p>
 
 ## Research question
 
